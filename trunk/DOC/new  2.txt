@@ -1,0 +1,40 @@
+1     10   1000
+2     5    2000
+      ----------
+      15   20000
+	  
+	  15    (1000 + 2000)/2=   
+	  
+	  
+	123    anh thung   gianhap   giaX  sale   chinhanhA  soluong  
+	
+	
+	thong tin san pham : 
+	
+	ten sp
+	ma sp
+	sl
+	mau S
+	size : S , M , L ,Xl (quan : 27 --> 34)
+	
+	
+	-------------------------------------------
+	1 2 3 4 5 6 7 8 9 10
+	Q D K X 2 7 0 0 0 1
+	Q D K X 2 7 0 0 0 2
+	A D
+	
+	Q = quan  --> K kaki , J : jean . X
+	
+	FALshop.net
+	D : day N : ngan
+	
+	
+	
+	quan 10 , 3 gv , bthanh , phu Nh , thu duc , q8.
+	
+	
+	
+	
+		
+	
