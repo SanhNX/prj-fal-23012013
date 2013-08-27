@@ -1,0 +1,5 @@
+C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\DAL\bin\Debug\DAL.dll
+C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\DAL\bin\Debug\DAL.pdb
+C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\DAL\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\DAL\obj\Debug\DAL.dll
+C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\DAL\obj\Debug\DAL.pdb

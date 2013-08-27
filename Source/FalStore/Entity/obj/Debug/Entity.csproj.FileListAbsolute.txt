@@ -1,0 +1,5 @@
+C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\Entity\bin\Debug\Entity.dll
+C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\Entity\bin\Debug\Entity.pdb
+C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\Entity\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\Entity\obj\Debug\Entity.dll
+C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\Entity\obj\Debug\Entity.pdb

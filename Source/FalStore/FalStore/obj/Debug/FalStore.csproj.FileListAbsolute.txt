@@ -1,0 +1,5 @@
+c:\users\duong\documents\visual studio 2010\Projects\FalStore\FalStore\bin\FalStore.dll
+c:\users\duong\documents\visual studio 2010\Projects\FalStore\FalStore\bin\FalStore.pdb
+c:\users\duong\documents\visual studio 2010\Projects\FalStore\FalStore\obj\Debug\ResolveAssemblyReference.cache
+c:\users\duong\documents\visual studio 2010\Projects\FalStore\FalStore\obj\Debug\FalStore.dll
+c:\users\duong\documents\visual studio 2010\Projects\FalStore\FalStore\obj\Debug\FalStore.pdb
