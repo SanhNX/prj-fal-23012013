@@ -1,12 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TopMenu.ascx.cs" Inherits="FalStore.Control.topmenu" %>
 <!-- Header -->
-THIS IS TOP MENU
 <div id="mws-header" class="clearfix">
     <!-- Logo Container -->
     <div id="mws-logo-container">
         <!-- Logo Wrapper, images put within this wrapper will always be vertically centered -->
         <div id="mws-logo-wrap">
-            <img src="../Styles/Images/logo.png" alt="mws admin">
+            <img src="../Styles/Images/banner_Falshop.png" alt="mws admin">
         </div>
     </div>
     <!-- User Tools (notifications, logout, profile, change password) -->
