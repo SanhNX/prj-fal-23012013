@@ -15,7 +15,7 @@ THIS IS TOP MENU
         <div id="mws-user-info" class="mws-inset">
             <!-- User Photo -->
             <div id="mws-user-photo">
-                <img src="example/profile.jpg" alt="User Photo">
+                <img src="../Styles/Images/profile.jpg" alt="User Photo">
             </div>
             <!-- Username and Functions -->
             <div id="mws-user-functions">
