@@ -40,13 +40,13 @@ namespace FalStore.Control {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor hypReceipt;
         
         /// <summary>
-        /// A1 control.
+        /// hypExportProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor hypExportProduct;
         
         /// <summary>
         /// hypStore control.

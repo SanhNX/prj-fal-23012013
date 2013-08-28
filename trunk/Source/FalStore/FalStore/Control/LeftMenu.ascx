@@ -26,7 +26,7 @@
                     <li><a href="" runat="server" id="hypCategory">Loại sản phẩm</a></li>
                     <li><a href="" runat="server" id="hypProduct">Sản phẩm</a></li>
                     <li><a href="" runat="server" id="hypReceipt">Nhập kho</a></li>
-                    <li><a href="" runat="server" id="A1">Xuất kho</a></li>
+                    <li><a href="" runat="server" id="hypExportProduct">Xuất kho</a></li>
                     <li><a href="" runat="server" id="hypStore">Thông tin kho</a></li>
                 </ul>
             </li>
