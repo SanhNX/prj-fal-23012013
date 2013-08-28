@@ -4,7 +4,7 @@
         <!-- From category --->
         <div class="mws-panel grid_8">
             <div class="mws-panel-header">
-                <span>Nhập hàng</span>
+                <span>Nhập kho</span>
             </div>
             <div class="mws-panel-body no-padding">
                 <form class="mws-form" action="form_layouts.html">
@@ -12,7 +12,7 @@
                     <legend>Thông tin phiếu nhập</legend>
                     <div class="mws-form-row">
                         <label class="mws-form-label">
-                            Mã phiếu</label>
+                            Mã phiếu nhập</label>
                         <div class="mws-form-item">
                             <input type="text" class="small">
                         </div>
@@ -618,4 +618,3 @@
     </div>
     --%>
 </div>
-</div> 
