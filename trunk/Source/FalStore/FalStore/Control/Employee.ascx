@@ -23,15 +23,22 @@
                             <input type="text" class="large">
                         </div>
                     </div>
-                     <div class="mws-form-row">
-                    				<label class="mws-form-label">Giới tính</label>
-                    				<div class="mws-form-item clearfix">
-                    					<ul class="mws-form-list inline">
-                    						<li><input type="radio"> <label>Nam</label></li>
-                    						<li><input type="radio"> <label>Nữ</label></li>
-                    							</ul>
-                    				</div>
-                    			</div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">
+                            Giới tính</label>
+                        <div class="mws-form-item clearfix">
+                            <ul class="mws-form-list inline">
+                                <li>
+                                    <input type="radio">
+                                    <label>
+                                        Nam</label></li>
+                                <li>
+                                    <input type="radio">
+                                    <label>
+                                        Nữ</label></li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="mws-form-row">
                         <label class="mws-form-label">
                             Địa chỉ</label>
@@ -39,7 +46,7 @@
                             <textarea rows="" cols="" class="large"></textarea>
                         </div>
                     </div>
-                      <div class="mws-form-row">
+                    <div class="mws-form-row">
                         <label class="mws-form-label">
                             Số điện thoại</label>
                         <div class="mws-form-item">
@@ -62,7 +69,7 @@
             </div>
         </div>
         <!-- table -->
-        <div class="mws-panel grid_8">
+        <div class="mws-panel grid_8 mws-collapsible">
             <div class="mws-panel-header">
                 <span><i class="icon-table"></i>Danh sách</span>
             </div>
@@ -88,6 +95,8 @@
                             <th>
                                 Điện thoại
                             </th>
+                            <th>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,8 +119,13 @@
                             <td>
                                 090.000.000.000
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>
                                 2
                             </td>
@@ -130,8 +144,13 @@
                             <td>
                                 090.111.000.000
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>
                                 3
                             </td>
@@ -150,8 +169,13 @@
                             <td>
                                 090.000.222.000
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>
                                 4
                             </td>
@@ -170,8 +194,13 @@
                             <td>
                                 090.000.333.000
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>
                                 5
                             </td>
@@ -190,8 +219,13 @@
                             <td>
                                 090.000.000.444
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>
                                 6
                             </td>
@@ -210,8 +244,13 @@
                             <td>
                                 090.000.555.000
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>
                                 7
                             </td>
@@ -230,8 +269,13 @@
                             <td>
                                 090.000.000.666
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>
                                 8
                             </td>
@@ -250,8 +294,13 @@
                             <td>
                                 090.777.000.000
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>
                                 9
                             </td>
@@ -270,8 +319,13 @@
                             <td>
                                 090.888.000.000
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>
                                 10
                             </td>
@@ -290,8 +344,12 @@
                             <td>
                                 090.000.999.000
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-          
                     </tbody>
                 </table>
             </div>
