@@ -14,10 +14,7 @@
     <!-- Searchbox -->
     <div id="mws-searchbox" class="mws-inset">
         <form action="typography.html">
-        <input type="text" class="mws-search-input" placeholder="Search...">
-        <button type="submit" class="mws-search-submit">
-            <i class="icon-search"></i>
-        </button>
+       
         </form>
     </div>
     <!-- Main Navigation -->
@@ -26,8 +23,8 @@
             <li class="active"><a href="../Default.aspx"><i class="icon-home"></i>Home</a></li>
             <li><a href="#"><i class="icon-list"></i>Quản lý kho</a>
                 <ul>
-                    <li><a href="" runat="server" id="hypCategory">Danh mục sản phẩm</a></li>
-                    <li><a href="" runat="server" id="hypProduct">Thông tin sản phẩm</a></li>
+                    <li><a href="" runat="server" id="hypCategory">Loại sản phẩm</a></li>
+                    <li><a href="" runat="server" id="hypProduct">Sản phẩm</a></li>
                     <li><a href="" runat="server" id="hypReceipt">Nhập kho</a></li>
                     <li><a href="" runat="server" id="A1">Xuất kho</a></li>
                 </ul>
