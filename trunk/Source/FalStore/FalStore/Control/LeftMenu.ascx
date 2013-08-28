@@ -44,6 +44,8 @@
                     <li><a href="" runat="server" id="hypUser">Tài khoản đăng nhập</a></li>
                 </ul>
             </li>
+             <li><a href="#"><i class="icon-list"></i>Bán hàng</a>
+            </li>
         </ul>
     </div>
 </div>
