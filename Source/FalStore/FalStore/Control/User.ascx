@@ -83,6 +83,9 @@
                             <th>
                                 Chức vụ
                             </th>
+                              <th>
+                                Chi nhánh
+                            </th>
                             <th>
                             </th>
                         </tr>
@@ -103,6 +106,9 @@
                             </td>
                             <td>
                                 Quản lý
+                            </td>
+                            <td>
+                                Chi nhanh A
                             </td>
                             <td>
                                 <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
@@ -127,6 +133,9 @@
                                 Quản lý
                             </td>
                             <td>
+                                Chi nhanh B
+                            </td>
+                            <td>
                                 <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
                                 </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
                                     class="btn btn-small"><i class="icon-trash"></i></a></span>
@@ -147,6 +156,9 @@
                             </td>
                             <td>
                                 Nhân viên
+                            </td>
+                            <td>
+                                Chi nhanh B
                             </td>
                             <td>
                                 <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
@@ -171,6 +183,9 @@
                                 Nhân viên
                             </td>
                             <td>
+                                Chi nhanh D
+                            </td>
+                            <td>
                                 <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
                                 </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
                                     class="btn btn-small"><i class="icon-trash"></i></a></span>
@@ -193,6 +208,9 @@
                                 Nhân viên
                             </td>
                             <td>
+                                Chi nhanh E
+                            </td>
+                            <td>
                                 <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
                                 </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
                                     class="btn btn-small"><i class="icon-trash"></i></a></span>
@@ -213,6 +231,9 @@
                             </td>
                             <td>
                                 Nhân viên
+                            </td>
+                            <td>
+                                Chi nhanh A
                             </td>
                             <td>
                                 <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>

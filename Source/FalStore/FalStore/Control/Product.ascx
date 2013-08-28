@@ -72,6 +72,13 @@
                             </select>
                         </div>
                     </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">
+                            Giá sản phẩm</label>
+                        <div class="mws-form-item">
+                            <input type="text" class="large" value="40.000">
+                        </div>
+                    </div>
                 </div>
                 <div class="mws-button-row">
                     <input type="submit" value="Submit" class="btn btn-danger">
