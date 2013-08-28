@@ -3,3 +3,8 @@ c:\users\duong\documents\visual studio 2010\Projects\FalStore\FalStore\bin\FalSt
 c:\users\duong\documents\visual studio 2010\Projects\FalStore\FalStore\obj\Debug\ResolveAssemblyReference.cache
 c:\users\duong\documents\visual studio 2010\Projects\FalStore\FalStore\obj\Debug\FalStore.dll
 c:\users\duong\documents\visual studio 2010\Projects\FalStore\FalStore\obj\Debug\FalStore.pdb
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\FalStore\bin\FalStore.dll
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\FalStore\bin\FalStore.pdb
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\FalStore\obj\Debug\ResolveAssemblyReference.cache
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\FalStore\obj\Debug\FalStore.dll
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\FalStore\obj\Debug\FalStore.pdb

@@ -59,7 +59,7 @@
                             </select>
                         </div>
                     </div>
-                     <div class="mws-form-row">
+                    <div class="mws-form-row">
                         <label class="mws-form-label">
                             Kích cỡ</label>
                         <div class="mws-form-item">
@@ -81,7 +81,7 @@
             </div>
         </div>
         <!-- table -->
-        <div class="mws-panel grid_8">
+        <div class="mws-panel grid_8 mws-collapsible">
             <div class="mws-panel-header">
                 <span><i class="icon-table"></i>Danh sách</span>
             </div>
@@ -110,6 +110,8 @@
                             <th>
                                 Kích cỡ
                             </th>
+                            <th>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,7 +126,6 @@
                                 Vest nam màu xanh
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 ÁO VEST
@@ -134,6 +135,11 @@
                             </td>
                             <td>
                                 S
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -147,7 +153,6 @@
                                 Vest nam màu kem
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 ÁO VEST
@@ -157,6 +162,11 @@
                             </td>
                             <td>
                                 XL
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -170,7 +180,6 @@
                                 Vest nam màu kaki
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 ÁO VEST
@@ -180,6 +189,11 @@
                             </td>
                             <td>
                                 M
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -193,7 +207,6 @@
                                 Balo màu đô in chữ
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 ÁO THUN NAM
@@ -203,6 +216,11 @@
                             </td>
                             <td>
                                 S
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -216,7 +234,6 @@
                                 Balo in chữ màu kem
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 ÁO THUN NAM
@@ -226,6 +243,11 @@
                             </td>
                             <td>
                                 S
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -239,7 +261,6 @@
                                 Polo sooc ngang xanh đen
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 ÁO THUN NAM
@@ -249,6 +270,11 @@
                             </td>
                             <td>
                                 M
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -262,7 +288,6 @@
                                 Polo chấm bi xanh
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 ÁO THUN NAM
@@ -272,6 +297,11 @@
                             </td>
                             <td>
                                 XL
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -285,7 +315,6 @@
                                 Áo thun nâu chỉ nổi túi caro
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 ÁO THUN NAM
@@ -295,6 +324,11 @@
                             </td>
                             <td>
                                 S
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -308,7 +342,6 @@
                                 Tay ngắn caro nâu
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 SƠ MI NAM
@@ -318,6 +351,11 @@
                             </td>
                             <td>
                                 M
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -331,7 +369,6 @@
                                 Tay ngắn đen trơn phối túi
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 SƠ MI NAM
@@ -341,6 +378,11 @@
                             </td>
                             <td>
                                 L
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -354,7 +396,6 @@
                                 Sơ mi tay dài caro xám
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 SƠ MI NAM
@@ -364,6 +405,11 @@
                             </td>
                             <td>
                                 S
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -377,7 +423,6 @@
                                 Quần kaki màu xanh đen
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 QUẦN JEAN, KAKI
@@ -387,6 +432,11 @@
                             </td>
                             <td>
                                 M
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -400,7 +450,6 @@
                                 Quần kaki màu đô
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 QUẦN JEAN, KAKI
@@ -410,6 +459,11 @@
                             </td>
                             <td>
                                 S
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -423,7 +477,6 @@
                                 Quần jean thái
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 QUẦN JEAN, KAKI
@@ -433,6 +486,11 @@
                             </td>
                             <td>
                                 XL
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -446,7 +504,6 @@
                                 Quần short màu xám
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 QUẦN SHORT
@@ -456,6 +513,11 @@
                             </td>
                             <td>
                                 L
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                     </tbody>

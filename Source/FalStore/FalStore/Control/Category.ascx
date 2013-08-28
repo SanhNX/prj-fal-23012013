@@ -52,7 +52,7 @@
             </div>
         </div>
         <!-- table -->
-        <div class="mws-panel grid_8">
+        <div class="mws-panel grid_8 mws-collapsible">
             <div class="mws-panel-header">
                 <span><i class="icon-table"></i>Danh sách</span>
             </div>

@@ -3,3 +3,8 @@ C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\Entity\bin\Debug\E
 C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\Entity\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\Entity\obj\Debug\Entity.dll
 C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\Entity\obj\Debug\Entity.pdb
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\Entity\bin\Debug\Entity.dll
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\Entity\bin\Debug\Entity.pdb
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\Entity\obj\Debug\ResolveAssemblyReference.cache
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\Entity\obj\Debug\Entity.dll
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\Entity\obj\Debug\Entity.pdb

@@ -30,7 +30,7 @@
                             <textarea rows="" cols="" class="large"></textarea>
                         </div>
                     </div>
-                  <div class="mws-form-row">
+                    <div class="mws-form-row">
                         <label class="mws-form-label">
                             Địa chỉ</label>
                         <div class="mws-form-item">
@@ -46,7 +46,7 @@
             </div>
         </div>
         <!-- table -->
-        <div class="mws-panel grid_8">
+        <div class="mws-panel grid_8 mws-collapsible">
             <div class="mws-panel-header">
                 <span><i class="icon-table"></i>Danh sách</span>
             </div>
@@ -69,6 +69,8 @@
                             <th>
                                 Địa chỉ
                             </th>
+                            <th>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,10 +85,14 @@
                                 Chi nhánh Tân Bình
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 100, Lý Thường Kiệt, Tân Bình
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -100,10 +106,14 @@
                                 Chi nhánh Gò Vấp
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 200, Nguyễn Oanh, Gò Vấp
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -117,10 +127,14 @@
                                 Chi nhánh Phú Nhuận
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 300, Hồ Văn Huê, Phú Nhuận
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -134,10 +148,14 @@
                                 Chi nhánh Thủ Đức
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 400, Võ Văn Ngân, Thủ Đức
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                         <tr>
@@ -151,10 +169,14 @@
                                 Chi nhánh Bình Tân
                             </td>
                             <td>
-                                
                             </td>
                             <td>
                                 500, Lạc Long Quân, Bình Tân
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                     </tbody>
                 </table>

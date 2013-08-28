@@ -23,7 +23,6 @@
                             <input type="text" class="large">
                         </div>
                     </div>
-                  
                     <div class="mws-form-row">
                         <label class="mws-form-label">
                             Nhân viên</label>
@@ -61,7 +60,7 @@
             </div>
         </div>
         <!-- table -->
-        <div class="mws-panel grid_8">
+        <div class="mws-panel grid_8 mws-collapsible">
             <div class="mws-panel-header">
                 <span><i class="icon-table"></i>Danh sách</span>
             </div>
@@ -84,6 +83,8 @@
                             <th>
                                 Chức vụ
                             </th>
+                            <th>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,7 +93,7 @@
                                 1
                             </td>
                             <td>
-                                U0001   
+                                U0001
                             </td>
                             <td>
                                 ********
@@ -103,8 +104,13 @@
                             <td>
                                 Quản lý
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                           <tr>
+                        <tr>
                             <td>
                                 2
                             </td>
@@ -120,8 +126,13 @@
                             <td>
                                 Quản lý
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                           <tr>
+                        <tr>
                             <td>
                                 3
                             </td>
@@ -137,8 +148,13 @@
                             <td>
                                 Nhân viên
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                           <tr>
+                        <tr>
                             <td>
                                 4
                             </td>
@@ -154,8 +170,13 @@
                             <td>
                                 Nhân viên
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                           <tr>
+                        <tr>
                             <td>
                                 5
                             </td>
@@ -171,8 +192,13 @@
                             <td>
                                 Nhân viên
                             </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
+                            </td>
                         </tr>
-                           <tr>
+                        <tr>
                             <td>
                                 6
                             </td>
@@ -187,6 +213,11 @@
                             </td>
                             <td>
                                 Nhân viên
+                            </td>
+                            <td>
+                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
                             </td>
                         </tr>
                     </tbody>

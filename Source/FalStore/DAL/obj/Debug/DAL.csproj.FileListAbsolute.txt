@@ -3,3 +3,8 @@ C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\DAL\bin\Debug\DAL.
 C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\DAL\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\DAL\obj\Debug\DAL.dll
 C:\Users\DUONG\documents\visual studio 2010\Projects\FalStore\DAL\obj\Debug\DAL.pdb
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\DAL\bin\Debug\DAL.dll
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\DAL\bin\Debug\DAL.pdb
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\DAL\obj\Debug\ResolveAssemblyReference.cache
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\DAL\obj\Debug\DAL.dll
+D:\NGHIA\Project\FAL\Doc\Source\FalStore\DAL\obj\Debug\DAL.pdb
