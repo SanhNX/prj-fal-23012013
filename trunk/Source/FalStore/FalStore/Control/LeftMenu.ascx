@@ -28,8 +28,8 @@
                 <ul>
                     <li><a href="" runat="server" id="hypCategory">Danh mục sản phẩm</a></li>
                     <li><a href="" runat="server" id="hypProduct">Thông tin sản phẩm</a></li>
-                    <li><a href="" runat="server" id="hypReceipt">Nhập hàng vào kho</a></li>
-                    <li><a href="" runat="server" id="A1">Xuất cho các chi nhánh</a></li>
+                    <li><a href="" runat="server" id="hypReceipt">Nhập kho</a></li>
+                    <li><a href="" runat="server" id="A1">Xuất kho</a></li>
                 </ul>
             </li>
             <li><a href="#"><i class="icon-list"></i>Quản lý chi nhánh</a>
