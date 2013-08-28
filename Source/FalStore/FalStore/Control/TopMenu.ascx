@@ -6,7 +6,7 @@ THIS IS TOP MENU
     <div id="mws-logo-container">
         <!-- Logo Wrapper, images put within this wrapper will always be vertically centered -->
         <div id="mws-logo-wrap">
-            <img src="../Images/logo.png" alt="mws admin">
+            <img src="../Styles/Images/logo.png" alt="mws admin">
         </div>
     </div>
     <!-- User Tools (notifications, logout, profile, change password) -->
