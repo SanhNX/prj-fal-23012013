@@ -37,6 +37,9 @@ namespace FalStore
                 case "Store":
                     uc = this.LoadControl("~/Control/Store.ascx") as UserControl;
                     break;
+                case "ExportProduct":
+                    uc = this.LoadControl("~/Control/ExportProduct.ascx") as UserControl;
+                    break;
 
             }
 
