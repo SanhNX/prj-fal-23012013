@@ -1,5 +1,7 @@
 --Create database
-CREATE DATABASE dbFalStore;
+--CREATE DATABASE dbFalStore;
+
+USE [dbFalStore]
 --Create table
 --Category
 CREATE TABLE Category
