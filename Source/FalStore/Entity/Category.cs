@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entity
 {
-    class Category
+    public class Category
     {
         //ID
         public int CategoryID { get; set; }
