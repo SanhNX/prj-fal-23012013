@@ -19,7 +19,7 @@ namespace DAL
         }
 
         //call store procedure view all category
-        public List<objCategory> GetAllCatagory(int pageIndex, int pageSize, out int total)
+        public List<objCategory> GetAllCategory(int pageIndex, int pageSize, out int total)
         {
 
             List<objCategory> lst = new List<objCategory>();

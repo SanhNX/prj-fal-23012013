@@ -20,7 +20,7 @@ namespace DAL
         }
 
         //call store procedure view all LogDetail
-        public List<objLogDetail> GetAllLogDetail(int pageIndex, int pageSize, out int total)
+        public List<objLogDetail> GetLogDetail(string logStoreID, int pageIndex, int pageSize, out int total)
         {
 
             List<objLogDetail> lst = new List<objLogDetail>();
@@ -33,6 +33,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@pageSize", pageSize));
             parameterList.Add(new SqlParameter("@pageIndex", pageIndex));
             parameterList.Add(prTotal);
+            parameterList.Add(new SqlParameter("@LogStoreID", pageIndex));
 
             SqlDataReader dr = SQLHelper.ExecuteReader("spLogDetailGetAll", parameterList);
             while (dr.Read())
@@ -55,7 +56,7 @@ namespace DAL
         }
 
         //call store procedure insert log detail
-        public int InsertCategory(objLogDetail obj)
+        public int InsertLogDetail(objLogDetail obj)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
