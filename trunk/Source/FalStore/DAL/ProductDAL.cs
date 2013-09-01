@@ -72,7 +72,7 @@ namespace DAL
         }
 
         //call store procedure update product
-        public int UpdateCategory(objProduct obj)
+        public int UpdateProduct(objProduct obj)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
@@ -89,7 +89,7 @@ namespace DAL
         }
 
         //call store procedure delete product
-        public int DeleteCategory(objProduct obj)
+        public int DeleteProduct(objProduct obj)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
