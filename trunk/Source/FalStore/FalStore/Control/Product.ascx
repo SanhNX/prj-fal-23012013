@@ -1,99 +1,152 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Product.ascx.cs" Inherits="FalStore.Control.Product" %>
+<%@ Register Namespace="Common.Helper" Assembly="Common" TagPrefix="cc" %>
+<script type="text/javascript">
+    function CreateTextbox() {
+        createTextbox.innerHTML = createTextbox.innerHTML + "<div>Màu: <input type=text class='small' name='mytext' /></div>";
+    }
+    function RemoveTextbox() {
+        createTextbox.innerHTML = '';
+    } 
+</script>
 <!-- Main Container Start -->
 <div id="mws-container" class="clearfix">
     <div class="container">
         <!-- From category --->
         <div class="mws-panel grid_8">
-            <div class="mws-panel-header">
-                <span>Sản phẩm</span>
+            <div>
+                <asp:Label ID="lblMessage" ForeColor="Green" runat="server" Text=""></asp:Label>
             </div>
-            <div class="mws-panel-body no-padding">
-                <form class="mws-form" action="form_layouts.html">
-                <div class="mws-form-inline">
-                    <div class="mws-form-row">
-                        <label class="mws-form-label">
-                            Mã sản phẩm</label>
-                        <div class="mws-form-item">
-                            <input type="text" class="small">
+            <div class="mws-panel grid_8 mws-collapsible">
+                <div class="mws-panel-header">
+                    <span>Sản phẩm</span>
+                </div>
+                <div class="mws-panel-body no-padding">
+                    <div class="mws-form">
+                        <div class="mws-form-inline">
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Mã sản phẩm</label>
+                                <div class="mws-form-item">
+                                    <asp:TextBox ID="txtProductID" runat="server" class="small"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldProductID" runat="server" ErrorMessage="Nhập mã sản phẩm"
+                                        ControlToValidate="txtProductID" ForeColor="Red"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Tên sản phẩm</label>
+                                <div class="mws-form-item">
+                                    <asp:TextBox ID="txtProductName" runat="server" class="small"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldProductName" runat="server" ErrorMessage="Nhập tên sản phẩm"
+                                        ControlToValidate="txtProductName" ForeColor="Red"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Danh mục sản phẩm</label>
+                                <div class="mws-form-item">
+                                    <asp:DropDownList ID="drpCategory" runat="server" class="small">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Số lượng màu</label>
+                                <asp:TextBox ID="txtColorNumer" runat="server"></asp:TextBox>
+                                <input type="button" value="ADD" id="Button1" onclick="CreateTextbox()">
+                                <div id="createTextbox" class="mws-form-row">
+                                </div>
+                            </div>
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Màu</label>
+                                <asp:TextBox ID="txtColor1" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Màu</label>
+                                <asp:TextBox ID="txtColor2" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Màu</label>
+                                <asp:TextBox ID="txtColor3" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Màu</label>
+                                <asp:TextBox ID="txtColor4" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Màu</label>
+                                <asp:TextBox ID="txtColor5" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Giá nhập</label>
+                                <div class="mws-form-item">
+                                    <asp:TextBox ID="txtImportPrice" runat="server" class="small"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldImportPrice" runat="server" ErrorMessage="Nhập giá nhập"
+                                        ControlToValidate="txtImportPrice" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtImportPrice"
+                                        ValidationExpression="([0-9])*" ErrorMessage="Nhập số" ForeColor="Red"></asp:RegularExpressionValidator>
+                                </div>
+                            </div>
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Giá bán</label>
+                                <div class="mws-form-item">
+                                    <asp:TextBox ID="txtExportPrice" runat="server" class="small"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldExportPrice" runat="server" ErrorMessage="Nhập giá bán"
+                                        ControlToValidate="txtExportPrice" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtExportPrice"
+                                        ValidationExpression="([0-9])*" ErrorMessage="Nhập số" ForeColor="Red"></asp:RegularExpressionValidator>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mws-form-row">
-                        <label class="mws-form-label">
-                            Tên sản phẩm</label>
-                        <div class="mws-form-item">
-                            <input type="text" class="large">
-                        </div>
-                    </div>
-                    <div class="mws-form-row">
-                        <label class="mws-form-label">
-                            Mô tả</label>
-                        <div class="mws-form-item">
-                            <textarea rows="" cols="" class="large"></textarea>
-                        </div>
-                    </div>
-                    <div class="mws-form-row">
-                        <label class="mws-form-label">
-                            Danh mục sản phẩm</label>
-                        <div class="mws-form-item">
-                            <select class="large">
-                                <option>ÁO VEST VN</option>
-                                <option>ÁO THUN TQ</option>
-                                <option>ÁO SOMI NAM TA</option>
-                                <option>QUẦN JEAN USA</option>
-                                <option>QUẦN KAKI VN</option>
-                                <option>QUẦN SORT VN</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mws-form-row">
-                        <label class="mws-form-label">
-                            Màu sắc</label>
-                        <div class="mws-form-item">
-                            <select class="large">
-                                <option>Màu xanh</option>
-                                <option>Màu kem</option>
-                                <option>Màu kaki</option>
-                                <option>Màu đỏ đô</option>
-                                <option>Màu trắng</option>
-                                <option>Chấm bi xanh</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mws-form-row">
-                        <label class="mws-form-label">
-                            Kích cỡ</label>
-                        <div class="mws-form-item">
-                            <select class="large">
-                                <option>Size S</option>
-                                <option>Size M</option>
-                                <option>Size L</option>
-                                <option>Size XL</option>
-                                <option>Big size</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mws-form-row">
-                        <label class="mws-form-label">
-                            Giá sản phẩm</label>
-                        <div class="mws-form-item">
-                            <input type="text" class="large" value="40.000">
+                        <div class="mws-button-row">
+                            <asp:Button ID="btnAdd" runat="server" Text="Tạo mới" class="btn btn-success" OnClick="btnAdd_Click" />
+                            <asp:Button ID="btnClear" runat="server" Text="Clear" class="btn btn-success" />
                         </div>
                     </div>
                 </div>
-                <div class="mws-button-row">
-                    <input type="submit" value="Submit" class="btn btn-danger">
-                    <input type="reset" value="Reset" class="btn ">
-                </div>
-                </form>
             </div>
         </div>
-        <!-- table -->
-        <div class="mws-panel grid_8 mws-collapsible">
-            <div class="mws-panel-header">
-                <span><i class="icon-table"></i>Danh sách</span>
-            </div>
-            <div class="mws-panel-body no-padding">
-                <table class="mws-table">
+    </div>
+    <!-- table -->
+    <div class="mws-panel grid_8 mws-collapsible">
+        <div class="mws-panel-header">
+            <span><i class="icon-table"></i>Danh sách</span>
+        </div>
+        <div class="mws-panel-body no-padding">
+            <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
+                <!-- serach -->
+                <div id="DataTables_Table_1_length" class="dataTables_length">
+                    <label>
+                        Show
+                        <select runat="server" id="count" size="1" name="DataTables_Table_1_length" aria-controls="DataTables_Table_1">
+                            <option value="10" selected="selected">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        entries
+                    </label>
+                    <asp:DropDownList ID="drpSelect" runat="server">
+                        <asp:ListItem>10</asp:ListItem>
+                        <asp:ListItem>25</asp:ListItem>
+                        <asp:ListItem>50</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <div class="dataTables_filter" id="DataTables_Table_1_filter">
+                    <label>
+                        Search:
+                        <input type="text" aria-controls="DataTables_Table_1">
+                    </label>
+                </div>
+                <!-- table -->
+                <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
                     <thead>
                         <tr>
                             <th>
@@ -106,430 +159,72 @@
                                 Tên sản phẩm
                             </th>
                             <th>
-                                Mô tả
+                                Màu sắc
                             </th>
                             <th>
                                 Dach mục
                             </th>
                             <th>
-                                Màu sắc
+                                Giá nhập
                             </th>
                             <th>
-                                Kích cỡ
+                                Giá bán
                             </th>
                             <th>
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                AV 01b
-                            </td>
-                            <td>
-                                Vest nam màu xanh
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                ÁO VEST
-                            </td>
-                            <td>
-                                Màu xanh
-                            </td>
-                            <td>
-                                S
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                2
-                            </td>
-                            <td>
-                                AV 01a
-                            </td>
-                            <td>
-                                Vest nam màu kem
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                ÁO VEST
-                            </td>
-                            <td>
-                                Màu kem
-                            </td>
-                            <td>
-                                XL
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                3
-                            </td>
-                            <td>
-                                AV 01
-                            </td>
-                            <td>
-                                Vest nam màu kaki
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                ÁO VEST
-                            </td>
-                            <td>
-                                Màu kaki
-                            </td>
-                            <td>
-                                M
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                4
-                            </td>
-                            <td>
-                                BL 01a
-                            </td>
-                            <td>
-                                Balo màu đô in chữ
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                ÁO THUN NAM
-                            </td>
-                            <td>
-                                Màu đỏ đô
-                            </td>
-                            <td>
-                                S
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                5
-                            </td>
-                            <td>
-                                BL 01
-                            </td>
-                            <td>
-                                Balo in chữ màu kem
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                ÁO THUN NAM
-                            </td>
-                            <td>
-                                Màu kem
-                            </td>
-                            <td>
-                                S
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                6
-                            </td>
-                            <td>
-                                TP 07
-                            </td>
-                            <td>
-                                Polo sooc ngang xanh đen
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                ÁO THUN NAM
-                            </td>
-                            <td>
-                                Màu xanh đen
-                            </td>
-                            <td>
-                                M
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                7
-                            </td>
-                            <td>
-                                TP 02
-                            </td>
-                            <td>
-                                Polo chấm bi xanh
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                ÁO THUN NAM
-                            </td>
-                            <td>
-                                Chấm bi xanh
-                            </td>
-                            <td>
-                                XL
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                8
-                            </td>
-                            <td>
-                                TT 01
-                            </td>
-                            <td>
-                                Áo thun nâu chỉ nổi túi caro
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                ÁO THUN NAM
-                            </td>
-                            <td>
-                                Màu nâu
-                            </td>
-                            <td>
-                                S
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                9
-                            </td>
-                            <td>
-                                SN 19
-                            </td>
-                            <td>
-                                Tay ngắn caro nâu
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                SƠ MI NAM
-                            </td>
-                            <td>
-                                Màu nâu
-                            </td>
-                            <td>
-                                M
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                10
-                            </td>
-                            <td>
-                                SN 17
-                            </td>
-                            <td>
-                                Tay ngắn đen trơn phối túi
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                SƠ MI NAM
-                            </td>
-                            <td>
-                                Màu đen
-                            </td>
-                            <td>
-                                L
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                11
-                            </td>
-                            <td>
-                                1036b
-                            </td>
-                            <td>
-                                Sơ mi tay dài caro xám
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                SƠ MI NAM
-                            </td>
-                            <td>
-                                Màu xám
-                            </td>
-                            <td>
-                                S
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                12
-                            </td>
-                            <td>
-                                QKD 01c
-                            </td>
-                            <td>
-                                Quần kaki màu xanh đen
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                QUẦN JEAN, KAKI
-                            </td>
-                            <td>
-                                Màu xanh đen
-                            </td>
-                            <td>
-                                M
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                13
-                            </td>
-                            <td>
-                                QKD 01
-                            </td>
-                            <td>
-                                Quần kaki màu đô
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                QUẦN JEAN, KAKI
-                            </td>
-                            <td>
-                                Màu xanh
-                            </td>
-                            <td>
-                                S
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                14
-                            </td>
-                            <td>
-                                0004
-                            </td>
-                            <td>
-                                Quần jean thái
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                QUẦN JEAN, KAKI
-                            </td>
-                            <td>
-                                Màu xanh
-                            </td>
-                            <td>
-                                XL
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                15
-                            </td>
-                            <td>
-                                QSK 01
-                            </td>
-                            <td>
-                                Quần short màu xám
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                QUẦN SHORT
-                            </td>
-                            <td>
-                                Màu xám
-                            </td>
-                            <td>
-                                L
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+                        <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrStt"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrProductID"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrProductName"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrColorName"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrCategoryName"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrImportPrice"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrExportPrice"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <asp:HyperLink ID="hypEdit" runat="server">
+                                            <i class="icon-pencil"></i>
+                                            <asp:Literal ID="ltrEdit" runat="server" Text="Chỉnh sửa"></asp:Literal>
+                                        </asp:HyperLink>
+                                        <asp:HyperLink ID="hypDelete" runat="server">
+                                            <i class="icon-trash"></i>
+                                            <asp:Literal ID="ltrDelete" runat="server" Text="Xóa"></asp:Literal>
+                                        </asp:HyperLink>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </tbody>
                 </table>
+                <!-- paging -->
+                <!-- end .container -->
+                <cc:Pager ID="pager" runat="server" EnableViewState="true" CompactModePageCount="10"
+                    CssClass="dataTables_info" MaxSmartShortCutCount="0" RTL="False" PageSize="10"
+                    OnCommand="pager_Command" />
+                <br />
+                <br />
+                <br />
+                <br />
             </div>
         </div>
     </div>
 </div>
+</div> 

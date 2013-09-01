@@ -13,16 +13,15 @@ namespace FalStore.Control
         {
             if (!Page.IsPostBack)
             {
-                this.hypCategory.HRef = "http://localhost:1596/Default.aspx?pageName=Category";
-                this.hypProduct.HRef = "http://localhost:1596/Default.aspx?pageName=Product";
-                this.hypEmployee.HRef = "http://localhost:1596/Default.aspx?pageName=Employee";
-                this.hypUser.HRef = "http://localhost:1596/Default.aspx?pageName=User";
-                this.hypBranch.HRef = "http://localhost:1596/Default.aspx?pageName=Branch";
-                this.hypReceipt.HRef = "http://localhost:1596/Default.aspx?pageName=Receipt";
-                this.hypStore.HRef = "http://localhost:1596/Default.aspx?pageName=Store";
-                this.hypPrintBarcode.HRef = "http://localhost:1596/Default.aspx?pageName=PrintBarcode";
-                this.hypExportProduct.HRef = "http://localhost:1596/Default.aspx?pageName=ExportProduct";
-                
+                this.hypCategory.HRef = "~/Default.aspx?pageName=Category";
+                this.hypProduct.HRef = "~/Default.aspx?pageName=Product";
+                this.hypEmployee.HRef = "~/Default.aspx?pageName=Employee";
+                this.hypUser.HRef = "~/Default.aspx?pageName=User";
+                this.hypBranch.HRef = "~/Default.aspx?pageName=Branch";
+                this.hypReceipt.HRef = "~/Default.aspx?pageName=Receipt";
+                this.hypStore.HRef = "~/Default.aspx?pageName=Store";
+                this.hypExportProduct.HRef = "~/Default.aspx?pageName=ExportProduct";
+                this.hypPrintBarcode.HRef = "~/Default.aspx?pageName=PrintBarcode";
             }
           
         }
