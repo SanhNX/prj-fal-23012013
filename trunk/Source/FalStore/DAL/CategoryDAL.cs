@@ -18,8 +18,8 @@ namespace DAL
         {
         }
 
-        //call store procedure view all category
-        public List<objCategory> GetAllCategory(int pageIndex, int pageSize, out int total)
+        //call store procedure view category paging
+        public List<objCategory> GetCategoryByPaging(int pageIndex, int pageSize, out int total)
         {
 
             List<objCategory> lst = new List<objCategory>();
@@ -33,7 +33,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@pageIndex", pageIndex));
             parameterList.Add(prTotal);
 
-            SqlDataReader dr = SQLHelper.ExecuteReader("spCategoryGetAll", parameterList);
+            SqlDataReader dr = SQLHelper.ExecuteReader("spDeme", parameterList);
             while (dr.Read())
             {
                 obj = new objCategory();
@@ -42,11 +42,30 @@ namespace DAL
                 lst.Add(obj);
             }
 
-            total = int.Parse(prTotal.Value.ToString());
+            total = 44;
             return lst;
            
         }
 
+        //call store procedure view all category
+        public List<objCategory> GetAllCategory()
+        {
+
+            List<objCategory> lst = new List<objCategory>();
+            objCategory obj = null;
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spCategoryGetAll");
+            while (dr.Read())
+            {
+                obj = new objCategory();
+                obj.CategoryID = int.Parse(dr["CategoryID"].ToString());
+                obj.CategoryName = dr["CategoryName"].ToString();
+                lst.Add(obj);
+            }
+
+            return lst;
+
+        }
         //call store procedure insert category
         public int InsertCategory(objCategory obj)
         {
