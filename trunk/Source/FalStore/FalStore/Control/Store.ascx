@@ -13,6 +13,14 @@
 
                     <div class="mws-form-row">
                         <label class="mws-form-label">
+                            Mã sản phẩm</label>
+                        <div class="mws-form-item">
+                            <input type="text" class="small">
+                        </div>
+                    </div>
+
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">
                             Tên sản phẩm</label>
                         <div class="mws-form-item">
                             <input type="text" class="small">
@@ -79,16 +87,13 @@
                                             Giá bán
                                         </th>
                                         <th>
-                                           Giảm Giá
-                                        </th>
-                                        <th>
-                                           Giá bán thực
-                                        </th>
-                                        <th>
                                             Số lượng
                                         </th>
                                         <th>
                                             Chi nhánh
+                                        </th>
+                                        <th>
+                                            Xem 
                                         </th>
                                     </tr>
                                 </thead>
@@ -110,16 +115,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            10%
-                                        </td>
-                                        <td>
-                                            54.000
-                                        </td>
-                                        <td>
                                             5
                                         </td>
                                         <td>
                                             Chi nhánh A
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="http://localhost:1596/Default.aspx?pageName=DetailStore" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -139,16 +143,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh A
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -168,16 +171,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh B
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -197,16 +199,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh C
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -226,16 +227,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh A
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -255,16 +255,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh A
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -284,16 +283,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh A
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -313,16 +311,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh A
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -342,16 +339,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh A
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -371,16 +367,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh A
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -400,16 +395,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh A
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -429,16 +423,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh A
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -458,16 +451,15 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh A
+                                        </td>
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -487,249 +479,16 @@
                                             60.000
                                         </td>
                                         <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
                                             12
                                         </td>
                                         <td>
                                             Chi nhánh A
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
+                                        <td style="width: 40px;">
+                                            <span class="btn-group">
+                                                <a href="#" class="btn btn-small"><i class="icol-application-view-icons"></i></a>
+                                            </span>
                                         </td>
-                                        <td>
-                                            SP00001
-                                        </td>
-                                        <td>
-                                            Vest nam màu xanh
-                                        </td>
-                                        <td>
-                                            50.000
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            12
-                                        </td>
-                                        <td>
-                                            Chi nhánh A
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            SP00001
-                                        </td>
-                                        <td>
-                                            Vest nam màu xanh
-                                        </td>
-                                        <td>
-                                            50.000
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            12
-                                        </td>
-                                        <td>
-                                            Chi nhánh A
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            SP00001
-                                        </td>
-                                        <td>
-                                            Vest nam màu xanh
-                                        </td>
-                                        <td>
-                                            50.000
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            12
-                                        </td>
-                                        <td>
-                                            Chi nhánh A
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            SP00001
-                                        </td>
-                                        <td>
-                                            Vest nam màu xanh
-                                        </td>
-                                        <td>
-                                            50.000
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            12
-                                        </td>
-                                        <td>
-                                            Chi nhánh A
-                                        </td>
-<tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            SP00001
-                                        </td>
-                                        <td>
-                                            Vest nam màu xanh
-                                        </td>
-                                        <td>
-                                            50.000
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            12
-                                        </td>
-                                        <td>
-                                            Chi nhánh A
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            SP00001
-                                        </td>
-                                        <td>
-                                            Vest nam màu xanh
-                                        </td>
-                                        <td>
-                                            50.000
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            12
-                                        </td>
-                                        <td>
-                                            Chi nhánh A
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            SP00001
-                                        </td>
-                                        <td>
-                                            Vest nam màu xanh
-                                        </td>
-                                        <td>
-                                            50.000
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            12
-                                        </td>
-                                        <td>
-                                            Chi nhánh A
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            SP00001
-                                        </td>
-                                        <td>
-                                            Vest nam màu xanh
-                                        </td>
-                                        <td>
-                                            50.000
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            0%
-                                        </td>
-                                        <td>
-                                            60.000
-                                        </td>
-                                        <td>
-                                            12
-                                        </td>
-                                        <td>
-                                            Chi nhánh A
-                                        </td>
-                                    </tr>
                                     </tr>
                                 </tbody>
                             </table>
