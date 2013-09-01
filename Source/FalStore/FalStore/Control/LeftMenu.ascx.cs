@@ -20,7 +20,9 @@ namespace FalStore.Control
                 this.hypBranch.HRef = "http://localhost:1596/Default.aspx?pageName=Branch";
                 this.hypReceipt.HRef = "http://localhost:1596/Default.aspx?pageName=Receipt";
                 this.hypStore.HRef = "http://localhost:1596/Default.aspx?pageName=Store";
+                this.hypPrintBarcode.HRef = "http://localhost:1596/Default.aspx?pageName=PrintBarcode";
                 this.hypExportProduct.HRef = "http://localhost:1596/Default.aspx?pageName=ExportProduct";
+                
             }
           
         }
