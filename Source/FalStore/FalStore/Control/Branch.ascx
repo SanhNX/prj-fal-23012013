@@ -74,110 +74,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                CN001
-                            </td>
-                            <td>
-                                Chi nhánh Tân Bình
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                100, Lý Thường Kiệt, Tân Bình
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                2
-                            </td>
-                            <td>
-                                CN002
-                            </td>
-                            <td>
-                                Chi nhánh Gò Vấp
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                200, Nguyễn Oanh, Gò Vấp
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                3
-                            </td>
-                            <td>
-                                CN003
-                            </td>
-                            <td>
-                                Chi nhánh Phú Nhuận
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                300, Hồ Văn Huê, Phú Nhuận
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                4
-                            </td>
-                            <td>
-                                CN004
-                            </td>
-                            <td>
-                                Chi nhánh Thủ Đức
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                400, Võ Văn Ngân, Thủ Đức
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                5
-                            </td>
-                            <td>
-                                CN005
-                            </td>
-                            <td>
-                                Chi nhánh Bình Tân
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                500, Lạc Long Quân, Bình Tân
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
+                        <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrStt"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrBranchID"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrBranchName"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrDescription"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <asp:Literal runat="server" ID="ltrAddress"></asp:Literal>
+                                    </td>
+                                    <td>
+                                        <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
+                                        </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
+                                            class="btn btn-small"><i class="icon-trash"></i></a></span>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </tbody>
                 </table>
             </div>
