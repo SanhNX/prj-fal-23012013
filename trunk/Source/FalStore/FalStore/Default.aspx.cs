@@ -11,6 +11,7 @@ namespace FalStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             ContentPlaceHolder cph = this.Master.FindControl("ContentPlaceHolder1") as ContentPlaceHolder;
             UserControl uc = null;
             string pageName = HttpContext.Current.Request.QueryString["pageName"];
@@ -40,13 +41,16 @@ namespace FalStore
                 case "ExportProduct":
                     uc = this.LoadControl("~/Control/ExportProduct.ascx") as UserControl;
                     break;
-
+                case"PrintBarcode":
+                    uc = this.LoadControl("~/Control/PrintBarcode.ascx") as UserControl;
+                    break;
             }
 
             if ((cph != null) && (uc != null))
             {
                 cph.Controls.Add(uc);
             }
+
         }
     }
 }
