@@ -11,8 +11,8 @@ namespace Entity
         public int ColorID { get; set; }
         //Name
         public string ColorName { get; set; }
-        //Product ID
-        public string ProductID { get; set; }
+        //Product object
+        public objProduct Product { get; set; }
         //Delete Flag
         public int Delete_Flg { get; set; }
         //Create date

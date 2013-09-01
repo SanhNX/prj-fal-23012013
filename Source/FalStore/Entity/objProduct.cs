@@ -13,8 +13,8 @@ namespace Entity
         public string ProductName { get; set; }
         //Category object
         public objCategory Category { get; set; }
-        //Description
-        public string Description { get; set; }
+        //Color object
+        public objColor Color { get; set; }
         //Import price
         public float ImportPrice { get; set; }
         //Export price
