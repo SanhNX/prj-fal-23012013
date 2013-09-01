@@ -61,7 +61,34 @@ namespace Common.Helper
             }
         }
 
-      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="storedProcedureName"></param>
+        /// <returns></returns>
+        public static SqlDataReader ExecuteReader(string storedProcedureName)
+        {
+            SqlDataReader result = null;
+            try
+            {
+                var conn = new SqlConnection(ConnectionString);
+                conn.Open();
+
+                var cmd = new SqlCommand(storedProcedureName, conn) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.Clear();
+
+                result = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                return result;
+            }
+            catch
+            {
+                if (result != null)
+                {
+                    result.Close();
+                }
+                throw;
+            }
+        }
 
         /// <summary>
         /// 
