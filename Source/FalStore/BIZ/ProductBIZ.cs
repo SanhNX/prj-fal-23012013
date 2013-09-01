@@ -8,7 +8,7 @@ using System.Data;
 
 namespace BIZ
 {
-    class ProductBIZ
+    public class ProductBIZ
     {
         ProductDAL DAL = new ProductDAL();
         /// <summary>
@@ -18,16 +18,62 @@ namespace BIZ
         /// <param name="pageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<objProduct> ShowAll(int pageIndex, int pageSize, out int total)
+        public List<objProduct> ShowByPaging(int pageIndex, int pageSize, out int total)
         {
             try
             {
                 int result;
                 List<objProduct> lst = new List<objProduct>();
-                lst = DAL.GetAllProduct(pageIndex, pageSize, out result);
+                lst = DAL.GetProductByPaging(pageIndex, pageSize, out result);
                 total = result;
 
                 return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="total"></param>
+        /// <returns></returns>
+        public List<objColor> ShowColorByProductID(string productID)
+        {
+            try
+            {
+                List<objColor> lst = new List<objColor>();
+                lst = DAL.GetColorByProductID(productID);
+
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// show by ID
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <returns></returns>
+        public objProduct ShowByID(string productID)
+        {
+            try
+            {
+                objProduct obj = new objProduct();
+                obj = DAL.GetProductByID(productID);
+
+                return obj;
             }
             catch (Exception)
             {
@@ -42,16 +88,20 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Insert(objProduct obj)
+        public int Insert(objProduct objProduct,List<objColor> lstColor)
         {
             try
             {
 
                 int result = 0;
 
-                if (obj != null)
+                if (objProduct != null  )
                 {
-                    result = DAL.InsertProduct(obj);
+                    result = DAL.InsertProduct(objProduct);
+                    foreach (var item in lstColor)
+                    {
+                        DAL.InsertColor(item);
+                    }
                 }
                 else
                 {
@@ -73,15 +123,19 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Update(objProduct obj)
+        public int Update(objProduct objProduct, List<objColor> lstColor)
         {
             try
             {
                 int result = 0;
 
-                if (obj != null)
+                if (objProduct != null)
                 {
-                    result = DAL.UpdateProduct(obj);
+                    result = DAL.UpdateProduct(objProduct);
+                    foreach (var item in lstColor)
+                    {
+                        DAL.UpdateColor(item);
+                    }
                 }
                 else
                 {

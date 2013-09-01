@@ -18,13 +18,13 @@ namespace BIZ
         /// <param name="pageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<objCategory> ShowAll(int pageIndex, int pageSize, out int total)
+        public List<objCategory> ShowByPaging(int pageIndex, int pageSize, out int total)
         {
             try
             {
                 int result;
                 List<objCategory> lst = new List<objCategory>();
-                lst = DAL.GetAllCategory(pageIndex, pageSize, out result);
+                lst = DAL.GetCategoryByPaging(pageIndex, pageSize, out result);
                 total = result;
 
                 return lst;
@@ -37,6 +37,23 @@ namespace BIZ
 
         }
 
+        public List<objCategory> ShowAll()
+        {
+            try
+            {
+                int result;
+                List<objCategory> lst = new List<objCategory>();
+                lst = DAL.GetAllCategory();
+
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
         /// <summary>
         /// add new record
         /// </summary>
