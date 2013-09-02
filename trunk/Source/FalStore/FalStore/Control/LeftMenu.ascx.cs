@@ -22,6 +22,7 @@ namespace FalStore.Control
                 this.hypStore.HRef = "~/Default.aspx?pageName=Store";
                 this.hypExportProduct.HRef = "~/Default.aspx?pageName=ExportProduct";
                 this.hypPrintBarcode.HRef = "~/Default.aspx?pageName=PrintBarcode";
+                this.hypPrintBarCode.HRef = "http://localhost:1596/Default.aspx?pageName=PrintBarCode";
             }
           
         }

@@ -46,6 +46,9 @@
                 </ul>
             </li>
              <li><a href="#"><i class="icon-list"></i>Bán hàng</a>
+                <ul>
+                    <li><a href="" runat="server" id="hypPrintBarCode">In barcode</a></li>
+                </ul>
             </li>
         </ul>
     </div>

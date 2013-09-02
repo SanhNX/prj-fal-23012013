@@ -41,9 +41,10 @@ namespace FalStore
                 case "ExportProduct":
                     uc = this.LoadControl("~/Control/ExportProduct.ascx") as UserControl;
                     break;
-                case"PrintBarcode":
-                    uc = this.LoadControl("~/Control/PrintBarcode.ascx") as UserControl;
+                case "PrintBarCode":
+                    uc = this.LoadControl("~/Control/PrintBarCode.ascx") as UserControl;
                     break;
+
             }
 
             if ((cph != null) && (uc != null))
