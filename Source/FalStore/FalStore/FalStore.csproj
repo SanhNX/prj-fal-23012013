@@ -13,6 +13,7 @@
     <RootNamespace>FalStore</RootNamespace>
     <AssemblyName>FalStore</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,6 +55,7 @@
     <Content Include="Control\Category.ascx" />
     <Content Include="Control\Employee.ascx" />
     <Content Include="Control\LeftMenu.ascx" />
+    <Content Include="Control\PrintBarCode.ascx" />
     <Content Include="Control\Product.ascx" />
     <Content Include="Control\Receipt.ascx" />
     <Content Include="Control\TopMenu.ascx" />
@@ -157,6 +159,7 @@
     <Content Include="Scripts\custom-plugins\wizard\wizard.css" />
     <Content Include="Scripts\custom-plugins\wizard\wizard.js" />
     <Content Include="Scripts\custom-plugins\wizard\wizard.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\js\core\login.js" />
     <Content Include="Scripts\js\core\mws.js" />
     <Content Include="Scripts\js\core\themer.js" />
@@ -177,6 +180,7 @@
     <Content Include="Scripts\js\libs\jquery.mousewheel.min.js" />
     <Content Include="Scripts\js\libs\jquery.placeholder.js" />
     <Content Include="Scripts\js\libs\jquery.placeholder.min.js" />
+    <Content Include="Scripts\js\libs\PluginDetect.js" />
     <Content Include="Scripts\jui\css\jquery.ui.accordion.css" />
     <Content Include="Scripts\jui\css\jquery.ui.all.css" />
     <Content Include="Scripts\jui\css\jquery.ui.autocomplete.css" />
@@ -5595,6 +5599,7 @@
     <Content Include="Login.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\PrintHelper.cs" />
     <Compile Include="Control\Branch.ascx.cs">
       <DependentUpon>Branch.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5622,6 +5627,13 @@
     </Compile>
     <Compile Include="Control\LeftMenu.ascx.designer.cs">
       <DependentUpon>LeftMenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\PrintBarCode.ascx.cs">
+      <DependentUpon>PrintBarCode.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\PrintBarCode.ascx.designer.cs">
+      <DependentUpon>PrintBarCode.ascx</DependentUpon>
     </Compile>
     <Compile Include="Control\Product.ascx.cs">
       <DependentUpon>Product.ascx</DependentUpon>
