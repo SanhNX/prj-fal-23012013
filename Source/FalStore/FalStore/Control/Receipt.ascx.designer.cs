@@ -13,13 +13,22 @@ namespace FalStore.Control {
     public partial class Receipt {
         
         /// <summary>
-        /// txtLogStore control.
+        /// lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLogStore;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
+        
+        /// <summary>
+        /// txtLogStoreID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLogStoreID;
         
         /// <summary>
         /// txtLogDate control.
@@ -76,6 +85,24 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtProductID;
         
         /// <summary>
+        /// lblProductName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProductName;
+        
+        /// <summary>
+        /// lblExportPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblExportPrice;
+        
+        /// <summary>
         /// drpColor control.
         /// </summary>
         /// <remarks>
@@ -94,6 +121,15 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.DropDownList drpSize;
         
         /// <summary>
+        /// txtSale control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSale;
+        
+        /// <summary>
         /// txtQuantity control.
         /// </summary>
         /// <remarks>
@@ -101,6 +137,15 @@ namespace FalStore.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQuantity;
+        
+        /// <summary>
+        /// btnAddProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddProduct;
         
         /// <summary>
         /// rptResult control.

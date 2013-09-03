@@ -3,6 +3,9 @@
     <div class="container">
         <!-- From category --->
         <div class="mws-panel grid_8">
+            <div>
+                <asp:Label ID="lblMessage" ForeColor="Green" runat="server" Text=""></asp:Label>
+            </div>
             <div class="mws-panel-header">
                 <span>Nhập kho</span>
             </div>
@@ -14,7 +17,7 @@
                             <label class="mws-form-label">
                                 Mã phiếu nhập</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtLogStore" runat="server" class="small"></asp:TextBox>
+                                <asp:TextBox ID="txtLogStoreID" runat="server" class="small"></asp:TextBox>
                             </div>
                         </div>
                         <div class="mws-form-row">
@@ -69,14 +72,29 @@
                             <label class="mws-form-label">
                                 Mã sản phẩm/ Mã vạch</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtProductID" runat="server" class="small"></asp:TextBox>
+                                <asp:TextBox ID="txtProductID" runat="server" class="small" AutoPostBack="true" OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="mws-form-row">
+                            <label class="mws-form-label">
+                                Tên sản phẩm
+                            </label>
+                            <div class="mws-form-item">
+                                <asp:Label ID="lblProductName" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+                        <div class="mws-form-row">
+                            <label class="mws-form-label">
+                                Giá bán</label>
+                            <div class="mws-form-item">
+                                <asp:Label ID="lblExportPrice" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
                         <div class="mws-form-row">
                             <label class="mws-form-label">
                                 Màu sắc</label>
                             <div class="mws-form-item">
-                                <asp:DropDownList ID="drpColor" runat="server" class="small">
+                                <asp:DropDownList ID="drpColor" runat="server" class="small" Enabled="False">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -94,6 +112,13 @@
                         </div>
                         <div class="mws-form-row">
                             <label class="mws-form-label">
+                                Chiết khấu</label>
+                            <div class="mws-form-item">
+                                <asp:TextBox ID="txtSale" runat="server" class="small"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="mws-form-row">
+                            <label class="mws-form-label">
                                 Số lượng</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtQuantity" runat="server" class="small"></asp:TextBox>
@@ -102,6 +127,7 @@
                         <div class="mws-button-row">
                             <input type="button" id="mws-form-dialog-mdl-btn" class="btn btn-success" value="Chọn sản phẩm"
                                 class="fancyboxDemo" />
+                            <asp:Button ID="btnAddProduct" runat="server" Text="Thêm sản phẩm" OnClick="btnAddProduct_Click" />
                         </div>
                         <div class="mws-panel grid_8">
                             <div class="mws-panel-header">
@@ -111,9 +137,7 @@
                                 <table class="mws-table">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                Số thứ tự
-                                            </th>
+                                           
                                             <th>
                                                 Mã sản phẩm
                                             </th>
@@ -126,53 +150,47 @@
                                             <th>
                                                 Số lượng
                                             </th>
+                                             <th>
+                                                Chiết khấu
+                                            </th>
                                             <th>
                                                 Thành tiền
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
-                            <asp:Repeater ID="rptResult" runat="server">
-                                <ItemTemplate>
-                                    <tr>
-                                        <td>
-                                            <asp:Literal runat="server" ID="ltrStt"></asp:Literal>
-                                        </td>
-                                        <td>
-                                            <asp:Literal runat="server" ID="ltrProductID"></asp:Literal>
-                                        </td>
-                                        <td>
-                                            <asp:Literal runat="server" ID="ltrProductName"></asp:Literal>
-                                        </td>
-                                         <td>
-                                            <asp:Literal runat="server" ID="ltrPrice"></asp:Literal>
-                                        </td>
-                                         <td>
-                                            <asp:Literal runat="server" ID="ltrQuantity"></asp:Literal>
-                                        </td>
-                                         <td>
-                                            <asp:Literal runat="server" ID="ltrAmount"></asp:Literal>
-                                        </td>
-                                        <td>
-                                            <asp:HyperLink ID="hypEdit" runat="server">
-                                                <i class="icon-pencil"></i>
-                                                <asp:Literal ID="ltrEdit" runat="server" Text="Chỉnh sửa"></asp:Literal>
-                                            </asp:HyperLink>
-                                            <asp:HyperLink ID="hypDelete" runat="server">
-                                                <i class="icon-trash"></i>
-                                                <asp:Literal ID="ltrDelete" runat="server" Text="Xóa"></asp:Literal>
-                                            </asp:HyperLink>
-                                        </td>
-                                    </tr>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </tbody>
+                                        <asp:Repeater ID="rptResult" runat="server" OnItemDataBound="rptResult_ItemDataBound">
+                                            <ItemTemplate>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Literal runat="server" ID="ltrProductID"></asp:Literal>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Literal runat="server" ID="ltrProductName"></asp:Literal>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Literal runat="server" ID="ltrExportPrice"></asp:Literal>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Literal runat="server" ID="ltrQuantity"></asp:Literal>
+                                                    </td>
+                                                     <td>
+                                                        <asp:Literal runat="server" ID="ltrSale"></asp:Literal>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Literal runat="server" ID="ltrAmount"></asp:Literal>
+                                                    </td>
+                                                  
+                                                </tr>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </fieldset>
                     <div class="mws-button-row">
-                        <asp:Button ID="btnAdd" runat="server" Text="Lập phiếu" class="btn btn-success"  />
+                        <asp:Button ID="btnAdd" runat="server" Text="Lập phiếu" class="btn btn-success" OnClick="btnAdd_Click" />
                     </div>
                 </div>
                 <div id="mws-form-dialog">
