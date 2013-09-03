@@ -16,11 +16,15 @@ namespace Entity
         //Color object
         public objColor Color { get; set; }
         //Size object
-        public objSize Size { get; set; }
+        public string Size { get; set; }
+        //ExportPrice
+        public float ExportPrice { get; set; }
         //Sale
         public float Sale { get; set; }
         //Quantity
         public int Quantity { get; set; }
+        //Amount
+        public float Amount { get; set; }
         //Delete Flag
         public int Delete_Flg { get; set; }
         //Create date

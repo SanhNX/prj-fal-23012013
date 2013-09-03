@@ -14,9 +14,11 @@ namespace Entity
         //Employee object
         public objEmployee Employee { get; set; }
         //Log date
-        public DateTime LogDate { get; set; }
+        public string LogDate { get; set; }
         //Branch object from
         public objBranch BranchFrom { get; set; }
+        //NCC
+        public string NCC { get; set; }
         //Branch object to
         public objBranch BranchTo { get; set; }
         //Description
