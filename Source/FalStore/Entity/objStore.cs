@@ -16,7 +16,7 @@ namespace Entity
         //color object
         public objColor Color { get; set; }
         //size object
-        public objSize Size { get; set; }
+        public string Size { get; set; }
         //branch object
         public objBranch Branch { get; set; }
         //export price

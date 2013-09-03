@@ -19,6 +19,8 @@ namespace Entity
         public float ImportPrice { get; set; }
         //Export price
         public float ExportPrice { get; set; }
+        //Total quantity
+        public int TotalQuantity { get; set; }
         //Delete Flag
         public string Delete_Flg { get; set; }
         //Create date
