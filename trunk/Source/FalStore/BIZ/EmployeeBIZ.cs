@@ -19,15 +19,32 @@ namespace BIZ
         /// <param name="pageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<objEmployee> ShowAll(int pageIndex, int pageSize, out int total)
+        public List<objEmployee> ShowByPaging(int pageIndex, int pageSize, out int total)
         {
             try
             {
                 int result;
                 List<objEmployee> lst = new List<objEmployee>();
-                lst = DAL.GetAllEmployee(pageIndex, pageSize, out result);
+                lst = DAL.GetEmployeeByPaging(pageIndex, pageSize, out result);
                 total = result;
 
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public List<objEmployee> ShowAll()
+        {
+            try
+            {
+                List<objEmployee> lst = new List<objEmployee>();
+                lst = DAL.GetEmployeeAll();
+                
                 return lst;
             }
             catch (Exception)
