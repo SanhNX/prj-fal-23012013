@@ -12,20 +12,44 @@ namespace BIZ
         BranchDAL DAL = new BranchDAL();
 
         /// <summary>
-        /// get all info
+        /// get by paging
         /// </summary>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<objBranch> ShowAll(int pageIndex, int pageSize, out int total)
+        public List<objBranch> ShowByPaging(int pageIndex, int pageSize, out int total)
         {
             try
             {
                 int result;
                 List<objBranch> lst = new List<objBranch>();
-                lst = DAL.GetAllBranch(pageIndex, pageSize, out result);
+                lst = DAL.GetBranchByPaging(pageIndex, pageSize, out result);
                 total = result;
+
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// get all
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="total"></param>
+        /// <returns></returns>
+        public List<objBranch> ShowAll()
+        {
+            try
+            {
+                List<objBranch> lst = new List<objBranch>();
+                lst = DAL.GetBranchAll();
 
                 return lst;
             }
