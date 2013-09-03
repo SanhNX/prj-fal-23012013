@@ -18,8 +18,8 @@ namespace DAL
         {
         }
 
-        //call store procedure view all branch
-        public List<objBranch> GetAllBranch(int pageIndex, int pageSize, out int total)
+        //call store procedure view branch by paging
+        public List<objBranch> GetBranchByPaging(int pageIndex, int pageSize, out int total)
         {
             List<objBranch> lst = new List<objBranch>();
             objBranch obj = null;
@@ -32,7 +32,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@pageIndex", pageIndex));
             parameterList.Add(prTotal);
 
-            SqlDataReader dr = SQLHelper.ExecuteReader("spBranchGetAll", parameterList);
+            SqlDataReader dr = SQLHelper.ExecuteReader("spBranchGetByPaging", parameterList);
             while (dr.Read())
             {
                 obj = new objBranch();
@@ -46,6 +46,23 @@ namespace DAL
             return lst;
         }
 
+        //call store procedure view all branch
+        public List<objBranch> GetBranchAll()
+        {
+            List<objBranch> lst = new List<objBranch>();
+            objBranch obj = null;
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spBranchGetAll");
+            while (dr.Read())
+            {
+                obj = new objBranch();
+                obj.BranchID = int.Parse(dr["BranchID"].ToString());
+                obj.BranchName = dr["BranchName"].ToString();
+                lst.Add(obj);
+            }
+
+            return lst;
+        }
         //call store procedure insert branch
         public int InsertBranch(objBranch obj)
         {

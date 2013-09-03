@@ -42,7 +42,7 @@ namespace DAL
                 obj.Product.ProductName = dr["ProductName"].ToString();
                 obj.VerID = dr["VerId"].ToString();
                 obj.Color.ColorName = dr["ColorName"].ToString();
-                obj.Size.SizeName = dr["SizeName"].ToString();
+                obj.Size= dr["SizeName"].ToString();
                 obj.Branch.BranchName = dr["BranchName"].ToString();
                 obj.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
                 obj.Quantity = int.Parse(dr["Quantity"].ToString());
@@ -62,7 +62,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@ProductID", obj.Product.ProductID));
             parameterList.Add(new SqlParameter("@VerID", obj.VerID));
             parameterList.Add(new SqlParameter("@ColorID", obj.Color.ColorID));
-            parameterList.Add(new SqlParameter("@SizeID", obj.Size.SizeID));
+            parameterList.Add(new SqlParameter("@SizeID", obj.Size));
             parameterList.Add(new SqlParameter("@BranchID", obj.Branch.BranchID));
             parameterList.Add(new SqlParameter("@ExportPrice", obj.ExportPrice));
             parameterList.Add(new SqlParameter("@Quantity", obj.Quantity));
@@ -83,7 +83,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@ProductID", obj.Product.ProductID));
             parameterList.Add(new SqlParameter("@VerID", obj.VerID));
             parameterList.Add(new SqlParameter("@ColorID", obj.Color.ColorID));
-            parameterList.Add(new SqlParameter("@SizeID", obj.Size.SizeID));
+            parameterList.Add(new SqlParameter("@SizeID", obj.Size));
             parameterList.Add(new SqlParameter("@BranchID", obj.Branch.BranchID));
             parameterList.Add(new SqlParameter("@ExportPrice", obj.ExportPrice));
             parameterList.Add(new SqlParameter("@Quantity", obj.Quantity));
@@ -95,6 +95,17 @@ namespace DAL
             return SQLHelper.ExecuteNonQuery("spStoreUpdate", parameterList);
         }
 
+        //call store procedure update store
+        public int UpdateStoreQuantity(int storeID, string productID, int quantity)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@StoreID", storeID));
+            parameterList.Add(new SqlParameter("@ProductID", productID));
+            parameterList.Add(new SqlParameter("@Quantity", quantity));
+          
+            return SQLHelper.ExecuteNonQuery("spStoreUpdateQuantity", parameterList);
+        }
         //call store procedure delete store
         public int DeleteStore(objStore obj)
         {

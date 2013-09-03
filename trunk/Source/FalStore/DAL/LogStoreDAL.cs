@@ -40,7 +40,7 @@ namespace DAL
                 obj.LogStoreID = dr["LogStoreID"].ToString();
                 obj.LogType = int.Parse(dr["LogType"].ToString());
                 obj.Employee.EmployeeName = dr["EmployeeName"].ToString();
-                obj.LogDate = DateTime.Parse( dr["LogDate"].ToString());
+                obj.LogDate = dr["LogDate"].ToString();
                 obj.BranchFrom.BranchName = dr["BranchFromName"].ToString();
                 obj.BranchTo.BranchName = dr["BranchToName"].ToString();
                 obj.Description = dr["Description"].ToString();
@@ -71,6 +71,25 @@ namespace DAL
             parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
 
             return SQLHelper.ExecuteNonQuery("spLogStoreInsert", parameterList);
+        }
+
+        //call store procedure insert log detail
+        public int InsertLogDetail(objLogDetail obj)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@LogStoreID", obj.LogStore.LogStoreID));
+            parameterList.Add(new SqlParameter("@ProductID", obj.Product.ProductID));
+            parameterList.Add(new SqlParameter("@ColorID", obj.Color.ColorID));
+            parameterList.Add(new SqlParameter("@SizeID", obj.Size));
+            parameterList.Add(new SqlParameter("@Sale", obj.Sale));
+            parameterList.Add(new SqlParameter("@Quantity", obj.Quantity));
+            parameterList.Add(new SqlParameter("@CreateDate", obj.CreateDate));
+            parameterList.Add(new SqlParameter("@CreateUser", obj.CreateUser));
+            parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
+            parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
+
+            return SQLHelper.ExecuteNonQuery("spLogDetailInsert", parameterList);
         }
 
     }
