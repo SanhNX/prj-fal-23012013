@@ -19,8 +19,8 @@ namespace DAL
         {
         }
 
-        //call store procedure view all employee
-        public List<objEmployee> GetAllEmployee(int pageIndex, int pageSize, out int total)
+        //call store procedure view employee by paging
+        public List<objEmployee> GetEmployeeByPaging(int pageIndex, int pageSize, out int total)
         {
             List<objEmployee> lst = new List<objEmployee>();
             objEmployee obj = null;
@@ -32,7 +32,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@pageIndex", pageIndex));
             parameterList.Add(prTotal);
 
-            SqlDataReader dr = SQLHelper.ExecuteReader("spEmployeeGetAll", parameterList);
+            SqlDataReader dr = SQLHelper.ExecuteReader("spEmployeeGetByPaging", parameterList);
             while (dr.Read())
             {
                 obj = new objEmployee();
@@ -44,6 +44,24 @@ namespace DAL
                 lst.Add(obj);
             }
             total = int.Parse(prTotal.Value.ToString());
+            return lst;
+        }
+
+        //call store procedure view all employee
+        public List<objEmployee> GetEmployeeAll()
+        {
+            List<objEmployee> lst = new List<objEmployee>();
+            objEmployee obj = null;
+           SqlDataReader dr = SQLHelper.ExecuteReader("spEmployeeGetAll");
+            while (dr.Read())
+            {
+                obj = new objEmployee();
+                obj.EmployeeID = int.Parse(dr["EmployeeID"].ToString());
+                obj.EmployeeName = dr["EmployeeName"].ToString();
+              
+                lst.Add(obj);
+            }
+
             return lst;
         }
 

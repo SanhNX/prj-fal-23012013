@@ -116,6 +116,17 @@ namespace DAL
             return SQLHelper.ExecuteNonQuery("spProductUpdate", parameterList);
         }
 
+        //call store procedure update total quantity
+        public int UpdateProductTotalQuantity(string productID, int quantity)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@ProductID", productID));
+            parameterList.Add(new SqlParameter("@TotalQuantity", quantity));
+
+            return SQLHelper.ExecuteNonQuery("spProductUpdateTotalQuantity", parameterList);
+        }
+
         //call store procedure delete product
         public int DeleteProduct(objProduct obj)
         {
