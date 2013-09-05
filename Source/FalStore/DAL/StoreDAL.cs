@@ -60,17 +60,14 @@ namespace DAL
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@ProductID", obj.Product.ProductID));
-            parameterList.Add(new SqlParameter("@VerID", obj.VerID));
+           // parameterList.Add(new SqlParameter("@VerID", obj.VerID));
             parameterList.Add(new SqlParameter("@ColorID", obj.Color.ColorID));
-            parameterList.Add(new SqlParameter("@SizeID", obj.Size));
+            parameterList.Add(new SqlParameter("@Size", obj.Size));
             parameterList.Add(new SqlParameter("@BranchID", obj.Branch.BranchID));
             parameterList.Add(new SqlParameter("@ExportPrice", obj.ExportPrice));
             parameterList.Add(new SqlParameter("@Quantity", obj.Quantity));
-            parameterList.Add(new SqlParameter("@CreateDate", obj.CreateDate));
-            parameterList.Add(new SqlParameter("@CreateUser", obj.CreateUser));
-            parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
-            parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
-
+            parameterList.Add(new SqlParameter("@LogStoreID", obj.LogStore.LogStoreID));
+          
             return SQLHelper.ExecuteNonQuery("spStoreInsert", parameterList);
         }
 
@@ -87,11 +84,8 @@ namespace DAL
             parameterList.Add(new SqlParameter("@BranchID", obj.Branch.BranchID));
             parameterList.Add(new SqlParameter("@ExportPrice", obj.ExportPrice));
             parameterList.Add(new SqlParameter("@Quantity", obj.Quantity));
-            parameterList.Add(new SqlParameter("@CreateDate", obj.CreateDate));
-            parameterList.Add(new SqlParameter("@CreateUser", obj.CreateUser));
-            parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
-            parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
-
+            parameterList.Add(new SqlParameter("@LogStoreID", obj.LogStore.LogStoreID));
+          
             return SQLHelper.ExecuteNonQuery("spStoreUpdate", parameterList);
         }
 
@@ -112,9 +106,7 @@ namespace DAL
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@StoreID", obj.StoreID));
-            parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
-            parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
-
+         
             return SQLHelper.ExecuteNonQuery("spStoreDelete", parameterList);
 
         }
