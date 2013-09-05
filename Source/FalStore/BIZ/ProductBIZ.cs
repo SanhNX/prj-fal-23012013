@@ -22,9 +22,9 @@ namespace BIZ
         {
             try
             {
-                int result;
+                int result = DAL.GetTotal();
                 List<objProduct> lst = new List<objProduct>();
-                lst = DAL.GetProductByPaging(pageIndex, pageSize, out result);
+                lst = DAL.GetProductByPaging(pageIndex, pageSize);
                 total = result;
 
                 return lst;
@@ -88,27 +88,15 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Insert(objProduct objProduct,List<objColor> lstColor)
+        public int Insert(objProduct objProduct, List<objColor> lstColor)
         {
             try
             {
-
-                int result = 0;
-
-                if (objProduct != null  )
+                foreach (var item in lstColor)
                 {
-                    result = DAL.InsertProduct(objProduct);
-                    foreach (var item in lstColor)
-                    {
-                        DAL.InsertColor(item);
-                    }
+                    DAL.InsertColor(item);
                 }
-                else
-                {
-                    result = 1;
-                }
-
-                return result;
+                return DAL.InsertProduct(objProduct);
 
             }
             catch (Exception)
@@ -123,62 +111,48 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Update(objProduct objProduct, List<objColor> lstColor)
+        public int Update(objProduct objProduct)
         {
             try
             {
-                int result = 0;
+                return DAL.UpdateProduct(objProduct);
 
-                if (objProduct != null)
-                {
-                    result = DAL.UpdateProduct(objProduct);
-                    foreach (var item in lstColor)
-                    {
-                        DAL.UpdateColor(item);
-                    }
-                }
-                else
-                {
-                    result = 1;
-                }
-
-                return result;
             }
             catch (Exception)
             {
-
                 throw;
             }
-
         }
 
-      
+
         /// <summary>
         /// delete record
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Delete(objProduct obj)
+        public int Delete(string productID, DateTime updateDate, string updateUser)
         {
             try
             {
-                int result = 0;
-
-                if (obj != null)
-                {
-                    result = DAL.DeleteProduct(obj);
-                }
-                else
-                {
-                    result = 1;
-                }
-
-                return result;
+                return DAL.DeleteProduct(productID, updateDate, updateUser);
             }
             catch (Exception)
             {
-
                 throw;
+            }
+        }
+
+        public bool CheckProduct(string productID)
+        {
+            objProduct obj = new objProduct();
+            obj = DAL.GetProductByID(productID);
+            if (obj != null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }
