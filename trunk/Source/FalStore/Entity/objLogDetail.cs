@@ -17,24 +17,18 @@ namespace Entity
         public objColor Color { get; set; }
         //Size object
         public string Size { get; set; }
-        //ExportPrice
-        public float ExportPrice { get; set; }
+        ////ExportPrice
+        //public float ExportPrice { get; set; }
         //Sale
         public float Sale { get; set; }
         //Quantity
         public int Quantity { get; set; }
         //Amount
         public float Amount { get; set; }
+        //Status flag
+        public int Status_Flg { get; set; }
         //Delete Flag
         public int Delete_Flg { get; set; }
-        //Create date
-        public DateTime CreateDate { get; set; }
-        //Create user
-        public string CreateUser { get; set; }
-        //Update date
-        public DateTime UpdateDate { get; set; }
-        //Update user
-        public string UpdateUser { get; set; }
-
+     
     }
 }
