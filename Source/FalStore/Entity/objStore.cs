@@ -23,16 +23,12 @@ namespace Entity
         public float ExportPrice { get; set; }
         //quantity
         public int Quantity { get; set; }
+        //LogStore object
+        public objLogStore LogStore { get; set; }
+        //Status
+        public int Status { get; set; }
         //Delete Flag
         public int Delete_Flg { get; set; }
-        //Create date
-        public DateTime CreateDate { get; set; }
-        //Create user
-        public string CreateUser { get; set; }
-        //Update date
-        public DateTime UpdateDate { get; set; }
-        //Update user
-        public string UpdateUser { get; set; }
-
+      
     }
 }

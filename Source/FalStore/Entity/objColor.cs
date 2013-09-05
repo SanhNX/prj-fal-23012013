@@ -15,14 +15,6 @@ namespace Entity
         public objProduct Product { get; set; }
         //Delete Flag
         public int Delete_Flg { get; set; }
-        //Create date
-        public DateTime CreateDate { get; set; }
-        //Create user
-        public string CreateUser { get; set; }
-        //Update date
-        public DateTime UpdateDate { get; set; }
-        //Update user
-        public string UpdateUser { get; set; }
-
+     
     }
 }
