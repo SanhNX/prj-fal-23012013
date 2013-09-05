@@ -18,8 +18,13 @@ namespace DAL
         {
         }
 
-        //call store procedure view category paging
-        public List<objCategory> GetCategoryByPaging(int pageIndex, int pageSize, out int total)
+        /// <summary>
+        /// get category by paging
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public List<objCategory> GetCategoryByPaging(int pageIndex, int pageSize)
         {
 
             List<objCategory> lst = new List<objCategory>();
@@ -33,7 +38,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@pageIndex", pageIndex));
             parameterList.Add(prTotal);
 
-            SqlDataReader dr = SQLHelper.ExecuteReader("spDeme", parameterList);
+            SqlDataReader dr = SQLHelper.ExecuteReader("spCategoryGetByPaging", parameterList);
             while (dr.Read())
             {
                 obj = new objCategory();
@@ -42,12 +47,32 @@ namespace DAL
                 lst.Add(obj);
             }
 
-            total = 44;
+            //total = int.Parse( prTotal.Value.ToString());
             return lst;
            
         }
 
-        //call store procedure view all category
+        /// <summary>
+        /// get toal row
+        /// </summary>
+        /// <returns></returns>
+        public int GetTotal()
+        {
+            SqlParameter prTotal = new SqlParameter("@total", SqlDbType.Int);
+            prTotal.Direction = ParameterDirection.Output;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(prTotal);
+            SqlDataReader dr = SQLHelper.ExecuteReader("spCategoryGetTotalCount", parameterList);
+            int total = int.Parse( prTotal.Value.ToString());
+            return total;
+           
+        }
+        
+        /// <summary>
+        /// get all category
+        /// </summary>
+        /// <returns></returns>
         public List<objCategory> GetAllCategory()
         {
 
@@ -66,7 +91,37 @@ namespace DAL
             return lst;
 
         }
-        //call store procedure insert category
+
+        /// <summary>
+        /// get category by id
+        /// </summary>
+        /// <param name="CategoryID"></param>
+        /// <returns></returns>
+        public objCategory GetCategoryByID(int CategoryID)
+        {
+
+            objCategory obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@CategoryID", CategoryID));
+            
+            SqlDataReader dr = SQLHelper.ExecuteReader("spCategoryGetByID", parameterList);
+            while (dr.Read())
+            {
+                obj = new objCategory();
+                obj.CategoryID = int.Parse(dr["CategoryID"].ToString());
+                obj.CategoryName = dr["CategoryName"].ToString();
+            }
+
+            return obj;
+
+        }
+
+        /// <summary>
+        /// Insert record
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public int InsertCategory(objCategory obj)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
@@ -80,13 +135,17 @@ namespace DAL
             return SQLHelper.ExecuteNonQuery("spCategoryInsert", parameterList);
         }
 
-        //call store procedure update category
+        /// <summary>
+        /// Update record
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public int UpdateCategory(objCategory obj)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@CategoryID", obj.CategoryID));
-            parameterList.Add(new SqlParameter("@CategoryName", obj.CategoryID));
+            parameterList.Add(new SqlParameter("@CategoryName", obj.CategoryName));
             parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
             parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
 
@@ -94,14 +153,20 @@ namespace DAL
 
         }
 
-        //call store procedure delete category
-        public int DeleteCategory(objCategory obj)
+        /// <summary>
+        /// Delete record
+        /// </summary>
+        /// <param name="CategoryID"></param>
+        /// <param name="UpdateDate"></param>
+        /// <param name="UpdateUser"></param>
+        /// <returns></returns>
+        public int DeleteCategory(int CategoryID, DateTime UpdateDate, string UpdateUser)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
-            parameterList.Add(new SqlParameter("@CategoryID", obj.CategoryID));
-            parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
-            parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
+            parameterList.Add(new SqlParameter("@CategoryID", CategoryID));
+            parameterList.Add(new SqlParameter("@UpdateDate", UpdateDate));
+            parameterList.Add(new SqlParameter("@UpdateUser", UpdateUser));
 
             return SQLHelper.ExecuteNonQuery("spCategoryDelete", parameterList);
 
