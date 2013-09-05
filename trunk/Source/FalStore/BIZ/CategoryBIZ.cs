@@ -12,7 +12,7 @@ namespace BIZ
         CategoryDAL DAL = new CategoryDAL();
 
         /// <summary>
-        /// get all info
+        /// get by paging
         /// </summary>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
@@ -22,10 +22,9 @@ namespace BIZ
         {
             try
             {
-                int result;
                 List<objCategory> lst = new List<objCategory>();
-                lst = DAL.GetCategoryByPaging(pageIndex, pageSize, out result);
-                total = result;
+                lst = DAL.GetCategoryByPaging(pageIndex, pageSize);
+                total = GetTotal();
 
                 return lst;
             }
@@ -37,11 +36,14 @@ namespace BIZ
 
         }
 
+        /// <summary>
+        /// get all
+        /// </summary>
+        /// <returns></returns>
         public List<objCategory> ShowAll()
         {
             try
             {
-                int result;
                 List<objCategory> lst = new List<objCategory>();
                 lst = DAL.GetAllCategory();
 
@@ -52,8 +54,27 @@ namespace BIZ
 
                 throw;
             }
-
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public objCategory ShowByCategoryID(int categoryID)
+        {
+            try
+            {
+                objCategory obj = new objCategory();
+                obj = DAL.GetCategoryByID(categoryID);
+
+                return obj;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         /// <summary>
         /// add new record
         /// </summary>
@@ -63,24 +84,10 @@ namespace BIZ
         {
             try
             {
-
-                int result = 0;
-
-                if (obj != null)
-                {
-                    result = DAL.InsertCategory(obj);
-                }
-                else
-                {
-                    result = 1;
-                }
-
-                return result;
-
+               return DAL.InsertCategory(obj);
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -94,22 +101,10 @@ namespace BIZ
         {
             try
             {
-                int result = 0;
-
-                if (obj != null)
-                {
-                    result = DAL.UpdateCategory(obj);
-                }
-                else
-                {
-                    result = 1;
-                }
-
-                return result;
+                return DAL.UpdateCategory(obj);   
             }
             catch (Exception)
             {
-                
                 throw;
             }
             
@@ -120,28 +115,25 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Delete(objCategory obj)
+        public int Delete(int CategoryID, DateTime UpdateDate, string UpdateUser)
         {
             try
             {
-                int result = 0;
-
-                if (obj != null)
-                {
-                    result = DAL.DeleteCategory(obj);
-                }
-                else
-                {
-                    result = 1;
-                }
-
-                return result;
+                return DAL.DeleteCategory(CategoryID,UpdateDate,UpdateUser);  
             }
             catch (Exception)
-            {
-                
+            {   
                 throw;
             }
+        }
+
+        /// <summary>
+        /// get total row
+        /// </summary>
+        /// <returns></returns>
+        private int GetTotal()
+        {
+            return DAL.GetTotal();
         }
     }
 }

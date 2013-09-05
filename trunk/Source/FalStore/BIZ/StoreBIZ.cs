@@ -46,24 +46,10 @@ namespace BIZ
         {
             try
             {
-
-                int result = 0;
-
-                if (obj != null)
-                {
-                    result = DAL.InsertStore(obj);
-                }
-                else
-                {
-                    result = 1;
-                }
-
-                return result;
-
+                  return DAL.InsertStore(obj);
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
