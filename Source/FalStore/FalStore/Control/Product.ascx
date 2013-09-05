@@ -51,63 +51,76 @@
                             </div>
                             <div class="mws-form-row">
                                 <label class="mws-form-label">
-                                    Số lượng màu</label>
-                                <asp:TextBox ID="txtColorNumer" runat="server"></asp:TextBox>
-                                <input type="button" value="ADD" id="Button1" onclick="CreateTextbox()">
-                                <div id="createTextbox" class="mws-form-row">
-                                </div>
-                            </div>
-                            <div class="mws-form-row">
-                                <label class="mws-form-label">
-                                    Màu</label>
-                                <asp:TextBox ID="txtColor1" runat="server"></asp:TextBox>
-                            </div>
-                            <div class="mws-form-row">
-                                <label class="mws-form-label">
-                                    Màu</label>
-                                <asp:TextBox ID="txtColor2" runat="server"></asp:TextBox>
-                            </div>
-                            <div class="mws-form-row">
-                                <label class="mws-form-label">
-                                    Màu</label>
-                                <asp:TextBox ID="txtColor3" runat="server"></asp:TextBox>
-                            </div>
-                            <div class="mws-form-row">
-                                <label class="mws-form-label">
-                                    Màu</label>
-                                <asp:TextBox ID="txtColor4" runat="server"></asp:TextBox>
-                            </div>
-                            <div class="mws-form-row">
-                                <label class="mws-form-label">
-                                    Màu</label>
-                                <asp:TextBox ID="txtColor5" runat="server"></asp:TextBox>
-                            </div>
-                            <div class="mws-form-row">
-                                <label class="mws-form-label">
-                                    Giá nhập</label>
+                                    Thêm màu</label>
                                 <div class="mws-form-item">
-                                    <asp:TextBox ID="txtImportPrice" runat="server" class="small"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldImportPrice" runat="server" ErrorMessage="Nhập giá nhập"
-                                        ControlToValidate="txtImportPrice" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtImportPrice"
-                                        ValidationExpression="([0-9])*" ErrorMessage="Nhập số" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    <input type="button" id="mws-form-dialog-mdl-btn" class="btn btn-success" value="Chọn màu">
                                 </div>
                             </div>
-                            <div class="mws-form-row">
-                                <label class="mws-form-label">
-                                    Giá bán</label>
-                                <div class="mws-form-item">
-                                    <asp:TextBox ID="txtExportPrice" runat="server" class="small"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldExportPrice" runat="server" ErrorMessage="Nhập giá bán"
-                                        ControlToValidate="txtExportPrice" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtExportPrice"
-                                        ValidationExpression="([0-9])*" ErrorMessage="Nhập số" ForeColor="Red"></asp:RegularExpressionValidator>
+                            <div id="mws-form-dialog">
+                                <div class="mws-form-row">
+                                    <label class="mws-form-label">
+                                        Màu</label>
+                                    <asp:TextBox ID="txtColor1" runat="server" class="small"></asp:TextBox>
                                 </div>
+                                <div class="mws-form-row">
+                                    <label class="mws-form-label">
+                                        Màu</label>
+                                    <asp:TextBox ID="txtColor2" runat="server" class="small"></asp:TextBox>
+                                </div>
+                                <div class="mws-form-row">
+                                    <label class="mws-form-label">
+                                        Màu</label>
+                                    <asp:TextBox ID="txtColor3" runat="server" class="small"></asp:TextBox>
+                                </div>
+                                <div class="mws-form-row">
+                                    <label class="mws-form-label">
+                                        Màu</label>
+                                    <asp:TextBox ID="txtColor4" runat="server" class="small"></asp:TextBox>
+                                </div>
+                                <div class="mws-form-row">
+                                    <label class="mws-form-label">
+                                        Màu</label>
+                                    <asp:TextBox ID="txtColor5" runat="server" class="small"></asp:TextBox>
+                                </div>
+                                <%--  <div class="mws-form-row">
+                                    <label class="mws-form-label">
+                                        Màu</label>
+                                    <asp:TextBox ID="txtColor6" runat="server" class="large"></asp:TextBox>
+                                </div>
+                                <div class="mws-form-row">
+                                    <label class="mws-form-label">
+                                        Màu</label>
+                                    <asp:TextBox ID="txtColor7" runat="server" class="small"></asp:TextBox>
+                                --%>
+                            </div>
+                        </div>
+                        <div class="mws-form-row">
+                            <label class="mws-form-label">
+                                Giá nhập</label>
+                            <div class="mws-form-item">
+                                <asp:TextBox ID="txtImportPrice" runat="server" class="small"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldImportPrice" runat="server" ErrorMessage="Nhập giá nhập"
+                                    ControlToValidate="txtImportPrice" ForeColor="Red"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtImportPrice"
+                                    ValidationExpression="([0-9])*" ErrorMessage="Nhập số" ForeColor="Red"></asp:RegularExpressionValidator>
+                            </div>
+                        </div>
+                        <div class="mws-form-row">
+                            <label class="mws-form-label">
+                                Giá bán</label>
+                            <div class="mws-form-item">
+                                <asp:TextBox ID="txtExportPrice" runat="server" class="small"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldExportPrice" runat="server" ErrorMessage="Nhập giá bán"
+                                    ControlToValidate="txtExportPrice" ForeColor="Red"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtExportPrice"
+                                    ValidationExpression="([0-9])*" ErrorMessage="Nhập số" ForeColor="Red"></asp:RegularExpressionValidator>
                             </div>
                         </div>
                         <div class="mws-button-row">
                             <asp:Button ID="btnAdd" runat="server" Text="Tạo mới" class="btn btn-success" OnClick="btnAdd_Click" />
+                            <asp:Button ID="btnEdit" runat="server" Text="Tạo mới" class="btn btn-success" />
                             <asp:Button ID="btnClear" runat="server" Text="Clear" class="btn btn-success" />
+                            <asp:TextBox ID="txtTemp" runat="server" Visible = "false"></asp:TextBox>
                         </div>
                     </div>
                 </div>
@@ -159,9 +172,6 @@
                                 Tên sản phẩm
                             </th>
                             <th>
-                                Màu sắc
-                            </th>
-                            <th>
                                 Dach mục
                             </th>
                             <th>
@@ -175,7 +185,8 @@
                         </tr>
                     </thead>
                     <tbody role="alert" aria-live="polite" aria-relevant="all">
-                        <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" runat="server">
+                        <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand"
+                            runat="server">
                             <ItemTemplate>
                                 <tr>
                                     <td>
@@ -188,9 +199,6 @@
                                         <asp:Literal runat="server" ID="ltrProductName"></asp:Literal>
                                     </td>
                                     <td>
-                                        <asp:Literal runat="server" ID="ltrColorName"></asp:Literal>
-                                    </td>
-                                    <td>
                                         <asp:Literal runat="server" ID="ltrCategoryName"></asp:Literal>
                                     </td>
                                     <td>
@@ -200,14 +208,12 @@
                                         <asp:Literal runat="server" ID="ltrExportPrice"></asp:Literal>
                                     </td>
                                     <td>
-                                        <asp:HyperLink ID="hypEdit" runat="server">
-                                            <i class="icon-pencil"></i>
-                                            <asp:Literal ID="ltrEdit" runat="server" Text="Chỉnh sửa"></asp:Literal>
-                                        </asp:HyperLink>
-                                        <asp:HyperLink ID="hypDelete" runat="server">
-                                            <i class="icon-trash"></i>
-                                            <asp:Literal ID="ltrDelete" runat="server" Text="Xóa"></asp:Literal>
-                                        </asp:HyperLink>
+                                        <i class="icon-pencil"></i>
+                                        <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="false" CommandName="Edit"
+                                            CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Chỉnh sửa</asp:LinkButton>
+                                        <i class="icon-trash"></i>
+                                        <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" CommandName="Delete"
+                                            CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xóa</asp:LinkButton>
                                     </td>
                                 </tr>
                             </ItemTemplate>
@@ -219,10 +225,6 @@
                 <cc:Pager ID="pager" runat="server" EnableViewState="true" CompactModePageCount="10"
                     CssClass="dataTables_info" MaxSmartShortCutCount="0" RTL="False" PageSize="10"
                     OnCommand="pager_Command" />
-                <br />
-                <br />
-                <br />
-                <br />
             </div>
         </div>
     </div>

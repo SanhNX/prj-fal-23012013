@@ -19,7 +19,7 @@
                                 <label class="mws-form-label">
                                     Mã danh mục</label>
                                 <div class="mws-form-item">
-                                    <asp:TextBox ID="txtCategoryID" runat="server" class="small"></asp:TextBox>
+                                    <asp:TextBox ID="txtCategoryID" runat="server" class="small" Enabled="false"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="mws-form-row">
@@ -49,17 +49,9 @@
                 <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
                     <!-- serach -->
                     <div id="DataTables_Table_1_length" class="dataTables_length">
-                        <label>
-                            Show
-                            <select runat="server" id="count" size="1" name="DataTables_Table_1_length" aria-controls="DataTables_Table_1">
-                                <option value="10" selected="selected">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>
-                            entries
-                        </label>
-                        <asp:DropDownList ID="drpSelect" runat="server" OnSelectedIndexChanged="drpSelect_SelectedIndexChanged">
+                        Show
+                        <asp:DropDownList ID="drpSelect" runat="server" OnSelectedIndexChanged="drpSelect_SelectedIndexChanged"
+                            AutoPostBack="true">
                             <asp:ListItem>10</asp:ListItem>
                             <asp:ListItem>25</asp:ListItem>
                             <asp:ListItem>50</asp:ListItem>
@@ -89,7 +81,8 @@
                             </tr>
                         </thead>
                         <tbody role="alert" aria-live="polite" aria-relevant="all">
-                            <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" runat="server">
+                            <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand"
+                                runat="server">
                                 <ItemTemplate>
                                     <tr>
                                         <td>
@@ -102,14 +95,12 @@
                                             <asp:Literal runat="server" ID="ltrCategoryName"></asp:Literal>
                                         </td>
                                         <td>
-                                            <asp:HyperLink ID="hypEdit" runat="server">
-                                                <i class="icon-pencil"></i>
-                                                <asp:Literal ID="ltrEdit" runat="server" Text="Chỉnh sửa"></asp:Literal>
-                                            </asp:HyperLink>
-                                            <asp:HyperLink ID="hypDelete" runat="server">
-                                                <i class="icon-trash"></i>
-                                                <asp:Literal ID="ltrDelete" runat="server" Text="Xóa"></asp:Literal>
-                                            </asp:HyperLink>
+                                            <i class="icon-pencil"></i>
+                                            <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="false" CommandName="Edit"
+                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "CategoryID") %>'>Chỉnh sửa</asp:LinkButton>
+                                            <i class="icon-trash"></i>
+                                            <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" CommandName="Delete"
+                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "CategoryID") %>'>Xóa</asp:LinkButton>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -121,10 +112,6 @@
                     <cc:Pager ID="pager" runat="server" EnableViewState="true" CompactModePageCount="10"
                         CssClass="dataTables_info" MaxSmartShortCutCount="0" RTL="False" PageSize="10"
                         OnCommand="pager_Command" />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
                 </div>
             </div>
         </div>
