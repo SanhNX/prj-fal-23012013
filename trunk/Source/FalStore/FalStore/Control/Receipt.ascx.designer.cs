@@ -31,6 +31,15 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtLogStoreID;
         
         /// <summary>
+        /// btnCreate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreate;
+        
+        /// <summary>
         /// txtLogDate control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtNcc;
         
         /// <summary>
+        /// RequiredFieldNCC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldNCC;
+        
+        /// <summary>
         /// txtDescription control.
         /// </summary>
         /// <remarks>
@@ -85,22 +103,22 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtProductID;
         
         /// <summary>
-        /// lblProductName control.
+        /// txtProductName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductName;
+        protected global::System.Web.UI.WebControls.TextBox txtProductName;
         
         /// <summary>
-        /// lblExportPrice control.
+        /// txtExportPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblExportPrice;
+        protected global::System.Web.UI.WebControls.TextBox txtExportPrice;
         
         /// <summary>
         /// drpColor control.

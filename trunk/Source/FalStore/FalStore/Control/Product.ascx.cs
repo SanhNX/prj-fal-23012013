@@ -12,13 +12,17 @@ namespace FalStore.Control
 {
     public partial class Product : System.Web.UI.UserControl
     {
+
+        #region .Property
         ProductBIZ productBIZ = new ProductBIZ();
         CategoryBIZ categoryBIZ = new CategoryBIZ();
         string id = string.Empty;
         string name = string.Empty;
         private int pageSize;
         int stt = 1;
-        int type;
+
+        #endregion
+
         #region  Viewstate
         protected int currentPageIndex
         {
@@ -35,7 +39,8 @@ namespace FalStore.Control
             }
         }
         #endregion
-       
+
+        #region .Event
         /// <summary>
         /// page load
         /// </summary>
@@ -43,41 +48,7 @@ namespace FalStore.Control
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            objProduct obj = new objProduct();
-            List<objColor> lstColor = new List<objColor>();
-            //if (!Page.IsPostBack)
-            //{
             InitPage();
-            id = HttpContext.Current.Request.QueryString["id"];
-            name = HttpContext.Current.Request.QueryString["name"];
-            txtProductID.Text = id;
-            if (txtProductID.Text != string.Empty)
-            {
-                type = 1;
-                obj = productBIZ.ShowByID(id);
-
-                txtProductName.Text = obj.ProductName;
-                txtImportPrice.Text = obj.ImportPrice.ToString();
-                txtExportPrice.Text = obj.ExportPrice.ToString();
-                drpCategory.SelectedValue = obj.Category.CategoryID.ToString();
-
-                lstColor = productBIZ.ShowColorByProductID(id);
-                txtColor1.Text = lstColor[0].ColorName.ToString();
-                txtColor2.Text = lstColor[1].ColorName.ToString();
-                txtColor3.Text = lstColor[2].ColorName.ToString();
-                txtColor4.Text = lstColor[3].ColorName.ToString();
-                txtColor5.Text = lstColor[4].ColorName.ToString();
-            }
-
-           // txtCategoryName.Text = name;
-            if (txtProductID.Text != string.Empty)
-            {
-                btnAdd.Text = "Chỉnh sửa";
-            }
-            else
-            {
-                btnAdd.Text = "Tạo mới";
-            }
             // }
         }
 
@@ -104,6 +75,16 @@ namespace FalStore.Control
             drpCategory.DataValueField = "CategoryID";
             drpCategory.DataBind();
 
+            if (txtTemp.Text != string.Empty)
+            {
+                btnAdd.Text = "Chỉnh sửa";
+                txtProductID.Enabled = false;
+            }
+            else
+            {
+                btnAdd.Text = "Tạo mới";
+                txtProductID.Enabled = true;
+            }
         }
 
         /// <summary>
@@ -128,9 +109,6 @@ namespace FalStore.Control
                 Literal ltrProductName = e.Item.FindControl("ltrProductName") as Literal;
                 ltrProductName.Text = data.ProductName.ToString();
 
-                Literal ltrColorName = e.Item.FindControl("ltrColorName") as Literal;
-                ltrColorName.Text = data.Color.ColorName.ToString();
-
                 Literal ltrCategoryName = e.Item.FindControl("ltrCategoryName") as Literal;
                 ltrCategoryName.Text = data.Category.CategoryName.ToString();
 
@@ -139,40 +117,37 @@ namespace FalStore.Control
 
                 Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
                 ltrExportPrice.Text = data.ExportPrice.ToString();
-
-                Literal ltrEdit = e.Item.FindControl("ltrEdit") as Literal;
-                ltrEdit.Text = "Chỉnh sửa";
-
-                Literal ltrDelete = e.Item.FindControl("ltrDelete") as Literal;
-                ltrDelete.Text = "Xóa";
-
-                HyperLink hypEdit = new HyperLink();
-                hypEdit = (HyperLink)e.Item.FindControl("hypEdit");
-                hypEdit.NavigateUrl = string.Format("http://localhost:17449/Default.aspx?pageName=Product&id={0}", data.ProductID);
-
-                HyperLink hypDelete = new HyperLink();
-                hypDelete = (HyperLink)e.Item.FindControl("hypDelete");
-                hypDelete.NavigateUrl = string.Format("http://localhost:17449/SelectProduct.aspx?id={0}", data.ProductID);
-
             }
-
         }
+
         /// <summary>
-        /// 
+        /// item command
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void pager_Command(object sender, CommandEventArgs e)
+        protected void rptResult_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
-            this.currentPageIndex = Convert.ToInt32(e.CommandArgument);
-            pager.CurrentIndex = this.currentPageIndex;
-            InitPage();
+            switch (e.CommandName)
+            {
+                case "Edit":
+                    LoadDataUpdate(e.CommandArgument.ToString());
+                    break;
+                case "Delete":
+                    DeleteProduct(e.CommandArgument.ToString());
+                    break;
+            }
         }
 
+        /// <summary>
+        /// event add
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            bool flag;
             stt = 1;
-            
+            string id = txtTemp.Text;
             int result;
             objProduct objProduct = new objProduct();
             objProduct.ProductID = txtProductID.Text;
@@ -203,7 +178,15 @@ namespace FalStore.Control
             {
                 lColor.Add(txtColor5.Text);
             }
-           
+            //if (!txtColor6.Text.Equals(string.Empty))
+            //{
+            //    lColor.Add(txtColor6.Text);
+            //}
+            //if (!txtColor7.Text.Equals(string.Empty))
+            //{
+            //    lColor.Add(txtColor7.Text);
+            //}
+
             List<objColor> lstColor = new List<objColor>();
             objColor objColor = null;
             foreach (var item in lColor)
@@ -212,42 +195,41 @@ namespace FalStore.Control
                 objColor.ColorName = item;
                 objColor.Product = new objProduct();
                 objColor.Product.ProductID = txtProductID.Text;
-                if (type == 0)
+
+                lstColor.Add(objColor);
+            }
+
+            if (string.Empty.Equals(id))
+            {
+                flag = CheckProductID(txtProductID.Text);
+                if (flag)
                 {
-                    SetUpdateInfo(objColor, 0);
+                    SetUpdateInfo(objProduct, 0);
+                    result = productBIZ.Insert(objProduct, lstColor);
                 }
                 else
                 {
-                    //objColor.ColorID= 
-                    SetUpdateInfo(objColor, 1);
+                    //thông báo sau khi thành congo
+                    //Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Mã sản phẩm đã tồn tại\"); <" + "/script>"));
+                    Response.Write("<script language='javascript'>alert(Mã sản phẩm đã tồn tại)</script>");
+                    //lblMessage.Text = "Mã sản phẩm đã tồn tại";
+                    txtProductID.Text = string.Empty;
                 }
-                lstColor.Add(objColor);
-            }
-            
-     
-            if (type ==0)
-            {
-                SetUpdateInfo(objProduct, 0);
-                result = productBIZ.Insert(objProduct,lstColor);
             }
             else
             {
                 SetUpdateInfo(objProduct, 1);
-                result = productBIZ.Update(objProduct, lstColor);
+                result = productBIZ.Update(objProduct);
+
             }
 
-            if (result == 1)
-            {
-                lblMessage.Text = "Thực thi thành công";
-            }
-            else
-            {
-                lblMessage.Text = "Thực thi thất bại";
-            }
-            InitPage();
             clear();
+            InitPage();
         }
 
+        #endregion
+
+        #region .Method
         //Set info for Create and Update
         //Type 0: Create    Type 1: Update
         private static void SetUpdateInfo(objProduct obj, int type)
@@ -266,26 +248,63 @@ namespace FalStore.Control
             }
         }
 
-        //Set info for Create and Update
-        //Type 0: Create    Type 1: Update
-        private static void SetUpdateInfo(objColor obj, int type)
+        /// <summary>
+        /// Load data to update
+        /// </summary>
+        /// <param name="productID"></param>
+        private void LoadDataUpdate(string productID)
         {
-            if (type == 0)
-            {
-                obj.CreateDate = System.DateTime.Now;
-                obj.CreateUser = "";
-                obj.UpdateDate = System.DateTime.Now;
-                obj.UpdateUser = "";
-            }
-            else
-            {
-                obj.UpdateDate = System.DateTime.Now;
-                obj.UpdateUser = "";
-            }
+            objProduct obj = new objProduct();
+            obj = productBIZ.ShowByID(productID);
+            txtProductID.Text = obj.ProductID;
+            txtProductName.Text = obj.ProductName;
+            txtImportPrice.Text = obj.ImportPrice.ToString();
+            txtExportPrice.Text = obj.ExportPrice.ToString();
+            drpCategory.SelectedValue = obj.Category.CategoryID.ToString();
+            txtTemp.Text = obj.ProductID;
+            List<objColor> lstColor = new List<objColor>();
+            lstColor = productBIZ.ShowColorByProductID(productID);
+
+            //txtColor1.Text = lstColor[0].ColorName.ToString();
+            //txtColor2.Text = lstColor[1].ColorName.ToString();
+            //txtColor3.Text = lstColor[2].ColorName.ToString();
+            //txtColor4.Text = lstColor[3].ColorName.ToString();
+            //txtColor5.Text = lstColor[4].ColorName.ToString();
+            //txtColor6.Text = lstColor[5].ColorName.ToString();
+            //txtColor7.Text = lstColor[6].ColorName.ToString();
+            InitPage();
         }
 
+        /// <summary>
+        /// delete product
+        /// </summary>
+        /// <param name="productID"></param>
+        private void DeleteProduct(string productID)
+        {
+            DateTime updateDate = DateTime.Now;
+            string updateUser = "";
+            productBIZ.Delete(productID, updateDate, updateUser);
+            InitPage();
+        }
+
+        /// <summary>
+        /// paging
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void pager_Command(object sender, CommandEventArgs e)
+        {
+            this.currentPageIndex = Convert.ToInt32(e.CommandArgument);
+            pager.CurrentIndex = this.currentPageIndex;
+            InitPage();
+        }
+
+        /// <summary>
+        /// clear textbox
+        /// </summary>
         private void clear()
         {
+            txtTemp.Text = string.Empty;
             txtProductID.Text = string.Empty;
             txtProductName.Text = string.Empty;
             txtImportPrice.Text = string.Empty;
@@ -295,7 +314,23 @@ namespace FalStore.Control
             txtColor3.Text = string.Empty;
             txtColor4.Text = string.Empty;
             txtColor5.Text = string.Empty;
+            //txtColor6.Text = string.Empty;
+            //txtColor7.Text = string.Empty;
         }
+
+        /// <summary>
+        /// Check product id exist
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <returns></returns>
+        private bool CheckProductID(string productID)
+        {
+            bool flag = true;
+            flag = productBIZ.CheckProduct(productID);
+            return flag;
+        }
+
+        #endregion
 
     }
 }

@@ -12,9 +12,7 @@ using System.Data;
 namespace FalStore.Control
 {
     public partial class Receipt : System.Web.UI.UserControl
-    {
-        List<objLogDetail> lstObjLogDetail = new List<objLogDetail>();
-        
+    {   
         LogStoreBIZ logBiz = new LogStoreBIZ();
         EmployeeBIZ empBiz = new EmployeeBIZ();
         BranchBIZ branBiz = new BranchBIZ();
@@ -26,10 +24,13 @@ namespace FalStore.Control
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!Page.IsPostBack)
-            //{
-            InitPage();
-            // }
+            if (!Page.IsPostBack)
+            {
+                InitPage();
+                //lstObjLogDetail = new List<objLogDetail>();
+                ShowControl(false);
+                txtLogDate.Text = DateTime.Now.Date.ToShortDateString();
+            }
         }
 
         /// <summary>
@@ -50,6 +51,19 @@ namespace FalStore.Control
             drpBranchTo.DataTextField = "BranchName";
             drpBranchTo.DataValueField = "BranchID";
             drpBranchTo.DataBind();
+
+            BindRepeater();
+        }
+
+        private void BindRepeater()
+        {
+            List<objLogDetail> lstLogDetail = new List<objLogDetail>();
+            lstLogDetail = logBiz.ShowLogDetailByID(txtLogStoreID.Text);
+            if (lstLogDetail != null)
+            {
+                rptResult.DataSource = lstLogDetail;
+                rptResult.DataBind();
+            }
         }
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
@@ -61,15 +75,23 @@ namespace FalStore.Control
             obj.LogStore = new objLogStore();
             obj.LogStore.LogStoreID = txtLogStoreID.Text;
             obj.Size = drpSize.SelectedItem.ToString();
-            obj.ExportPrice = float.Parse(lblExportPrice.Text);
+            float exportPrice = float.Parse(txtExportPrice.Text);
             obj.Sale = float.Parse(txtSale.Text);
             obj.Quantity = int.Parse(txtQuantity.Text);
-            obj.Amount =(obj.ExportPrice - (obj.ExportPrice / obj.Sale)) * obj.Quantity;
+            if (obj.Sale != 0)
+            {
+                obj.Amount = (exportPrice - (exportPrice / obj.Sale)) * obj.Quantity;
+            }
+            else
+            {
+                obj.Amount = exportPrice * obj.Quantity;
+            }
 
-            lstObjLogDetail.Add(obj);
+            logBiz.InsertLogDetail(obj);
 
-            rptResult.DataSource = lstObjLogDetail;
-            rptResult.DataBind();
+            BindRepeater();
+            ClearProductInfo();
+
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -78,16 +100,18 @@ namespace FalStore.Control
             int result;
             objLogStore objLgStore = new objLogStore();
             objLgStore.LogStoreID = txtLogStoreID.Text;
-            objLgStore.LogType = 1;
+            objLgStore.LogType = 0;
+            objLgStore.Employee = new objEmployee();
             objLgStore.Employee.EmployeeID =int.Parse( drpEmployee.SelectedValue.ToString());
             objLgStore.LogDate = txtLogDate.Text;
+            objLgStore.BranchTo = new objBranch();
             objLgStore.BranchTo.BranchID = int.Parse(drpBranchTo.SelectedValue.ToString());
             objLgStore.NCC = txtNcc.Text;
             objLgStore.Description = txtDescription.Text;
+            SetUpdateInfo(objLgStore,0);
+            result = logBiz.InsertlogStore(objLgStore);
 
-            result = logBiz.InsertlogStore(objLgStore, lstObjLogDetail);
 
-         
             if (result == 1)
             {
                 lblMessage.Text = "Thực thi thành công";
@@ -97,7 +121,8 @@ namespace FalStore.Control
                 lblMessage.Text = "Thực thi thất bại";
             }
             //InitPage();
-            //clear();
+            ClearLogStoreInfo();
+            ShowControl(false);
         }
 
         protected void txtProductID_TextChanged(object sender, EventArgs e)
@@ -112,8 +137,8 @@ namespace FalStore.Control
             objPro = proBiz.ShowByID(productID);
             if (objPro != null)
             {
-                lblProductName.Text = objPro.ProductName;
-                lblExportPrice.Text = objPro.ExportPrice.ToString();
+                txtProductName.Text = objPro.ProductName;
+                txtExportPrice.Text = objPro.ExportPrice.ToString();
                 drpColor.Enabled = true;
                 lstObjCol = proBiz.ShowColorByProductID(productID);
                 drpColor.DataSource = lstObjCol;
@@ -142,10 +167,16 @@ namespace FalStore.Control
                 ltrProductID.Text = data.Product.ProductID.ToString();
 
                 Literal ltrProductName = e.Item.FindControl("ltrProductName") as Literal;
-             //   ltrProductName.Text = data.Product.ProductName.ToString();
+                ltrProductName.Text = data.Product.ProductName.ToString();
+
+                Literal ltrColor = e.Item.FindControl("ltrColor") as Literal;
+                ltrColor.Text = data.Color.ColorName.ToString();
+
+                Literal ltrSize = e.Item.FindControl("ltrSize") as Literal;
+                ltrSize.Text = data.Size.ToString();
 
                 Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                ltrExportPrice.Text = data.ExportPrice.ToString(); ;
+                ltrExportPrice.Text = data.Product.ExportPrice.ToString(); ;
 
                 Literal ltrQuantity = e.Item.FindControl("ltrQuantity") as Literal;
                 ltrQuantity.Text = data.Quantity.ToString();
@@ -157,6 +188,58 @@ namespace FalStore.Control
                 ltrAmount.Text = data.Amount.ToString();
             }
         }
+        protected void btnCreate_Click(object sender, EventArgs e)
+        {
+            string id = logBiz.NewLogStoreID();
+            txtLogStoreID.Text = id;
+            ShowControl(true);
+        }
 
+        private void ShowControl(bool flag)
+        {
+           // txtLogStoreID.Enabled = flag;
+            //txtLogDate.Enabled = flag;
+            txtNcc.Enabled = flag;
+            txtDescription.Enabled = flag;
+            txtProductID.Enabled = flag;
+            txtSale.Enabled = flag;
+            txtQuantity.Enabled = flag;
+            btnAddProduct.Enabled = flag;
+            btnAdd.Enabled = flag;
+            btnCreate.Enabled = !flag;
+        }
+
+        //Set info for Create and Update
+        //Type 0: Create    Type 1: Update
+        private static void SetUpdateInfo(objLogStore obj, int type)
+        {
+            if (type == 0)
+            {
+                obj.CreateDate = System.DateTime.Now;
+                obj.CreateUser = "";
+                obj.UpdateDate = System.DateTime.Now;
+                obj.UpdateUser = "";
+            }
+            else
+            {
+                obj.UpdateDate = System.DateTime.Now;
+                obj.UpdateUser = "";
+            }
+        }
+
+        private void ClearProductInfo()
+        {
+            txtProductID.Text = string.Empty;
+            txtProductName.Text = string.Empty;
+            txtQuantity.Text = string.Empty;
+            txtSale.Text = string.Empty;
+            txtExportPrice.Text = string.Empty;
+        }
+        private void ClearLogStoreInfo()
+        {
+            txtLogStoreID.Text = string.Empty;
+            txtNcc.Text = string.Empty;
+            txtDescription.Text = string.Empty;
+        }
     }
 }

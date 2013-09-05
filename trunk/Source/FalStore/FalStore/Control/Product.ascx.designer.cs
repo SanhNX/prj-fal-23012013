@@ -67,15 +67,6 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.DropDownList drpCategory;
         
         /// <summary>
-        /// txtColorNumer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtColorNumer;
-        
-        /// <summary>
         /// txtColor1 control.
         /// </summary>
         /// <remarks>
@@ -184,6 +175,15 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
+        /// btnEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEdit;
+        
+        /// <summary>
         /// btnClear control.
         /// </summary>
         /// <remarks>
@@ -191,6 +191,15 @@ namespace FalStore.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClear;
+        
+        /// <summary>
+        /// txtTemp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTemp;
         
         /// <summary>
         /// count control.

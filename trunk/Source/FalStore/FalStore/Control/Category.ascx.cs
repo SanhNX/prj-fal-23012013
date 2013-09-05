@@ -12,11 +12,14 @@ namespace FalStore.Control
 {
     public partial class Category : System.Web.UI.UserControl
     {
+        #region .Property
         CategoryBIZ categoryBIZ = new CategoryBIZ();
         string id = string.Empty;
         string name = string.Empty;
         private int pageSize;
         int stt = 1;
+        #endregion
+
         #region  Viewstate
         protected int currentPageIndex
         {
@@ -42,22 +45,7 @@ namespace FalStore.Control
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!Page.IsPostBack)
-            //{
             InitPage();
-            id = HttpContext.Current.Request.QueryString["id"];
-            name = HttpContext.Current.Request.QueryString["name"];
-            txtCategoryID.Text = id;
-            txtCategoryName.Text = name;
-            if (txtCategoryID.Text != string.Empty)
-            {
-                btnAdd.Text = "Chỉnh sửa";
-            }
-            else
-            {
-                btnAdd.Text = "Tạo mới";
-            }
-            // }
         }
 
         /// <summary>
@@ -66,7 +54,7 @@ namespace FalStore.Control
         protected void InitPage()
         {
             int count;
-            pageSize = int.Parse(drpSelect.Text);
+            pageSize = int.Parse(drpSelect.SelectedItem.ToString());
             //this.pager.ItemCount = 21;
             List<objCategory> tbl = new List<objCategory>();
             tbl = categoryBIZ.ShowByPaging(currentPageIndex, pageSize, out count);
@@ -76,6 +64,16 @@ namespace FalStore.Control
                 rptResult.DataSource = tbl;
                 rptResult.DataBind();
             }
+
+            if (txtCategoryID.Text != string.Empty)
+            {
+                btnAdd.Text = "Chỉnh sửa";
+            }
+            else
+            {
+                btnAdd.Text = "Tạo mới";
+            }
+
         }
 
         /// <summary>
@@ -100,20 +98,28 @@ namespace FalStore.Control
                 Literal ltrCategoryName = e.Item.FindControl("ltrCategoryName") as Literal;
                 ltrCategoryName.Text = data.CategoryName.ToString();
 
-                Literal ltrEdit = e.Item.FindControl("ltrEdit") as Literal;
-                ltrEdit.Text = "Chỉnh sửa";
+                //LinkButton lnkDelete = e.Item.FindControl("lnkDelete") as LinkButton;
+                //lnkDelete.CommandArgument = data.CategoryID.ToString();
 
-                Literal ltrDelete = e.Item.FindControl("ltrDelete") as Literal;
-                ltrDelete.Text = "Xóa";
+            }
+        }
 
-                HyperLink hypEdit = new HyperLink();
-                hypEdit = (HyperLink)e.Item.FindControl("hypEdit");
-                hypEdit.NavigateUrl = string.Format("http://localhost:17449/Default.aspx?pageName=Category&id={0}&name={1}", data.CategoryID, data.CategoryName);
-
-                HyperLink hypDelete = new HyperLink();
-                hypDelete = (HyperLink)e.Item.FindControl("hypDelete");
-                hypDelete.NavigateUrl = string.Format("http://localhost:17449/SelectProduct.aspx?id={0}", data.CategoryID);
-
+        /// <summary>
+        /// item command
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void rptResult_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "Edit":
+                    LoadDataUpdate(int.Parse(e.CommandArgument.ToString()));
+                    break;
+                case "Delete":
+                    DeleteCategory(int.Parse(e.CommandArgument.ToString()));
+                    break;
+                    
 
             }
         }
@@ -138,6 +144,7 @@ namespace FalStore.Control
             }
             else
             {
+                obj.CategoryID = int.Parse(txtCategoryID.Text);
                 SetUpdateInfo(obj, 1);
                 result = categoryBIZ.Update(obj);
             }
@@ -150,8 +157,8 @@ namespace FalStore.Control
             {
                 lblMessage.Text = "Thực thi thất bại";
             }
-            InitPage();
             clear();
+            InitPage();
         }
 
         /// <summary>
@@ -165,7 +172,7 @@ namespace FalStore.Control
         }
 
         /// <summary>
-        /// 
+        /// paging
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -177,15 +184,39 @@ namespace FalStore.Control
         }
 
         /// <summary>
-        /// 
+        /// select record number
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void drpSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            InitPage();
         }
 
+        /// <summary>
+        /// Delete record
+        /// </summary>
+        /// <param name="CategoryID"></param>
+        private void DeleteCategory(int CategoryID)
+        {
+            DateTime updateDate = DateTime.Now;
+            string updateUser = "";
+            categoryBIZ.Delete(CategoryID, updateDate, updateUser);
+            InitPage();
+        }
+
+        /// <summary>
+        /// Load info to update
+        /// </summary>
+        /// <param name="CategoryID"></param>
+        private void LoadDataUpdate(int CategoryID)
+        {
+            objCategory obj = new objCategory();
+            obj = categoryBIZ.ShowByCategoryID(CategoryID);
+            txtCategoryID.Text = obj.CategoryID.ToString();
+            txtCategoryName.Text = obj.CategoryName;
+            InitPage();
+        }
         #endregion
 
         #region .Method
