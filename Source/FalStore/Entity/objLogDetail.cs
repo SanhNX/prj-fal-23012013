@@ -17,8 +17,6 @@ namespace Entity
         public objColor Color { get; set; }
         //Size object
         public string Size { get; set; }
-        ////ExportPrice
-        //public float ExportPrice { get; set; }
         //Sale
         public float Sale { get; set; }
         //Quantity
