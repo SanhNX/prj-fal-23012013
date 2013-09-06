@@ -144,16 +144,25 @@ namespace BIZ
 
         public bool CheckProduct(string productID)
         {
-            objProduct obj = new objProduct();
-            obj = DAL.GetProductByID(productID);
-            if (obj != null)
+            try
             {
-                return false;
+                objProduct obj = new objProduct();
+                obj = DAL.GetProductByID(productID);
+                if (obj != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else
+            catch (Exception)
             {
-                return true;
+                
+                throw;
             }
+          
         }
     }
 }

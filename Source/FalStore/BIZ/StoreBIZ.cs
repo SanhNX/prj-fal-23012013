@@ -89,30 +89,30 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int UpdateStoreQuantity(int storeID, string productID, int quantity)
-        {
-            try
-            {
-                int result = 0;
+        //public int UpdateStoreQuantity(int storeID, string productID, int quantity)
+        //{
+        //    try
+        //    {
+        //        int result = 0;
 
-                if (storeID != null)
-                {
-                    result = DAL.UpdateStoreQuantity(storeID,productID,quantity);
-                }
-                else
-                {
-                    result = 1;
-                }
+        //        if (storeID != null)
+        //        {
+        //            result = DAL.UpdateStoreQuantity(storeID,productID,quantity);
+        //        }
+        //        else
+        //        {
+        //            result = 1;
+        //        }
 
-                return result;
-            }
-            catch (Exception)
-            {
+        //        return result;
+        //    }
+        //    catch (Exception)
+        //    {
 
-                throw;
-            }
+        //        throw;
+        //    }
 
-        }
+        //}
 
         /// <summary>
         /// delete record
