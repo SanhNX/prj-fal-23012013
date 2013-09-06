@@ -57,34 +57,43 @@ namespace FalStore.Control
         /// </summary>
         protected void InitPage()
         {
-            int count;
-            pageSize = int.Parse(drpSelect.Text);
-            //this.pager.ItemCount = 21;
-            List<objProduct> tbl = new List<objProduct>();
-            tbl = productBIZ.ShowByPaging(currentPageIndex, pageSize, out count);
-            this.pager.ItemCount = count;
-            if (tbl != null)
+            try
             {
-                rptResult.DataSource = tbl;
-                rptResult.DataBind();
-            }
-            List<objCategory> lstCategory = new List<objCategory>();
-            lstCategory = categoryBIZ.ShowAll();
-            drpCategory.DataSource = lstCategory;
-            drpCategory.DataTextField = "CategoryName";
-            drpCategory.DataValueField = "CategoryID";
-            drpCategory.DataBind();
+                int count;
+                pageSize = int.Parse(drpSelect.Text);
+                //this.pager.ItemCount = 21;
+                List<objProduct> tbl = new List<objProduct>();
+                tbl = productBIZ.ShowByPaging(currentPageIndex, pageSize, out count);
+                this.pager.ItemCount = count;
+                if (tbl != null)
+                {
+                    rptResult.DataSource = tbl;
+                    rptResult.DataBind();
+                }
+                List<objCategory> lstCategory = new List<objCategory>();
+                lstCategory = categoryBIZ.ShowAll();
+                drpCategory.DataSource = lstCategory;
+                drpCategory.DataTextField = "CategoryName";
+                drpCategory.DataValueField = "CategoryID";
+                drpCategory.DataBind();
 
-            if (txtTemp.Text != string.Empty)
-            {
-                btnAdd.Text = "Chỉnh sửa";
-                txtProductID.Enabled = false;
+                if (txtTemp.Text != string.Empty)
+                {
+                    btnAdd.Text = "Chỉnh sửa";
+                    txtProductID.Enabled = false;
+                }
+                else
+                {
+                    btnAdd.Text = "Tạo mới";
+                    txtProductID.Enabled = true;
+                }
             }
-            else
+            catch (Exception)
             {
-                btnAdd.Text = "Tạo mới";
-                txtProductID.Enabled = true;
+                
+                throw;
             }
+           
         }
 
         /// <summary>
@@ -94,30 +103,39 @@ namespace FalStore.Control
         /// <param name="e"></param>
         protected void rptResult_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            try
             {
+                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+                {
 
-                objProduct data = e.Item.DataItem as objProduct;
+                    objProduct data = e.Item.DataItem as objProduct;
 
-                Literal ltrStt = e.Item.FindControl("ltrStt") as Literal;
-                ltrStt.Text = stt.ToString();
-                stt++;
+                    Literal ltrStt = e.Item.FindControl("ltrStt") as Literal;
+                    ltrStt.Text = stt.ToString();
+                    stt++;
 
-                Literal ltrProductID = e.Item.FindControl("ltrProductID") as Literal;
-                ltrProductID.Text = data.ProductID.ToString();
+                    Literal ltrProductID = e.Item.FindControl("ltrProductID") as Literal;
+                    ltrProductID.Text = data.ProductID.ToString();
 
-                Literal ltrProductName = e.Item.FindControl("ltrProductName") as Literal;
-                ltrProductName.Text = data.ProductName.ToString();
+                    Literal ltrProductName = e.Item.FindControl("ltrProductName") as Literal;
+                    ltrProductName.Text = data.ProductName.ToString();
 
-                Literal ltrCategoryName = e.Item.FindControl("ltrCategoryName") as Literal;
-                ltrCategoryName.Text = data.Category.CategoryName.ToString();
+                    Literal ltrCategoryName = e.Item.FindControl("ltrCategoryName") as Literal;
+                    ltrCategoryName.Text = data.Category.CategoryName.ToString();
 
-                Literal ltrImportPrice = e.Item.FindControl("ltrImportPrice") as Literal;
-                ltrImportPrice.Text = data.ImportPrice.ToString();
+                    Literal ltrImportPrice = e.Item.FindControl("ltrImportPrice") as Literal;
+                    ltrImportPrice.Text = data.ImportPrice.ToString();
 
-                Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                ltrExportPrice.Text = data.ExportPrice.ToString();
+                    Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
+                    ltrExportPrice.Text = data.ExportPrice.ToString();
+                }
             }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+           
         }
 
         /// <summary>
@@ -127,15 +145,24 @@ namespace FalStore.Control
         /// <param name="e"></param>
         protected void rptResult_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
-            switch (e.CommandName)
+            try
             {
-                case "Edit":
-                    LoadDataUpdate(e.CommandArgument.ToString());
-                    break;
-                case "Delete":
-                    DeleteProduct(e.CommandArgument.ToString());
-                    break;
+                switch (e.CommandName)
+                {
+                    case "Edit":
+                        LoadDataUpdate(e.CommandArgument.ToString());
+                        break;
+                    case "Delete":
+                        DeleteProduct(e.CommandArgument.ToString());
+                        break;
+                }
             }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+           
         }
 
         /// <summary>
@@ -145,86 +172,95 @@ namespace FalStore.Control
         /// <param name="e"></param>
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            bool flag;
-            stt = 1;
-            string id = txtTemp.Text;
-            int result;
-            objProduct objProduct = new objProduct();
-            objProduct.ProductID = txtProductID.Text;
-            objProduct.ProductName = txtProductName.Text;
-            objProduct.Category = new objCategory();
-            objProduct.Category.CategoryID = int.Parse(drpCategory.SelectedValue);
-            objProduct.ImportPrice = float.Parse(txtImportPrice.Text);
-            objProduct.ExportPrice = float.Parse(txtExportPrice.Text);
+            try
+            {
+                bool flag;
+                stt = 1;
+                string id = txtTemp.Text;
+                int result;
+                objProduct objProduct = new objProduct();
+                objProduct.ProductID = txtProductID.Text;
+                objProduct.ProductName = txtProductName.Text;
+                objProduct.Category = new objCategory();
+                objProduct.Category.CategoryID = int.Parse(drpCategory.SelectedValue);
+                objProduct.ImportPrice = float.Parse(txtImportPrice.Text);
+                objProduct.ExportPrice = float.Parse(txtExportPrice.Text);
 
-            List<string> lColor = new List<string>();
-            if (!txtColor1.Text.Equals(string.Empty))
-            {
-                lColor.Add(txtColor1.Text);
-            }
-            if (!txtColor2.Text.Equals(string.Empty))
-            {
-                lColor.Add(txtColor2.Text);
-            }
-            if (!txtColor3.Text.Equals(string.Empty))
-            {
-                lColor.Add(txtColor3.Text);
-            }
-            if (!txtColor4.Text.Equals(string.Empty))
-            {
-                lColor.Add(txtColor4.Text);
-            }
-            if (!txtColor5.Text.Equals(string.Empty))
-            {
-                lColor.Add(txtColor5.Text);
-            }
-            //if (!txtColor6.Text.Equals(string.Empty))
-            //{
-            //    lColor.Add(txtColor6.Text);
-            //}
-            //if (!txtColor7.Text.Equals(string.Empty))
-            //{
-            //    lColor.Add(txtColor7.Text);
-            //}
-
-            List<objColor> lstColor = new List<objColor>();
-            objColor objColor = null;
-            foreach (var item in lColor)
-            {
-                objColor = new objColor();
-                objColor.ColorName = item;
-                objColor.Product = new objProduct();
-                objColor.Product.ProductID = txtProductID.Text;
-
-                lstColor.Add(objColor);
-            }
-
-            if (string.Empty.Equals(id))
-            {
-                flag = CheckProductID(txtProductID.Text);
-                if (flag)
+                List<string> lColor = new List<string>();
+                if (!txtColor1.Text.Equals(string.Empty))
                 {
-                    SetUpdateInfo(objProduct, 0);
-                    result = productBIZ.Insert(objProduct, lstColor);
+                    lColor.Add(txtColor1.Text);
+                }
+                if (!txtColor2.Text.Equals(string.Empty))
+                {
+                    lColor.Add(txtColor2.Text);
+                }
+                if (!txtColor3.Text.Equals(string.Empty))
+                {
+                    lColor.Add(txtColor3.Text);
+                }
+                if (!txtColor4.Text.Equals(string.Empty))
+                {
+                    lColor.Add(txtColor4.Text);
+                }
+                if (!txtColor5.Text.Equals(string.Empty))
+                {
+                    lColor.Add(txtColor5.Text);
+                }
+                //if (!txtColor6.Text.Equals(string.Empty))
+                //{
+                //    lColor.Add(txtColor6.Text);
+                //}
+                //if (!txtColor7.Text.Equals(string.Empty))
+                //{
+                //    lColor.Add(txtColor7.Text);
+                //}
+
+                List<objColor> lstColor = new List<objColor>();
+                objColor objColor = null;
+                foreach (var item in lColor)
+                {
+                    objColor = new objColor();
+                    objColor.ColorName = item;
+                    objColor.Product = new objProduct();
+                    objColor.Product.ProductID = txtProductID.Text;
+
+                    lstColor.Add(objColor);
+                }
+
+                if (string.Empty.Equals(id))
+                {
+                    flag = CheckProductID(txtProductID.Text);
+                    if (flag)
+                    {
+                        SetUpdateInfo(objProduct, 0);
+                        result = productBIZ.Insert(objProduct, lstColor);
+                    }
+                    else
+                    {
+                        //thông báo sau khi thành congo
+                        //Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Mã sản phẩm đã tồn tại\"); <" + "/script>"));
+                        Response.Write("<script language='javascript'>alert(Mã sản phẩm đã tồn tại)</script>");
+                        //lblMessage.Text = "Mã sản phẩm đã tồn tại";
+                        txtProductID.Text = string.Empty;
+                    }
                 }
                 else
                 {
-                    //thông báo sau khi thành congo
-                    //Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Mã sản phẩm đã tồn tại\"); <" + "/script>"));
-                    Response.Write("<script language='javascript'>alert(Mã sản phẩm đã tồn tại)</script>");
-                    //lblMessage.Text = "Mã sản phẩm đã tồn tại";
-                    txtProductID.Text = string.Empty;
+                    SetUpdateInfo(objProduct, 1);
+                    result = productBIZ.Update(objProduct);
+
                 }
+
+                clear();
+                InitPage();
             }
-            else
+            catch (Exception)
             {
-                SetUpdateInfo(objProduct, 1);
-                result = productBIZ.Update(objProduct);
-
+                
+                throw;
             }
-
-            clear();
-            InitPage();
+           
         }
 
         #endregion

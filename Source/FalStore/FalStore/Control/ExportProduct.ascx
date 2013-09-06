@@ -8,7 +8,7 @@
                 <span>Xuất kho</span>
             </div>
             <div class="mws-panel-body no-padding">
-                <form class="mws-form" action="form_layouts.html">
+                <div class="mws-form">
                 <fieldset class="mws-form-inline">
                     <legend>Thông tin phiếu xuất</legend>
                     <div class="mws-form-row">
@@ -123,6 +123,13 @@
                             Chiết khấu</label>
                         <div class="mws-form-item">
                             <asp:TextBox ID="txtSale" runat="server" class="small" Text="0"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">
+                            Số lượng</label>
+                        <div class="mws-form-item">
+                            <asp:TextBox ID="txtQuantity" runat="server" class="small" Text="0"></asp:TextBox>
                         </div>
                     </div>
                     <div class="mws-button-row">
