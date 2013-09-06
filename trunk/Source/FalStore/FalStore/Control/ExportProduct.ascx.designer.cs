@@ -130,6 +130,15 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtSale;
         
         /// <summary>
+        /// txtQuantity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtQuantity;
+        
+        /// <summary>
         /// btnAddProduct control.
         /// </summary>
         /// <remarks>
