@@ -56,7 +56,7 @@ namespace DAL
         }
 
         /// <summary>
-        /// get toal row
+        /// get total row
         /// </summary>
         /// <returns></returns>
         public int GetTotal()

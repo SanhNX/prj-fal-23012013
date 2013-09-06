@@ -18,7 +18,13 @@ namespace DAL
         {
         }
 
-        //call store procedure view all log store
+        /// <summary>
+        /// get log store by paging
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="total"></param>
+        /// <returns></returns>
         public List<objLogStore> GetAllLogStore(int pageIndex, int pageSize, out int total)
         {
 
@@ -53,7 +59,12 @@ namespace DAL
 
         }
 
-        //call store procedure view all log detail by log store id
+        /// <summary>
+        /// get log detail by logStore
+        /// </summary>
+        /// <param name="logStoreID"></param>
+        /// <param name="statusFlag"></param>
+        /// <returns></returns>
         public List<objLogDetail> GetLogDetailByLogStoreID(string logStoreID, int statusFlag)
         {
 
@@ -74,14 +85,14 @@ namespace DAL
                 obj.Product.ProductID = dr["ProductID"].ToString();
                 obj.Product.ProductName = dr["ProductName"].ToString();
                 obj.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
-                obj.Quantity = int.Parse( dr["Quantity"].ToString());
+                obj.Quantity = int.Parse(dr["Quantity"].ToString());
                 obj.Sale = float.Parse(dr["Sale"].ToString());
                 obj.Amount = float.Parse(dr["Amount"].ToString());
-                obj.Color= new objColor();
+                obj.Color = new objColor();
                 obj.Color.ColorID = int.Parse(dr["ColorID"].ToString());
-                obj.Color.ColorName= dr["ColorName"].ToString();
-                obj.Size= dr["Size"].ToString();
-               
+                obj.Color.ColorName = dr["ColorName"].ToString();
+                obj.Size = dr["Size"].ToString();
+
                 lst.Add(obj);
             }
 
@@ -89,7 +100,10 @@ namespace DAL
 
         }
 
-        //call store procedure get lastest id
+        /// <summary>
+        /// get last id of log store
+        /// </summary>
+        /// <returns></returns>
         public string GetLogStoreByLastID()
         {
             string logID = string.Empty;
@@ -102,7 +116,11 @@ namespace DAL
 
         }
 
-        //call store procedure insert log store
+        /// <summary>
+        /// insert logstore
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public int InsertLogStore(objLogStore obj)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
@@ -111,14 +129,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@LogType", obj.LogType));
             parameterList.Add(new SqlParameter("@EmployeeID", obj.Employee.EmployeeID));
             parameterList.Add(new SqlParameter("@LogDate", obj.LogDate));
-            if (obj.BranchFrom != null)
-            {
-                parameterList.Add(new SqlParameter("@BranchFrom", obj.BranchFrom.BranchID));
-            }
-            else
-            {
-                parameterList.Add(new SqlParameter("@BranchFrom", obj.BranchTo.BranchID));
-            }
+            parameterList.Add(new SqlParameter("@BranchFrom", obj.BranchFrom.BranchID));
             parameterList.Add(new SqlParameter("@BranchTo", obj.BranchTo.BranchID));
             parameterList.Add(new SqlParameter("@NCC", obj.NCC));
             parameterList.Add(new SqlParameter("@Description", obj.Description));
@@ -130,7 +141,11 @@ namespace DAL
             return SQLHelper.ExecuteNonQuery("spLogStoreInsert", parameterList);
         }
 
-        //call store procedure insert log detail
+        /// <summary>
+        /// insert log detail
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public int InsertLogDetail(objLogDetail obj)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
@@ -146,12 +161,17 @@ namespace DAL
             return SQLHelper.ExecuteNonQuery("spLogDetailInsert", parameterList);
         }
 
+        /// <summary>
+        /// update status log detail
+        /// </summary>
+        /// <param name="LogStoreID"></param>
+        /// <returns></returns>
         public int UpdateStatusLogDetail(string LogStoreID)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@LogStoreID", LogStoreID));
-           
+
             return SQLHelper.ExecuteNonQuery("spLogDetailUpdateStatus", parameterList);
         }
 
