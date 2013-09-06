@@ -133,7 +133,14 @@ namespace BIZ
         /// <returns></returns>
         private int GetTotal()
         {
-            return DAL.GetTotal();
+            try
+            {
+                return DAL.GetTotal();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

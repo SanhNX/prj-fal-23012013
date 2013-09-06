@@ -14,7 +14,7 @@ namespace BIZ
         ProductDAL proDal = new ProductDAL();
         StoreDAL stoDal = new StoreDAL();
         /// <summary>
-        /// get all info log store
+        /// get log store by paging
         /// </summary>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
@@ -40,7 +40,7 @@ namespace BIZ
         }
 
         /// <summary>
-        /// get all info log detail
+        /// get log detail by logStore 
         /// </summary>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
@@ -51,7 +51,7 @@ namespace BIZ
             try
             {
                 List<objLogDetail> lst = new List<objLogDetail>();
-                lst = logDal.GetLogDetailByLogStoreID(logStoreID,1);
+                lst = logDal.GetLogDetailByLogStoreID(logStoreID, 1);
 
                 return lst;
             }
@@ -66,37 +66,58 @@ namespace BIZ
         /// add new record log store
         /// </summary>
         /// <param name="obj"></param>
-        /// <returns></returns>
-        public int InsertlogStore(objLogStore objLogStore)
+        /// <param name="type"> 0: nhap phieu   1: xuat phieu</param>
+        public void InsertlogStore(objLogStore objLogStore, int type)
         {
             try
             {
                 objStore objSto;
-             
+                //update status log detail
                 logDal.UpdateStatusLogDetail(objLogStore.LogStoreID);
+                //insert log store
                 logDal.InsertLogStore(objLogStore);
 
                 List<objLogDetail> lstLogDetail = new List<objLogDetail>();
-                lstLogDetail = logDal.GetLogDetailByLogStoreID(objLogStore.LogStoreID,0);
+                //get info log detail with new status 
+                lstLogDetail = logDal.GetLogDetailByLogStoreID(objLogStore.LogStoreID, 0);
+                //loop
                 foreach (var item in lstLogDetail)
                 {
-                    objSto = new objStore();
-                    objSto.Product = new objProduct();
-                    objSto.Product.ProductID = item.Product.ProductID;
-                    objSto.Color = new objColor();
-                    objSto.Color.ColorID = item.Color.ColorID;
-                    objSto.Size = item.Size;
-                    objSto.Branch = new objBranch();
-                    objSto.Branch.BranchID = objLogStore.BranchTo.BranchID;
-                    objSto.ExportPrice = item.Product.ExportPrice;
-                    objSto.Quantity = item.Quantity;
-                    objSto.LogStore = new objLogStore();
-                    objSto.LogStore.LogStoreID = item.LogStore.LogStoreID;
+                    //get info product in store --> check exist product
+                    objSto = stoDal.GetProductInfoByBranch(item.Product.ProductID, int.Parse(item.Color.ColorID.ToString()), item.Size, int.Parse(objLogStore.BranchTo.BranchID.ToString()));
 
-                    stoDal.InsertStore(objSto);
-                    proDal.UpdateProductTotalQuantity(item.Product.ProductID, item.Quantity);
+                    //no exist --> create new record 
+                    if (objSto == null)
+                    {
+                        objSto = new objStore();
+                        objSto.Product = new objProduct();
+                        objSto.Product.ProductID = item.Product.ProductID;
+                        objSto.Color = new objColor();
+                        objSto.Color.ColorID = item.Color.ColorID;
+                        objSto.Size = item.Size;
+                        objSto.Branch = new objBranch();
+                        objSto.Branch.BranchID = objLogStore.BranchTo.BranchID;
+                        objSto.ExportPrice = item.Product.ExportPrice;
+                        objSto.Quantity = item.Quantity;
+                        objSto.LogStore = new objLogStore();
+                        objSto.LogStore.LogStoreID = item.LogStore.LogStoreID;
+
+                        stoDal.InsertStore(objSto);
+
+                    }
+                    else
+                    {
+                        //exist record --> update quantity
+                        stoDal.UpdateStoreQuantity(objLogStore.BranchTo.BranchID, item.Product.ProductID, item.Color.ColorID, item.Size, item.Quantity);
+                    }
+
+                    if (type == 0)
+                    {
+                        //update total quantity
+                        proDal.UpdateProductTotalQuantity(item.Product.ProductID, item.Quantity);
+                    }
                 }
-                return 1;
+
 
             }
             catch (Exception)
@@ -106,17 +127,27 @@ namespace BIZ
             }
         }
 
+        /// <summary>
+        /// insert log detail
+        /// </summary>
+        /// <param name="objLogDetail"></param>
+        /// <returns></returns>
         public int InsertLogDetail(objLogDetail objLogDetail)
         {
-            return logDal.InsertLogDetail(objLogDetail);
-        }
-        private int GetQuantity(string productID)
-        {
-            return 2;
+            try
+            {
+                return logDal.InsertLogDetail(objLogDetail);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         /// <summary>
-        /// add new record
+        /// add new store record
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -125,18 +156,7 @@ namespace BIZ
             try
             {
 
-                int result = 0;
-
-                if (obj != null)
-                {
-                    result = stoDal.InsertStore(obj);
-                }
-                else
-                {
-                    result = 1;
-                }
-
-                return result;
+                return stoDal.InsertStore(obj);
 
             }
             catch (Exception)
@@ -145,6 +165,11 @@ namespace BIZ
                 throw;
             }
         }
+
+        /// <summary>
+        /// create new log store 
+        /// </summary>
+        /// <returns></returns>
         public string NewLogStoreID()
         {
             int newID;
@@ -158,8 +183,37 @@ namespace BIZ
             {
                 newID = 1;
             }
-           
+
             return newID.ToString().PadLeft(10, '0');
+        }
+
+        /// <summary>
+        /// check exist product in store
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <param name="branchID"></param>
+        /// <returns></returns>
+        public bool CheckProductInStore(string productID, int branchID)
+        {
+            try
+            {
+                objProduct obj = new objProduct();
+                obj = stoDal.GetProductInStore(productID, branchID);
+
+                if (obj == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
