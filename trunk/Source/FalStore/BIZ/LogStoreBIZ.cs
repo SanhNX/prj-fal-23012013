@@ -46,12 +46,12 @@ namespace BIZ
         /// <param name="pageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<objLogDetail> ShowLogDetailByID(string logStoreID)
+        public List<objLogDetail> ShowLogDetailByID(string logStoreID,int status_flg)
         {
             try
             {
                 List<objLogDetail> lst = new List<objLogDetail>();
-                lst = logDal.GetLogDetailByLogStoreID(logStoreID, 1);
+                lst = logDal.GetLogDetailByLogStoreID(logStoreID, status_flg);
 
                 return lst;
             }
@@ -60,6 +60,7 @@ namespace BIZ
                 throw;
             }
         }
+
 
         //}
         /// <summary>

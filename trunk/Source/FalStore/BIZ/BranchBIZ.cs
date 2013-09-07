@@ -22,10 +22,9 @@ namespace BIZ
         {
             try
             {
-                int result;
                 List<objBranch> lst = new List<objBranch>();
-                lst = DAL.GetBranchByPaging(pageIndex, pageSize, out result);
-                total = result;
+                lst = DAL.GetBranchByPaging(pageIndex, pageSize);
+                total = DAL.GetTotal();
 
                 return lst;
             }
@@ -61,6 +60,20 @@ namespace BIZ
 
         }
 
+        public objBranch ShowByBranchID(int branchID)
+        {
+            try
+            {
+                objBranch obj = new objBranch();
+                obj = DAL.GetBranchByID(branchID);
+
+                return obj;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         /// <summary>
         /// add new record
         /// </summary>
@@ -124,23 +137,13 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Delete(objBranch obj)
+        public int Delete(int branchID, DateTime updateDate, string updateUser)
         {
             try
             {
-                int result = 0;
-
-                if (obj != null)
-                {
-                    result = DAL.DeleteBranch(obj);
-                }
-                else
-                {
-                    result = 1;
-                }
-
-                return result;
-
+                
+                 return DAL.DeleteBranch(branchID,updateDate,updateUser);
+                
             }
             catch (Exception)
             {
