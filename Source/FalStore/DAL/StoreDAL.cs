@@ -175,7 +175,7 @@ namespace DAL
 
             parameterList.Add(new SqlParameter("@BranchID", branchID));
             parameterList.Add(new SqlParameter("@ProductID", productID));
-            parameterList.Add(new SqlParameter("@ColorID", productID));
+            parameterList.Add(new SqlParameter("@ColorID", colorID));
             parameterList.Add(new SqlParameter("@Size", size));
             parameterList.Add(new SqlParameter("@NewQuantity", quantity));
 
