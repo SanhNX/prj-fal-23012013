@@ -8,7 +8,8 @@ using System.Web.UI.HtmlControls;
 using BIZ;
 using Entity;
 using System.Data;
-
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 namespace FalStore.Control
 {
     public partial class ExportProduct : System.Web.UI.UserControl
@@ -221,9 +222,10 @@ namespace FalStore.Control
         {
             try
             {
-                string id = logBiz.NewLogStoreID();
-                txtLogStoreID.Text = id;
-                ShowControl(true);
+                OutputReport();
+                //string id = logBiz.NewLogStoreID();
+                //txtLogStoreID.Text = id;
+                //ShowControl(true);
             }
             catch (Exception)
             {
@@ -291,7 +293,7 @@ namespace FalStore.Control
         private void BindRepeater()
         {
             List<objLogDetail> lstLogDetail = new List<objLogDetail>();
-            lstLogDetail = logBiz.ShowLogDetailByID(txtLogStoreID.Text);
+            lstLogDetail = logBiz.ShowLogDetailByID(txtLogStoreID.Text,1);
             if (lstLogDetail != null)
             {
                 rptResult.DataSource = lstLogDetail;
@@ -339,6 +341,11 @@ namespace FalStore.Control
         {
             txtLogStoreID.Text = string.Empty;
             txtDescription.Text = string.Empty;
+        }
+
+        private void OutputReport()
+        {
+            Response.Redirect("~/PageReport.aspx");
         }
         #endregion
     }
