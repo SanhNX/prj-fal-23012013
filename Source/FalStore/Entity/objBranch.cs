@@ -13,6 +13,8 @@ namespace Entity
         public string BranchName { get; set; }
         //Address
         public string Address { get; set; }
+        //Description
+        public string Description { get; set; }
         //Delete_Flg
         public int Delete_Flg { get; set; }       
         //Create date
