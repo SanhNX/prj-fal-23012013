@@ -40,6 +40,30 @@ namespace BIZ
         }
 
         /// <summary>
+        /// show report
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="total"></param>
+        /// <returns></returns>
+        public List<objLogDetail> ShowReport(string logID)
+        {
+            try
+            {
+                List<objLogDetail> lst = new List<objLogDetail>();
+                lst = logDal.ShowReport(logID);
+
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        /// <summary>
         /// get log detail by logStore 
         /// </summary>
         /// <param name="pageIndex"></param>
