@@ -197,5 +197,40 @@ namespace DAL
 
         }
 
+        public List<objStore> GetStoreSearch(string productID, string productName, int branchID, int categoryID)
+        {
+            List<objStore> lst = new List<objStore>();
+            objStore obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@ProductID", productID));
+            parameterList.Add(new SqlParameter("@ProductName", productName));
+            parameterList.Add(new SqlParameter("@BranchID", branchID));
+            parameterList.Add(new SqlParameter("@CategoryID", categoryID));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spStoreSearch", parameterList);
+            while (dr.Read())
+            {
+                obj = new objStore();
+                obj.Product = new objProduct();
+                obj.Product.ProductID = dr["ProductID"].ToString();
+                obj.Product.ProductName = dr["ProductName"].ToString();
+                obj.Product.ImportPrice = float.Parse( dr["ImportPrice"].ToString());
+                //obj.VerID = dr["VerId"].ToString();
+                obj.Color = new objColor();
+                obj.Color.ColorName = dr["ColorName"].ToString();
+                obj.Size = dr["Size"].ToString();
+                obj.Branch = new objBranch();
+                obj.Branch.BranchName = dr["BranchName"].ToString();
+                obj.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+                obj.Quantity = int.Parse(dr["Quantity"].ToString());
+                lst.Add(obj);
+            }
+
+            return lst;
+
+ 
+        }
+
     }
 }
