@@ -43,7 +43,8 @@
                     </fieldset>
                     <fieldset class="mws-form-inline">
                         <div class="mws-button-row">
-                            <asp:Button ID="btnSearch" runat="server" Text="Tìm kiếm" />
+                            <asp:Button ID="btnSearch" runat="server" Text="Tìm kiếm" 
+                                onclick="btnSearch_Click" />
                         </div>
                         <div class="mws-panel grid_8">
                             <div class="mws-panel-header">
@@ -54,9 +55,6 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                Số thứ tự
-                                            </th>
-                                            <th>
                                                 Chi nhánh
                                             </th>
                                             <th>
@@ -66,7 +64,10 @@
                                                 Tên sản phẩm
                                             </th>
                                             <th>
-                                                Giá nhập
+                                                Màu sắc
+                                            </th>
+                                            <th>
+                                                Size
                                             </th>
                                             <th>
                                                 Giá bán
@@ -84,9 +85,6 @@
                                             <ItemTemplate>
                                                 <tr>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrStt"></asp:Literal>
-                                                    </td>
-                                                    <td>
                                                         <asp:Literal runat="server" ID="ltrBranchName"></asp:Literal>
                                                     </td>
                                                     <td>
@@ -96,7 +94,10 @@
                                                         <asp:Literal runat="server" ID="ltrProductName"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrImportPrice"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrColorName"></asp:Literal>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Literal runat="server" ID="ltrSize"></asp:Literal>
                                                     </td>
                                                     <td>
                                                         <asp:Literal runat="server" ID="ltrExportPrice"></asp:Literal>
@@ -105,10 +106,10 @@
                                                         <asp:Literal runat="server" ID="ltrQuantity"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <i class="icon-pencil"></i>
+                                                       <%-- <i class="icon-pencil"></i>
                                                         <asp:LinkButton ID="lnkView" runat="server" CausesValidation="false" CommandName="View"
-                                                            CommandArgument='<%# DataBinder.Eval(Container.DataItem, "*ProductID") %>'>Xem</asp:LinkButton>
-                                                     
+                                                            CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xem</asp:LinkButton>
+                                                     --%>
                                                     </td>
                                                 </tr>
                                             </ItemTemplate>

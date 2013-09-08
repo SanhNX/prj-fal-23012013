@@ -56,7 +56,7 @@
                                     <input type="button" id="mws-form-dialog-mdl-btn" class="btn btn-success" value="Chọn màu">
                                 </div>
                             </div>
-                            <div id="mws-form-dialog">
+                            <div>
                                 <div class="mws-form-row">
                                     <label class="mws-form-label">
                                         Màu</label>
@@ -118,7 +118,7 @@
                         </div>
                         <div class="mws-button-row">
                             <asp:Button ID="btnAdd" runat="server" Text="Tạo mới" class="btn btn-success" OnClick="btnAdd_Click" />
-                            <asp:Button ID="btnEdit" runat="server" Text="Tạo mới" class="btn btn-success" />
+
                             <asp:Button ID="btnClear" runat="server" Text="Clear" class="btn btn-success" />
                             <asp:TextBox ID="txtTemp" runat="server" Visible = "false"></asp:TextBox>
                         </div>

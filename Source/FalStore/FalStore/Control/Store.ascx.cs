@@ -15,6 +15,7 @@ namespace FalStore.Control
     {
         CategoryBIZ catBiz = new CategoryBIZ();
         BranchBIZ branBiz = new BranchBIZ();
+        StoreBIZ stoBiz = new StoreBIZ();
         #region  Viewstate
         protected int currentPageIndex
         {
@@ -39,8 +40,8 @@ namespace FalStore.Control
                 List<objCategory> lstCategory = new List<objCategory>();
                 lstCategory = catBiz.ShowAll();
                 drpCategory.DataSource = lstCategory;
-                drpCategory.DataTextField = "CategoryID";
-                drpCategory.DataValueField = "CategoryName";
+                drpCategory.DataTextField = "CategoryName";
+                drpCategory.DataValueField = "CategoryID";
                 drpCategory.DataBind();
 
                 List<objBranch> lstBranch = new List<objBranch>();
@@ -91,11 +92,11 @@ namespace FalStore.Control
                     Literal ltrProductName = e.Item.FindControl("ltrProductName") as Literal;
                     ltrProductName.Text = data.Product.ProductName.ToString();
 
-                    Literal ltrImportPrice = e.Item.FindControl("ltrImportPrice") as Literal;
-                    ltrImportPrice.Text = data.Product.ImportPrice.ToString();
+                    Literal ltrColorName = e.Item.FindControl("ltrColorName") as Literal;
+                    ltrColorName.Text = data.Color.ColorName.ToString();
 
-                    Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.ExportPrice.ToString();
+                    Literal ltrSize = e.Item.FindControl("ltrSize") as Literal;
+                    ltrSize.Text = data.Size.ToString();
 
                     Literal ltrQuantity = e.Item.FindControl("ltrQuantity") as Literal;
                     ltrQuantity.Text = data.Quantity.ToString();
@@ -141,5 +142,28 @@ namespace FalStore.Control
 
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<objStore> lstObj = new List<objStore>();
+
+                lstObj = stoBiz.Search(txtProductID.Text, txtProductName.Text, int.Parse(drpBranch.SelectedValue.ToString()), int.Parse(drpCategory.SelectedValue.ToString()));
+                if (lstObj != null)
+                {
+                    rptResult.DataSource = lstObj;
+                    rptResult.DataBind();
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
+
+        }
+
+        
     }
 }
