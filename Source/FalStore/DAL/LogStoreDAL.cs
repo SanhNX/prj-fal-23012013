@@ -60,6 +60,55 @@ namespace DAL
         }
 
         /// <summary>
+        /// show report
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="total"></param>
+        /// <returns></returns>
+        public List<objLogDetail> ShowReport(string logStoreID)
+        {
+
+            List<objLogDetail> lst = new List<objLogDetail>();
+            objLogDetail obj = null;
+
+           
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@LogStoreID", logStoreID));
+           
+            SqlDataReader dr = SQLHelper.ExecuteReader("spReport", parameterList);
+            while (dr.Read())
+            {
+                obj = new objLogDetail();
+                obj.LogStore = new objLogStore();
+                obj.LogStore.LogStoreID = dr["Log_StoreID"].ToString();
+                obj.LogStore.Employee = new objEmployee();
+                obj.LogStore.Employee.EmployeeName = dr["EmployeeName"].ToString();
+                obj.LogStore.LogDate = dr["LogDate"].ToString();
+                obj.LogStore.BranchFrom = new objBranch();
+                obj.LogStore.BranchTo = new objBranch();
+                obj.LogStore.BranchFrom.BranchName = dr["BranchFromName"].ToString();
+                obj.LogStore.BranchTo.BranchName = dr["BranchToName"].ToString();
+                obj.LogStore.Description = dr["Description"].ToString();
+                obj.Product = new objProduct();
+                obj.Product.ProductID = dr["ProductID"].ToString();
+                obj.Product.ProductName = dr["ProductName"].ToString();
+                obj.Color = new objColor();
+                obj.Color.ColorName = dr["ColorName"].ToString();
+                obj.Size = dr["Size"].ToString();
+                obj.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+                obj.Sale = float.Parse(dr["Sale"].ToString());
+                obj.Quantity = int.Parse(dr["Quantity"].ToString());
+                obj.Amount = float.Parse(dr["Amount"].ToString());
+
+                lst.Add(obj);
+            }
+
+            return lst;
+
+        }
+
+        /// <summary>
         /// get log detail by logStore
         /// </summary>
         /// <param name="logStoreID"></param>
