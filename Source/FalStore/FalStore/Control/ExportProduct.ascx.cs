@@ -122,6 +122,7 @@ namespace FalStore.Control
         {
             try
             {
+                string id = txtLogStoreID.Text;
                 objLogStore objLgStore = new objLogStore();
                 objLgStore.LogStoreID = txtLogStoreID.Text;
                 objLgStore.LogType = 0;
@@ -139,6 +140,8 @@ namespace FalStore.Control
                 //InitPage();
                 ClearLogStoreInfo();
                 ShowControl(false);
+
+                Response.Redirect("~/PageReport.aspx?id=" + id);
             }
             catch (Exception)
             {
@@ -222,10 +225,9 @@ namespace FalStore.Control
         {
             try
             {
-                OutputReport();
-                //string id = logBiz.NewLogStoreID();
-                //txtLogStoreID.Text = id;
-                //ShowControl(true);
+                string id = logBiz.NewLogStoreID();
+                txtLogStoreID.Text = id;
+                ShowControl(true);
             }
             catch (Exception)
             {
@@ -343,10 +345,6 @@ namespace FalStore.Control
             txtDescription.Text = string.Empty;
         }
 
-        private void OutputReport()
-        {
-            Response.Redirect("~/PageReport.aspx");
-        }
         #endregion
     }
 }
