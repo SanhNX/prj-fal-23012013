@@ -8,7 +8,7 @@ using System.Data;
 
 namespace BIZ
 {
-    class StoreBIZ
+    public class StoreBIZ
     {
         StoreDAL DAL = new StoreDAL();
         /// <summary>
@@ -37,6 +37,30 @@ namespace BIZ
 
         }
 
+        /// <summary>
+        /// search store
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="total"></param>
+        /// <returns></returns>
+        public List<objStore> Search(string productID, string productName, int branchID, int categoryID)
+        {
+            try
+            {
+                List<objStore> lst = new List<objStore>();
+                lst = DAL.GetStoreSearch(productID, productName, branchID, categoryID);
+
+                return lst;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
         /// <summary>
         /// add new record
         /// </summary>
