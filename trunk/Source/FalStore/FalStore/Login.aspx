@@ -32,20 +32,20 @@
     <div id="mws-login-wrapper">
         <div id="mws-login">
             <h1>
-                Login</h1>
+                Đăng nhập</h1>
             <div class="mws-login-lock">
                 <i class="icon-lock"></i>
             </div>
             <div id="mws-login-form">
-                <form class="mws-form"  method="post" runat="server">
+                <form class="mws-form" runat="server">
                 <div class="mws-form-row">
                     <div class="mws-form-item">
-                        <input type="text" name="username" class="mws-login-username required" placeholder="username">
+                        <asp:TextBox ID="txtUser" runat="server" class="mws-login-username required" placeholder="Tên đăng nhập"></asp:TextBox>
                     </div>
                 </div>
                 <div class="mws-form-row">
                     <div class="mws-form-item">
-                        <input type="password" name="password" class="mws-login-password required" placeholder="password">
+                        <asp:TextBox ID="txtPass" runat="server" class="mws-login-password required" placeholder="Mật khẩu" TextMode="Password"></asp:TextBox>
                     </div>
                 </div>
                 <div id="mws-login-remember" class="mws-form-row mws-inset">
@@ -58,10 +58,8 @@
                     </ul>
                 </div>
                 <div class="mws-form-row">
-                    <%--    <input type="submit" value="Login" class="btn btn-success mws-login-button" runat="server"
-                        onclick="btnLogin_Click" id="btnLogin">--%>
-                    <asp:Button class="btn btn-success mws-login-button" Text= "Login" runat="server" OnClick="btnLogin_Click"
-                        ID="btnLogin" />
+                    <asp:Button class="btn btn-success mws-login-button" Text="Login" runat="server"
+                        OnClick="btnLogin_Click" ID="btnLogin" />
                 </div>
                 </form>
             </div>
