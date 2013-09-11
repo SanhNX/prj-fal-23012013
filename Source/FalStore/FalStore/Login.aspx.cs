@@ -16,7 +16,20 @@ namespace FalStore
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Default.aspx");
+            string user = "admin";
+            string pass = "admin";
+            if (txtUser.Text.Equals(user) && txtPass.Text.Equals(pass))
+            {
+                Session["User"] = txtUser.Text;
+                Response.Redirect("~/Default.aspx?pageName=Home");
+                
+            }
+            else
+            {
+                txtUser.Text = string.Empty;
+                txtPass.Text = string.Empty;
+            }
+
         }   
 
     }
