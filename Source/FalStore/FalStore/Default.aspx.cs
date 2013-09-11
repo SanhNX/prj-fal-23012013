@@ -17,6 +17,9 @@ namespace FalStore
             string pageName = HttpContext.Current.Request.QueryString["pageName"];
             switch (pageName)
             {
+                case "Home":
+                    uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    break;
                 case "Category":
                     uc = this.LoadControl("~/Control/Category.ascx") as UserControl;
                     break;
