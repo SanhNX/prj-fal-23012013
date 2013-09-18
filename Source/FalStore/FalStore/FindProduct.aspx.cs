@@ -41,24 +41,34 @@ namespace FalStore
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            InitPage();
+            if (!IsPostBack)
+            {
+                InitPage();
+            }
+            string ma = HttpContext.Current.Request.QueryString["ma"];
+            Session["ma"] = ma;
+            string ncc = HttpContext.Current.Request.QueryString["ncc"];
+            Session["ncc"] = name;
+            string nd = HttpContext.Current.Request.QueryString["nd"];
+            Session["nd"] = nd;
+             
         }
 
         protected void InitPage()
         {
             try
             {
-                int count;
-                pageSize = int.Parse(drpSelect.Text);
-                //this.pager.ItemCount = 21;
-                List<objProduct> tbl = new List<objProduct>();
-                tbl = productBIZ.ShowByPaging(currentPageIndex, pageSize, out count);
-                this.pager.ItemCount = count;
-                if (tbl != null)
-                {
-                    rptResult.DataSource = tbl;
-                    rptResult.DataBind();
-                }
+                //int count;
+                //pageSize = int.Parse(drpSelect.Text);
+                ////this.pager.ItemCount = 21;
+                //List<objProduct> tbl = new List<objProduct>();
+                //tbl = productBIZ.ShowByPaging(currentPageIndex, pageSize, out count);
+                //this.pager.ItemCount = count;
+                //if (tbl != null)
+                //{
+                //    rptResult.DataSource = tbl;
+                //    rptResult.DataBind();
+                //}
                 List<objCategory> lstCategory = new List<objCategory>();
                 lstCategory = categoryBIZ.ShowAll();
                 drpCategory.DataSource = lstCategory;
@@ -88,9 +98,9 @@ namespace FalStore
 
                     objProduct data = e.Item.DataItem as objProduct;
 
-                    Literal ltrStt = e.Item.FindControl("ltrStt") as Literal;
-                    ltrStt.Text = stt.ToString();
-                    stt++;
+                    //Literal ltrStt = e.Item.FindControl("ltrStt") as Literal;
+                    //ltrStt.Text = stt.ToString();
+                    //stt++;
 
                     Literal ltrProductID = e.Item.FindControl("ltrProductID") as Literal;
                     ltrProductID.Text = data.ProductID.ToString();
@@ -115,13 +125,36 @@ namespace FalStore
 
         protected void btnFind_Click(object sender, EventArgs e)
         {
+            List<objProduct> lst = new List<objProduct>();
+            lst = productBIZ.Search(txtProductName.Text, int.Parse(drpCategory.SelectedValue.ToString()));
 
+            if (lst != null)
+            {
+                rptResult.DataSource = lst;
+                rptResult.DataBind();
+            }
         }
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Default.aspx?pageName=Product");
+          //  Response.Redirect("~/Default.aspx?pageName=Product");
         }
 
+        protected void rptResult_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            try
+            {
+                if (e.CommandName == "Select")
+                {
+                    Session["ProductID"] = e.CommandArgument.ToString();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
         /// <summary>
         /// paging
         /// </summary>
