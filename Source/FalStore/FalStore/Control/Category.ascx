@@ -26,7 +26,7 @@
                                 <label class="mws-form-label">
                                     Tên danh mục</label>
                                 <div class="mws-form-item">
-                                    <asp:TextBox ID="txtCategoryName" runat="server" class="small"></asp:TextBox>
+                                    <asp:TextBox ID="txtCategoryName" runat="server" class="small" MaxLength="50"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Nhập tên danh mục"
                                         ControlToValidate="txtCategoryName" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="mws-button-row">
                             <asp:Button ID="btnAdd" runat="server" Text="Tạo mới" class="btn btn-success" OnClick="btnAdd_Click" />
-                            <asp:Button ID="btnClear" runat="server" Text="Clear" class="btn btn-success" OnClick="btnClear_Click" />
+                            <asp:Button ID="btnClear" runat="server" Text="Clear" class="btn btn-success" OnClick="btnClear_Click" CausesValidation="false" />
                         </div>
                     </div>
                 </div>

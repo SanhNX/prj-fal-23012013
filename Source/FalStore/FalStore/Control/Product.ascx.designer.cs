@@ -40,6 +40,15 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldProductID;
         
         /// <summary>
+        /// regExTextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regExTextBox1;
+        
+        /// <summary>
         /// txtProductName control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldProductName;
         
         /// <summary>
+        /// bLstColor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.BulletedList bLstColor;
+        
+        /// <summary>
         /// drpCategory control.
         /// </summary>
         /// <remarks>
@@ -65,51 +83,6 @@ namespace FalStore.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drpCategory;
-        
-        /// <summary>
-        /// txtColor1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtColor1;
-        
-        /// <summary>
-        /// txtColor2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtColor2;
-        
-        /// <summary>
-        /// txtColor3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtColor3;
-        
-        /// <summary>
-        /// txtColor4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtColor4;
-        
-        /// <summary>
-        /// txtColor5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtColor5;
         
         /// <summary>
         /// txtImportPrice control.
@@ -191,15 +164,6 @@ namespace FalStore.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTemp;
-        
-        /// <summary>
-        /// count control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect count;
         
         /// <summary>
         /// drpSelect control.

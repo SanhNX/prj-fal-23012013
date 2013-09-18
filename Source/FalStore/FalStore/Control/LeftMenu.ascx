@@ -11,16 +11,10 @@
     <div id="mws-nav-collapse">
         <span></span><span></span><span></span>
     </div>
-    <!-- Searchbox -->
-    <div id="mws-searchbox" class="mws-inset">
-        <form action="typography.html">
-       
-        </form>
-    </div>
     <!-- Main Navigation -->
     <div id="mws-navigation">
          <ul>
-            <li class="active"><a href="../Default.aspx"><i class="icon-home"></i>Home</a></li>
+            <li class="active"><a href="../Default.aspx?pageName=Home"><i class="icon-home"></i>Home</a></li>
             <li><a href="#"><i class="icon-list"></i>Quản lý kho</a>
                 <ul>
                     <li><a href="" runat="server" id="hypCategory">Loại sản phẩm</a></li>

@@ -49,13 +49,13 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtLogDate;
         
         /// <summary>
-        /// drpEmployee control.
+        /// txtEmployee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpEmployee;
+        protected global::System.Web.UI.WebControls.TextBox txtEmployee;
         
         /// <summary>
         /// drpBranchTo control.

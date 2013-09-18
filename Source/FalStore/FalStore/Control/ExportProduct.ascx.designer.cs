@@ -40,13 +40,13 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtLogDate;
         
         /// <summary>
-        /// drpEmployee control.
+        /// txtEmployee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpEmployee;
+        protected global::System.Web.UI.WebControls.TextBox txtEmployee;
         
         /// <summary>
         /// drpBranchFrom control.
@@ -155,6 +155,15 @@ namespace FalStore.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptResult;
+        
+        /// <summary>
+        /// txtTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTotal;
         
         /// <summary>
         /// btnAdd control.

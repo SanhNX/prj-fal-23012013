@@ -162,31 +162,43 @@ namespace FalStore.Control
                 stt = 1;
                 string categoryID = txtCategoryID.Text;
                 int result;
-                objCategory obj = new objCategory();
-                obj.CategoryName = txtCategoryName.Text;
 
-                if (string.Empty.Equals(categoryID))
+                bool flag = categoryBIZ.CheckCategoryName(txtCategoryName.Text);
+
+                if (flag)
                 {
-                    SetUpdateInfo(obj, 0);
-                    result = categoryBIZ.Insert(obj);
+                    objCategory obj = new objCategory();
+                    obj.CategoryName = txtCategoryName.Text;
+
+                    if (string.Empty.Equals(categoryID))
+                    {
+                        SetUpdateInfo(obj, 0);
+                        result = categoryBIZ.Insert(obj);
+                    }
+                    else
+                    {
+                        obj.CategoryID = int.Parse(txtCategoryID.Text);
+                        SetUpdateInfo(obj, 1);
+                        result = categoryBIZ.Update(obj);
+                    }
+
+                    if (result == 1)
+                    {
+                        lblMessage.Text = "Thực thi thành công";
+                    }
+                    else
+                    {
+                        lblMessage.Text = "Thực thi thất bại";
+                    }
+                    clear();
+                    InitPage();
                 }
                 else
                 {
-                    obj.CategoryID = int.Parse(txtCategoryID.Text);
-                    SetUpdateInfo(obj, 1);
-                    result = categoryBIZ.Update(obj);
-                }
 
-                if (result == 1)
-                {
-                    lblMessage.Text = "Thực thi thành công";
+                    Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Tên danh mục đã tồn tại\"); <" + "/script>"));
+                 
                 }
-                else
-                {
-                    lblMessage.Text = "Thực thi thất bại";
-                }
-                clear();
-                InitPage();
             }
             catch (Exception)
             {
@@ -252,6 +264,7 @@ namespace FalStore.Control
             txtCategoryName.Text = obj.CategoryName;
             InitPage();
         }
+
         #endregion
 
         #region .Method

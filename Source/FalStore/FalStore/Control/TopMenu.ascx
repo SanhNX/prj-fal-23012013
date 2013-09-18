@@ -19,12 +19,12 @@
             <!-- Username and Functions -->
             <div id="mws-user-functions">
                 <div id="mws-username">
-                    Hello, John Doe
+                    <asp:Label ID="lblUser" runat="server" Text=""></asp:Label>
                 </div>
                 <ul>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Change Password</a></li>
-                    <li><a href="index.html">Logout</a></li>
+                    <li><a href="#">Logout</a></li>
                 </ul>
             </div>
         </div>

@@ -286,6 +286,7 @@ namespace FalStore.Control
             txtBranchName.Text = string.Empty;
             txtDescription.Text = string.Empty;
             txtAddress.Text = string.Empty;
+            lblMessage.Text = string.Empty;
         }
         #endregion
 

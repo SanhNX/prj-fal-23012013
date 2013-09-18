@@ -11,7 +11,13 @@ namespace FalStore.Control
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Session["User"] != null)
+                {
+                    lblUser.Text = Session["User"].ToString();
+                }
+            }
         }
     }
 }

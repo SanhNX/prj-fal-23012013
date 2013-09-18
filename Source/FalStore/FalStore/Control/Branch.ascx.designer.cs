@@ -40,6 +40,15 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtBranchName;
         
         /// <summary>
+        /// RequiredFieldBranchName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldBranchName;
+        
+        /// <summary>
         /// txtDescription control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace FalStore.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAddress;
+        
+        /// <summary>
+        /// RequiredFieldAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldAddress;
         
         /// <summary>
         /// btnAdd control.

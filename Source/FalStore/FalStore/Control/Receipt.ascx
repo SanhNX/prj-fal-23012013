@@ -1,4 +1,41 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Receipt.ascx.cs" Inherits="FalStore.Control.Receipt" %>
+<!-- fancybox --->
+<script src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
+<script src="../Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>
+<!-- fancybox --->
+<link rel="stylesheet" type="text/css" href="../Styles/jquery.fancybox-1.3.4.css"
+    media="screen" />
+<script src="../Scripts/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $(".fancyboxDemo").fancybox({
+            'type': 'iframe'
+   , 'width': $(window).width() * 0.80
+   , 'height': $(window).height() * 0.90
+   , 'autoScale': false
+   , 'hideOnOverlayClick': true
+   , 'onStart': function () {
+       TranferData();
+   }
+   , 'onClosed': function () {
+       window.location.href = '<%= Page.ResolveUrl("~/Default.aspx?pageName=Receipt") %>';
+   }
+        });
+    });
+ 
+</script>
+<script type="text/jscript">
+    function TranferData() {
+        var ma = document.getElementById('<%= txtLogStoreID.ClientID %>').value;
+        var ncc = document.getElementById('<%= txtNcc.ClientID %>').value;
+        var nd = document.getElementById('<%= txtDescription.ClientID %>').value;
+        document.getElementById('lnkFindProduct').href = "FindProduct.aspx?ma=" + ma + "&&ncc=" + ncc + "&&nd=" + nd ;
+
+    }
+
+</script>
 <div id="mws-container" class="clearfix">
     <div class="container">
         <!-- From category --->
@@ -18,7 +55,8 @@
                                 Mã phiếu nhập</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtLogStoreID" runat="server" class="small" Enabled="false"></asp:TextBox>
-                                   <asp:Button ID="btnCreate" runat="server" Text="Tạo phiếu" class="btn btn-success" CausesValidation = "false" OnClick="btnCreate_Click" />
+                                <asp:Button ID="btnCreate" runat="server" Text="Tạo phiếu" class="btn btn-success"
+                                    CausesValidation="false" OnClick="btnCreate_Click" />
                             </div>
                         </div>
                         <div class="mws-form-row">
@@ -34,8 +72,7 @@
                                     <label class="mws-form-label">
                                         Người lập phiếu</label>
                                     <div class="mws-form-item">
-                                        <asp:DropDownList ID="drpEmployee" runat="server" class="small">
-                                        </asp:DropDownList>
+                                        <asp:TextBox ID="txtEmployee" runat="server" class="small" Enabled="false" Text="Anh Vỹ"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -55,8 +92,8 @@
                                         Nhà cung cấp</label>
                                     <div class="mws-form-item">
                                         <asp:TextBox ID="txtNcc" runat="server" class="small"></asp:TextBox>
-                                         <asp:RequiredFieldValidator ID="RequiredFieldNCC" runat="server" ErrorMessage="Nhập nhà cung cấp"
-                                        ControlToValidate="txtNcc" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldNCC" runat="server" ErrorMessage="Nhập nhà cung cấp"
+                                            ControlToValidate="txtNcc" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
@@ -76,6 +113,9 @@
                                 Mã sản phẩm/ Mã vạch</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtProductID" runat="server" class="small" AutoPostBack="true" OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
+                                <a id="lnkFindProduct" class="fancyboxDemo" style="cursor: pointer" >Chọn sản phẩm
+                                </a>
+                              <%--  <asp:LinkButton ID="lnkFindProduct" Text="Chọn sản phẩm" runat="server" class="fancyboxDemo"></asp:LinkButton>--%>
                             </div>
                         </div>
                         <div class="mws-form-row">
@@ -124,20 +164,19 @@
                             <label class="mws-form-label">
                                 Chiết khấu</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtSale" runat="server" class="small" Text = "0"  ></asp:TextBox>
+                                <asp:TextBox ID="txtSale" runat="server" class="small" Text="0" Enabled="false"></asp:TextBox>
                             </div>
                         </div>
                         <div class="mws-form-row">
                             <label class="mws-form-label">
                                 Số lượng</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtQuantity" runat="server" class="small" Text = "1"></asp:TextBox>
+                                <asp:TextBox ID="txtQuantity" runat="server" class="small" Text="1"></asp:TextBox>
                             </div>
                         </div>
                         <div class="mws-button-row">
-                            <input type="button" id="mws-form-dialog-mdl-btn" class="btn btn-success" value="Chọn sản phẩm"
-                                class="fancyboxDemo" />
-                            <asp:Button ID="btnAddProduct" runat="server" Text="Thêm sản phẩm" CausesValidation="false" class="btn btn-success" OnClick="btnAddProduct_Click" />
+                            <asp:Button ID="btnAddProduct" runat="server" Text="Thêm sản phẩm" CausesValidation="false"
+                                class="btn btn-success" OnClick="btnAddProduct_Click" />
                         </div>
                         <div class="mws-panel grid_8">
                             <div class="mws-panel-header">
@@ -216,3 +255,4 @@
             </div>
         </div>
     </div>
+</div>

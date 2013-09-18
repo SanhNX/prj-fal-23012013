@@ -1,5 +1,42 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ExportProduct.ascx.cs"
     Inherits="FalStore.Control.ExportProduct" %>
+<!-- fancybox --->
+<script src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
+<script src="../Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>
+<!-- fancybox --->
+<link rel="stylesheet" type="text/css" href="../Styles/jquery.fancybox-1.3.4.css"
+    media="screen" />
+<script src="../Scripts/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $(".fancyboxDemo").fancybox({
+            'type': 'iframe'
+   , 'width': $(window).width() * 0.80
+   , 'height': $(window).height() * 0.90
+   , 'autoScale': false
+   , 'hideOnOverlayClick': true
+   , 'onStart': function () {
+       TranferData();
+   }
+   , 'onClosed': function () {
+       window.location.href = '<%= Page.ResolveUrl("~/Default.aspx?pageName=ExportProduct") %>';
+   }
+        });
+    });
+
+</script>
+<script type="text/jscript">
+    function TranferData() {
+        var ma = document.getElementById('<%= txtLogStoreID.ClientID %>').value;
+        var ncc = '';
+        var nd = document.getElementById('<%= txtDescription.ClientID %>').value;
+        document.getElementById('lnkFindProduct').href = "FindProduct.aspx?ma=" + ma + "&&ncc=" + ncc + "&&nd=" + nd ;
+
+    }
+ 
+</script>
 <div id="mws-container" class="clearfix">
     <div class="container">
         <!-- From category --->
@@ -33,8 +70,7 @@
                                     <label class="mws-form-label">
                                         Người lập phiếu</label>
                                     <div class="mws-form-item">
-                                        <asp:DropDownList ID="drpEmployee" runat="server" class="small">
-                                        </asp:DropDownList>
+                                        <asp:TextBox ID="txtEmployee" runat="server" class="small" Enabled="false" Text="Anh Vỹ"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -74,6 +110,8 @@
                                 Mã sản phẩm/ Mã vạch</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtProductID" runat="server" class="small" AutoPostBack="true" OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
+                                  <a id="lnkFindProduct" class="fancyboxDemo" style="cursor: pointer" >Chọn sản phẩm
+                                </a>
                             </div>
                         </div>
                         <div class="mws-form-row">
@@ -129,12 +167,10 @@
                             <label class="mws-form-label">
                                 Số lượng</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtQuantity" runat="server" class="small" Text="0"></asp:TextBox>
+                                <asp:TextBox ID="txtQuantity" runat="server" class="small" Text="1"></asp:TextBox>
                             </div>
                         </div>
                         <div class="mws-button-row">
-                            <input type="button" id="mws-form-dialog-mdl-btn" class="btn btn-success" value="Chọn sản phẩm"
-                                class="fancyboxDemo" />
                             <asp:Button ID="btnAddProduct" runat="server" Text="Thêm sản phẩm" CausesValidation="false"
                                 class="btn btn-success" OnClick="btnAddProduct_Click" />
                         </div>
@@ -206,6 +242,9 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                        <div align ="right">
+                            Tổng tiền<asp:TextBox ID="txtTotal" runat="server" Enabled="false" Text="0"></asp:TextBox>
                         </div>
                     </fieldset>
                     <div class="mws-button-row">

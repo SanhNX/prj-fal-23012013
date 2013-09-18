@@ -25,27 +25,32 @@
                                 <label class="mws-form-label">
                                     Tên chi nhánh</label>
                                 <div class="mws-form-item">
-                                    <asp:TextBox ID="txtBranchName" runat="server" class="small"></asp:TextBox>
+                                    <asp:TextBox ID="txtBranchName" runat="server" class="small" MaxLength="50"></asp:TextBox>
+                                      <asp:RequiredFieldValidator ID="RequiredFieldBranchName" runat="server" ErrorMessage="Nhập tên chi nhánh"
+                                        ControlToValidate="txtBranchName" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="mws-form-row">
                                 <label class="mws-form-label">
                                     Mô tả</label>
                                 <div class="mws-form-item">
-                                    <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" class="large"></asp:TextBox>
+                                    <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" 
+                                        class="small" MaxLength="200"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="mws-form-row">
                                 <label class="mws-form-label">
                                     Địa chỉ</label>
                                 <div class="mws-form-item">
-                                    <asp:TextBox ID="txtAddress" runat="server" class="small"></asp:TextBox>
+                                    <asp:TextBox ID="txtAddress" runat="server" class="small" MaxLength="100"></asp:TextBox>
+                                      <asp:RequiredFieldValidator ID="RequiredFieldAddress" runat="server" ErrorMessage="Nhập địa chỉ"
+                                        ControlToValidate="txtAddress" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
                         <div class="mws-button-row">
                             <asp:Button ID="btnAdd" runat="server" Text="Tạo mới" class="btn btn-success" OnClick="btnAdd_Click" />
-                            <asp:Button ID="btnClear" runat="server" Text="Clear" class="btn btn-success" OnClick="btnClear_Click" />
+                            <asp:Button ID="btnClear" runat="server" Text="Clear" class="btn btn-success" OnClick="btnClear_Click" CausesValidation= "false" />
                         </div>
                         </form>
                     </div>
