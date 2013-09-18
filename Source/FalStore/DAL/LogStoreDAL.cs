@@ -114,9 +114,9 @@ namespace DAL
         /// <param name="logStoreID"></param>
         /// <param name="statusFlag"></param>
         /// <returns></returns>
-        public List<objLogDetail> GetLogDetailByLogStoreID(string logStoreID, int statusFlag)
+        public List<objLogDetail> GetLogDetailByLogStoreID(string logStoreID, int statusFlag, out float total)
         {
-
+            total =0;
             List<objLogDetail> lst = new List<objLogDetail>();
             objLogDetail obj = null;
 
@@ -143,6 +143,8 @@ namespace DAL
                 obj.Size = dr["Size"].ToString();
 
                 lst.Add(obj);
+
+                total = total + obj.Product.ExportPrice;
             }
 
             return lst;
