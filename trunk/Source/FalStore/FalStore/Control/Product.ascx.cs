@@ -8,11 +8,12 @@ using System.Web.UI.HtmlControls;
 using BIZ;
 using Entity;
 using System.Data;
+using System.Web.Services;
 namespace FalStore.Control
 {
     public partial class Product : System.Web.UI.UserControl
     {
-
+        
         #region .Property
         ProductBIZ productBIZ = new ProductBIZ();
         CategoryBIZ categoryBIZ = new CategoryBIZ();
@@ -41,6 +42,8 @@ namespace FalStore.Control
         #endregion
 
         #region .Event
+
+      
         /// <summary>
         /// page load
         /// </summary>
@@ -48,8 +51,26 @@ namespace FalStore.Control
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+           
             InitPage();
-            // }
+            if (Session["id"] != null)
+            {
+                txtProductID.Text = Session["id"].ToString();
+            }
+            if (Session["Name"] != null)
+            {
+                txtProductName.Text = Session["Name"].ToString();
+            }
+            if (Session["ListColor"] != null)
+            {
+                List<string> l = new List<string>();
+                l = (List<string>)Session["ListColor"];
+                bLstColor.DataSource = l;
+                bLstColor.DataBind();
+            }
+           
+
+            //}
         }
 
         /// <summary>
@@ -90,10 +111,10 @@ namespace FalStore.Control
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-           
+
         }
 
         /// <summary>
@@ -132,10 +153,10 @@ namespace FalStore.Control
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-           
+
         }
 
         /// <summary>
@@ -155,14 +176,17 @@ namespace FalStore.Control
                     case "Delete":
                         DeleteProduct(e.CommandArgument.ToString());
                         break;
+                    case "Barcode":
+                        Response.Redirect("~/Default.aspx?pageName=PrintBarCode&id=" + e.CommandArgument.ToString());
+                        break;
                 }
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-           
+
         }
 
         /// <summary>
@@ -187,35 +211,24 @@ namespace FalStore.Control
                 objProduct.ExportPrice = float.Parse(txtExportPrice.Text);
 
                 List<string> lColor = new List<string>();
-                if (!txtColor1.Text.Equals(string.Empty))
-                {
-                    lColor.Add(txtColor1.Text);
-                }
-                if (!txtColor2.Text.Equals(string.Empty))
-                {
-                    lColor.Add(txtColor2.Text);
-                }
-                if (!txtColor3.Text.Equals(string.Empty))
-                {
-                    lColor.Add(txtColor3.Text);
-                }
-                if (!txtColor4.Text.Equals(string.Empty))
-                {
-                    lColor.Add(txtColor4.Text);
-                }
-                if (!txtColor5.Text.Equals(string.Empty))
-                {
-                    lColor.Add(txtColor5.Text);
-                }
-                //if (!txtColor6.Text.Equals(string.Empty))
-                //{
-                //    lColor.Add(txtColor6.Text);
-                //}
-                //if (!txtColor7.Text.Equals(string.Empty))
-                //{
-                //    lColor.Add(txtColor7.Text);
-                //}
 
+                if (Session["ListColor"] != null)
+                {
+                    lColor = (List<string>)Session["ListColor"];
+                }
+
+                if (lColor.Count == 0)
+                {
+                    Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Chưa chọn màu sắc\"); <" + "/script>"));
+                    return;
+
+                }
+                if (float.Parse(txtImportPrice.Text) > float.Parse(txtExportPrice.Text) )
+                {
+                    Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Giá nhập lớn hơn giá bán\"); <" + "/script>"));
+                    return;
+
+                }
                 List<objColor> lstColor = new List<objColor>();
                 objColor objColor = null;
                 foreach (var item in lColor)
@@ -239,8 +252,8 @@ namespace FalStore.Control
                     else
                     {
                         //thông báo sau khi thành congo
-                        //Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Mã sản phẩm đã tồn tại\"); <" + "/script>"));
-                        Response.Write("<script language='javascript'>alert(Mã sản phẩm đã tồn tại)</script>");
+                        Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Mã sản phẩm đã tồn tại\"); <" + "/script>"));
+                        // Response.Write("<script language='javascript'>alert(Mã sản phẩm đã tồn tại)</script>");
                         //lblMessage.Text = "Mã sản phẩm đã tồn tại";
                         txtProductID.Text = string.Empty;
                     }
@@ -257,12 +270,16 @@ namespace FalStore.Control
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-           
+
         }
 
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            clear();
+        }
         #endregion
 
         #region .Method
@@ -345,11 +362,12 @@ namespace FalStore.Control
             txtProductName.Text = string.Empty;
             txtImportPrice.Text = string.Empty;
             txtExportPrice.Text = string.Empty;
-            txtColor1.Text = string.Empty;
-            txtColor2.Text = string.Empty;
-            txtColor3.Text = string.Empty;
-            txtColor4.Text = string.Empty;
-            txtColor5.Text = string.Empty;
+            Session["ListColor"] = null;
+            //txtColor1.Text = string.Empty;
+            //txtColor2.Text = string.Empty;
+            //txtColor3.Text = string.Empty;
+            //txtColor4.Text = string.Empty;
+            //txtColor5.Text = string.Empty;
             //txtColor6.Text = string.Empty;
             //txtColor7.Text = string.Empty;
         }
@@ -368,5 +386,7 @@ namespace FalStore.Control
 
         #endregion
 
+      
+     
     }
 }

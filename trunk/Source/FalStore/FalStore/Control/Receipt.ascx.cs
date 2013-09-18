@@ -33,6 +33,24 @@ namespace FalStore.Control
                 ShowControl(false);
                 txtLogDate.Text = DateTime.Now.Date.ToShortDateString();
             }
+            if (Session["ProductID"] != null)
+            {
+                txtProductID.Text = Session["ProductID"].ToString();
+                txtProductID_TextChanged(sender, e);
+            }
+            if (Session["ma"] != null)
+            {
+                txtLogStoreID.Text = Session["ma"].ToString();
+            }
+            if (Session["ncc"] != null)
+            {
+                txtNcc.Text = Session["ncc"].ToString();
+            }
+            if (Session["nd"] != null)
+            {
+                txtDescription.Text = Session["nd"].ToString();
+            }
+           
         }
 
         /// <summary>
@@ -42,12 +60,12 @@ namespace FalStore.Control
         {
             try
             {
-                List<objEmployee> lstEmployee = new List<objEmployee>();
-                lstEmployee = empBiz.ShowAll();
-                drpEmployee.DataSource = lstEmployee;
-                drpEmployee.DataTextField = "EmployeeName";
-                drpEmployee.DataValueField = "EmployeeID";
-                drpEmployee.DataBind();
+                //List<objEmployee> lstEmployee = new List<objEmployee>();
+                //lstEmployee = empBiz.ShowAll();
+                //drpEmployee.DataSource = lstEmployee;
+                //drpEmployee.DataTextField = "EmployeeName";
+                //drpEmployee.DataValueField = "EmployeeID";
+                //drpEmployee.DataBind();
 
                 List<objBranch> lstBranch = new List<objBranch>();
                 lstBranch = branBiz.ShowAll();
@@ -122,7 +140,7 @@ namespace FalStore.Control
                 objLgStore.LogStoreID = txtLogStoreID.Text;
                 objLgStore.LogType = 0;
                 objLgStore.Employee = new objEmployee();
-                objLgStore.Employee.EmployeeID = int.Parse(drpEmployee.SelectedValue.ToString());
+                objLgStore.Employee.EmployeeID = 1;
                 objLgStore.LogDate = txtLogDate.Text;
                 objLgStore.BranchFrom = new objBranch();
                 objLgStore.BranchFrom.BranchID = 0;
@@ -240,8 +258,9 @@ namespace FalStore.Control
         /// </summary>
         private void BindRepeater()
         {
+            float total;
             List<objLogDetail> lstLogDetail = new List<objLogDetail>();
-            lstLogDetail = logBiz.ShowLogDetailByID(txtLogStoreID.Text,1);
+            lstLogDetail = logBiz.ShowLogDetailByID(txtLogStoreID.Text, 1, out total);
             if (lstLogDetail != null)
             {
                 rptResult.DataSource = lstLogDetail;
@@ -284,7 +303,7 @@ namespace FalStore.Control
             txtNcc.Enabled = flag;
             txtDescription.Enabled = flag;
             txtProductID.Enabled = flag;
-            txtSale.Enabled = flag;
+            //txtSale.Enabled = flag;
             txtQuantity.Enabled = flag;
             btnAddProduct.Enabled = flag;
             btnAdd.Enabled = flag;
@@ -319,8 +338,8 @@ namespace FalStore.Control
         {
             txtProductID.Text = string.Empty;
             txtProductName.Text = string.Empty;
-            txtQuantity.Text = string.Empty;
-            txtSale.Text = string.Empty;
+            txtQuantity.Text = "1";
+            txtSale.Text = "0";
             txtExportPrice.Text = string.Empty;
         }
 
@@ -336,5 +355,6 @@ namespace FalStore.Control
 
        
         #endregion
+
     }
 }

@@ -13,13 +13,13 @@ namespace FalStore.Control {
     public partial class PrintBarCode {
         
         /// <summary>
-        /// lblBarCode control.
+        /// lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBarCode;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
         /// txtBarCode control.
@@ -31,13 +31,13 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtBarCode;
         
         /// <summary>
-        /// lblProductName control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// txtProductName control.
@@ -47,15 +47,6 @@ namespace FalStore.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProductName;
-        
-        /// <summary>
-        /// lblPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrice;
         
         /// <summary>
         /// txtPrice control.
