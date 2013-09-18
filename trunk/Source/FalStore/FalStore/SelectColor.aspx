@@ -43,6 +43,7 @@
                 <div class="mws-panel grid_8">
                     <div class="mws-panel-header">
                         <span>Chọn màu</span>
+                        <asp:Label ID="lab" runat="server"></asp:Label>
                     </div>
                     <div class="mws-panel-body no-padding">
                         <div class="mws-form">
