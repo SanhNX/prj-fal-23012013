@@ -70,13 +70,15 @@ namespace BIZ
         /// <param name="pageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<objLogDetail> ShowLogDetailByID(string logStoreID,int status_flg)
+        public List<objLogDetail> ShowLogDetailByID(string logStoreID,int status_flg, out float total)
         {
             try
             {
+                float i;
                 List<objLogDetail> lst = new List<objLogDetail>();
-                lst = logDal.GetLogDetailByLogStoreID(logStoreID, status_flg);
+                lst = logDal.GetLogDetailByLogStoreID(logStoreID, status_flg, out i);
 
+                total = i;
                 return lst;
             }
             catch (Exception)
@@ -102,9 +104,10 @@ namespace BIZ
                 //insert log store
                 logDal.InsertLogStore(objLogStore);
 
+                float total;
                 List<objLogDetail> lstLogDetail = new List<objLogDetail>();
                 //get info log detail with new status 
-                lstLogDetail = logDal.GetLogDetailByLogStoreID(objLogStore.LogStoreID, 0);
+                lstLogDetail = logDal.GetLogDetailByLogStoreID(objLogStore.LogStoreID, 0,out total);
                 //loop
                 foreach (var item in lstLogDetail)
                 {
@@ -141,6 +144,8 @@ namespace BIZ
                         //update total quantity
                         proDal.UpdateProductTotalQuantity(item.Product.ProductID, item.Quantity);
                     }
+
+                    stoDal.UpdateStoreQuantity(objLogStore.BranchFrom.BranchID, item.Product.ProductID, item.Color.ColorID, item.Size, - item.Quantity);
                 }
 
 
@@ -233,6 +238,28 @@ namespace BIZ
                 {
                     return true;
                 }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// check exist product in store
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <param name="branchID"></param>
+        /// <returns></returns>
+        public int CheckQuantityProductInStore(string productID, int branchID, int colorID, string size)
+        {
+            try
+            {
+                int quantity = 0;
+                quantity = stoDal.GetQuantityProductInStore(productID, branchID,colorID,size);
+
+                return quantity; 
             }
             catch (Exception)
             {

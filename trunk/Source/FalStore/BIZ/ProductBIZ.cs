@@ -84,6 +84,28 @@ namespace BIZ
         }
 
         /// <summary>
+        /// search product
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <returns></returns>
+        public List<objProduct> Search(string productName, int categoryID)
+        {
+            try
+            {
+                List<objProduct> lst = new List<objProduct>();
+                lst = DAL.GetProductSearch(productName, categoryID);
+
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        /// <summary>
         /// add new record
         /// </summary>
         /// <param name="obj"></param>

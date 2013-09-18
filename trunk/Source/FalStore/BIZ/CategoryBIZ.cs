@@ -76,6 +76,33 @@ namespace BIZ
         }
 
         /// <summary>
+        /// Check name exist
+        /// </summary>
+        /// <param name="categoryID"></param>
+        /// <returns></returns>
+        public bool CheckCategoryName(string name)
+        {
+            try
+            {
+                objCategory obj = new objCategory();
+                obj = DAL.GetCategoryByName(name);
+
+                if (obj != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// add new record
         /// </summary>
         /// <param name="obj"></param>
