@@ -4,60 +4,67 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Text;
 namespace FalStore
 {
     public partial class SelectColor : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-
+             string id = HttpContext.Current.Request.QueryString["id"];
+             Session["id"] = id;
+             string name = HttpContext.Current.Request.QueryString["name"];
+             Session["name"] = name;
+              
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            List<string> lColor = new List<string>();
+           // Session["Ma"] = TextBox1.Text;
+
+            List<String> lst = new List<string>();
             if (!TextBox1.Text.Equals(string.Empty))
             {
-                lColor.Add(TextBox1.Text);
+                lst.Add(TextBox1.Text);
             }
             if (!TextBox2.Text.Equals(string.Empty))
             {
-                lColor.Add(TextBox2.Text);
+                lst.Add(TextBox2.Text);
             }
             if (!TextBox3.Text.Equals(string.Empty))
             {
-                lColor.Add(TextBox3.Text);
+                lst.Add(TextBox3.Text);
             }
             if (!TextBox4.Text.Equals(string.Empty))
             {
-                lColor.Add(TextBox4.Text);
+                lst.Add(TextBox4.Text);
             }
             if (!TextBox5.Text.Equals(string.Empty))
             {
-                lColor.Add(TextBox5.Text);
+                lst.Add(TextBox5.Text);
             }
             if (!TextBox6.Text.Equals(string.Empty))
             {
-                lColor.Add(TextBox6.Text);
+                lst.Add(TextBox6.Text);
             }
             if (!TextBox7.Text.Equals(string.Empty))
             {
-                lColor.Add(TextBox7.Text);
+                lst.Add(TextBox7.Text);
             }
             if (!TextBox8.Text.Equals(string.Empty))
             {
-                lColor.Add(TextBox8.Text);
+                lst.Add(TextBox8.Text);
             }
             if (!TextBox9.Text.Equals(string.Empty))
             {
-                lColor.Add(TextBox9.Text);
+                lst.Add(TextBox9.Text);
             }
             if (!TextBox10.Text.Equals(string.Empty))
             {
-                lColor.Add(TextBox10.Text);
+                lst.Add(TextBox10.Text);
             }
-           
-            Session["ListColor"] = lColor;
+
+            Session["ListColor"] = lst;
 
         }
     }
