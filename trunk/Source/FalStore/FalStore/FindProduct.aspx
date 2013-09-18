@@ -43,7 +43,7 @@
                 <span>Chọn sản phẩm</span>
             </div>
             <div class="mws-panel-body no-padding">
-                <div id="mws-form" class = "mws-form">
+                <div id="mws-form" class="mws-form">
                     <div class="mws-form-inline">
                         <div class="mws-form-row">
                             <div class=" mws-form-cols">
@@ -72,7 +72,6 @@
                 </div>
             </div>
         </div>
-    
         <div class="mws-panel grid_8 mws-collapsible">
             <div class="mws-panel-header">
                 <span><i class="icon-table"></i>Danh sách</span>
@@ -101,7 +100,6 @@
                         <thead>
                             <tr>
                                 <th>
-                                    Số thứ tự
                                 </th>
                                 <th>
                                     Loại sản phẩm
@@ -118,14 +116,15 @@
                             </tr>
                         </thead>
                         <tbody role="alert" aria-live="polite" aria-relevant="all">
-                            <asp:Repeater ID="rptResult" runat="server">
+                            <asp:Repeater ID="rptResult" runat="server" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand">
                                 <ItemTemplate>
                                     <tr>
                                         <td>
-                                            <asp:Literal runat="server" ID="ltrStt"></asp:Literal>
+                                            <asp:LinkButton ID="lnkSelect" runat="server" CausesValidation="false" CommandName="Select"
+                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Chọn</asp:LinkButton>
                                         </td>
                                         <td>
-                                            <asp:Literal runat="server" ID="ltrCategoryID"></asp:Literal>
+                                            <asp:Literal runat="server" ID="ltrCategoryName"></asp:Literal>
                                         </td>
                                         <td>
                                             <asp:Literal runat="server" ID="ltrProductID"></asp:Literal>
@@ -147,8 +146,8 @@
                         CssClass="dataTables_info" MaxSmartShortCutCount="0" RTL="False" PageSize="10"
                         OnCommand="pager_Command" />
                 </div>
+            </div>
         </div>
-    </div>
     </div>
     </form>
 </body>
