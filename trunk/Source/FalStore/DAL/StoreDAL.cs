@@ -118,6 +118,30 @@ namespace DAL
         }
 
         /// <summary>
+        /// get product in store
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <param name="branchID"></param>
+        /// <returns></returns>
+        public int GetQuantityProductInStore(string productID, int branchID,int colorID, string size)
+        {
+            int quantity =0;
+            
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@ProductID", productID));
+            parameterList.Add(new SqlParameter("@BranchID", branchID));
+            parameterList.Add(new SqlParameter("@ColorID", colorID));
+            parameterList.Add(new SqlParameter("@Size", size));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spStoreGetQuantity", parameterList);
+            while (dr.Read())
+            {
+                quantity= int.Parse(dr["Quantity"].ToString());
+            }
+
+            return quantity;
+        }
+        /// <summary>
         /// insert store
         /// </summary>
         /// <param name="obj"></param>
@@ -203,8 +227,24 @@ namespace DAL
             objStore obj = null;
 
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
-            parameterList.Add(new SqlParameter("@ProductID", productID));
-            parameterList.Add(new SqlParameter("@ProductName", productName));
+            if (productID != string.Empty)
+            {
+                parameterList.Add(new SqlParameter("@ProductID", "'%" + productID + "%'"));
+            }
+            else
+            {
+                parameterList.Add(new SqlParameter("@ProductID", productID ));
+            }
+
+            if (productName != string.Empty)
+            {
+                parameterList.Add(new SqlParameter("@ProductName", "'%" + productName + "%'"));
+            }
+            else
+            {
+                parameterList.Add(new SqlParameter("@ProductName",  productName ));
+            }
+           
             parameterList.Add(new SqlParameter("@BranchID", branchID));
             parameterList.Add(new SqlParameter("@CategoryID", categoryID));
 

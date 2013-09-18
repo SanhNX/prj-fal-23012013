@@ -118,6 +118,31 @@ namespace DAL
         }
 
         /// <summary>
+        /// get by name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public objCategory GetCategoryByName(string name)
+        {
+
+            objCategory obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@CategoryName", name));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spCategoryGetByName", parameterList);
+            while (dr.Read())
+            {
+                obj = new objCategory();
+                obj.CategoryID = int.Parse(dr["CategoryID"].ToString());
+                obj.CategoryName = dr["CategoryName"].ToString();
+            }
+
+            return obj;
+
+        }
+
+        /// <summary>
         /// Insert record
         /// </summary>
         /// <param name="obj"></param>

@@ -101,6 +101,44 @@ namespace DAL
         }
 
         /// <summary>
+        /// get product by ID
+        /// </summary>
+        /// <param name="ProductID"></param>
+        /// <returns></returns>
+        public List<objProduct> GetProductSearch(string ProductName, int categoryID)
+        {
+            List<objProduct> lst = new List<objProduct>();
+            objProduct obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            if (ProductName != string.Empty)
+            {
+                parameterList.Add(new SqlParameter("@ProductName", "'%" + ProductName + "%'"));
+            }
+            else
+            {
+                parameterList.Add(new SqlParameter("@ProductName", ProductName));
+            }
+            parameterList.Add(new SqlParameter("@CategoryID", categoryID));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spProductSearch", parameterList);
+
+            while (dr.Read())
+            {
+                obj = new objProduct();
+                obj.ProductID = dr["ProductID"].ToString();
+                obj.ProductName = dr["ProductName"].ToString();
+                obj.Category = new objCategory();
+                obj.Category.CategoryName = dr["CategoryName"].ToString();
+                //obj.ImportPrice = float.Parse(dr["ImportPrice"].ToString());
+                obj.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+
+                lst.Add(obj);
+            }
+            return lst;
+
+        }
+        /// <summary>
         /// Add record
         /// </summary>
         /// <param name="obj"></param>
