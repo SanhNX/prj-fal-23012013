@@ -126,7 +126,7 @@
         </div>
         <!-- Main Container End -->
     </div>
-    <%--  <!-- JavaScript Plugins -->
+     <!-- JavaScript Plugins -->
     <script src="Scripts/js/libs/jquery-1.8.3.min.js"></script>
     <script src="Scripts/js/libs/jquery.mousewheel.min.js"></script>
     <script src="Scripts/js/libs/jquery.placeholder.min.js"></script>
@@ -148,7 +148,7 @@
     <script src="Scripts/js/core/themer.js"></script>
     <!-- Demo Scripts (remove if not needed) -->
     <script src="Scripts/js/demo/demo.widget.js"></script>
-    --%>
+ 
     </form>
 </body>
 </html>
