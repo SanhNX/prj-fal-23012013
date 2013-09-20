@@ -47,8 +47,11 @@
                     </fieldset>
                     <fieldset class="mws-form-inline">
                         <div class="mws-button-row">
-                            <asp:Button ID="btnSearch" runat="server" Text="Tìm kiếm" 
+                            <asp:Button class="btn btn-primary" ID="btnSearch" runat="server" Text="Tạo mới" 
                                 onclick="btnSearch_Click" />
+
+                            <asp:Button class="btn btn-primary" ID="btnUpdate" runat="server" Text="Update" 
+                                onclick="btnUpdate_Click" />
                         </div>
                         <div class="mws-panel grid_8">
                             <div class="mws-panel-header">
@@ -81,6 +84,119 @@
                                         </tr>
                                     </thead>
                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Khai trương</td>
+                                            <td>10</td>
+                                            <td>Phú Nhuận</td>
+                                            <td>2013-09-20</td>
+                                            <td>2013-11-20</td>
+                                            <td>
+                                                <span class="btn-group">
+                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
+                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Khai trương</td>
+                                            <td>10</td>
+                                            <td>Phú Nhuận</td>
+                                            <td>2013-09-20</td>
+                                            <td>2013-11-20</td>
+                                            <td>
+                                                <span class="btn-group">
+                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
+                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Khai trương</td>
+                                            <td>10</td>
+                                            <td>Phú Nhuận</td>
+                                            <td>2013-09-20</td>
+                                            <td>2013-11-20</td>
+                                            <td>
+                                                <span class="btn-group">
+                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
+                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Khai trương</td>
+                                            <td>10</td>
+                                            <td>Phú Nhuận</td>
+                                            <td>2013-09-20</td>
+                                            <td>2013-11-20</td>
+                                            <td>
+                                                <span class="btn-group">
+                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
+                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Khai trương</td>
+                                            <td>20</td>
+                                            <td>Phú Nhuận</td>
+                                            <td>2013-09-20</td>
+                                            <td>2013-11-20</td>
+                                            <td>
+                                                <span class="btn-group">
+                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
+                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Khai trương</td>
+                                            <td>20</td>
+                                            <td>Phú Nhuận</td>
+                                            <td>2013-09-20</td>
+                                            <td>2013-11-20</td>
+                                            <td>
+                                                <span class="btn-group">
+                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
+                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td>Khai trương</td>
+                                            <td>10</td>
+                                            <td>Phú Nhuận</td>
+                                            <td>2013-09-20</td>
+                                            <td>2013-11-20</td>
+                                            <td>
+                                                <span class="btn-group">
+                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
+                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td>Khai trương</td>
+                                            <td>10</td>
+                                            <td>Phú Nhuận</td>
+                                            <td>2013-09-20</td>
+                                            <td>2013-11-20</td>
+                                            <td>
+                                                <span class="btn-group">
+                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
+                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
+                                                </span>
+                                            </td>
+                                        </tr>
                                         <%--<asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand"
                                             runat="server">
                                             <ItemTemplate>

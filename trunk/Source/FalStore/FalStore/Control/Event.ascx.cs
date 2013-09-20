@@ -61,5 +61,27 @@ namespace FalStore.Control
 
 
         }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    List<objDoanhThu> lstObj = new List<objDoanhThu>();
+
+            //    lstObj = billBiz.GetBillSearch(int.Parse(drpBranch.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text), DateTime.Parse(TxtEndDate.Text));
+            //    if (lstObj != null)
+            //    {
+            //        rptResult.DataSource = lstObj;
+            //        rptResult.DataBind();
+            //    }
+            //}
+            //catch (Exception)
+            //{
+
+            //    throw;
+            //}
+
+
+        }
     }
 }
