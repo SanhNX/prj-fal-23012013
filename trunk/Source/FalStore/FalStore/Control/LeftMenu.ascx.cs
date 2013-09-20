@@ -18,11 +18,12 @@ namespace FalStore.Control
                 this.hypEmployee.HRef = "~/Default.aspx?pageName=Employee";
                 this.hypUser.HRef = "~/Default.aspx?pageName=User";
                 this.hypBranch.HRef = "~/Default.aspx?pageName=Branch";
+                this.hypDoanhThu.HRef = "~/Default.aspx?pageName=DoanhThu";
                 this.hypReceipt.HRef = "~/Default.aspx?pageName=Receipt";
                 this.hypStore.HRef = "~/Default.aspx?pageName=Store";
                 this.hypExportProduct.HRef = "~/Default.aspx?pageName=ExportProduct";
                 this.hypPrintBarcode.HRef = "~/Default.aspx?pageName=PrintBarCode";
-                this.hypPrintBarCode1.HRef = "~/Default.aspx?pageName=PrintBarCode";
+                
             }
           
         }

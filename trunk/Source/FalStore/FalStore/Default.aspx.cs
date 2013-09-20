@@ -47,6 +47,9 @@ namespace FalStore
                 case "PrintBarCode":
                     uc = this.LoadControl("~/Control/PrintBarCode.ascx") as UserControl;
                     break;
+                case "DoanhThu":
+                    uc = this.LoadControl("~/Control/DoanhThu.ascx") as UserControl;
+                    break;
 
             }
 

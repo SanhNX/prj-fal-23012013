@@ -28,7 +28,8 @@
             <li><a href="#"><i class="icon-list"></i>Quản lý chi nhánh</a>
                 <ul>
                     <li><a href="" runat="server" id="hypBranch">Thông tin chi nhánh</a></li>
-                    <li><a href="" runat="server" id="A2">Doanh thu</a></li>
+                    <li><a href="" runat="server" id="hypDoanhThu">Doanh thu</a></li>
+                    <li><a href="" runat="server" id="A1">Thông kê theo Sản Phẩm</a></li>
                     <li><a href="" runat="server" id="A3">Chi phí kinh doanh</a></li>
                     <li><a href="" runat="server" id="A4">Lợi nhuận</a></li>
                 </ul>
@@ -39,10 +40,7 @@
                     <li><a href="" runat="server" id="hypUser">Tài khoản đăng nhập</a></li>
                 </ul>
             </li>
-             <li><a href="#"><i class="icon-list"></i>Bán hàng</a>
-                <ul>
-                    <li><a href="" runat="server" id="hypPrintBarCode1">In barcode</a></li>
-                </ul>
+             <li><a href="../sales.aspx"><i class="icon-list"></i>Bán hàng</a>
             </li>
         </ul>
     </div>
