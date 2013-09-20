@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DoanhThu.ascx.cs" Inherits="FalStore.Control.DoanhThu" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Event.ascx.cs" Inherits="FalStore.Control.Event" %>
 <div id="mws-container" class="clearfix">
     <div class="container">
         <!-- From category --->
@@ -10,6 +10,18 @@
                 <div class="mws-form">
                     <fieldset class="mws-form-inline">
                         <legend>Thông tin tìm kiếm</legend>
+                        <div class="mws-form-row">
+                            <label class="mws-form-label">Tên Chương Trình</label>
+                            <div class="mws-form-item">
+                                <asp:TextBox ID="TextBox1" runat="server" class="large" Visible="true" ></asp:TextBox>
+                            </div>
+                        </div>
+                         <div class="mws-form-row">
+                            <label class="mws-form-label">Giảm Giá</label>
+                            <div class="mws-form-item">
+                                <asp:TextBox ID="TextBox2" runat="server" class="" Visible="true"></asp:TextBox>
+                            </div>
+                        </div>
                         <div class="mws-form-row">
                             <label class="mws-form-label">Từ ngày</label>
                             <div class="mws-form-item">
@@ -40,42 +52,36 @@
                         </div>
                         <div class="mws-panel grid_8">
                             <div class="mws-panel-header">
-                                <span><i class="icon-table"></i>Danh sách thông tin tìm kiếm</span>
+                                <span><i class="icon-table"></i>Nhập thông tin khuyến mãi</span>
                             </div>
                             <div class="mws-panel-body no-padding">
                                 <table class="mws-table">
                                     <thead>
                                         <tr>
                                             <th>
-                                                Mã HĐ
+                                                STT
                                             </th>
                                             <th>
-                                                Nhân Viên BH
+                                                Chuong trình
                                             </th>
                                             <th>
-                                                Kháck Hàng
+                                                Giảm Giá (%)
                                             </th>
                                             <th>
                                                 Chi Nhánh
                                             </th>
                                             <th>
-                                                Ngày Lập HĐ
+                                                Ngày Bắt Đầu
                                             </th>
                                             <th>
-                                                Thành Tiền
-                                            </th>
-                                            <th>
-                                                Giảm Giá
-                                            </th>
-                                            <th>
-                                                Tổng Tiền
+                                                Ngày Kết Thúc
                                             </th>
                                             <th>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
-                                        <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand"
+                                        <%--<asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand"
                                             runat="server">
                                             <ItemTemplate>
                                                 <tr>
@@ -106,12 +112,12 @@
                                                     <td>
                                                       <%-- <%-- <i class="icon-pencil"></i>
                                                         <asp:LinkButton ID="lnkView" runat="server" CausesValidation="false" CommandName="View"
-                                                            CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xem</asp:LinkButton>--%>
+                                                            CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xem</asp:LinkButton>
                                        
                                                     </td>
                                                 </tr>
                                             </ItemTemplate>
-                                        </asp:Repeater>
+                                        </asp:Repeater>--%>
                                     </tbody>
                                 </table>
                             </div>

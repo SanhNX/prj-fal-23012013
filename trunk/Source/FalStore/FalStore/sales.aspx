@@ -128,6 +128,12 @@
                                         <fieldset class="mws-form-inline">
                                             <legend>Thông tin khach hàng</legend>
                                             <div class="mws-form-row bordered">
+                                                <label class="mws-form-label">Mã Thành Viên</label>
+                                                <div class="mws-form-item">
+                                                    <input type="text" value="1234567890" class="large">
+                                                </div>
+                                            </div>
+                                            <div class="mws-form-row bordered">
                                                 <label class="mws-form-label">Tên KH</label>
                                                 <div class="mws-form-item">
                                                     <input type="text" value="Ta chi thanh" class="large">
