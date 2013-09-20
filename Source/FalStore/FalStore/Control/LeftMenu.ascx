@@ -28,6 +28,7 @@
             <li><a href="#"><i class="icon-list"></i>Quản lý chi nhánh</a>
                 <ul>
                     <li><a href="" runat="server" id="hypBranch">Thông tin chi nhánh</a></li>
+                    <li><a href="" runat="server" id="hypEvent">Thông Tin khuyến mãi</a></li>
                     <li><a href="" runat="server" id="hypDoanhThu">Doanh thu</a></li>
                     <li><a href="" runat="server" id="A1">Thông kê theo Sản Phẩm</a></li>
                     <li><a href="" runat="server" id="A3">Chi phí kinh doanh</a></li>
