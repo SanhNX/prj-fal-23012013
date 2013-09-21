@@ -11,19 +11,19 @@
                     <fieldset class="mws-form-inline">
                         <legend>Thông tin tìm kiếm</legend>
                         <div class="mws-form-row">
-                            <label class="mws-form-label">Từ ngày</label>
+                            <label class="mws-form-label">
+                                Từ ngày</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtStartDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
                             </div>
                         </div>
-
                         <div class="mws-form-row">
-                            <label class="mws-form-label">Dến ngày</label>
+                            <label class="mws-form-label">
+                                Dến ngày</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="TxtEndDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
                             </div>
                         </div>
-
                         <div class="mws-form-row">
                             <label class="mws-form-label">
                                 Chọn chi nhánh</label>
@@ -35,8 +35,8 @@
                     </fieldset>
                     <fieldset class="mws-form-inline">
                         <div class="mws-button-row">
-                            <asp:Button ID="btnSearch" runat="server" Text="Tìm kiếm" 
-                                onclick="btnSearch_Click" />
+                            <asp:Button ID="btnSearch" runat="server" Text="Tìm kiếm" OnClick="btnSearch_Click" />
+                            <asp:Button ID="btnExport" runat="server" Text="Export" OnClick="btnExport_Click" />
                         </div>
                         <div class="mws-panel grid_8">
                             <div class="mws-panel-header">
@@ -104,10 +104,9 @@
                                                         <asp:Literal runat="server" ID="ltrPrice2"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                      <%-- <%-- <i class="icon-pencil"></i>
+                                                        <%-- <%-- <i class="icon-pencil"></i>
                                                         <asp:LinkButton ID="lnkView" runat="server" CausesValidation="false" CommandName="View"
                                                             CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xem</asp:LinkButton>--%>
-                                       
                                                     </td>
                                                 </tr>
                                             </ItemTemplate>
@@ -122,5 +121,5 @@
         </div>
         <!-- table -->
         <!--popup--->
-           </div>
+    </div>
 </div>
