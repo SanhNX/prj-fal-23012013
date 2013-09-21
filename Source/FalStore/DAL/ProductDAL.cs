@@ -270,6 +270,7 @@ namespace DAL
 
         }
 
+
         /// <summary>
         /// insert barcode
         /// </summary>
@@ -286,5 +287,7 @@ namespace DAL
 
             return SQLHelper.ExecuteNonQuery("spBarCodeInsert", parameterList);
         }
+
+
     }
 }
