@@ -20,11 +20,38 @@ namespace FalStore.Control
     public partial class PrintBarCode : System.Web.UI.UserControl
     {
         ProductBIZ proBiz = new ProductBIZ();
+
+        BarCodeBIZ barBiz = new BarCodeBIZ();
+        List<objFindBarCode> lstObj = new List<objFindBarCode>();
         protected void Page_Load(object sender, EventArgs e)
         {
             string id = HttpContext.Current.Request.QueryString["id"];
-            txtBarCode.Text = id;
-            txtBarCode_TextChanged(sender, e);
+
+            if (!string.Empty.Equals(id)) {
+                try
+                {
+                    
+
+                    lstObj = barBiz.GetBarCodeByProductID(id);
+
+                    if (lstObj != null)
+                    {
+                        rptResult.DataSource = lstObj;
+                        rptResult.DataBind();
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+            
+
+
+
+            //txtBarCode.Text = id;
+            //txtBarCode_TextChanged(sender, e);
 
 
             //string file = HttpContext.Current.Server.MapPath("Font\\s128ah.TTF");
@@ -146,7 +173,7 @@ namespace FalStore.Control
                         // Create a new cell and add it to the row.
                         TableCell tCell = new TableCell();
                         tCell.VerticalAlign = VerticalAlign.Bottom;
-                        tCell.Text = "Fashion And Life" + "<Br/>" + txtPrice.Text + "VND";
+                        tCell.Text = txtProductName.Text + "<Br/>" + txtPrice.Text + "VND";
                         tRow.Cells.Add(tCell);
                     }
                 }
@@ -302,6 +329,80 @@ namespace FalStore.Control
             }
         }
 
+        int stt = 1;
+        protected void rptResult_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            try
+            {
+                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+                {
+
+                    objFindBarCode data = e.Item.DataItem as objFindBarCode;
+
+                    Literal ltrStt = e.Item.FindControl("ltrStt") as Literal;
+                    ltrStt.Text = stt.ToString();
+                    stt++;
+
+                    Literal ltrBarCode = e.Item.FindControl("ltrBarCode") as Literal;
+                    ltrBarCode.Text = data.BarCode.ToString();
+
+                    Literal ltrProducID = e.Item.FindControl("ltrProducID") as Literal;
+                    ltrProducID.Text = data.ProductID.ToString();
+
+                    Literal ltrProductName = e.Item.FindControl("ltrProductName") as Literal;
+                    ltrProductName.Text = data.ProductName.ToString();
+
+                    Literal ltrColor = e.Item.FindControl("ltrColor") as Literal;
+                    ltrColor.Text = data.ColorName.ToString();
+
+                    Literal ltrSize = e.Item.FindControl("ltrSize") as Literal;
+                    ltrSize.Text = data.SizeName.ToString();
+
+                    Literal ltrImportPrice = e.Item.FindControl("ltrImportPrice") as Literal;
+                    ltrImportPrice.Text = data.ImportPrice.ToString();
+
+                    Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
+                    ltrExportPrice.Text = data.ExportPrice.ToString();
+
+                    //Literal priBarCode = e.Item.FindControl("priBarCode") as Literal;
+                    //priBarCode.Text = data.BarCode.ToString()  + "-" + data.ProductName.ToString() + " " + data.ColorName.ToString() + " " + data.SizeName.ToString() + "-" + data.ExportPrice.ToString();
+                    
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        protected void rptResult_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            try
+            {
+                switch (e.CommandName)
+                {
+                    case "Barcode":
+                        txtBarCode.Text = e.CommandArgument.ToString();
+
+                        for (int i = 0; i < lstObj.Count; i++) {
+                            if (lstObj[i].BarCode.Equals(e.CommandArgument.ToString()))
+                            {
+                                txtPrice.Text = lstObj[i].ExportPrice.ToString();
+                                txtProductName.Text = lstObj[i].ProductName + " " + lstObj[i].ColorName + " Size" + lstObj[i].SizeName;
+                            }
+                        }
+                            break;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
     }
 
 }

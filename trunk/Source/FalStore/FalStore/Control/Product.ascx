@@ -1,12 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Product.ascx.cs" Inherits="FalStore.Control.Product" %>
 <%@ Register Namespace="Common.Helper" Assembly="Common" TagPrefix="cc" %>
 <!-- fancybox --->
-<script src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
-<script src="../Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript" src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>
 <!-- fancybox --->
 <link rel="stylesheet" type="text/css" href="../Styles/jquery.fancybox-1.3.4.css"
     media="screen" />
-<script src="../Scripts/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript" src="../Scripts/jquery.fancybox-1.3.4.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
