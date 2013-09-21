@@ -10,6 +10,12 @@
 /* Grid - Fluid grid System
 -------------------------------------------------------------- */
 
+.container-sale {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
 .container {
     width: 92%;
     margin: 0 auto;
@@ -39,6 +45,9 @@
     width: 48%;
 }
 
+.grid_sale {
+    width: 98%;
+}
 .grid_5 {
     width: 60.5%;
 }
