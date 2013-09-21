@@ -110,13 +110,14 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Insert(objProduct objProduct, List<objColor> lstColor)
+        public int Insert(objProduct objProduct, List<objBarCode> lstBarCode)
         {
             try
             {
-                foreach (var item in lstColor)
+
+                foreach (var item in lstBarCode)
                 {
-                    DAL.InsertColor(item);
+                    DAL.InsertBarCode(item);
                 }
                 return DAL.InsertProduct(objProduct);
 
