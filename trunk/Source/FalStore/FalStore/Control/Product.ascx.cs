@@ -224,7 +224,7 @@ namespace FalStore.Control
                     lColor = (List<string>)Session["ListColor"];
                 }
 
-                if (lColor.Count == 0)
+                if (lColor.Count == 0 && string.Empty.Equals(id))
                 {
                     Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Chưa chọn màu sắc\"); <" + "/script>"));
                     return;
@@ -368,8 +368,9 @@ namespace FalStore.Control
             txtExportPrice.Text = obj.ExportPrice.ToString();
             drpCategory.SelectedValue = obj.Category.CategoryID.ToString();
             txtTemp.Text = obj.ProductID;
-            List<objColor> lstColor = new List<objColor>();
-            lstColor = productBIZ.ShowColorByProductID(productID);
+
+            //List<objColor> lstColor = new List<objColor>();
+            //lstColor = productBIZ.ShowColorByProductID(productID);
 
             //txtColor1.Text = lstColor[0].ColorName.ToString();
             //txtColor2.Text = lstColor[1].ColorName.ToString();
