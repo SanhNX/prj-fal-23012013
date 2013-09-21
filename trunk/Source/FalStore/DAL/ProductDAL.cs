@@ -270,5 +270,21 @@ namespace DAL
 
         }
 
+        /// <summary>
+        /// insert barcode
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public int InsertBarCode(objBarCode obj)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@BarCodeID", obj.BarCode));
+            parameterList.Add(new SqlParameter("@ProductID", obj.ProductID));
+            parameterList.Add(new SqlParameter("@ColorName", obj.ColorName));
+            parameterList.Add(new SqlParameter("@SizeName", obj.SizeName));
+
+            return SQLHelper.ExecuteNonQuery("spBarCodeInsert", parameterList);
+        }
     }
 }
