@@ -229,16 +229,62 @@ namespace FalStore.Control
                     return;
 
                 }
-                List<objColor> lstColor = new List<objColor>();
-                objColor objColor = null;
-                foreach (var item in lColor)
-                {
-                    objColor = new objColor();
-                    objColor.ColorName = item;
-                    objColor.Product = new objProduct();
-                    objColor.Product.ProductID = txtProductID.Text;
+                //List<objColor> lstColor = new List<objColor>();
+                //objColor objColor = null;
+                List<objBarCode> lstBarcode = new List<objBarCode>();
+                objBarCode objBar = null;
+                //foreach (var item in lColor)
+                //{
+                //    objBar = new objBarCode();
+                //    //objColor = new objColor();
+                //    //objColor.ColorName = item;
+                //    //objColor.Product = new objProduct();
+                //    //objColor.Product.ProductID = txtProductID.Text;
 
-                    lstColor.Add(objColor);
+                //    //lstColor.Add(objColor);
+                //}
+                for (int i = 0; i < lColor.Count; i++)
+                {
+                   
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (j == 0)
+                        {
+                            objBar = new objBarCode();
+                            objBar.BarCode = txtProductID.Text + i + "S";
+                            objBar.ProductID = txtProductID.Text;
+                            objBar.ColorName = lColor[i].ToString();
+                            objBar.SizeName = "S";
+                            lstBarcode.Add(objBar);
+                        }
+                        else if (j == 1)
+                        {
+                            objBar = new objBarCode();
+                            objBar.BarCode = txtProductID.Text + i + "M";
+                            objBar.ProductID = txtProductID.Text;
+                            objBar.ColorName = lColor[i].ToString();
+                            objBar.SizeName = "M";
+                            lstBarcode.Add(objBar);
+                        }
+                        else if (j == 2)
+                         {
+                             objBar = new objBarCode();
+                             objBar.BarCode = txtProductID.Text + i + "L";
+                             objBar.ProductID = txtProductID.Text;
+                             objBar.ColorName = lColor[i].ToString();
+                             objBar.SizeName = "L";
+                             lstBarcode.Add(objBar);
+                         }
+                         else if (j == 3)
+                         {
+                             objBar = new objBarCode();
+                             objBar.BarCode = txtProductID.Text + i + "XL";
+                             objBar.ProductID = txtProductID.Text;
+                             objBar.ColorName = lColor[i].ToString();
+                             objBar.SizeName = "XL";
+                             lstBarcode.Add(objBar);
+                         }
+                    }
                 }
 
                 if (string.Empty.Equals(id))
@@ -247,7 +293,7 @@ namespace FalStore.Control
                     if (flag)
                     {
                         SetUpdateInfo(objProduct, 0);
-                        result = productBIZ.Insert(objProduct, lstColor);
+                        result = productBIZ.Insert(objProduct, lstBarcode);
                     }
                     else
                     {
@@ -386,7 +432,16 @@ namespace FalStore.Control
 
         #endregion
 
-      
+        public void GetColor()
+        {
+            if (Session["ListColor"] != null)
+            {
+                List<string> l = new List<string>();
+                l = (List<string>)Session["ListColor"];
+                bLstColor.DataSource = l;
+                bLstColor.DataBind();
+            }
+        }
      
     }
 }
