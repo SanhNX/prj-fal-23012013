@@ -58,15 +58,6 @@ namespace FalStore.Control {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor hypStore;
         
         /// <summary>
-        /// hypPrintBarcode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor hypPrintBarcode;
-        
-        /// <summary>
         /// hypBranch control.
         /// </summary>
         /// <remarks>

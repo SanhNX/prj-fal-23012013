@@ -13,6 +13,15 @@ namespace FalStore.Control {
     public partial class PrintBarCode {
         
         /// <summary>
+        /// rptResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptResult;
+        
+        /// <summary>
         /// lblMessage control.
         /// </summary>
         /// <remarks>

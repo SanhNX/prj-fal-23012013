@@ -22,7 +22,6 @@
                     <li><a href="" runat="server" id="hypReceipt">Nhập kho</a></li>
                     <li><a href="" runat="server" id="hypExportProduct">Xuất kho</a></li>
                     <li><a href="" runat="server" id="hypStore">Thông tin kho</a></li>
-                    <li><a href="" runat="server" id="hypPrintBarcode">Xuất mã vạch</a></li>
                 </ul>
             </li>
             <li><a href="#"><i class="icon-list"></i>Quản lý chi nhánh</a>
