@@ -61,13 +61,7 @@ namespace FalStore.Control
             {
                 txtProductName.Text = Session["Name"].ToString();
             }
-            if (Session["ListColor"] != null)
-            {
-                List<string> l = new List<string>();
-                l = (List<string>)Session["ListColor"];
-                bLstColor.DataSource = l;
-                bLstColor.DataBind();
-            }
+           
            
 
             //}
@@ -107,6 +101,19 @@ namespace FalStore.Control
                 {
                     btnAdd.Text = "Tạo mới";
                     txtProductID.Enabled = true;
+                }
+                if (Session["ListColor"] != null)
+                {
+                    List<string> l = new List<string>();
+                    l = (List<string>)Session["ListColor"];
+                    bLstColor.DataSource = l;
+                    bLstColor.DataBind();
+                }
+                else
+                {
+                    List<string> l = new List<string>();
+                    bLstColor.DataSource = l;
+                    bLstColor.DataBind();
                 }
             }
             catch (Exception)
@@ -223,7 +230,7 @@ namespace FalStore.Control
                     return;
 
                 }
-                if (float.Parse(txtImportPrice.Text) > float.Parse(txtExportPrice.Text) )
+                if (float.Parse(txtImportPrice.Text) > float.Parse(txtExportPrice.Text))
                 {
                     Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Giá nhập lớn hơn giá bán\"); <" + "/script>"));
                     return;
@@ -245,7 +252,6 @@ namespace FalStore.Control
                 //}
                 for (int i = 0; i < lColor.Count; i++)
                 {
-                   
                     for (int j = 0; j < 4; j++)
                     {
                         if (j == 0)
@@ -267,24 +273,25 @@ namespace FalStore.Control
                             lstBarcode.Add(objBar);
                         }
                         else if (j == 2)
-                         {
-                             objBar = new objBarCode();
-                             objBar.BarCode = txtProductID.Text + i + "L";
-                             objBar.ProductID = txtProductID.Text;
-                             objBar.ColorName = lColor[i].ToString();
-                             objBar.SizeName = "L";
-                             lstBarcode.Add(objBar);
-                         }
-                         else if (j == 3)
-                         {
-                             objBar = new objBarCode();
-                             objBar.BarCode = txtProductID.Text + i + "XL";
-                             objBar.ProductID = txtProductID.Text;
-                             objBar.ColorName = lColor[i].ToString();
-                             objBar.SizeName = "XL";
-                             lstBarcode.Add(objBar);
-                         }
+                        {
+                            objBar = new objBarCode();
+                            objBar.BarCode = txtProductID.Text + i + "L";
+                            objBar.ProductID = txtProductID.Text;
+                            objBar.ColorName = lColor[i].ToString();
+                            objBar.SizeName = "L";
+                            lstBarcode.Add(objBar);
+                        }
+                        else if (j == 3)
+                        {
+                            objBar = new objBarCode();
+                            objBar.BarCode = txtProductID.Text + i + "XL";
+                            objBar.ProductID = txtProductID.Text;
+                            objBar.ColorName = lColor[i].ToString();
+                            objBar.SizeName = "XL";
+                            lstBarcode.Add(objBar);
+                        }
                     }
+                   
                 }
 
                 if (string.Empty.Equals(id))
