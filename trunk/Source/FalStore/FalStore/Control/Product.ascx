@@ -21,6 +21,7 @@
         TranferData();
     }
    , 'onClosed': function () {
+       // alert(popupRetVal);
        window.location.href = '<%= Page.ResolveUrl("~/Default.aspx?pageName=Product") %>';
        
    }
