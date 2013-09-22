@@ -194,18 +194,28 @@ namespace FalStore.Control
             //dataTable.Columns.Add(column);
             //dataTable.Rows.Add(new object[] {"Foobar"});
 
-            var columns = dataTable.Columns.Count;
-            var rows = dataTable.Rows.Count;
+            var columns = dataTable.Columns.Count + 1;
+            var rows = dataTable.Rows.Count + 1;
 
             Excel.Range range = worksheet.Range["A1", String.Format("{0}{1}", GetExcelColumnName(columns), rows)];
 
             object[,] data = new object[rows,columns];
+            
 
-            for (int rowNumber = 0; rowNumber < rows; rowNumber++)
+            data[0,0] = "MaHD";
+            data[0,1] = "MaHD1";
+            data[0,2] = "MaHD2";
+            data[0,3] = "MaHD3";
+            data[0,4] = "MaHD4";
+            data[0,5] = "MaHD5";
+            data[0,6] = "MaHD6";
+            data[0,7] = "MaHD7";
+
+            for(int rowNumber = 1; rowNumber < rows; rowNumber++)
             {
-                for (int columnNumber = 0; columnNumber < columns; columnNumber++)
+                for (int columnNumber = 1; columnNumber < columns; columnNumber++)
                 {
-                    data[rowNumber, columnNumber] = dataTable.Rows[rowNumber][columnNumber].ToString();
+                    data[rowNumber, columnNumber- 1] = dataTable.Rows[rowNumber-1][columnNumber-1].ToString();
                 }
             }
 
