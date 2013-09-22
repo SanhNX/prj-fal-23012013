@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SelectColor.aspx.cs" Inherits="FalStore.SelectColor" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SelectColor.aspx.cs" Inherits="FalStore.SelectColor" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -32,6 +32,24 @@
     <!-- Theme Stylesheet -->
     <link rel="stylesheet" type="text/css" href="Styles/css/mws-theme.css" media="screen">
     <link rel="stylesheet" type="text/css" href="Styles/css/themer.css" media="screen">
+
+    <script type="text/javascript" src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#saveColor').on('click', function (e) {
+
+
+                var abc = $("#TextBox1")[0].value + " " + $("#TextBox2")[0].value;
+                alert(abc);
+                parent.popupRetVal = [abc];
+                parent.$.fancybox.close();
+                // removeTR(indexRow);
+                // indexSTT = indexSTT - 1;
+            });
+        });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -138,7 +156,8 @@
                                 </div>
                             </div>
                             <div class="mws-button-row">
-                                <asp:Button ID="btnSave" runat="server" Text="Lưu màu"  OnClick="btnSave_Click"/>
+                                <asp:Button ID="btnSave" runat="server" Text="Lưu màu" class="btn btn-danger"  OnClick="btnSave_Click"/>
+                                <input type="button" id="saveColor" class="btn btn-danger" value="Show Dialog">
                             </div>
                         </div>
                     </div>
