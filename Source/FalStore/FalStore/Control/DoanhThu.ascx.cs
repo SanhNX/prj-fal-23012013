@@ -18,6 +18,7 @@ namespace FalStore.Control
         protected void Page_Load(object sender, EventArgs e)
         {
             InitPage();
+            ltrDoanhThu.Text = "0  VNĐ";
         }
 
         protected void InitPage()
@@ -31,6 +32,7 @@ namespace FalStore.Control
                 drpBranch.DataTextField = "BranchName";
                 drpBranch.DataValueField = "BranchID";
                 drpBranch.DataBind();
+                
 
             }
             catch (Exception)
@@ -48,9 +50,15 @@ namespace FalStore.Control
                 List<objDoanhThu> lstObj = new List<objDoanhThu>();
 
                 lstObj = billBiz.GetBillSearch(int.Parse(drpBranch.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text), DateTime.Parse(TxtEndDate.Text));
- 
+                  float tc = 0;
                 if (lstObj != null)
                 {
+                    foreach (objDoanhThu objItem in lstObj)
+                    {
+                        tc = tc + objItem.ActualTotalPrice;
+                    }
+
+                    ltrDoanhThu.Text = tc.ToString() + "  VNĐ";
                     rptResult.DataSource = lstObj;
                     rptResult.DataBind();
                 }
@@ -203,13 +211,13 @@ namespace FalStore.Control
             
 
             data[0,0] = "MaHD";
-            data[0,1] = "MaHD1";
-            data[0,2] = "MaHD2";
-            data[0,3] = "MaHD3";
-            data[0,4] = "MaHD4";
-            data[0,5] = "MaHD5";
-            data[0,6] = "MaHD6";
-            data[0,7] = "MaHD7";
+            data[0, 1] = "NhanVien";
+            data[0, 2] = "KhachHang";
+            data[0, 3] = "ChiNhanh";
+            data[0, 4] = "NgayLap";
+            data[0, 5] = "ThanhTien";
+            data[0, 6] = "GiamGia";
+            data[0, 7] = "TongTien";
 
             for(int rowNumber = 1; rowNumber < rows; rowNumber++)
             {
@@ -220,6 +228,50 @@ namespace FalStore.Control
             }
 
             range.Value = data;
+
+
+
+
+            range = worksheet.get_Range("A1", "A1");
+            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
+            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
+            range.Font.Bold = true;
+
+            range = worksheet.get_Range("B1", "B1");
+            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
+            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
+            range.Font.Bold = true;
+
+            range = worksheet.get_Range("C1", "C1");
+            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
+            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
+            range.Font.Bold = true;
+
+            range = worksheet.get_Range("D1", "D1");
+            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
+            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
+            range.Font.Bold = true;
+
+            range = worksheet.get_Range("E1", "E1");
+            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
+            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
+            range.Font.Bold = true;
+
+            range = worksheet.get_Range("F1", "F1");
+            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
+            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
+            range.Font.Bold = true;
+
+            range = worksheet.get_Range("G1", "G1");
+            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
+            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
+            range.Font.Bold = true;
+
+            range = worksheet.get_Range("H1", "H1");
+            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
+            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
+            range.Font.Bold = true;
+
 
             workbook.SaveAs(directory);
             workbook.Close();    
