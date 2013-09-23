@@ -1,4 +1,26 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Event.ascx.cs" Inherits="FalStore.Control.Event" %>
+ <!-- JavaScript Plugins -->
+    <script src="Scripts/js/libs/jquery-1.8.3.min.js"></script>
+    <script src="Scripts/js/libs/jquery.mousewheel.min.js"></script>
+    <script src="Scripts/js/libs/jquery.placeholder.min.js"></script>
+    <script src="Scripts/custom-plugins/fileinput.js"></script>
+    <!-- jQuery-UI Dependent Scripts -->
+    <script src="Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>
+    <script src="Scripts/jui/jquery-ui.custom.min.js"></script>
+    <script src="Scripts/jui/js/jquery.ui.touch-punch.js"></script>
+    <script src="Scripts/jui/js/timepicker/jquery-ui-timepicker.min.js"></script>
+    <!-- Plugin Scripts -->
+    <script src="Scripts/plugins/imgareaselect/jquery.imgareaselect.min.js"></script>
+    <script src="Scripts/plugins/jgrowl/jquery.jgrowl-min.js"></script>
+    <script src="Scripts/plugins/validate/jquery.validate-min.js"></script>
+    <script src="Scripts/plugins/colorpicker/colorpicker-min.js"></script>
+    <!-- Core Script -->
+    <script src="Styles/bootstrap/js/bootstrap.min.js"></script>
+    <script src="Scripts/js/core/mws.js"></script>
+    <!-- Themer Script (Remove if not needed) -->
+    <script src="Scripts/js/core/themer.js"></script>
+    <!-- Demo Scripts (remove if not needed) -->
+    <script src="Scripts/js/demo/demo.widget.js"></script>
 <div id="mws-container" class="clearfix">
     <div class="container">
         <!-- From category --->
