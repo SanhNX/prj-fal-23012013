@@ -187,7 +187,7 @@ namespace FalStore.Control
                 tbl.Rows.Add(dr);
             }
 
-            GenerateExcelFile(tbl, @"D:\demo123.xlsx");
+            GenerateExcelFile(tbl, @"D:\DoanhThu.xlsx");
         }
 
         public void GenerateExcelFile(DataTable dataTable, string directory)

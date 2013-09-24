@@ -1,5 +1,5 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DoanhThu.ascx.cs" Inherits="FalStore.Control.DoanhThu" %>
-     <!-- JavaScript Plugins -->
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ThongKe.ascx.cs" Inherits="FalStore.Control.ThongKe" %>
+  <!-- JavaScript Plugins -->
     <script src="Scripts/js/libs/jquery-1.8.3.min.js"></script>
     <script src="Scripts/js/libs/jquery.mousewheel.min.js"></script>
     <script src="Scripts/js/libs/jquery.placeholder.min.js"></script>
@@ -26,17 +26,39 @@
         <!-- From category --->
         <div class="mws-panel grid_8">
             <div class="mws-panel-header">
-                <span>Thông tin kho</span>
+                <span>Thống Kê Sản Phẩm</span>
             </div>
             <div class="mws-panel-body no-padding">
                 <div class="mws-form">
                     <fieldset class="mws-form-inline">
                         <legend>Thông tin tìm kiếm</legend>
                         <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Mã sản phẩm</label>
+                                <div class="mws-form-item">
+                                    <asp:TextBox ID="txtProductID" runat="server" class="small" MaxLength="7"></asp:TextBox>
+                                   <%-- <asp:RequiredFieldValidator ID="RequiredFieldProductID" runat="server" ErrorMessage="Nhập mã sản phẩm"
+                                        ControlToValidate="txtProductID" ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                    <asp:RegularExpressionValidator ID="regExTextBox1" runat="server" ErrorMessage="Nhập đủ 7 ký tự"
+                                        ControlToValidate="txtProductID" ForeColor="Red" ValidationExpression=".{7}.*"></asp:RegularExpressionValidator>
+                                </div>
+                            </div>
+                        <div class="mws-form-row">
+                            <label class="mws-form-label">
+                                Tên sản phẩm</label>
+                            <div class="mws-form-item">
+                                <asp:TextBox ID="txtTenSanPham" runat="server" class="" Visible="true"></asp:TextBox>
+                                 <asp:RegularExpressionValidator ID="RegularExpressionTenSanPham" runat="server" ErrorMessage="Tên sản phẩm phải ít hơn 30 ký tự"
+                                        ControlToValidate="txtTenSanPham" ForeColor="Red" ValidationExpression=".{30}.*"></asp:RegularExpressionValidator>
+                            </div>
+                        </div>
+                        <div class="mws-form-row">
                             <label class="mws-form-label">
                                 Từ ngày</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtStartDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
+                                <%--<asp:RequiredFieldValidator ID="RequiredFieldStartDate" runat="server" ErrorMessage="Không đươc để tróng"
+                                        ControlToValidate="txtStartDate" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                             </div>
                         </div>
                         <div class="mws-form-row">
@@ -47,10 +69,18 @@
                             </div>
                         </div>
                         <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Danh mục sản phẩm</label>
+                                <div class="mws-form-item">
+                                    <asp:DropDownList ID="drpCategory" runat="server" class="small">
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        <div class="mws-form-row">
                             <label class="mws-form-label">
                                 Chọn chi nhánh</label>
                             <div class="mws-form-item">
-                                <asp:DropDownList ID="drpBranch" runat="server">
+                                <asp:DropDownList ID="drpBranch" runat="server"  class="small">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -59,13 +89,6 @@
                         <div class="mws-button-row">
                             <asp:Button ID="btnSearch" runat="server" Text="Tìm kiếm" OnClick="btnSearch_Click" class="btn btn-danger" />
                             <asp:Button ID="btnExport" runat="server" Text="Export" OnClick="btnExport_Click" class="btn btn-danger"/>
-                            <div class="">
-                                <label class="mws-form-label" style="font-size: medium;width: 200px;">
-                                    Tổng Cộng Doanh Thu: </label>
-                                <div class="mws-form-item" style="font-size: medium;">
-                                    <asp:Literal runat="server" ID="ltrDoanhThu" ></asp:Literal>
-                                </div>
-                            </div>
                         </div>
                         <div class="mws-panel grid_8">
                             <div class="mws-panel-header">
@@ -75,67 +98,60 @@
                                 <table class="mws-table">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                Mã HĐ
+                                             <th>
+                                                STT
                                             </th>
                                             <th>
-                                                Nhân Viên BH
+                                                Bar Code
                                             </th>
                                             <th>
-                                                Kháck Hàng
+                                                Mã SP
                                             </th>
                                             <th>
-                                                Chi Nhánh
+                                                Tên SP
                                             </th>
                                             <th>
-                                                Ngày Lập HĐ
+                                                Màu SP
                                             </th>
                                             <th>
-                                                Thành Tiền
+                                                Size
                                             </th>
                                             <th>
-                                                Giảm Giá
+                                                Số Lượng Bán
                                             </th>
                                             <th>
-                                                Tổng Tiền
-                                            </th>
-                                            <th>
+                                                Loại SP
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
-                                        <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand"
+                                        <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" 
                                             runat="server">
                                             <ItemTemplate>
                                                 <tr>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrBillId"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrStt"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrEmpName"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrBarCode"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrCusName"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrProductID"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrBranchName"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrProductName"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrDate"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrColorName"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrPrice1"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrSizeName"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrSale"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrQuantity"></asp:Literal>
                                                     </td>
-                                                    <td>
-                                                        <asp:Literal runat="server" ID="ltrPrice2"></asp:Literal>
-                                                    </td>
-                                                    <td>
-                                                        <%-- <%-- <i class="icon-pencil"></i>
-                                                        <asp:LinkButton ID="lnkView" runat="server" CausesValidation="false" CommandName="View"
-                                                            CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xem</asp:LinkButton>--%>
+                                                     <td>
+                                                        <asp:Literal runat="server" ID="ltrCategoryName"></asp:Literal>
                                                     </td>
                                                 </tr>
                                             </ItemTemplate>
