@@ -94,13 +94,13 @@ namespace FalStore.Control {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor hypThongKe;
         
         /// <summary>
-        /// A3 control.
+        /// hypChiPhi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A3;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor hypChiPhi;
         
         /// <summary>
         /// A4 control.
