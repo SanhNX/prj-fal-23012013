@@ -53,6 +53,9 @@ namespace FalStore
                 case "Event":
                     uc = this.LoadControl("~/Control/Event.ascx") as UserControl;
                     break;
+                case "ThongKe":
+                    uc = this.LoadControl("~/Control/ThongKe.ascx") as UserControl;
+                    break;
 
             }
 
