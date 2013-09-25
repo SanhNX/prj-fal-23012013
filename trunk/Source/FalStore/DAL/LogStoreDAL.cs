@@ -109,6 +109,49 @@ namespace DAL
 
         }
 
+        public List<objLogDetail> ShowReport2(string logStoreID)
+        {
+
+            List<objLogDetail> lst = new List<objLogDetail>();
+            objLogDetail obj = null;
+
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@LogStoreID", logStoreID));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spReport2", parameterList);
+            while (dr.Read())
+            {
+                obj = new objLogDetail();
+                obj.LogStore = new objLogStore();
+                obj.LogStore.LogStoreID = dr["Log_StoreID"].ToString();
+                obj.LogStore.Employee = new objEmployee();
+                obj.LogStore.Employee.EmployeeName = dr["EmployeeName"].ToString();
+                obj.LogStore.LogDate = dr["LogDate"].ToString();
+                obj.LogStore.BranchFrom = new objBranch();
+                obj.LogStore.BranchTo = new objBranch();
+                obj.LogStore.BranchFrom.BranchName = dr["BranchFromName"].ToString();
+                obj.LogStore.NCC = dr["NCC"].ToString();
+                obj.LogStore.Description = dr["Description"].ToString();
+                obj.BarCode = new objBarCode();
+                obj.BarCode.Product = new objProduct();
+                obj.BarCode.BarCode = dr["BarCode"].ToString();
+                obj.BarCode.Product.ProductName = dr["ProductName"].ToString();
+                // obj.Color = new objColor();
+                obj.BarCode.ColorName = dr["ColorName"].ToString();
+                obj.BarCode.SizeName = dr["SizeName"].ToString();
+                obj.BarCode.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+                obj.Sale = float.Parse(dr["Sale"].ToString());
+                obj.Quantity = int.Parse(dr["Quantity"].ToString());
+                obj.Amount = float.Parse(dr["Amount"].ToString());
+
+                lst.Add(obj);
+            }
+
+            return lst;
+
+        }
+
         /// <summary>
         /// get log detail by logStore
         /// </summary>
@@ -186,6 +229,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@BranchFrom", obj.BranchFrom.BranchID));
             parameterList.Add(new SqlParameter("@BranchTo", obj.BranchTo.BranchID));
             parameterList.Add(new SqlParameter("@NCC", obj.NCC));
+            parameterList.Add(new SqlParameter("@TotalAmount", obj.TotalAmount));
             parameterList.Add(new SqlParameter("@Description", obj.Description));
             parameterList.Add(new SqlParameter("@CreateDate", obj.CreateDate));
             parameterList.Add(new SqlParameter("@CreateUser", obj.CreateUser));
