@@ -112,23 +112,22 @@ namespace BIZ
                 foreach (var item in lstLogDetail)
                 {
                     //get info product in store --> check exist product
-                    objSto = stoDal.GetProductInfoByBranch(item.Product.ProductID, int.Parse(item.Color.ColorID.ToString()), item.Size, int.Parse(objLogStore.BranchTo.BranchID.ToString()));
+                    objSto = stoDal.GetBarCodeInfoByBranch(item.BarCode.BarCode, int.Parse(objLogStore.BranchTo.BranchID.ToString()));
 
                     //no exist --> create new record 
                     if (objSto == null)
                     {
                         objSto = new objStore();
-                        objSto.Product = new objProduct();
-                        objSto.Product.ProductID = item.Product.ProductID;
-                        objSto.Color = new objColor();
-                        objSto.Color.ColorID = item.Color.ColorID;
-                        objSto.Size = item.Size;
+                       //objSto. Product = new objProduct();
+                        objSto.BarCode = new objBarCode();
+                        objSto.ProductName = item.BarCode.Product.ProductName;
+                        objSto.BarCode.BarCode = item.BarCode.BarCode;
                         objSto.Branch = new objBranch();
                         objSto.Branch.BranchID = objLogStore.BranchTo.BranchID;
-                        objSto.ExportPrice = item.Product.ExportPrice;
+                        objSto.ExportPrice = item.BarCode.Product.ExportPrice;
                         objSto.Quantity = item.Quantity;
-                        objSto.LogStore = new objLogStore();
-                        objSto.LogStore.LogStoreID = item.LogStore.LogStoreID;
+                       // objSto.LogStore = new objLogStore();
+                        objSto.LogStoreID = item.LogStore.LogStoreID;
 
                         stoDal.InsertStore(objSto);
 
@@ -136,16 +135,10 @@ namespace BIZ
                     else
                     {
                         //exist record --> update quantity
-                        stoDal.UpdateStoreQuantity(objLogStore.BranchTo.BranchID, item.Product.ProductID, item.Color.ColorID, item.Size, item.Quantity);
+                        stoDal.UpdateStoreQuantity(objLogStore.BranchTo.BranchID, item.BarCode.BarCode, item.Quantity);
                     }
 
-                    if (type == 0)
-                    {
-                        //update total quantity
-                        proDal.UpdateProductTotalQuantity(item.Product.ProductID, item.Quantity);
-                    }
-
-                    stoDal.UpdateStoreQuantity(objLogStore.BranchFrom.BranchID, item.Product.ProductID, item.Color.ColorID, item.Size, - item.Quantity);
+                    stoDal.UpdateStoreQuantity(objLogStore.BranchFrom.BranchID, item.BarCode.BarCode, - item.Quantity);
                 }
 
 
@@ -223,12 +216,12 @@ namespace BIZ
         /// <param name="productID"></param>
         /// <param name="branchID"></param>
         /// <returns></returns>
-        public bool CheckProductInStore(string productID, int branchID)
+        public bool CheckProductInStore(string barCode, int branchID)
         {
             try
             {
-                objProduct obj = new objProduct();
-                obj = stoDal.GetProductInStore(productID, branchID);
+                objStore obj = new objStore();
+                obj = stoDal.GetBarCodeInfoByBranch(barCode, branchID);
 
                 if (obj == null)
                 {
@@ -252,12 +245,12 @@ namespace BIZ
         /// <param name="productID"></param>
         /// <param name="branchID"></param>
         /// <returns></returns>
-        public int CheckQuantityProductInStore(string productID, int branchID, int colorID, string size)
+        public int CheckQuantityProductInStore(string barCode, int branchID)
         {
             try
             {
                 int quantity = 0;
-                quantity = stoDal.GetQuantityProductInStore(productID, branchID,colorID,size);
+                quantity = stoDal.GetQuantityProductInStore(barCode, branchID);
 
                 return quantity; 
             }
