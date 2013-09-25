@@ -76,13 +76,13 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
-        /// txtProductID control.
+        /// txtBarCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProductID;
+        protected global::System.Web.UI.WebControls.TextBox txtBarCode;
         
         /// <summary>
         /// txtProductName control.
@@ -103,22 +103,22 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtExportPrice;
         
         /// <summary>
-        /// drpColor control.
+        /// txtColor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpColor;
+        protected global::System.Web.UI.WebControls.TextBox txtColor;
         
         /// <summary>
-        /// drpSize control.
+        /// txtSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drpSize;
+        protected global::System.Web.UI.WebControls.TextBox txtSize;
         
         /// <summary>
         /// txtSale control.
