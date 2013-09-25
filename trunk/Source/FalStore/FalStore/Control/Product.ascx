@@ -212,7 +212,7 @@
                     <!-- paging -->
                     <!-- end .container -->
                     <cc:Pager ID="pager" runat="server" EnableViewState="true" CompactModePageCount="10"
-                        CssClass="dataTables_info" MaxSmartShortCutCount="0" RTL="False" PageSize="10"
+                        CssClass="dataTables_info" MaxSmartShortCutCount="0" RTL="False" PageSize="50"
                         OnCommand="pager_Command" />
                 </div>
             </div>
