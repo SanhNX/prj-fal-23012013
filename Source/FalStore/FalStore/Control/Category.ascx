@@ -52,8 +52,6 @@
                         Show
                         <asp:DropDownList ID="drpSelect" runat="server" OnSelectedIndexChanged="drpSelect_SelectedIndexChanged"
                             AutoPostBack="true">
-                            <asp:ListItem>10</asp:ListItem>
-                            <asp:ListItem>25</asp:ListItem>
                             <asp:ListItem>50</asp:ListItem>
                         </asp:DropDownList>
                     </div>
@@ -67,11 +65,8 @@
                     <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
                         <thead>
                             <tr>
-                                <th>
+                                <th style="width: 100px;">
                                     Số thứ tự
-                                </th>
-                                <th>
-                                    Mã danh mục
                                 </th>
                                 <th>
                                     Tên danh mục
@@ -87,9 +82,6 @@
                                     <tr>
                                         <td>
                                             <asp:Literal runat="server" ID="ltrStt"></asp:Literal>
-                                        </td>
-                                        <td>
-                                            <asp:Literal runat="server" ID="ltrCategoryID"></asp:Literal>
                                         </td>
                                         <td>
                                             <asp:Literal runat="server" ID="ltrCategoryName"></asp:Literal>
@@ -110,7 +102,7 @@
                     <!-- paging -->
                     <!-- end .container -->
                     <cc:Pager ID="pager" runat="server" EnableViewState="true" CompactModePageCount="10"
-                        CssClass="dataTables_info" MaxSmartShortCutCount="0" RTL="False" PageSize="10"
+                        CssClass="dataTables_info" MaxSmartShortCutCount="0" RTL="False" PageSize="50"
                         OnCommand="pager_Command" />
                 </div>
             </div>

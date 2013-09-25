@@ -8,6 +8,10 @@ using BIZ;
 using Entity;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Data;
+using System.Drawing.Printing;
+using System.Drawing.Text;
+using System.IO;
+
 namespace FalStore.Control
 {
     public partial class DoanhThu : System.Web.UI.UserControl
@@ -186,8 +190,11 @@ namespace FalStore.Control
 
                 tbl.Rows.Add(dr);
             }
+            string file = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~"), "FileExport\\DoanhThu" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx");
+           // string abc = @"D:\DoanhThu" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
+            GenerateExcelFile(tbl, file);
 
-            GenerateExcelFile(tbl, @"D:\DoanhThu.xlsx");
+            Response.Redirect(file);
         }
 
         public void GenerateExcelFile(DataTable dataTable, string directory)
