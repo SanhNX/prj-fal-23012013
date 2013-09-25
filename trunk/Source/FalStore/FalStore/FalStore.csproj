@@ -13,7 +13,6 @@
     <RootNamespace>FalStore</RootNamespace>
     <AssemblyName>FalStore</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,7 +32,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -53,101 +61,25 @@
   <ItemGroup>
     <Content Include="Control\Branch.ascx" />
     <Content Include="Control\Category.ascx" />
+    <Content Include="Control\ChiPhi.ascx" />
+    <Content Include="Control\DoanhThu.ascx" />
     <Content Include="Control\Employee.ascx" />
+    <Content Include="Control\Event.ascx" />
+    <Content Include="Control\ExportProduct.ascx" />
+    <Content Include="Control\Home.ascx" />
     <Content Include="Control\LeftMenu.ascx" />
     <Content Include="Control\PrintBarCode.ascx" />
     <Content Include="Control\Product.ascx" />
     <Content Include="Control\Receipt.ascx" />
+    <Content Include="Control\Store.ascx" />
+    <Content Include="Control\ThongKe.ascx" />
     <Content Include="Control\TopMenu.ascx" />
     <Content Include="Control\User.ascx" />
     <Content Include="Default.aspx" />
-    <Content Include="Images\core\alpha.png" />
-    <Content Include="Images\core\arrow-left.png" />
-    <Content Include="Images\core\arrow-right.png" />
-    <Content Include="Images\core\bg\arches.png" />
-    <Content Include="Images\core\bg\blueprint.png" />
-    <Content Include="Images\core\bg\bricks.png" />
-    <Content Include="Images\core\bg\bright_squares.png" />
-    <Content Include="Images\core\bg\brushed_alu.png" />
-    <Content Include="Images\core\bg\carbon.png" />
-    <Content Include="Images\core\bg\circles.png" />
-    <Content Include="Images\core\bg\circuit.png" />
-    <Content Include="Images\core\bg\climpek.png" />
-    <Content Include="Images\core\bg\connect.png" />
-    <Content Include="Images\core\bg\corrugation.png" />
-    <Content Include="Images\core\bg\cubes.png" />
-    <Content Include="Images\core\bg\diagonal-noise.png" />
-    <Content Include="Images\core\bg\diagonal_striped_brick.png" />
-    <Content Include="Images\core\bg\diamonds.png" />
-    <Content Include="Images\core\bg\diamond_upholstery.png" />
-    <Content Include="Images\core\bg\escheresque.png" />
-    <Content Include="Images\core\bg\fabric_plaid.png" />
-    <Content Include="Images\core\bg\furley_bg.png" />
-    <Content Include="Images\core\bg\gplaypattern.png" />
-    <Content Include="Images\core\bg\gradient_squares.png" />
-    <Content Include="Images\core\bg\grey.png" />
-    <Content Include="Images\core\bg\grilled.png" />
-    <Content Include="Images\core\bg\hexellence.png" />
-    <Content Include="Images\core\bg\holes.png" />
-    <Content Include="Images\core\bg\lghtmesh.png" />
-    <Content Include="Images\core\bg\light_alu.png" />
-    <Content Include="Images\core\bg\light_checkered_tiles.png" />
-    <Content Include="Images\core\bg\light_honeycomb.png" />
-    <Content Include="Images\core\bg\littleknobs.png" />
-    <Content Include="Images\core\bg\mozaic.png" />
-    <Content Include="Images\core\bg\nistri.png" />
-    <Content Include="Images\core\bg\noise_lines.png" />
-    <Content Include="Images\core\bg\noise_pattern_with_crosslines.png" />
-    <Content Include="Images\core\bg\noisy_grid.png" />
-    <Content Include="Images\core\bg\norwegian_rose.png" />
-    <Content Include="Images\core\bg\paper.png" />
-    <Content Include="Images\core\bg\pineapplecut.png" />
-    <Content Include="Images\core\bg\pinstripe.png" />
-    <Content Include="Images\core\bg\project_papper.png" />
-    <Content Include="Images\core\bg\ravenna.png" />
-    <Content Include="Images\core\bg\reticular_tissue.png" />
-    <Content Include="Images\core\bg\rockywall.png" />
-    <Content Include="Images\core\bg\roof.png" />
-    <Content Include="Images\core\bg\roughcloth.png" />
-    <Content Include="Images\core\bg\shattered.png" />
-    <Content Include="Images\core\bg\silver_scales.png" />
-    <Content Include="Images\core\bg\skelatal_weave.png" />
-    <Content Include="Images\core\bg\small-crackle-bright.png" />
-    <Content Include="Images\core\bg\small_tiles.png" />
-    <Content Include="Images\core\bg\square_bg.png" />
-    <Content Include="Images\core\bg\stripes.png" />
-    <Content Include="Images\core\bg\struckaxiom.png" />
-    <Content Include="Images\core\bg\subtle_stripes.png" />
-    <Content Include="Images\core\bg\vichy.png" />
-    <Content Include="Images\core\bg\washi.png" />
-    <Content Include="Images\core\bg\wavecut.png" />
-    <Content Include="Images\core\bg\weave.png" />
-    <Content Include="Images\core\bg\whitey.png" />
-    <Content Include="Images\core\bg\white_brick_wall.png" />
-    <Content Include="Images\core\bg\white_tiles.png" />
-    <Content Include="Images\core\bg\worn_dots.png" />
-    <Content Include="Images\core\cpicker.png" />
-    <Content Include="Images\core\message-error.png" />
-    <Content Include="Images\core\message-info.png" />
-    <Content Include="Images\core\message-success.png" />
-    <Content Include="Images\core\message-warning.png" />
-    <Content Include="Images\core\mws-dark-bg.png" />
-    <Content Include="Images\core\mws-header-bg.png" />
-    <Content Include="Images\core\mws-login-circle.png" />
-    <Content Include="Images\core\mws-login-stitch.png" />
-    <Content Include="Images\core\mws-nav-ruler.png" />
-    <Content Include="Images\core\mws-panel-button-icon-min.png" />
-    <Content Include="Images\core\mws-panel-button-icon-plus.png" />
-    <Content Include="Images\core\mws-panel-header-bg.png" />
-    <Content Include="Images\core\mws-sidebar-stitch.png" />
-    <Content Include="Images\core\report-down.png" />
-    <Content Include="Images\core\report-up.png" />
-    <Content Include="Images\core\sort.png" />
-    <Content Include="Images\core\sort_asc.png" />
-    <Content Include="Images\core\sort_desc.png" />
-    <Content Include="Images\core\themer.png" />
-    <Content Include="Images\logo.png" />
-    <Content Include="Images\mws-logo.png" />
+    <Content Include="ErrorPage.aspx" />
+    <Content Include="FindProduct.aspx" />
+    <Content Include="PageReport.aspx" />
+    <Content Include="sales.aspx" />
     <Content Include="Scripts\custom-plugins\fileinput.js" />
     <Content Include="Scripts\custom-plugins\fileinput.min.js" />
     <Content Include="Scripts\custom-plugins\picklist\picklist.css" />
@@ -159,7 +91,10 @@
     <Content Include="Scripts\custom-plugins\wizard\wizard.css" />
     <Content Include="Scripts\custom-plugins\wizard\wizard.js" />
     <Content Include="Scripts\custom-plugins\wizard\wizard.min.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery.fancybox-1.3.4.js" />
+    <Content Include="Scripts\jquery.formatCurrency-1.4.0.js" />
+    <Content Include="Scripts\jquery.formatCurrency.vi-VN.js" />
+    <Content Include="Scripts\jquery.numberformatter-1.2.3.min.js" />
     <Content Include="Scripts\js\core\login.js" />
     <Content Include="Scripts\js\core\mws.js" />
     <Content Include="Scripts\js\core\themer.js" />
@@ -176,11 +111,11 @@
     <Content Include="Scripts\js\libs\excanvas.min.js" />
     <Content Include="Scripts\js\libs\jquery-1.8.3.js" />
     <Content Include="Scripts\js\libs\jquery-1.8.3.min.js" />
+    <Content Include="Scripts\js\libs\jquery.formatCurrency.js" />
     <Content Include="Scripts\js\libs\jquery.mousewheel.js" />
     <Content Include="Scripts\js\libs\jquery.mousewheel.min.js" />
     <Content Include="Scripts\js\libs\jquery.placeholder.js" />
     <Content Include="Scripts\js\libs\jquery.placeholder.min.js" />
-    <Content Include="Scripts\js\libs\PluginDetect.js" />
     <Content Include="Scripts\jui\css\jquery.ui.accordion.css" />
     <Content Include="Scripts\jui\css\jquery.ui.all.css" />
     <Content Include="Scripts\jui\css\jquery.ui.autocomplete.css" />
@@ -946,6 +881,7 @@
     <Content Include="Scripts\plugins\select2\spinner.gif" />
     <Content Include="Scripts\plugins\validate\jquery.validate-min.js" />
     <Content Include="Scripts\plugins\validate\jquery.validate.js" />
+    <Content Include="SelectColor.aspx" />
     <Content Include="Styles\bootstrap\css\bootstrap.css" />
     <Content Include="Styles\bootstrap\css\bootstrap.min.css" />
     <Content Include="Styles\bootstrap\js\bootstrap.js" />
@@ -2900,6 +2836,26 @@
     <Content Include="Styles\custom-plugins\wizard\wizard.css" />
     <Content Include="Styles\custom-plugins\wizard\wizard.js" />
     <Content Include="Styles\custom-plugins\wizard\wizard.min.js" />
+    <Content Include="images\fancybox\blank.gif" />
+    <Content Include="images\fancybox\fancybox-x.png" />
+    <Content Include="images\fancybox\fancybox-y.png" />
+    <Content Include="images\fancybox\fancybox.png" />
+    <Content Include="images\fancybox\fancy_close.png" />
+    <Content Include="images\fancybox\fancy_loading.png" />
+    <Content Include="images\fancybox\fancy_nav_left.png" />
+    <Content Include="images\fancybox\fancy_nav_right.png" />
+    <Content Include="images\fancybox\fancy_shadow_e.png" />
+    <Content Include="images\fancybox\fancy_shadow_n.png" />
+    <Content Include="images\fancybox\fancy_shadow_ne.png" />
+    <Content Include="images\fancybox\fancy_shadow_nw.png" />
+    <Content Include="images\fancybox\fancy_shadow_s.png" />
+    <Content Include="images\fancybox\fancy_shadow_se.png" />
+    <Content Include="images\fancybox\fancy_shadow_sw.png" />
+    <Content Include="images\fancybox\fancy_shadow_w.png" />
+    <Content Include="images\fancybox\fancy_title_left.png" />
+    <Content Include="images\fancybox\fancy_title_main.png" />
+    <Content Include="images\fancybox\fancy_title_over.png" />
+    <Content Include="images\fancybox\fancy_title_right.png" />
     <Content Include="Styles\fonts\icomoon\license.txt" />
     <Content Include="Styles\fonts\icomoon\style.css" />
     <Content Include="Styles\fonts\ptsans\stylesheet.css" />
@@ -4824,6 +4780,96 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Styles\Images\404-error-page-30.jpg" />
+    <Content Include="Styles\Images\banner_Falshop.png" />
+    <Content Include="Styles\Images\core\alpha.png" />
+    <Content Include="Styles\Images\core\arrow-left.png" />
+    <Content Include="Styles\Images\core\arrow-right.png" />
+    <Content Include="Styles\Images\core\bg\arches.png" />
+    <Content Include="Styles\Images\core\bg\blueprint.png" />
+    <Content Include="Styles\Images\core\bg\bricks.png" />
+    <Content Include="Styles\Images\core\bg\bright_squares.png" />
+    <Content Include="Styles\Images\core\bg\brushed_alu.png" />
+    <Content Include="Styles\Images\core\bg\carbon.png" />
+    <Content Include="Styles\Images\core\bg\circles.png" />
+    <Content Include="Styles\Images\core\bg\circuit.png" />
+    <Content Include="Styles\Images\core\bg\climpek.png" />
+    <Content Include="Styles\Images\core\bg\connect.png" />
+    <Content Include="Styles\Images\core\bg\corrugation.png" />
+    <Content Include="Styles\Images\core\bg\cubes.png" />
+    <Content Include="Styles\Images\core\bg\diagonal-noise.png" />
+    <Content Include="Styles\Images\core\bg\diagonal_striped_brick.png" />
+    <Content Include="Styles\Images\core\bg\diamonds.png" />
+    <Content Include="Styles\Images\core\bg\diamond_upholstery.png" />
+    <Content Include="Styles\Images\core\bg\escheresque.png" />
+    <Content Include="Styles\Images\core\bg\fabric_plaid.png" />
+    <Content Include="Styles\Images\core\bg\furley_bg.png" />
+    <Content Include="Styles\Images\core\bg\gplaypattern.png" />
+    <Content Include="Styles\Images\core\bg\gradient_squares.png" />
+    <Content Include="Styles\Images\core\bg\grey.png" />
+    <Content Include="Styles\Images\core\bg\grilled.png" />
+    <Content Include="Styles\Images\core\bg\hexellence.png" />
+    <Content Include="Styles\Images\core\bg\holes.png" />
+    <Content Include="Styles\Images\core\bg\lghtmesh.png" />
+    <Content Include="Styles\Images\core\bg\light_alu.png" />
+    <Content Include="Styles\Images\core\bg\light_checkered_tiles.png" />
+    <Content Include="Styles\Images\core\bg\light_honeycomb.png" />
+    <Content Include="Styles\Images\core\bg\littleknobs.png" />
+    <Content Include="Styles\Images\core\bg\mozaic.png" />
+    <Content Include="Styles\Images\core\bg\nistri.png" />
+    <Content Include="Styles\Images\core\bg\noise_lines.png" />
+    <Content Include="Styles\Images\core\bg\noise_pattern_with_crosslines.png" />
+    <Content Include="Styles\Images\core\bg\noisy_grid.png" />
+    <Content Include="Styles\Images\core\bg\norwegian_rose.png" />
+    <Content Include="Styles\Images\core\bg\paper.png" />
+    <Content Include="Styles\Images\core\bg\pineapplecut.png" />
+    <Content Include="Styles\Images\core\bg\pinstripe.png" />
+    <Content Include="Styles\Images\core\bg\project_papper.png" />
+    <Content Include="Styles\Images\core\bg\ravenna.png" />
+    <Content Include="Styles\Images\core\bg\reticular_tissue.png" />
+    <Content Include="Styles\Images\core\bg\rockywall.png" />
+    <Content Include="Styles\Images\core\bg\roof.png" />
+    <Content Include="Styles\Images\core\bg\roughcloth.png" />
+    <Content Include="Styles\Images\core\bg\shattered.png" />
+    <Content Include="Styles\Images\core\bg\silver_scales.png" />
+    <Content Include="Styles\Images\core\bg\skelatal_weave.png" />
+    <Content Include="Styles\Images\core\bg\small-crackle-bright.png" />
+    <Content Include="Styles\Images\core\bg\small_tiles.png" />
+    <Content Include="Styles\Images\core\bg\square_bg.png" />
+    <Content Include="Styles\Images\core\bg\stripes.png" />
+    <Content Include="Styles\Images\core\bg\struckaxiom.png" />
+    <Content Include="Styles\Images\core\bg\subtle_stripes.png" />
+    <Content Include="Styles\Images\core\bg\vichy.png" />
+    <Content Include="Styles\Images\core\bg\washi.png" />
+    <Content Include="Styles\Images\core\bg\wavecut.png" />
+    <Content Include="Styles\Images\core\bg\weave.png" />
+    <Content Include="Styles\Images\core\bg\whitey.png" />
+    <Content Include="Styles\Images\core\bg\white_brick_wall.png" />
+    <Content Include="Styles\Images\core\bg\white_tiles.png" />
+    <Content Include="Styles\Images\core\bg\worn_dots.png" />
+    <Content Include="Styles\Images\core\cpicker.png" />
+    <Content Include="Styles\Images\core\message-error.png" />
+    <Content Include="Styles\Images\core\message-info.png" />
+    <Content Include="Styles\Images\core\message-success.png" />
+    <Content Include="Styles\Images\core\message-warning.png" />
+    <Content Include="Styles\Images\core\mws-dark-bg.png" />
+    <Content Include="Styles\Images\core\mws-header-bg.png" />
+    <Content Include="Styles\Images\core\mws-login-circle.png" />
+    <Content Include="Styles\Images\core\mws-login-stitch.png" />
+    <Content Include="Styles\Images\core\mws-nav-ruler.png" />
+    <Content Include="Styles\Images\core\mws-panel-button-icon-min.png" />
+    <Content Include="Styles\Images\core\mws-panel-button-icon-plus.png" />
+    <Content Include="Styles\Images\core\mws-panel-header-bg.png" />
+    <Content Include="Styles\Images\core\mws-sidebar-stitch.png" />
+    <Content Include="Styles\Images\core\report-down.png" />
+    <Content Include="Styles\Images\core\report-up.png" />
+    <Content Include="Styles\Images\core\sort.png" />
+    <Content Include="Styles\Images\core\sort_asc.png" />
+    <Content Include="Styles\Images\core\sort_desc.png" />
+    <Content Include="Styles\Images\core\themer.png" />
+    <Content Include="Styles\Images\logo.png" />
+    <Content Include="Styles\Images\mws-logo.png" />
+    <Content Include="Styles\jquery.fancybox-1.3.4.css" />
     <Content Include="Styles\jui\css\jquery.ui.accordion.css" />
     <Content Include="Styles\jui\css\jquery.ui.all.css" />
     <Content Include="Styles\jui\css\jquery.ui.autocomplete.css" />
@@ -5589,7 +5635,10 @@
     <Content Include="Styles\plugins\select2\spinner.gif" />
     <Content Include="Styles\plugins\validate\jquery.validate-min.js" />
     <Content Include="Styles\plugins\validate\jquery.validate.js" />
-    <Content Include="Web.config" />
+    <Content Include="Styles\Style.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -5614,12 +5663,47 @@
     <Compile Include="Control\Category.ascx.designer.cs">
       <DependentUpon>Category.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Control\ChiPhi.ascx.cs">
+      <DependentUpon>ChiPhi.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\ChiPhi.ascx.designer.cs">
+      <DependentUpon>ChiPhi.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\DoanhThu.ascx.cs">
+      <DependentUpon>DoanhThu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\DoanhThu.ascx.designer.cs">
+      <DependentUpon>DoanhThu.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Control\Employee.ascx.cs">
       <DependentUpon>Employee.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Control\Employee.ascx.designer.cs">
       <DependentUpon>Employee.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Event.ascx.cs">
+      <DependentUpon>Event.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\Event.ascx.designer.cs">
+      <DependentUpon>Event.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ExportProduct.ascx.cs">
+      <DependentUpon>ExportProduct.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\ExportProduct.ascx.designer.cs">
+      <DependentUpon>ExportProduct.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Home.ascx.cs">
+      <DependentUpon>Home.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\Home.ascx.designer.cs">
+      <DependentUpon>Home.ascx</DependentUpon>
     </Compile>
     <Compile Include="Control\LeftMenu.ascx.cs">
       <DependentUpon>LeftMenu.ascx</DependentUpon>
@@ -5649,6 +5733,20 @@
     <Compile Include="Control\Receipt.ascx.designer.cs">
       <DependentUpon>Receipt.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Control\Store.ascx.cs">
+      <DependentUpon>Store.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\Store.ascx.designer.cs">
+      <DependentUpon>Store.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ThongKe.ascx.cs">
+      <DependentUpon>ThongKe.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\ThongKe.ascx.designer.cs">
+      <DependentUpon>ThongKe.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Control\TopMenu.ascx.cs">
       <DependentUpon>TopMenu.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5670,6 +5768,18 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DsLogDetail.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsLogDetail.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FalStore.Master.cs">
       <DependentUpon>FalStore.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5680,6 +5790,20 @@
     <Compile Include="bin\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="FindProduct.aspx.cs">
+      <DependentUpon>FindProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FindProduct.aspx.designer.cs">
+      <DependentUpon>FindProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageReport.aspx.cs">
+      <DependentUpon>PageReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageReport.aspx.designer.cs">
+      <DependentUpon>PageReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -5687,6 +5811,26 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ReportExport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportExport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="sales.aspx.cs">
+      <DependentUpon>sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sales.aspx.designer.cs">
+      <DependentUpon>sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SelectColor.aspx.cs">
+      <DependentUpon>SelectColor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SelectColor.aspx.designer.cs">
+      <DependentUpon>SelectColor.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -5696,6 +5840,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FalStore.Master" />
+    <None Include="DsLogDetail.xsc">
+      <DependentUpon>DsLogDetail.xsd</DependentUpon>
+    </None>
+    <None Include="DsLogDetail.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsLogDetail.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DsLogDetail.xss">
+      <DependentUpon>DsLogDetail.xsd</DependentUpon>
+    </None>
+    <None Include="Font\s128ah.TTF" />
+    <None Include="Font\S128ahs.TTF" />
     <None Include="Scripts\plugins\elfinder\connectors\php\connector.php" />
     <None Include="Scripts\plugins\elfinder\connectors\php\elFinder.class.php" />
     <None Include="Scripts\plugins\elfinder\connectors\python\connector.py" />
@@ -5712,14 +5869,33 @@
     <None Include="Styles\fonts\icomoon\fonts\icomoon.svg" />
     <None Include="Styles\fonts\icomoon\fonts\icomoon.ttf" />
     <None Include="Styles\fonts\icomoon\fonts\icomoon.woff" />
-    <None Include="Styles\fonts\ptsans\0XxGQsSc1g4rdRdjJKZrNBsxEYwM7FgeyaSgU71cLG0.woff" />
-    <None Include="Styles\fonts\ptsans\lILlYDvubYemzYzN7GbLkHhCUOGz7vYGh680lGh-uXM.woff" />
-    <None Include="Styles\fonts\ptsans\LKf8nhXsWg5ybwEGXk8UBQ.woff" />
-    <None Include="Styles\fonts\ptsans\PIPMHY90P7jtyjpXuZ2cLD8E0i7KZn-EPnyo3HZu7kw.woff" />
     <None Include="Styles\plugins\elfinder\connectors\php\connector.php" />
     <None Include="Styles\plugins\elfinder\connectors\php\elFinder.class.php" />
     <None Include="Styles\plugins\elfinder\connectors\python\connector.py" />
     <None Include="Styles\plugins\elfinder\connectors\python\elFinder.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BIZ\BIZ.csproj">
+      <Project>{186CCD2B-641A-47D7-B547-2904D23F4DB9}</Project>
+      <Name>BIZ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{9B956C48-7531-46CB-80FA-BF3D9A212003}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{6EDD53F3-DAF7-42FE-BCC2-49A68D2C3E8E}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\ReportExport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportExport.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -5729,7 +5905,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1596</DevelopmentServerPort>
+          <DevelopmentServerPort>3925</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
