@@ -43,11 +43,11 @@ namespace FalStore
                 row = tblLogDetail.NewRow();
                 row["STT"] = stt;
                 stt++;
-                row["ProductID"] = item.Product.ProductID;
-                row["ProductName"] = item.Product.ProductName;
-                row["ColorName"] = item.Color.ColorName;
-                row["Size"] = item.Size;
-                row["ExportPrice"] = item.Product.ExportPrice;
+                //row["ProductID"] = item.Product.ProductID;
+                //row["ProductName"] = item.Product.ProductName;
+                //row["ColorName"] = item.Color.ColorName;
+                //row["Size"] = item.Size;
+                //row["ExportPrice"] = item.Product.ExportPrice;
                 row["Sale"] = item.Sale;
                 row["Quantity"] = item.Quantity;
                 row["Amount"] = item.Amount;
