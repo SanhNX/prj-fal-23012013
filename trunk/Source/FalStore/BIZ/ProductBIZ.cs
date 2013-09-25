@@ -83,6 +83,23 @@ namespace BIZ
 
         }
 
+        public objProduct ShowByID(string productID)
+        {
+            try
+            {
+                objProduct obj = new objProduct();
+                obj = DAL.GetProductByID(productID);
+
+                return obj;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
         /// <summary>
         /// search product
         /// </summary>
