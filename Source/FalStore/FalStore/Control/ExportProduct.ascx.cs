@@ -175,7 +175,8 @@ namespace FalStore.Control
                 ClearProductInfo();
                 ShowControl(false);
 
-                Response.Redirect("~/PageReport.aspx?id=" + txtLogStoreID.Text);
+                Response.Write("<script type='text/javascript'>window.open('PageReport.aspx?id=" + txtLogStoreID.Text + "','_blank');</script>");
+              
             }
             catch (Exception)
             {
