@@ -96,23 +96,35 @@ namespace FalStore
                 if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
                 {
 
-                    objProduct data = e.Item.DataItem as objProduct;
+                    objBarCode data = e.Item.DataItem as objBarCode;
 
                     //Literal ltrStt = e.Item.FindControl("ltrStt") as Literal;
                     //ltrStt.Text = stt.ToString();
                     //stt++;
 
                     Literal ltrProductID = e.Item.FindControl("ltrProductID") as Literal;
-                    ltrProductID.Text = data.ProductID.ToString();
+                    ltrProductID.Text = data.Product.ProductID.ToString();
 
                     Literal ltrProductName = e.Item.FindControl("ltrProductName") as Literal;
-                    ltrProductName.Text = data.ProductName.ToString();
+                    ltrProductName.Text = data.Product.ProductName.ToString();
 
                     Literal ltrCategoryName = e.Item.FindControl("ltrCategoryName") as Literal;
-                    ltrCategoryName.Text = data.Category.CategoryName.ToString();
+                    ltrCategoryName.Text = data.Product.Category.CategoryName.ToString();
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.ExportPrice.ToString();
+                    ltrExportPrice.Text = data.Product.ExportPrice.ToString();
+
+                    Literal ltrImportPrice = e.Item.FindControl("ltrImportPrice") as Literal;
+                    ltrImportPrice.Text = data.Product.ImportPrice.ToString();
+
+                    Literal ltrColorName = e.Item.FindControl("ltrColorName") as Literal;
+                    ltrColorName.Text = data.ColorName.ToString();
+
+                    Literal ltrSizeName = e.Item.FindControl("ltrSizeName") as Literal;
+                    ltrSizeName.Text = data.SizeName.ToString();
+
+                    Literal ltrBarCode = e.Item.FindControl("ltrBarCode") as Literal;
+                    ltrBarCode.Text = data.BarCode.ToString();
                 }
             }
             catch (Exception)
@@ -125,8 +137,8 @@ namespace FalStore
 
         protected void btnFind_Click(object sender, EventArgs e)
         {
-            List<objProduct> lst = new List<objProduct>();
-            lst = productBIZ.Search(txtProductName.Text, int.Parse(drpCategory.SelectedValue.ToString()));
+            List<objBarCode> lst = new List<objBarCode>();
+            lst = productBIZ.Search(txtProductID.Text, txtProductName.Text, int.Parse(drpCategory.SelectedValue.ToString()));
 
             if (lst != null)
             {
