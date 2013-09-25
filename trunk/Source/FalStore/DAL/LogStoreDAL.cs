@@ -90,14 +90,14 @@ namespace DAL
                 obj.LogStore.BranchFrom.BranchName = dr["BranchFromName"].ToString();
                 obj.LogStore.BranchTo.BranchName = dr["BranchToName"].ToString();
                 obj.LogStore.Description = dr["Description"].ToString();
-                //obj.Product = new objProduct();
-                //obj.Product.ProductID = dr["ProductID"].ToString();
-                //obj.Product.ProductName = dr["ProductName"].ToString();
-                //fixbug
-                //obj.Color = new objColor();
-                //obj.Color.ColorName = dr["ColorName"].ToString();
-                //obj.Size = dr["Size"].ToString();
-                //obj.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+                obj.BarCode = new objBarCode();
+                obj.BarCode.Product = new objProduct();
+                obj.BarCode.BarCode = dr["BarCode"].ToString();
+                obj.BarCode.Product.ProductName = dr["ProductName"].ToString();
+               // obj.Color = new objColor();
+                obj.BarCode.ColorName = dr["ColorName"].ToString();
+                obj.BarCode.SizeName = dr["SizeName"].ToString();
+                obj.BarCode.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
                 obj.Sale = float.Parse(dr["Sale"].ToString());
                 obj.Quantity = int.Parse(dr["Quantity"].ToString());
                 obj.Amount = float.Parse(dr["Amount"].ToString());
