@@ -98,6 +98,9 @@ namespace BIZ
         {
             try
             {
+                List<objLogDetail> l = new List<objLogDetail>();
+
+
                 objStore objSto;
                 //update status log detail
                 logDal.UpdateStatusLogDetail(objLogStore.LogStoreID);
