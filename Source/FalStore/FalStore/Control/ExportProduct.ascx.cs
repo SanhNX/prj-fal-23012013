@@ -175,7 +175,7 @@ namespace FalStore.Control
                 ClearProductInfo();
                 ShowControl(false);
 
-               // Response.Redirect("~/PageReport.aspx?id=" + id);
+                Response.Redirect("~/PageReport.aspx?id=" + txtLogStoreID.Text);
             }
             catch (Exception)
             {
@@ -381,7 +381,7 @@ namespace FalStore.Control
         /// </summary>
         private void ClearLogStoreInfo()
         {
-            txtLogStoreID.Text = string.Empty;
+            //txtLogStoreID.Text = string.Empty;
             txtDescription.Text = string.Empty;
         }
 
