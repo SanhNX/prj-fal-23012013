@@ -5,18 +5,16 @@ using System.Text;
 
 namespace Entity
 {
-    public class objLogDetail
+    public class    objLogDetail
     {
         //ID
         public int LogDetailID { get; set; }
         //Log Store object
         public objLogStore LogStore { get; set; }
         //Product object
-        public objProduct Product { get; set; }
-        //Color object
-        public objColor Color { get; set; }
-        //Size object
-        public string Size { get; set; }
+        //public objProduct Product { get; set; }
+        //barcode
+        public objBarCode BarCode { get; set; }
         //Sale
         public float Sale { get; set; }
         //Quantity
