@@ -47,9 +47,8 @@
                             <label class="mws-form-label">
                                 Tên sản phẩm</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtTenSanPham" runat="server" class="" Visible="true"></asp:TextBox>
-                                 <asp:RegularExpressionValidator ID="RegularExpressionTenSanPham" runat="server" ErrorMessage="Tên sản phẩm phải ít hơn 30 ký tự"
-                                        ControlToValidate="txtTenSanPham" ForeColor="Red" ValidationExpression=".{30}.*"></asp:RegularExpressionValidator>
+                                <asp:TextBox ID="txtTenSanPham" runat="server" class="" Visible="true" MaxLength="30"></asp:TextBox>
+
                             </div>
                         </div>
                         <div class="mws-form-row">
@@ -57,8 +56,8 @@
                                 Từ ngày</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtStartDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
-                                <%--<asp:RequiredFieldValidator ID="RequiredFieldStartDate" runat="server" ErrorMessage="Không đươc để tróng"
-                                        ControlToValidate="txtStartDate" ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                <asp:RequiredFieldValidator ID="RequiredFieldStartDate" runat="server" ErrorMessage="Chọn ngày"
+                                        ControlToValidate="txtStartDate" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="mws-form-row">
@@ -66,6 +65,8 @@
                                 Dến ngày</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="TxtEndDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Chọn ngày"
+                                        ControlToValidate="TxtEndDate" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="mws-form-row">

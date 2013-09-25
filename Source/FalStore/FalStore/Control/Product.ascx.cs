@@ -250,6 +250,7 @@ namespace FalStore.Control
 
                 //    //lstColor.Add(objColor);
                 //}
+                objProduct objProTemp = new objProduct();
                 for (int i = 0; i < lColor.Count; i++)
                 {
                     for (int j = 0; j < 4; j++)
@@ -258,6 +259,7 @@ namespace FalStore.Control
                         {
                             objBar = new objBarCode();
                             objBar.BarCode = txtProductID.Text + i + "S";
+                            objBar.Product = new objProduct();
                             objBar.Product.ProductID = txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
                             objBar.SizeName = "S";
@@ -266,6 +268,7 @@ namespace FalStore.Control
                         else if (j == 1)
                         {
                             objBar = new objBarCode();
+                            objBar.Product = new objProduct();
                             objBar.BarCode = txtProductID.Text + i + "M";
                             objBar.Product.ProductID= txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
@@ -275,6 +278,7 @@ namespace FalStore.Control
                         else if (j == 2)
                         {
                             objBar = new objBarCode();
+                            objBar.Product = new objProduct();
                             objBar.BarCode = txtProductID.Text + i + "L";
                             objBar.Product.ProductID = txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
@@ -284,6 +288,7 @@ namespace FalStore.Control
                         else if (j == 3)
                         {
                             objBar = new objBarCode();
+                            objBar.Product = new objProduct();
                             objBar.BarCode = txtProductID.Text + i + "XL";
                             objBar.Product.ProductID = txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
@@ -361,7 +366,7 @@ namespace FalStore.Control
         private void LoadDataUpdate(string productID)
         {
             objProduct obj = new objProduct();
-           // obj = productBIZ.ShowByID(productID);
+            obj = productBIZ.ShowByID(productID);
             txtProductID.Text = obj.ProductID;
             txtProductName.Text = obj.ProductName;
             txtImportPrice.Text = obj.ImportPrice.ToString();
