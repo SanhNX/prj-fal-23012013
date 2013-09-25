@@ -101,6 +101,36 @@ namespace DAL
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="barCode"></param>
+        /// <returns></returns>
+        public objBarCode GetProductByBarCode(string barCode)
+        {
+            objBarCode obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@BarCode", barCode));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spProductGetByBarCode", parameterList);
+
+            while (dr.Read())
+            {
+                obj = new objBarCode();
+                obj.Product = new objProduct();
+                obj.Product.ProductID = dr["ProductID"].ToString();
+                obj.Product.ProductName = dr["ProductName"].ToString();
+                //obj.Product.ImportPrice = float.Parse(dr["ImportPrice"].ToString());
+                obj.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+                obj.BarCode = dr["BarCode"].ToString();
+                obj.ColorName = dr["ColorName"].ToString();
+                obj.SizeName = dr["SizeName"].ToString();
+            }
+            return obj;
+
+        }
+
+        /// <summary>
         /// get product by ID
         /// </summary>
         /// <param name="ProductID"></param>
@@ -281,7 +311,7 @@ namespace DAL
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@BarCodeID", obj.BarCode));
-            parameterList.Add(new SqlParameter("@ProductID", obj.ProductID));
+            parameterList.Add(new SqlParameter("@ProductID", obj.Product.ProductID));
             parameterList.Add(new SqlParameter("@ColorName", obj.ColorName));
             parameterList.Add(new SqlParameter("@SizeName", obj.SizeName));
 

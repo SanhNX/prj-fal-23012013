@@ -90,13 +90,14 @@ namespace DAL
                 obj.LogStore.BranchFrom.BranchName = dr["BranchFromName"].ToString();
                 obj.LogStore.BranchTo.BranchName = dr["BranchToName"].ToString();
                 obj.LogStore.Description = dr["Description"].ToString();
-                obj.Product = new objProduct();
-                obj.Product.ProductID = dr["ProductID"].ToString();
-                obj.Product.ProductName = dr["ProductName"].ToString();
-                obj.Color = new objColor();
-                obj.Color.ColorName = dr["ColorName"].ToString();
-                obj.Size = dr["Size"].ToString();
-                obj.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+                //obj.Product = new objProduct();
+                //obj.Product.ProductID = dr["ProductID"].ToString();
+                //obj.Product.ProductName = dr["ProductName"].ToString();
+                //fixbug
+                //obj.Color = new objColor();
+                //obj.Color.ColorName = dr["ColorName"].ToString();
+                //obj.Size = dr["Size"].ToString();
+                //obj.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
                 obj.Sale = float.Parse(dr["Sale"].ToString());
                 obj.Quantity = int.Parse(dr["Quantity"].ToString());
                 obj.Amount = float.Parse(dr["Amount"].ToString());
@@ -130,21 +131,23 @@ namespace DAL
                 obj = new objLogDetail();
                 obj.LogStore = new objLogStore();
                 obj.LogStore.LogStoreID = dr["Log_StoreID"].ToString();
-                obj.Product = new objProduct();
-                obj.Product.ProductID = dr["ProductID"].ToString();
-                obj.Product.ProductName = dr["ProductName"].ToString();
-                obj.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+                obj.BarCode = new objBarCode();
+                obj.BarCode.BarCode = dr["BarCode"].ToString();
+                obj.BarCode.Product = new objProduct();
+                obj.BarCode.Product.ProductID = dr["ProductID"].ToString();
+                obj.BarCode.Product.ProductName = dr["ProductName"].ToString();
+                obj.BarCode.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
                 obj.Quantity = int.Parse(dr["Quantity"].ToString());
                 obj.Sale = float.Parse(dr["Sale"].ToString());
                 obj.Amount = float.Parse(dr["Amount"].ToString());
-                obj.Color = new objColor();
-                obj.Color.ColorID = int.Parse(dr["ColorID"].ToString());
-                obj.Color.ColorName = dr["ColorName"].ToString();
-                obj.Size = dr["Size"].ToString();
+                //obj.Color = new objColor();
+                //obj.Color.ColorID = int.Parse(dr["ColorID"].ToString());
+                obj.BarCode.ColorName = dr["ColorName"].ToString();
+                obj.BarCode.SizeName = dr["SizeName"].ToString();
 
                 lst.Add(obj);
 
-                total = total + obj.Product.ExportPrice;
+                total = total + obj.Amount;
             }
 
             return lst;
@@ -202,9 +205,9 @@ namespace DAL
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@LogStoreID", obj.LogStore.LogStoreID));
-            parameterList.Add(new SqlParameter("@ProductID", obj.Product.ProductID));
-            parameterList.Add(new SqlParameter("@ColorID", obj.Color.ColorID));
-            parameterList.Add(new SqlParameter("@Size", obj.Size));
+            parameterList.Add(new SqlParameter("@BarCode", obj.BarCode.BarCode));
+            //parameterList.Add(new SqlParameter("@ColorID", obj.Color.ColorID));
+            //parameterList.Add(new SqlParameter("@Size", obj.Size));
             parameterList.Add(new SqlParameter("@Sale", obj.Sale));
             parameterList.Add(new SqlParameter("@Quantity", obj.Quantity));
             parameterList.Add(new SqlParameter("@Amount", obj.Amount));
