@@ -63,6 +63,23 @@ namespace BIZ
 
         }
 
+        public List<objLogDetail> ShowReport2(string logID)
+        {
+            try
+            {
+                List<objLogDetail> lst = new List<objLogDetail>();
+                lst = logDal.ShowReport2(logID);
+
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
         /// <summary>
         /// get log detail by logStore 
         /// </summary>
