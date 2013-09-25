@@ -17,6 +17,7 @@ namespace FalStore
         protected void Page_Load(object sender, EventArgs e)
         {
             string storeID =  HttpContext.Current.Request.QueryString["id"];
+            //string storeID = "0000000004";
             List<objLogDetail> lstLogDetail = new List<objLogDetail>();
             DataTable tblLogDetail = new DataTable();
             tblLogDetail.Columns.Add("STT", typeof(int));
@@ -43,11 +44,13 @@ namespace FalStore
                 row = tblLogDetail.NewRow();
                 row["STT"] = stt;
                 stt++;
-                //row["ProductID"] = item.Product.ProductID;
-                //row["ProductName"] = item.Product.ProductName;
-                //row["ColorName"] = item.Color.ColorName;
-                //row["Size"] = item.Size;
-                //row["ExportPrice"] = item.Product.ExportPrice;
+                //item.BarCode = new objBarCode();
+                //item.BarCode.Product = new objProduct();
+                row["ProductID"] = item.BarCode.BarCode;
+                row["ProductName"] = item.BarCode.Product.ProductName;
+                row["ColorName"] = item.BarCode.ColorName;
+                row["Size"] = item.BarCode.SizeName;
+                row["ExportPrice"] = item.BarCode.Product.ExportPrice;
                 row["Sale"] = item.Sale;
                 row["Quantity"] = item.Quantity;
                 row["Amount"] = item.Amount;
