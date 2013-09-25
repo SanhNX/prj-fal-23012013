@@ -107,9 +107,9 @@
                         <legend>Chọn sản phẩm</legend>
                         <div class="mws-form-row">
                             <label class="mws-form-label">
-                                Mã sản phẩm/ Mã vạch</label>
+                                Mã vạch</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtProductID" runat="server" class="small" AutoPostBack="true" OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
+                                <asp:TextBox ID="txtBarCode" runat="server" class="small" AutoPostBack="true" OnTextChanged="txtBarCode_TextChanged"></asp:TextBox>
                                   <a id="lnkFindProduct" class="fancyboxDemo" style="cursor: pointer" >Chọn sản phẩm
                                 </a>
                             </div>
@@ -138,20 +138,14 @@
                                     <label class="mws-form-label">
                                         Màu sắc</label>
                                     <div class="mws-form-item">
-                                        <asp:DropDownList ID="drpColor" runat="server" class="small" Enabled="False">
-                                        </asp:DropDownList>
+                                        <asp:TextBox ID="txtColor" runat="server" class="small" Enabled="False"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="mws-form-col-4-8">
                                     <label class="mws-form-label">
                                         Size</label>
                                     <div class="mws-form-item">
-                                        <asp:DropDownList ID="drpSize" runat="server" class="small">
-                                            <asp:ListItem>S</asp:ListItem>
-                                            <asp:ListItem>M</asp:ListItem>
-                                            <asp:ListItem>L</asp:ListItem>
-                                            <asp:ListItem>XL</asp:ListItem>
-                                        </asp:DropDownList>
+                                         <asp:TextBox ID="txtSize" runat="server" class="small" Enabled="False"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>

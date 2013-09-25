@@ -34,19 +34,19 @@ namespace FalStore.Control
                 ShowControl(false);
                 txtLogDate.Text = DateTime.Now.Date.ToShortDateString();
             }
-            if (Session["ProductID"] != null)
-            {
-                txtProductID.Text = Session["ProductID"].ToString();
-                txtProductID_TextChanged(sender, e);
-            }
-            if (Session["ma"] != null)
-            {
-                txtLogStoreID.Text = Session["ma"].ToString();
-            }
-            if (Session["nd"] != null)
-            {
-                txtDescription.Text = Session["nd"].ToString();
-            }
+            //if (Session["ProductID"] != null)
+            //{
+            //    txtProductID.Text = Session["ProductID"].ToString();
+            //    txtProductID_TextChanged(sender, e);
+            //}
+            //if (Session["ma"] != null)
+            //{
+            //    txtLogStoreID.Text = Session["ma"].ToString();
+            //}
+            //if (Session["nd"] != null)
+            //{
+            //    txtDescription.Text = Session["nd"].ToString();
+            //}
            
         }
 
@@ -95,17 +95,19 @@ namespace FalStore.Control
             try
             {
                 int quantity;
-                quantity = logBiz.CheckQuantityProductInStore(txtProductID.Text, int.Parse(drpBranchFrom.SelectedValue.ToString()), int.Parse(drpColor.SelectedValue.ToString()), drpSize.SelectedItem.ToString());
+                quantity = logBiz.CheckQuantityProductInStore(txtBarCode.Text, int.Parse(drpBranchFrom.SelectedValue.ToString()));
                 if (quantity > int.Parse(txtQuantity.Text) || quantity == int.Parse(txtQuantity.Text))
                 {
                     objLogDetail obj = new objLogDetail();
-                    obj.Product = new objProduct();
-                    obj.Product.ProductID = txtProductID.Text;
-                    obj.Color = new objColor();
-                    obj.Color.ColorID = int.Parse(drpColor.SelectedValue.ToString());
+                    //obj.Product = new objProduct();
+                    //obj.Product.ProductID = txtProductID.Text;
+                    // obj.Color = new objColor();
+                    // obj.Color.ColorID = int.Parse(drpColor.SelectedValue.ToString());
+                    obj.BarCode = new objBarCode();
+                    obj.BarCode.BarCode = txtBarCode.Text;
                     obj.LogStore = new objLogStore();
                     obj.LogStore.LogStoreID = txtLogStoreID.Text;
-                    obj.Size = drpSize.SelectedItem.ToString();
+                    // obj.Size = drpSize.SelectedItem.ToString();
                     float exportPrice = float.Parse(txtExportPrice.Text);
                     obj.Sale = float.Parse(txtSale.Text);
                     obj.Quantity = int.Parse(txtQuantity.Text);
@@ -146,11 +148,17 @@ namespace FalStore.Control
         {
             try
             {
-                
+                bool flag = CheckBranch();
+                if (!flag)
+                {
+                    Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Vui lòng kiểm tra chi nhánh nhập xuất\"); <" + "/script>"));
+                    return;
+                }
+
                 string id = txtLogStoreID.Text;
                 objLogStore objLgStore = new objLogStore();
                 objLgStore.LogStoreID = txtLogStoreID.Text;
-                objLgStore.LogType = 0;
+                objLgStore.LogType = 1;
                 objLgStore.Employee = new objEmployee();
                 objLgStore.Employee.EmployeeID = 1;
                 objLgStore.LogDate = txtLogDate.Text;
@@ -167,7 +175,7 @@ namespace FalStore.Control
                 ClearProductInfo();
                 ShowControl(false);
 
-                Response.Redirect("~/PageReport.aspx?id=" + id);
+               // Response.Redirect("~/PageReport.aspx?id=" + id);
             }
             catch (Exception)
             {
@@ -181,11 +189,11 @@ namespace FalStore.Control
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void txtProductID_TextChanged(object sender, EventArgs e)
+        protected void txtBarCode_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                LoadProductByID(txtProductID.Text, int.Parse(drpBranchFrom.SelectedValue.ToString()));
+                LoadProductByBarCode(txtBarCode.Text, int.Parse(drpBranchFrom.SelectedValue.ToString()));
             }
             catch (Exception)
             {
@@ -205,24 +213,23 @@ namespace FalStore.Control
             {
                 if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
                 {
-
                     objLogDetail data = e.Item.DataItem as objLogDetail;
 
 
                     Literal ltrProductID = e.Item.FindControl("ltrProductID") as Literal;
-                    ltrProductID.Text = data.Product.ProductID.ToString();
+                    ltrProductID.Text = data.BarCode.Product.ProductID;
 
                     Literal ltrProductName = e.Item.FindControl("ltrProductName") as Literal;
-                    ltrProductName.Text = data.Product.ProductName.ToString();
+                    ltrProductName.Text = data.BarCode.Product.ProductName;
 
                     Literal ltrColor = e.Item.FindControl("ltrColor") as Literal;
-                    ltrColor.Text = data.Color.ColorName.ToString();
+                    ltrColor.Text = data.BarCode.ColorName;
 
                     Literal ltrSize = e.Item.FindControl("ltrSize") as Literal;
-                    ltrSize.Text = data.Size.ToString();
+                    ltrSize.Text = data.BarCode.SizeName;
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.Product.ExportPrice.ToString(); ;
+                    ltrExportPrice.Text = data.BarCode.Product.ExportPrice.ToString();
 
                     Literal ltrQuantity = e.Item.FindControl("ltrQuantity") as Literal;
                     ltrQuantity.Text = data.Quantity.ToString();
@@ -270,26 +277,27 @@ namespace FalStore.Control
         /// </summary>
         /// <param name="productID"></param>
         /// <param name="branchID"></param>
-        private void LoadProductByID(string productID, int branchID)
+        private void LoadProductByBarCode(string barCode, int branchID)
         {
             ClearProductInfo();
-            bool flag = logBiz.CheckProductInStore(productID, branchID);
+            bool flag = logBiz.CheckProductInStore(barCode, branchID);
             if (flag)
             {
-                objProduct objPro = new objProduct();
-                List<objColor> lstObjCol = new List<objColor>();
-                objPro = proBiz.ShowByID(productID);
-                if (objPro != null)
+                objBarCode objBar = new objBarCode();
+                //List<objColor> lstObjCol = new List<objColor>();
+                objBar = proBiz.ShowProductByBarCode(barCode);
+                if (objBar != null)
                 {
-                    txtProductID.Text = objPro.ProductID;
-                    txtProductName.Text = objPro.ProductName;
-                    txtExportPrice.Text = objPro.ExportPrice.ToString();
-                    drpColor.Enabled = true;
-                    lstObjCol = proBiz.ShowColorByProductID(productID);
-                    drpColor.DataSource = lstObjCol;
-                    drpColor.DataTextField = "ColorName";
-                    drpColor.DataValueField = "ColorID";
-                    drpColor.DataBind();
+                    txtBarCode.Text = objBar.BarCode;
+                    txtProductName.Text = objBar.Product.ProductName;
+                    txtExportPrice.Text = objBar.Product.ExportPrice.ToString();
+                    txtColor.Text = objBar.ColorName;
+                    txtSize.Text = objBar.SizeName;
+                    //lstObjCol = proBiz.ShowColorByProductID(productID);
+                    //drpColor.DataSource = lstObjCol;
+                    //drpColor.DataTextField = "ColorName";
+                    //drpColor.DataValueField = "ColorID";
+                    //drpColor.DataBind();
 
                 }
             }
@@ -309,7 +317,7 @@ namespace FalStore.Control
             // txtLogStoreID.Enabled = flag;
             //txtLogDate.Enabled = flag;
             txtDescription.Enabled = flag;
-            txtProductID.Enabled = flag;
+            txtBarCode.Enabled = flag;
             txtSale.Enabled = flag;
             txtQuantity.Enabled = flag;
             btnAddProduct.Enabled = flag;
@@ -359,8 +367,10 @@ namespace FalStore.Control
         /// </summary>
         private void ClearProductInfo()
         {
-            txtProductID.Text = string.Empty;
+            txtBarCode.Text = string.Empty;
             txtProductName.Text = string.Empty;
+            txtColor.Text = string.Empty;
+            txtSize.Text = string.Empty;
             txtQuantity.Text = "1";
             txtSale.Text = "0";
             txtExportPrice.Text = string.Empty;
@@ -375,6 +385,15 @@ namespace FalStore.Control
             txtDescription.Text = string.Empty;
         }
 
+        private bool CheckBranch()
+        {
+            if (drpBranchFrom.SelectedValue == drpBranchTo.SelectedValue)
+            {
+                return false;
+            }
+
+            return true;
+        }
         #endregion
     }
 }
