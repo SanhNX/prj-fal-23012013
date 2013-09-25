@@ -298,18 +298,18 @@ namespace FalStore.Control
 
         protected void txtBarCode_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (txtBarCode.Text != string.Empty)
-                {
-                    ShowProductByID(txtBarCode.Text);
-                }
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    if (txtBarCode.Text != string.Empty)
+            //    {
+            //        ShowProductByID(txtBarCode.Text);
+            //    }
+            //}
+            //catch (Exception)
+            //{
 
-                throw;
-            }
+            //    throw;
+            //}
         }
 
         /// <summary>
@@ -319,14 +319,14 @@ namespace FalStore.Control
         /// <param name="branchID"></param>
         private void ShowProductByID(string productID)
         {
-            objProduct objPro = new objProduct();
-            List<objColor> lstObjCol = new List<objColor>();
-            objPro = proBiz.ShowByID(productID);
-            if (objPro != null)
-            {
-                txtProductName.Text = objPro.ProductName;
-                txtPrice.Text = objPro.ExportPrice.ToString();
-            }
+            //objProduct objPro = new objProduct();
+            //List<objColor> lstObjCol = new List<objColor>();
+            //objPro = proBiz.ShowByID(productID);
+            //if (objPro != null)
+            //{
+            //    txtProductName.Text = objPro.ProductName;
+            //    txtPrice.Text = objPro.ExportPrice.ToString();
+            //}
         }
 
         int stt = 1;

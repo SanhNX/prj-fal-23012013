@@ -40,15 +40,6 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtTenSanPham;
         
         /// <summary>
-        /// RegularExpressionTenSanPham control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionTenSanPham;
-        
-        /// <summary>
         /// txtStartDate control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace FalStore.Control {
         protected global::System.Web.UI.WebControls.TextBox txtStartDate;
         
         /// <summary>
+        /// RequiredFieldStartDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldStartDate;
+        
+        /// <summary>
         /// TxtEndDate control.
         /// </summary>
         /// <remarks>
@@ -65,6 +65,15 @@ namespace FalStore.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtEndDate;
+        
+        /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// drpCategory control.

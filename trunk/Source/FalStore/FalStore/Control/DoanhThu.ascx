@@ -26,7 +26,7 @@
         <!-- From category --->
         <div class="mws-panel grid_8">
             <div class="mws-panel-header">
-                <span>Thông tin kho</span>
+                <span>Thông tin hóa đơn</span>
             </div>
             <div class="mws-panel-body no-padding">
                 <div class="mws-form">
@@ -37,6 +37,7 @@
                                 Từ ngày</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtStartDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="txtStartDate" ForeColor="Red" runat="server" ErrorMessage="Chọn Ngày"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="mws-form-row">
@@ -44,6 +45,7 @@
                                 Dến ngày</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="TxtEndDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="TxtEndDate" ForeColor="Red" runat="server" ErrorMessage="Chọn Ngày"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="mws-form-row">

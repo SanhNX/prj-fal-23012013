@@ -21,7 +21,7 @@
         TranferData();
     }
    , 'onClosed': function () {
-       // alert(popupRetVal);
+        //alert(popupRetVal);
        window.location.href = '<%= Page.ResolveUrl("~/Default.aspx?pageName=Product") %>';
        
    }
@@ -135,8 +135,6 @@
                             Show
                         </label>
                         <asp:DropDownList ID="drpSelect" runat="server">
-                            <asp:ListItem>10</asp:ListItem>
-                            <asp:ListItem>25</asp:ListItem>
                             <asp:ListItem>50</asp:ListItem>
                         </asp:DropDownList>
                     </div>
