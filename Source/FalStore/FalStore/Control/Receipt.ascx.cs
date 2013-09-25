@@ -150,6 +150,8 @@ namespace FalStore.Control
                 objLgStore.BranchTo.BranchID = int.Parse(drpBranchTo.SelectedValue.ToString());
                 objLgStore.NCC = txtNcc.Text;
                 objLgStore.Description = txtDescription.Text;
+                objLgStore.TotalAmount = float.Parse(txtTotal.Text);
+
                 SetUpdateInfo(objLgStore, 0);
                 logBiz.InsertlogStore(objLgStore, 0);
                 //InitPage();
@@ -157,7 +159,8 @@ namespace FalStore.Control
                 ClearLogStoreInfo();
                 ShowControl(false);
 
-                Response.Redirect("~/PageReport.aspx?id=" + txtLogStoreID.Text);
+                Response.Write("<script type='text/javascript'>window.open('PageReport2.aspx?id=" + txtLogStoreID.Text + "','_blank');</script>");
+              
             }
             catch (Exception)
             {
@@ -243,6 +246,7 @@ namespace FalStore.Control
         {
             try
             {
+               
                 string id = logBiz.NewLogStoreID();
                 txtLogStoreID.Text = id;
                 ShowControl(true);
