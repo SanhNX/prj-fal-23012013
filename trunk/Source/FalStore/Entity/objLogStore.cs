@@ -23,6 +23,8 @@ namespace Entity
         public objBranch BranchTo { get; set; }
         //Description
         public string Description { get; set; }
+        //TotalAmount
+        public float TotalAmount { get; set; }
         //Status
         public int Status { get; set; }
         //Delete Flag
