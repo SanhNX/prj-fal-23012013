@@ -75,7 +75,7 @@ namespace FalStore.Control
             try
             {
                 int count;
-                pageSize = int.Parse(drpSelect.Text);
+                pageSize = 50;
                 //this.pager.ItemCount = 21;
                 List<objProduct> tbl = new List<objProduct>();
                 tbl = productBIZ.ShowByPaging(currentPageIndex, pageSize, out count);
@@ -250,7 +250,6 @@ namespace FalStore.Control
 
                 //    //lstColor.Add(objColor);
                 //}
-                objProduct objProTemp = new objProduct();
                 for (int i = 0; i < lColor.Count; i++)
                 {
                     for (int j = 0; j < 4; j++)
@@ -259,7 +258,7 @@ namespace FalStore.Control
                         {
                             objBar = new objBarCode();
                             objBar.BarCode = txtProductID.Text + i + "S";
-                            objBar.Product = new objProduct();
+                            objBar.Product = new Entity.objProduct();
                             objBar.Product.ProductID = txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
                             objBar.SizeName = "S";
@@ -268,8 +267,8 @@ namespace FalStore.Control
                         else if (j == 1)
                         {
                             objBar = new objBarCode();
-                            objBar.Product = new objProduct();
                             objBar.BarCode = txtProductID.Text + i + "M";
+                            objBar.Product = new Entity.objProduct();
                             objBar.Product.ProductID= txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
                             objBar.SizeName = "M";
@@ -278,8 +277,8 @@ namespace FalStore.Control
                         else if (j == 2)
                         {
                             objBar = new objBarCode();
-                            objBar.Product = new objProduct();
                             objBar.BarCode = txtProductID.Text + i + "L";
+                            objBar.Product = new Entity.objProduct();
                             objBar.Product.ProductID = txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
                             objBar.SizeName = "L";
@@ -288,8 +287,8 @@ namespace FalStore.Control
                         else if (j == 3)
                         {
                             objBar = new objBarCode();
-                            objBar.Product = new objProduct();
                             objBar.BarCode = txtProductID.Text + i + "XL";
+                            objBar.Product = new Entity.objProduct();
                             objBar.Product.ProductID = txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
                             objBar.SizeName = "XL";
