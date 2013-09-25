@@ -26,7 +26,7 @@
     <script src="Scripts/plugins/validate/jquery.validate-min.js"></script>
     <!-- Login Script -->
     <script src="Scripts/js/core/login.js"></script>
-    <title>MWS Admin - Login Page - (shared on themelock.com)</title>
+    <title>Fashion And Life</title>
 </head>
 <body>
     <div id="mws-login-wrapper">
