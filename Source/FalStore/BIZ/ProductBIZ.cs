@@ -105,12 +105,12 @@ namespace BIZ
         /// </summary>
         /// <param name="productID"></param>
         /// <returns></returns>
-        public List<objProduct> Search(string productName, int categoryID)
+        public List<objBarCode> Search(string productID,  string productName, int categoryID)
         {
             try
             {
-                List<objProduct> lst = new List<objProduct>();
-                lst = DAL.GetProductSearch(productName, categoryID);
+                List<objBarCode> lst = new List<objBarCode>();
+                lst = DAL.GetProductSearch(productID, productName, categoryID);
 
                 return lst;
             }
