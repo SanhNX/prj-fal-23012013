@@ -135,34 +135,32 @@ namespace DAL
         /// </summary>
         /// <param name="ProductID"></param>
         /// <returns></returns>
-        public List<objProduct> GetProductSearch(string ProductName, int categoryID)
+        public List<objBarCode> GetProductSearch(string ProductID, string ProductName, int categoryID)
         {
-            List<objProduct> lst = new List<objProduct>();
-            objProduct obj = null;
+            List<objBarCode> lst = new List<objBarCode>();
+            objBarCode obj = null;
 
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
-            if (ProductName != string.Empty)
-            {
-                parameterList.Add(new SqlParameter("@ProductName", "'%" + ProductName + "%'"));
-            }
-            else
-            {
-                parameterList.Add(new SqlParameter("@ProductName", ProductName));
-            }
+            parameterList.Add(new SqlParameter("@ProductID", ProductID));
+            parameterList.Add(new SqlParameter("@ProductName", ProductName));
+
             parameterList.Add(new SqlParameter("@CategoryID", categoryID));
 
             SqlDataReader dr = SQLHelper.ExecuteReader("spProductSearch", parameterList);
 
             while (dr.Read())
             {
-                obj = new objProduct();
-                obj.ProductID = dr["ProductID"].ToString();
-                obj.ProductName = dr["ProductName"].ToString();
-                obj.Category = new objCategory();
-                obj.Category.CategoryName = dr["CategoryName"].ToString();
-                //obj.ImportPrice = float.Parse(dr["ImportPrice"].ToString());
-                obj.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
-
+                obj = new objBarCode();
+                obj.Product= new objProduct();
+                obj.Product.ProductID = dr["ProductID"].ToString();
+                obj.Product.ProductName = dr["ProductName"].ToString();
+                obj.Product.Category = new objCategory();
+                obj.Product.Category.CategoryName = dr["CategoryName"].ToString();
+                obj.Product.ImportPrice = float.Parse(dr["ImportPrice"].ToString());
+                obj.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+                obj.ColorName = dr["ColorName"].ToString();
+                obj.SizeName = dr["SizeName"].ToString();
+                obj.BarCode = dr["BarCode"].ToString();
                 lst.Add(obj);
             }
             return lst;
@@ -291,7 +289,7 @@ namespace DAL
             while (dr.Read())
             {
                 obj = new objColor();
-                obj.ColorID = int.Parse( dr["ColorID"].ToString());
+                obj.ColorID = int.Parse(dr["ColorID"].ToString());
                 obj.ColorName = dr["ColorName"].ToString();
 
                 lst.Add(obj);

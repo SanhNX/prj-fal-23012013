@@ -123,8 +123,8 @@ namespace DAL
         /// <returns></returns>
         public int GetQuantityProductInStore(string barCode, int branchID)
         {
-            int quantity =0;
-            
+            int quantity = 0;
+
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
             parameterList.Add(new SqlParameter("@BarCode", barCode));
             parameterList.Add(new SqlParameter("@BranchID", branchID));
@@ -134,7 +134,7 @@ namespace DAL
             SqlDataReader dr = SQLHelper.ExecuteReader("spStoreGetQuantity", parameterList);
             while (dr.Read())
             {
-                quantity= int.Parse(dr["Quantity"].ToString());
+                quantity = int.Parse(dr["Quantity"].ToString());
             }
 
             return quantity;
@@ -170,7 +170,7 @@ namespace DAL
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@StoreID", obj.StoreID));
-           // parameterList.Add(new SqlParameter("@ProductID", obj.Product.ProductID));
+            // parameterList.Add(new SqlParameter("@ProductID", obj.Product.ProductID));
             parameterList.Add(new SqlParameter("@VerID", obj.VerID));
             //parameterList.Add(new SqlParameter("@ColorID", obj.Color.ColorID));
             //parameterList.Add(new SqlParameter("@SizeID", obj.Size));
@@ -201,7 +201,7 @@ namespace DAL
 
             return SQLHelper.ExecuteNonQuery("spStoreUpdateQuantity", parameterList);
         }
-        
+
         /// <summary>
         /// delete store
         /// </summary>
@@ -223,24 +223,9 @@ namespace DAL
             objStore obj = null;
 
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
-            if (productID != string.Empty)
-            {
-                parameterList.Add(new SqlParameter("@ProductID", "'%" + productID + "%'"));
-            }
-            else
-            {
-                parameterList.Add(new SqlParameter("@ProductID", productID ));
-            }
+            parameterList.Add(new SqlParameter("@ProductID", productID));
+            parameterList.Add(new SqlParameter("@ProductName", productName));
 
-            if (productName != string.Empty)
-            {
-                parameterList.Add(new SqlParameter("@ProductName", "'%" + productName + "%'"));
-            }
-            else
-            {
-                parameterList.Add(new SqlParameter("@ProductName",  productName ));
-            }
-           
             parameterList.Add(new SqlParameter("@BranchID", branchID));
             parameterList.Add(new SqlParameter("@CategoryID", categoryID));
 
@@ -250,10 +235,10 @@ namespace DAL
                 obj = new objStore();
                 obj.BarCode = new objBarCode();
                 obj.BarCode.BarCode = dr["BarCode"].ToString();
-                obj.ProductName= dr["ProductName"].ToString();
-               // obj.Product.ProductName = dr["ProductName"].ToString();
+                obj.ProductName = dr["ProductName"].ToString();
+                // obj.Product.ProductName = dr["ProductName"].ToString();
                 obj.ImportPrice = float.Parse(dr["ImportPrice"].ToString());
-               // obj.VerID = dr["VerId"].ToString();
+                // obj.VerID = dr["VerId"].ToString();
                 //obj.Color = new objColor();
                 obj.BarCode.ColorName = dr["ColorName"].ToString();
                 obj.BarCode.SizeName = dr["SizeName"].ToString();
@@ -266,7 +251,7 @@ namespace DAL
 
             return lst;
 
- 
+
         }
 
     }
