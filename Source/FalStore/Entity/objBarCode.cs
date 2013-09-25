@@ -8,7 +8,7 @@ namespace Entity
     public class objBarCode
     {
         public string BarCode { get; set; }
-        public string ProductID { get; set; }
+        public objProduct Product { get; set; }
         public string ColorName { get; set; }
         public string SizeName { get; set; }
     }
