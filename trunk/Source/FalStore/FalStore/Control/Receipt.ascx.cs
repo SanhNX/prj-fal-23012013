@@ -156,6 +156,8 @@ namespace FalStore.Control
                 BindRepeater();
                 ClearLogStoreInfo();
                 ShowControl(false);
+
+                Response.Redirect("~/PageReport.aspx?id=" + txtLogStoreID.Text);
             }
             catch (Exception)
             {
@@ -357,7 +359,7 @@ namespace FalStore.Control
         /// </summary>
         private void ClearLogStoreInfo()
         {
-            txtLogStoreID.Text = string.Empty;
+           // txtLogStoreID.Text = string.Empty;
             txtNcc.Text = string.Empty;
             txtDescription.Text = string.Empty;
         }
