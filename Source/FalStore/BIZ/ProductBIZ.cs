@@ -66,12 +66,12 @@ namespace BIZ
         /// </summary>
         /// <param name="productID"></param>
         /// <returns></returns>
-        public objProduct ShowByID(string productID)
+        public objBarCode ShowProductByBarCode(string barcode)
         {
             try
             {
-                objProduct obj = new objProduct();
-                obj = DAL.GetProductByID(productID);
+                objBarCode obj = new objBarCode();
+                obj = DAL.GetProductByBarCode(barcode);
 
                 return obj;
             }
