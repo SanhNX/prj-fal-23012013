@@ -113,7 +113,8 @@ namespace FalStore.Control
                     obj.Quantity = int.Parse(txtQuantity.Text);
                     if (obj.Sale != 0)
                     {
-                        obj.Amount = (exportPrice - (exportPrice / obj.Sale)) * obj.Quantity;
+                        //obj.Amount = (exportPrice - (exportPrice / obj.Sale)) * obj.Quantity;
+                        obj.Amount = ((exportPrice * obj.Quantity) * obj.Sale)/ 100;
                     }
                     else
                     {
@@ -167,10 +168,11 @@ namespace FalStore.Control
                 objLgStore.BranchTo = new objBranch();
                 objLgStore.BranchTo.BranchID = int.Parse(drpBranchTo.SelectedValue.ToString());
                 objLgStore.NCC = string.Empty;
+                objLgStore.TotalAmount = float.Parse( txtTotal.Text);
                 objLgStore.Description = txtDescription.Text;
                 SetUpdateInfo(objLgStore, 0);
                 logBiz.InsertlogStore(objLgStore, 1);
-                //InitPage();
+                InitPage();
                 ClearLogStoreInfo();
                 ClearProductInfo();
                 ShowControl(false);

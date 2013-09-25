@@ -14,14 +14,14 @@
                             <label class="mws-form-label">
                                 Mã sản phẩm</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtProductID" runat="server" class="small"></asp:TextBox>
+                                <asp:TextBox ID="txtProductID" runat="server" class="small" MaxLength="7"></asp:TextBox>
                             </div>
                         </div>
                         <div class="mws-form-row">
                             <label class="mws-form-label">
                                 Tên sản phẩm</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtProductName" runat="server" class="small"></asp:TextBox>
+                                <asp:TextBox ID="txtProductName" runat="server" class="small" MaxLength="20"></asp:TextBox>
                             </div>
                         </div>
                         <div class="mws-form-row">

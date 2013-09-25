@@ -103,9 +103,6 @@ namespace FalStore.Control
                     ltrStt.Text = stt.ToString();
                     stt++;
 
-                    Literal ltrCategoryID = e.Item.FindControl("ltrCategoryID") as Literal;
-                    ltrCategoryID.Text = data.CategoryID.ToString();
-
                     Literal ltrCategoryName = e.Item.FindControl("ltrCategoryName") as Literal;
                     ltrCategoryName.Text = data.CategoryName.ToString();
 

@@ -68,7 +68,7 @@
                                 <label class="mws-form-label">
                                     Tên sản phẩm</label>
                                 <div class="mws-form-item">
-                                    <asp:TextBox ID="txtProductName" runat="server" class="small"></asp:TextBox>
+                                    <asp:TextBox ID="txtProductName" runat="server" class="small" MaxLength="20"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldProductName" runat="server" ErrorMessage="Nhập tên sản phẩm"
                                         ControlToValidate="txtProductName" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
