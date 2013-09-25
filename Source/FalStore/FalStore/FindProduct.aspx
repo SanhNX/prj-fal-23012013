@@ -46,6 +46,13 @@
                 <div id="mws-form" class="mws-form">
                     <div class="mws-form-inline">
                         <div class="mws-form-row">
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Mã sản phẩm</label>
+                                <div class="mws-form-item">
+                                    <asp:TextBox ID="txtProductID" runat="server" class="small" MaxLength="7"></asp:TextBox>
+                                </div>
+                            </div>
                             <div class=" mws-form-cols">
                                 <div class="mws-form-col-4-8">
                                     <label class="mws-form-label">
@@ -59,7 +66,7 @@
                                     <label class="mws-form-label">
                                         Tên sản phẩm</label>
                                     <div class="mws-form-item">
-                                        <asp:TextBox ID="txtProductName" runat="server" class="large"></asp:TextBox>
+                                        <asp:TextBox ID="txtProductName" runat="server" class="small"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -105,10 +112,22 @@
                                     Loại sản phẩm
                                 </th>
                                 <th>
+                                    Mã vạch
+                                </th>
+                                <th>
                                     Mã sản phẩm
                                 </th>
                                 <th>
                                     Tên sản phẩm
+                                </th>
+                                <th>
+                                    Màu sắc
+                                </th>
+                                <th>
+                                    Size
+                                </th>
+                                <th>
+                                    Giá nhập
                                 </th>
                                 <th>
                                     Giá bán
@@ -116,21 +135,34 @@
                             </tr>
                         </thead>
                         <tbody role="alert" aria-live="polite" aria-relevant="all">
-                            <asp:Repeater ID="rptResult" runat="server" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand">
+                            <asp:Repeater ID="rptResult" runat="server" OnItemDataBound="rptResult_ItemDataBound"
+                                OnItemCommand="rptResult_ItemCommand">
                                 <ItemTemplate>
                                     <tr>
                                         <td>
                                             <asp:LinkButton ID="lnkSelect" runat="server" CausesValidation="false" CommandName="Select"
-                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Chọn</asp:LinkButton>
+                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "BarCode") %>'>Chọn</asp:LinkButton>
                                         </td>
                                         <td>
                                             <asp:Literal runat="server" ID="ltrCategoryName"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrBarCode"></asp:Literal>
                                         </td>
                                         <td>
                                             <asp:Literal runat="server" ID="ltrProductID"></asp:Literal>
                                         </td>
                                         <td>
                                             <asp:Literal runat="server" ID="ltrProductName"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrColorName"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrSizeName"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrImportPrice"></asp:Literal>
                                         </td>
                                         <td>
                                             <asp:Literal runat="server" ID="ltrExportPrice"></asp:Literal>
