@@ -39,13 +39,22 @@ namespace FalStore.Control
             {
                 List<objCategory> lstCategory = new List<objCategory>();
                 lstCategory = catBiz.ShowAll();
+
+                drpCategory.AppendDataBoundItems = true;
+                drpCategory.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                drpCategory.SelectedIndex = 0;
                 drpCategory.DataSource = lstCategory;
                 drpCategory.DataTextField = "CategoryName";
                 drpCategory.DataValueField = "CategoryID";
                 drpCategory.DataBind();
 
+
                 List<objBranch> lstBranch = new List<objBranch>();
                 lstBranch = branBiz.ShowAll();
+
+                drpBranch.AppendDataBoundItems = true;
+                drpBranch.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                drpBranch.SelectedIndex = 0;
                 drpBranch.DataSource = lstBranch;
                 drpBranch.DataTextField = "BranchName";
                 drpBranch.DataValueField = "BranchID";
@@ -62,7 +71,10 @@ namespace FalStore.Control
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            InitPage();
+            if (!IsPostBack)
+            {
+                InitPage();
+            }
         }
 
         /// <summary>
@@ -86,17 +98,23 @@ namespace FalStore.Control
                     Literal ltrBranchName = e.Item.FindControl("ltrBranchName") as Literal;
                     ltrBranchName.Text = data.Branch.BranchName.ToString();
 
-                    Literal ltrProductID = e.Item.FindControl("ltrProductID") as Literal;
-                    ltrProductID.Text = data.Product.ProductID.ToString();
+                    Literal ltrBarCode = e.Item.FindControl("ltrBarCode") as Literal;
+                    ltrBarCode.Text = data.BarCode.BarCode;
 
                     Literal ltrProductName = e.Item.FindControl("ltrProductName") as Literal;
-                    ltrProductName.Text = data.Product.ProductName.ToString();
+                    ltrProductName.Text = data.ProductName;
 
                     Literal ltrColorName = e.Item.FindControl("ltrColorName") as Literal;
-                    ltrColorName.Text = data.Color.ColorName.ToString();
+                    ltrColorName.Text = data.BarCode.ColorName;
 
                     Literal ltrSize = e.Item.FindControl("ltrSize") as Literal;
-                    ltrSize.Text = data.Size.ToString();
+                    ltrSize.Text = data.BarCode.SizeName;
+
+                    Literal ltrImportPrice = e.Item.FindControl("ltrImportPrice") as Literal;
+                    ltrImportPrice.Text = data.ImportPrice.ToString();
+
+                    Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
+                    ltrExportPrice.Text = data.ExportPrice.ToString();
 
                     Literal ltrQuantity = e.Item.FindControl("ltrQuantity") as Literal;
                     ltrQuantity.Text = data.Quantity.ToString();
@@ -148,7 +166,19 @@ namespace FalStore.Control
             {
                 List<objStore> lstObj = new List<objStore>();
 
-                lstObj = stoBiz.Search(txtProductID.Text, txtProductName.Text, int.Parse(drpBranch.SelectedValue.ToString()), int.Parse(drpCategory.SelectedValue.ToString()));
+                int branch = 0;
+                if (drpBranch.SelectedValue != string.Empty)
+                {
+                    branch= int.Parse(drpBranch.SelectedValue.ToString());
+                }
+
+                int category = 0;
+                if (drpCategory.SelectedValue != string.Empty)
+                {
+                    category = int.Parse(drpCategory.SelectedValue.ToString());
+                }
+
+                lstObj = stoBiz.Search(txtProductID.Text, txtProductName.Text, branch, category);
                 if (lstObj != null)
                 {
                     rptResult.DataSource = lstObj;

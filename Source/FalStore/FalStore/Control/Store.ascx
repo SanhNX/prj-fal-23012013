@@ -58,7 +58,7 @@
                                                 Chi nhánh
                                             </th>
                                             <th>
-                                                Mã sản phẩm
+                                                Mã vạch
                                             </th>
                                             <th>
                                                 Tên sản phẩm
@@ -69,14 +69,16 @@
                                             <th>
                                                 Size
                                             </th>
+                                             <th>
+                                                Giá nhập
+                                            </th>
                                             <th>
                                                 Giá bán
                                             </th>
                                             <th>
                                                 Số lượng
                                             </th>
-                                            <th>
-                                            </th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -88,7 +90,7 @@
                                                         <asp:Literal runat="server" ID="ltrBranchName"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrProductID"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrBarCode"></asp:Literal>
                                                     </td>
                                                     <td>
                                                         <asp:Literal runat="server" ID="ltrProductName"></asp:Literal>
@@ -100,17 +102,15 @@
                                                         <asp:Literal runat="server" ID="ltrSize"></asp:Literal>
                                                     </td>
                                                     <td>
+                                                        <asp:Literal runat="server" ID="ltrImportPrice"></asp:Literal>
+                                                    </td>
+                                                    <td>
                                                         <asp:Literal runat="server" ID="ltrExportPrice"></asp:Literal>
                                                     </td>
                                                     <td>
                                                         <asp:Literal runat="server" ID="ltrQuantity"></asp:Literal>
                                                     </td>
-                                                    <td>
-                                                       <%-- <i class="icon-pencil"></i>
-                                                        <asp:LinkButton ID="lnkView" runat="server" CausesValidation="false" CommandName="View"
-                                                            CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xem</asp:LinkButton>
-                                                     --%>
-                                                    </td>
+                                                   
                                                 </tr>
                                             </ItemTemplate>
                                         </asp:Repeater>
