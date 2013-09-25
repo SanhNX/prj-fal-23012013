@@ -258,7 +258,7 @@ namespace FalStore.Control
                         {
                             objBar = new objBarCode();
                             objBar.BarCode = txtProductID.Text + i + "S";
-                            objBar.ProductID = txtProductID.Text;
+                            objBar.Product.ProductID = txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
                             objBar.SizeName = "S";
                             lstBarcode.Add(objBar);
@@ -267,7 +267,7 @@ namespace FalStore.Control
                         {
                             objBar = new objBarCode();
                             objBar.BarCode = txtProductID.Text + i + "M";
-                            objBar.ProductID = txtProductID.Text;
+                            objBar.Product.ProductID= txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
                             objBar.SizeName = "M";
                             lstBarcode.Add(objBar);
@@ -276,7 +276,7 @@ namespace FalStore.Control
                         {
                             objBar = new objBarCode();
                             objBar.BarCode = txtProductID.Text + i + "L";
-                            objBar.ProductID = txtProductID.Text;
+                            objBar.Product.ProductID = txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
                             objBar.SizeName = "L";
                             lstBarcode.Add(objBar);
@@ -285,7 +285,7 @@ namespace FalStore.Control
                         {
                             objBar = new objBarCode();
                             objBar.BarCode = txtProductID.Text + i + "XL";
-                            objBar.ProductID = txtProductID.Text;
+                            objBar.Product.ProductID = txtProductID.Text;
                             objBar.ColorName = lColor[i].ToString();
                             objBar.SizeName = "XL";
                             lstBarcode.Add(objBar);
@@ -361,7 +361,7 @@ namespace FalStore.Control
         private void LoadDataUpdate(string productID)
         {
             objProduct obj = new objProduct();
-            obj = productBIZ.ShowByID(productID);
+           // obj = productBIZ.ShowByID(productID);
             txtProductID.Text = obj.ProductID;
             txtProductName.Text = obj.ProductName;
             txtImportPrice.Text = obj.ImportPrice.ToString();
