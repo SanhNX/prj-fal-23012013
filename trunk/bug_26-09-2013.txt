@@ -1,0 +1,9 @@
+1-- list nhap hang can thể hiện thêm thông tin giá nhập
+
+2-- Nhập hang , thì tính tổng hóa đơn là từ giá nhập 
+
+3 -- Luu them 1 column tổng số lượng sản phẩm nhập , hay xuất , 
+
+4 --- Fix bug kieu tiền : khi nhập nhiều tiền quá thì ra kieu 1E,A gi đấy .
+
+5 --- chech bug report tren host , khong report duoc
