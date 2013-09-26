@@ -34,6 +34,7 @@ namespace FalStore
             tblLogDetail.Columns.Add("LogDate", typeof(string));
             tblLogDetail.Columns.Add("BranchFrom", typeof(string));
             tblLogDetail.Columns.Add("BranchTo", typeof(string));
+            
 
             DataRow row; 
             int stt =1;
@@ -60,6 +61,7 @@ namespace FalStore
                 row["LogDate"] = item.LogStore.LogDate;
                 row["BranchFrom"] = item.LogStore.BranchFrom.BranchName;
                 row["BranchTo"] = item.LogStore.BranchTo.BranchName;
+
 
                 tblLogDetail.Rows.Add(row);
             }
