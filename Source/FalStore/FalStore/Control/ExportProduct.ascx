@@ -200,10 +200,11 @@
                                             <th>
                                                 Thành tiền
                                             </th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
-                                        <asp:Repeater ID="rptResult" runat="server" OnItemDataBound="rptResult_ItemDataBound">
+                                        <asp:Repeater ID="rptResult" runat="server" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand">
                                             <ItemTemplate>
                                                 <tr>
                                                     <td>
@@ -230,6 +231,12 @@
                                                     <td>
                                                         <asp:Literal runat="server" ID="ltrAmount"></asp:Literal>
                                                     </td>
+                                                      <td>
+                                                     <i class="icon-trash"></i>
+                                            <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" CommandName="Delete"
+                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "LogDetailID") %>'>Xóa</asp:LinkButton>
+                                                </td>
+
                                                 </tr>
                                             </ItemTemplate>
                                         </asp:Repeater>

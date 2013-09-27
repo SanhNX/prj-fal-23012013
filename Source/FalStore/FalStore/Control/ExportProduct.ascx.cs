@@ -34,19 +34,6 @@ namespace FalStore.Control
                 ShowControl(false);
                 txtLogDate.Text = DateTime.Now.Date.ToShortDateString();
             }
-            //if (Session["ProductID"] != null)
-            //{
-            //    txtProductID.Text = Session["ProductID"].ToString();
-            //    txtProductID_TextChanged(sender, e);
-            //}
-            //if (Session["ma"] != null)
-            //{
-            //    txtLogStoreID.Text = Session["ma"].ToString();
-            //}
-            //if (Session["nd"] != null)
-            //{
-            //    txtDescription.Text = Session["nd"].ToString();
-            //}
            
         }
 
@@ -57,13 +44,7 @@ namespace FalStore.Control
         {
             try
             {
-                //List<objEmployee> lstEmployee = new List<objEmployee>();
-                //lstEmployee = empBiz.ShowAll();
-                //drpEmployee.DataSource = lstEmployee;
-                //drpEmployee.DataTextField = "EmployeeName";
-                //drpEmployee.DataValueField = "EmployeeID";
-                //drpEmployee.DataBind();
-
+              
                 List<objBranch> lstBranch = new List<objBranch>();
                 lstBranch = branBiz.ShowAll();
                 drpBranchTo.DataSource = lstBranch;
@@ -94,42 +75,52 @@ namespace FalStore.Control
         {
             try
             {
-                int quantity;
-                quantity = logBiz.CheckQuantityProductInStore(txtBarCode.Text, int.Parse(drpBranchFrom.SelectedValue.ToString()));
-                if (quantity > int.Parse(txtQuantity.Text) || quantity == int.Parse(txtQuantity.Text))
+              
+                if (txtBarCode.Text != string.Empty)
                 {
-                    objLogDetail obj = new objLogDetail();
-                    //obj.Product = new objProduct();
-                    //obj.Product.ProductID = txtProductID.Text;
-                    // obj.Color = new objColor();
-                    // obj.Color.ColorID = int.Parse(drpColor.SelectedValue.ToString());
-                    obj.BarCode = new objBarCode();
-                    obj.BarCode.BarCode = txtBarCode.Text;
-                    obj.LogStore = new objLogStore();
-                    obj.LogStore.LogStoreID = txtLogStoreID.Text;
-                    // obj.Size = drpSize.SelectedItem.ToString();
-                    float exportPrice = float.Parse(txtExportPrice.Text);
-                    obj.Sale = float.Parse(txtSale.Text);
-                    obj.Quantity = int.Parse(txtQuantity.Text);
-                    if (obj.Sale != 0)
+                    int quantity;
+                    quantity = logBiz.CheckQuantityProductInStore(txtBarCode.Text, int.Parse(drpBranchFrom.SelectedValue.ToString()));
+                    if (quantity > int.Parse(txtQuantity.Text) || quantity == int.Parse(txtQuantity.Text))
                     {
-                        //obj.Amount = (exportPrice - (exportPrice / obj.Sale)) * obj.Quantity;
-                        obj.Amount = ((exportPrice * obj.Quantity) * obj.Sale)/ 100;
+                        objLogDetail obj = new objLogDetail();
+                        //obj.Product = new objProduct();
+                        //obj.Product.ProductID = txtProductID.Text;
+                        // obj.Color = new objColor();
+                        // obj.Color.ColorID = int.Parse(drpColor.SelectedValue.ToString());
+                        obj.BarCode = new objBarCode();
+                        obj.BarCode.BarCode = txtBarCode.Text;
+                        obj.LogStore = new objLogStore();
+                        obj.LogStore.LogStoreID = txtLogStoreID.Text;
+                        // obj.Size = drpSize.SelectedItem.ToString();
+                        float exportPrice = float.Parse(txtExportPrice.Text);
+                        obj.Sale = float.Parse(txtSale.Text);
+                        obj.Quantity = int.Parse(txtQuantity.Text);
+                        if (obj.Sale != 0)
+                        {
+                            //obj.Amount = (exportPrice - (exportPrice / obj.Sale)) * obj.Quantity;
+                            obj.Amount = ((exportPrice * obj.Quantity) * obj.Sale) / 100;
+                        }
+                        else
+                        {
+                            obj.Amount = exportPrice * obj.Quantity;
+                        }
+
+                        logBiz.InsertLogDetail(obj);
+
+                        BindRepeater();
+                        ClearProductInfo();
+
                     }
                     else
                     {
-                        obj.Amount = exportPrice * obj.Quantity;
+                        Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Số lượng xuất lớn hơn số sản phẩm đang có\"); <" + "/script>"));
                     }
-
-                    logBiz.InsertLogDetail(obj);
-
-                    BindRepeater();
-                    ClearProductInfo();
-
                 }
                 else
                 {
-                    Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Số lượng xuất lớn hơn số sản phẩm đang có\"); <" + "/script>"));
+                    Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Vui lòng nhập thông tin sản phẩm\"); <" + "/script>"));
+                    return;
+
                 }
             }
             catch (Exception)
@@ -253,6 +244,29 @@ namespace FalStore.Control
         }
 
         /// <summary>
+        /// item command
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void rptResult_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            try
+            {
+                if (e.CommandName == "Delete")
+                {
+                    logBiz.DeleteLogDetail(int.Parse(e.CommandArgument.ToString()));
+                    BindRepeater();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        /// <summary>
         /// event create new log
         /// </summary>
         /// <param name="sender"></param>
@@ -264,6 +278,7 @@ namespace FalStore.Control
                 string id = logBiz.NewLogStoreID();
                 txtLogStoreID.Text = id;
                 ShowControl(true);
+                BindRepeater();
             }
             catch (Exception)
             {
