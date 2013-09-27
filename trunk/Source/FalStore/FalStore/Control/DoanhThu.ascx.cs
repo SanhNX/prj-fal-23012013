@@ -190,12 +190,40 @@ namespace FalStore.Control
 
                 tbl.Rows.Add(dr);
             }
-            string file = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~"), "FileExport\\DoanhThu" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx");
-           // string abc = @"D:\DoanhThu" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
-            GenerateExcelFile(tbl, file);
 
-            Response.Redirect(file);
+            string fileName = "DoanhThu" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
+            string file = Server.MapPath("~/FileExport/" + fileName);//Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~"),"FileExport\\" + fileName);
+            //string abc = "D:\\df.xlsx";
+            GenerateExcelFile(tbl, file);
+            FileInfo fileReport = new FileInfo(file);
+           // Response.Redirect(file);
+
+           // Response.Write("<script type='text/javascript'>window.open("+file+",'_blank');</script>");
+
+            //string aaa = Server.MapPath("~/FileExport/DoanhThu" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx");
+            //Response.TransmitFile(Server.MapPath("~/FileExport/DoanhThu" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx"));
+            //Response.End();
+
+           // Response.Redirect("~/FileExport/DoanhThu" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx");
+            Response.Clear();
+
+            Response.ClearHeaders();
+
+            Response.ClearContent();
+
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + fileReport.Name);
+
+            Response.AddHeader("Content-Length", fileReport.Length.ToString());
+
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+            Response.Flush();
+
+            Response.TransmitFile(fileReport.FullName);
+
+            Response.End();
         }
+
 
         public void GenerateExcelFile(DataTable dataTable, string directory)
         {
