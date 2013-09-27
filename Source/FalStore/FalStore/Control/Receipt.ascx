@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="mws-form-col-4-8">
                                     <label class="mws-form-label">
-                                        Giá bán</label>
+                                        Giá nhập</label>
                                     <div class="mws-form-item">
                                         <asp:TextBox ID="txtExportPrice" runat="server" class="small" Enabled="False"></asp:TextBox>
                                     </div>

@@ -296,7 +296,7 @@ namespace FalStore.Control
             if (objBar != null)
             {
                 txtProductName.Text = objBar.Product.ProductName;
-                txtExportPrice.Text = objBar.Product.ExportPrice.ToString();
+                txtExportPrice.Text = objBar.Product.ImportPrice.ToString();
                 txtColor.Text = objBar.ColorName;
                 txtSize.Text = objBar.SizeName;
                 //lstObjCol = proBiz.ShowColorByProductID(productID);
