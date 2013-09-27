@@ -40,7 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="objEvent.cs" />
+    <Compile Include="objBarCode.cs" />
+    <Compile Include="objBill.cs" />
+    <Compile Include="objBranch.cs" />
+    <Compile Include="objCategory.cs" />
+    <Compile Include="objColor.cs" />
+    <Compile Include="objDoanhThu.cs" />
+    <Compile Include="objEmployee.cs" />
+    <Compile Include="objFindBarCode.cs" />
+    <Compile Include="objLogDetail.cs" />
+    <Compile Include="objLogStore.cs" />
+    <Compile Include="objProduct.cs" />
+    <Compile Include="objSize.cs" />
+    <Compile Include="objStore.cs" />
+    <Compile Include="objUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
