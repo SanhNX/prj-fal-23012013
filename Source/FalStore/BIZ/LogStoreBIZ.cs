@@ -280,5 +280,18 @@ namespace BIZ
                 throw;
             }
         }
+
+        public int DeleteLogDetail(int logDetailID)
+        {
+            try
+            {
+                return logDal.DeleteLogDetail(logDetailID);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
     }
 }
