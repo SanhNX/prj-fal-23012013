@@ -25,6 +25,9 @@
     <div class="container">
         <!-- From category --->
         <div class="mws-panel grid_8">
+            <div>
+                <asp:Label ID="lblMessage" ForeColor="Green" runat="server" Text=""></asp:Label>
+            </div>
             <div class="mws-panel-header">
                 <span>Thông tin kho</span>
             </div>
@@ -35,13 +38,16 @@
                         <div class="mws-form-row">
                             <label class="mws-form-label">Tên Chương Trình</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="TextBox1" runat="server" class="large" Visible="true" ></asp:TextBox>
+                                <asp:TextBox ID="txtEventName" runat="server" class="large"  Visible="true"></asp:TextBox>
+                                      <asp:RequiredFieldValidator ID="RequiredFieldEventName" runat="server" ErrorMessage="Nhập tên chương trình"
+                                        ControlToValidate="txtEventName" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                          <div class="mws-form-row">
                             <label class="mws-form-label">Giảm Giá</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="TextBox2" runat="server" class="" Visible="true"></asp:TextBox>
+                                <asp:TextBox ID="txtDiscount" runat="server" class="" Visible="true"></asp:TextBox>
+                                <asp:RangeValidator ID="RequiredFieldDiscount" runat="server" ControlToValidate="txtDiscount" Type="Integer" MinimumValue="0" MaximumValue="50" ErrorMessage="Nhập số từ 0 -> 50" ForeColor="Red"></asp:RangeValidator>
                             </div>
                         </div>
                         <div class="mws-form-row">
@@ -52,9 +58,9 @@
                         </div>
 
                         <div class="mws-form-row">
-                            <label class="mws-form-label">Dến ngày</label>
+                            <label class="mws-form-label">Đến ngày</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="TxtEndDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
+                                <asp:TextBox ID="txtEndDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
                             </div>
                         </div>
 
@@ -69,11 +75,10 @@
                     </fieldset>
                     <fieldset class="mws-form-inline">
                         <div class="mws-button-row">
-                            <asp:Button class="btn btn-primary" ID="btnSearch" runat="server" Text="Tạo mới" 
-                                onclick="btnSearch_Click" />
-
-                            <asp:Button class="btn btn-primary" ID="btnUpdate" runat="server" Text="Update" 
-                                onclick="btnUpdate_Click" />
+                            <asp:Button ID="btnAdd" runat="server" Text="Tạo mới" class="btn btn-success" OnClick="btnAdd_Click" />
+                            <asp:Button ID="btnClear" runat="server" Text="Clear" class="btn btn-success" OnClick="btnClear_Click" CausesValidation= "false" />
+                            <asp:TextBox ID="txtTemp" runat="server" Visible="false"></asp:TextBox>
+                            <asp:TextBox ID="txtEventID" runat="server" Visible="false"></asp:TextBox>
                         </div>
                         <div class="mws-panel grid_8">
                             <div class="mws-panel-header">
@@ -106,156 +111,39 @@
                                         </tr>
                                     </thead>
                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
-
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Khai trương</td>
-                                            <td>10</td>
-                                            <td>Phú Nhuận</td>
-                                            <td>2013-09-20</td>
-                                            <td>2013-11-20</td>
-                                            <td>
-                                                <span class="btn-group">
-                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Khai trương</td>
-                                            <td>10</td>
-                                            <td>Phú Nhuận</td>
-                                            <td>2013-09-20</td>
-                                            <td>2013-11-20</td>
-                                            <td>
-                                                <span class="btn-group">
-                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Khai trương</td>
-                                            <td>10</td>
-                                            <td>Phú Nhuận</td>
-                                            <td>2013-09-20</td>
-                                            <td>2013-11-20</td>
-                                            <td>
-                                                <span class="btn-group">
-                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Khai trương</td>
-                                            <td>10</td>
-                                            <td>Phú Nhuận</td>
-                                            <td>2013-09-20</td>
-                                            <td>2013-11-20</td>
-                                            <td>
-                                                <span class="btn-group">
-                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Khai trương</td>
-                                            <td>20</td>
-                                            <td>Phú Nhuận</td>
-                                            <td>2013-09-20</td>
-                                            <td>2013-11-20</td>
-                                            <td>
-                                                <span class="btn-group">
-                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Khai trương</td>
-                                            <td>20</td>
-                                            <td>Phú Nhuận</td>
-                                            <td>2013-09-20</td>
-                                            <td>2013-11-20</td>
-                                            <td>
-                                                <span class="btn-group">
-                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>Khai trương</td>
-                                            <td>10</td>
-                                            <td>Phú Nhuận</td>
-                                            <td>2013-09-20</td>
-                                            <td>2013-11-20</td>
-                                            <td>
-                                                <span class="btn-group">
-                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>Khai trương</td>
-                                            <td>10</td>
-                                            <td>Phú Nhuận</td>
-                                            <td>2013-09-20</td>
-                                            <td>2013-11-20</td>
-                                            <td>
-                                                <span class="btn-group">
-                                                    <a href="#" class="btn btn-small"><i class="icon-pencil"></i></a>
-                                                    <a href="#" class="btn btn-small"><i class="icon-trash"></i></a>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <%--<asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand"
+                                        <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand"
                                             runat="server">
                                             <ItemTemplate>
                                                 <tr>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrBillId"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrStt"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrEmpName"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrEventName"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrCusName"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrDiscount"></asp:Literal>
                                                     </td>
                                                     <td>
                                                         <asp:Literal runat="server" ID="ltrBranchName"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrDate"></asp:Literal>
+                                                        <asp:Literal runat="server" ID="ltrStartDate"></asp:Literal>
                                                     </td>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrPrice1"></asp:Literal>
-                                                    </td>
+                                                        <asp:Literal runat="server" ID="ltrEndDate"></asp:Literal>
                                                     <td>
-                                                        <asp:Literal runat="server" ID="ltrSale"></asp:Literal>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Literal runat="server" ID="ltrPrice2"></asp:Literal>
-                                                    </td>
-                                                    <td>
-                                                      <%-- <%-- <i class="icon-pencil"></i>
-                                                        <asp:LinkButton ID="lnkView" runat="server" CausesValidation="false" CommandName="View"
-                                                            CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xem</asp:LinkButton>
-                                       
-                                                    </td>
+
+                                                        <i class="icon-pencil"></i>
+                                                        <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="false" CommandName="Edit"
+                                                            CommandArgument='<%# DataBinder.Eval(Container.DataItem, "EventID") %>'>Chỉnh sửa</asp:LinkButton>
+                                                        <%--<i class="icon-trash"></i>
+                                                        <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" CommandName="Delete"
+                                                            CommandArgument='<%# DataBinder.Eval(Container.DataItem, "EventID") %>'>Xóa</asp:LinkButton>--%>
+                                                    
                                                 </tr>
                                             </ItemTemplate>
-                                        </asp:Repeater>--%>
+                                        </asp:Repeater>
                                     </tbody>
                                 </table>
                             </div>
