@@ -172,6 +172,7 @@ namespace DAL
             while (dr.Read())
             {
                 obj = new objLogDetail();
+                obj.LogDetailID = int.Parse(dr["Log_DetailID"].ToString());
                 obj.LogStore = new objLogStore();
                 obj.LogStore.LogStoreID = dr["Log_StoreID"].ToString();
                 obj.BarCode = new objBarCode();
@@ -271,6 +272,20 @@ namespace DAL
             parameterList.Add(new SqlParameter("@LogStoreID", LogStoreID));
 
             return SQLHelper.ExecuteNonQuery("spLogDetailUpdateStatus", parameterList);
+        }
+
+        /// <summary>
+        /// delete log Detail
+        /// </summary>
+        /// <param name="LogStoreID"></param>
+        /// <returns></returns>
+        public int DeleteLogDetail(int LogDetailID)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@LogDetailID", LogDetailID));
+
+            return SQLHelper.ExecuteNonQuery("spLogDetailDelete", parameterList);
         }
 
     }
