@@ -21,7 +21,45 @@
        TranferData();
    }
    , 'onClosed': function () {
-       window.location.href = '<%= Page.ResolveUrl("~/Default.aspx?pageName=ExportProduct") %>';
+       var stt = 0;
+       var temp = "";
+       var arr = new Array();
+       for (var i = 0; i < popupRetVal.length; i++) {
+           if (popupRetVal.charAt(i) == "=") {
+
+               arr[stt] = temp;
+
+               stt++;
+
+               temp = "";
+
+           } else {
+               temp = temp + popupRetVal.charAt(i);
+           }
+       }
+
+       if (arr.length > 0) {
+           $("#ContentPlaceHolder1_ctl00_txtSize")[0].value = temp;
+           for (var j = 0; j < arr.length; j++) {
+               if (j == 0) {
+                   $("#ContentPlaceHolder1_ctl00_txtBarCode")[0].value = arr[j];
+               }
+
+               if (j == 1) {
+                   $("#ContentPlaceHolder1_ctl00_txtProductName")[0].value = arr[j];
+               }
+
+               if (j == 3) {
+                   $("#ContentPlaceHolder1_ctl00_txtExportPrice")[0].value = arr[j];
+               }
+
+               if (j == 4) {
+                   $("#ContentPlaceHolder1_ctl00_txtColor")[0].value = arr[j];
+               }
+
+           }
+       }
+       //window.location.href = '<%= Page.ResolveUrl("~/Default.aspx?pageName=ExportProduct") %>';
    }
         });
     });
