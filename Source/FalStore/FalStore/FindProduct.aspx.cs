@@ -125,6 +125,11 @@ namespace FalStore
 
                     Literal ltrBarCode = e.Item.FindControl("ltrBarCode") as Literal;
                     ltrBarCode.Text = data.BarCode.ToString();
+
+
+
+                    Literal ltrValue = e.Item.FindControl("ltrValue") as Literal;
+                    ltrValue.Text = data.BarCode.ToString() + "=" + data.Product.ProductName.ToString() + "=" +  data.Product.ImportPrice.ToString("0.") + "=" + data.Product.ExportPrice.ToString() +  "=" + data.ColorName.ToString() + "=" + data.SizeName.ToString();
                 }
             }
             catch (Exception)

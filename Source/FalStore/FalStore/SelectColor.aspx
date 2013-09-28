@@ -43,7 +43,7 @@
 
                 var abc = $("#TextBox1")[0].value + " " + $("#TextBox2")[0].value;
                 alert(abc);
-                parent.popupRetVal = [abc];
+                parent.popupRetVal = abc;
                 parent.$.fancybox.close();
                 // removeTR(indexRow);
                 // indexSTT = indexSTT - 1;
