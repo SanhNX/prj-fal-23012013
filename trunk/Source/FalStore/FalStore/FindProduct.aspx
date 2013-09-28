@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="Styles/plugins/colorpicker/colorpicker.css"
+    <link  rel="stylesheet" type="text/css" href="Styles/plugins/colorpicker/colorpicker.css"
         media="screen">
     <link rel="stylesheet" type="text/css" href="Styles/custom-plugins/wizard/wizard.css"
         media="screen">
@@ -33,6 +33,16 @@
     <!-- Theme Stylesheet -->
     <link rel="stylesheet" type="text/css" href="Styles/css/mws-theme.css" media="screen">
     <link rel="stylesheet" type="text/css" href="Styles/css/themer.css" media="screen">
+
+    <!-- fancybox --->
+<script type="text/javascript" src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>
+<!-- fancybox --->
+<link rel="stylesheet" type="text/css" href="../Styles/jquery.fancybox-1.3.4.css"
+    media="screen" />
+<script type="text/javascript" src="../Scripts/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript" src="../Scripts/js/core/selectProduct.js"></script>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -132,6 +142,7 @@
                                 <th>
                                     Giá bán
                                 </th>
+
                             </tr>
                         </thead>
                         <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -140,8 +151,9 @@
                                 <ItemTemplate>
                                     <tr>
                                         <td>
-                                            <asp:LinkButton ID="lnkSelect" runat="server" CausesValidation="false" CommandName="Select"
-                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "BarCode") %>'>Chọn</asp:LinkButton>
+                                           <%-- <asp:LinkButton ID="lnkSelect" runat="server" CausesValidation="false" CommandName="Select"
+                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "BarCode") %>'>Chọn</asp:LinkButton>--%>
+                                                <button id="<asp:Literal runat="server" ID="ltrValue"></asp:Literal>" class="lnkSelect"  >chọn</button>
                                         </td>
                                         <td>
                                             <asp:Literal runat="server" ID="ltrCategoryName"></asp:Literal>
