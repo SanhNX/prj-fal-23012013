@@ -33,5 +33,39 @@ namespace BIZ
             }
 
         }
+
+        public List<objBill> GetBillByID(string billID)
+        {
+            try
+            {
+                List<objBill> lst = new List<objBill>();
+                lst = DAL.GetBillByID(billID);
+
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public List<objBillDetail> GetBillDetailByID(string billID)
+        {
+            try
+            {
+                List<objBillDetail> lst = new List<objBillDetail>();
+                lst = DAL.GetBillDetailByID(billID);
+
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
     }
 }
