@@ -73,6 +73,17 @@ namespace FalStore
                     Literal ltrNgayBan = e.Item.FindControl("ltrNgayBan") as Literal;
                     ltrNgayBan.Text = data.CreateDate.ToString();
 
+                    if ("1".Equals(data.Delete_Flg.ToString()))
+                    {
+                        Literal ltrCss = e.Item.FindControl("ltrCss") as Literal;
+                        ltrCss.Text = "style=\"background-color: cyan;\"";
+                       
+                    }
+                    else {
+                        Literal ltrCss = e.Item.FindControl("ltrCss") as Literal;
+                        ltrCss.Text = "";
+                    }
+                    
                     //Literal ltrNgayTra = e.Item.FindControl("ltrNgayTra") as Literal;
                     //ltrNgayTra.Text = data.UpdateDate.ToString();
 
