@@ -67,5 +67,44 @@ namespace BIZ
             }
 
         }
+        public int GetNextId()
+        {
+            try
+            {
+                int nextId = DAL.GetNextId();
+
+                return nextId;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public int Insert(objBill obj)
+        {
+            try
+            {
+                int result = 0;
+
+                if (obj != null)
+                {
+                    result = DAL.InsertBill(obj);
+                }
+                else
+                {
+                    result = 1;
+                }
+
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
