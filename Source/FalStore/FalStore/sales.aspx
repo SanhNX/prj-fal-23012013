@@ -71,7 +71,7 @@
                                                 Mã vạch:
                                                 <input id="mavach" type="text" aria-controls="DataTables_Table_1">
                                                 Số lượng:
-                                                <input id="sl" type="text" style="width: 40px;" aria-controls="DataTables_Table_2">
+                                                <input id="sl" type="text" style="width: 40px;" value="1" aria-controls="DataTables_Table_2">
                                                 <button id="btn-newRow" type="button" class="btn btn-primary btn-small">Add</button>
                                             </label>
                                         </div>
@@ -130,25 +130,25 @@
                                             <div class="mws-form-row bordered">
                                                 <label class="mws-form-label">Mã Thành Viên</label>
                                                 <div class="mws-form-item">
-                                                    <input type="text" value="1234567890" class="large">
+                                                    <input id="codeCustomer" type="text" value="" maxlength="10" class="large">
                                                 </div>
                                             </div>
                                             <div class="mws-form-row bordered">
                                                 <label class="mws-form-label">Tên KH</label>
                                                 <div class="mws-form-item">
-                                                    <input type="text" value="Ta chi thanh" class="large">
+                                                    <input id="cusName" type="text" value="" class="large">
                                                 </div>
                                             </div>
                                             <div class="mws-form-row bordered">
                                                 <label class="mws-form-label">Số ĐT</label>
                                                 <div class="mws-form-item">
-                                                    <input type="text" value="0909090909" class="large">
+                                                    <input id="cusPhone" type="text" value="" class="large">
                                                 </div>
                                             </div>
                                             <div class="mws-form-row bordered">
                                                 <label class="mws-form-label">Email</label>
                                                 <div class="mws-form-item">
-                                                    <input type="text" value="thanhbr392@gmail.com" class="large">
+                                                    <input id="cusEmail" type="text" value="" class="large">
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -175,7 +175,7 @@
                                             </div>
                                         </fieldset>
                                         <div class="mws-button-row">
-                                            <input type="submit" value="Xuất Hóa Đơn" class="btn btn-danger">
+                                            <input id="btn-saveOrderToDB" type="button" value="Xuất Hóa Đơn" class="btn btn-danger">
                                             <a href="http://fal.vn/Default.aspx" class="btn btn-primary">Trang Chủ</a>
                                         </div>
                                     </div>

@@ -48,7 +48,6 @@ namespace FalStore
 
         }
 
-        [WebMethod]
         protected void btnSave_Click(object sender, EventArgs e)
         {
             //Employee oEmployee1 =
