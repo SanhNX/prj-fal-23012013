@@ -158,7 +158,7 @@ namespace DAL
         /// <param name="logStoreID"></param>
         /// <param name="statusFlag"></param>
         /// <returns></returns>
-        public List<objLogDetail> GetLogDetailByLogStoreID(string logStoreID, int statusFlag, out float total)
+        public List<objLogDetail> GetLogDetailByLogStoreID(string logStoreID, int logType,int statusFlag, out float total)
         {
             total =0;
             List<objLogDetail> lst = new List<objLogDetail>();
@@ -166,6 +166,7 @@ namespace DAL
 
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
             parameterList.Add(new SqlParameter("@LogStoreID", logStoreID));
+            parameterList.Add(new SqlParameter("@LogType", logType));
             parameterList.Add(new SqlParameter("@StatusFlg", statusFlag));
 
             SqlDataReader dr = SQLHelper.ExecuteReader("spLogDetailGetByLogStoreID", parameterList);
@@ -246,13 +247,13 @@ namespace DAL
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int InsertLogDetail(objLogDetail obj)
+        public int InsertLogDetail(objLogDetail obj, int logType)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@LogStoreID", obj.LogStore.LogStoreID));
             parameterList.Add(new SqlParameter("@BarCode", obj.BarCode.BarCode));
-            //parameterList.Add(new SqlParameter("@ColorID", obj.Color.ColorID));
+            parameterList.Add(new SqlParameter("@LogType", logType));
             //parameterList.Add(new SqlParameter("@Size", obj.Size));
             parameterList.Add(new SqlParameter("@Sale", obj.Sale));
             parameterList.Add(new SqlParameter("@Quantity", obj.Quantity));
