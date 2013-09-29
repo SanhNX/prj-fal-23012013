@@ -69,9 +69,9 @@
                                             <th>
                                                 Size
                                             </th>
-                                             <th>
+<%--                                             <th>
                                                 Giá nhập
-                                            </th>
+                                            </th>--%>
                                             <th>
                                                 Giá bán
                                             </th>
@@ -101,9 +101,9 @@
                                                     <td>
                                                         <asp:Literal runat="server" ID="ltrSize"></asp:Literal>
                                                     </td>
-                                                    <td>
+                                 <%--                   <td>
                                                         <asp:Literal runat="server" ID="ltrImportPrice"></asp:Literal>
-                                                    </td>
+                                                    </td>--%>
                                                     <td>
                                                         <asp:Literal runat="server" ID="ltrExportPrice"></asp:Literal>
                                                     </td>
