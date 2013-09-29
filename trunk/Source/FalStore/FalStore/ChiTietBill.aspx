@@ -125,7 +125,7 @@
                                 <tbody role="alert" aria-live="polite" aria-relevant="all">
                                     <asp:Repeater ID="rptResult" runat="server" OnItemDataBound="rptResult_ItemDataBound" >
                                         <ItemTemplate>
-                                            <tr>
+                                            <tr <asp:Literal runat="server" ID="ltrCss"></asp:Literal> >
                                                 <td>
                                                     <asp:Literal runat="server" ID="ltrStt"></asp:Literal>
                                                 </td>
