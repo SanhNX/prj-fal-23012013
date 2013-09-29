@@ -157,7 +157,7 @@ namespace FalStore.Control
             // Current cell counter
             int cellCnt;
 
-            rowCnt = int.Parse("20");
+            rowCnt = int.Parse("16");
             cellCnt = int.Parse("3");
             Font font = new Font("Tahoma", 3);
             for (rowCtr = 1; rowCtr <= rowCnt; rowCtr++)
