@@ -154,5 +154,38 @@ namespace DAL
 
         }
 
+        public int GetNextId()
+        {
+            int id = 0;
+            SqlDataReader dr = SQLHelper.ExecuteReader("[spBillGetMaxId]");
+            if(dr.Read())
+            {
+                id = int.Parse(dr["MaxID"].ToString()) + 1;
+            }
+
+            return id;
+        }
+
+        //call store procedure insert Bill
+        public int InsertBill(objBill obj)
+        {
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@BillID", obj.BillID));
+            parameterList.Add(new SqlParameter("@EmployeeID", obj.EmployeeID));
+            parameterList.Add(new SqlParameter("@BranchID", obj.BranchID));
+            parameterList.Add(new SqlParameter("@CustomerID", obj.CustomerID));
+            parameterList.Add(new SqlParameter("@TotalPrice", obj.TotalPrice));
+            parameterList.Add(new SqlParameter("@Sale", obj.Sale));
+            parameterList.Add(new SqlParameter("@ActualTotalPrice", obj.ActualTotalPrice));
+            parameterList.Add(new SqlParameter("@CreateDate", obj.CreateDate));
+            parameterList.Add(new SqlParameter("@CreateUser", obj.CreateUser));
+            parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
+
+            return SQLHelper.ExecuteNonQuery("spEventInsert", parameterList);
+
+        }
+
     }
 }
