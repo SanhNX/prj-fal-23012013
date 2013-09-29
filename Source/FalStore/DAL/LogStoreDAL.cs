@@ -180,6 +180,7 @@ namespace DAL
                 obj.BarCode.Product = new objProduct();
                 obj.BarCode.Product.ProductID = dr["ProductID"].ToString();
                 obj.BarCode.Product.ProductName = dr["ProductName"].ToString();
+                obj.BarCode.Product.ImportPrice = float.Parse(dr["ImportPrice"].ToString());
                 obj.BarCode.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
                 obj.Quantity = int.Parse(dr["Quantity"].ToString());
                 obj.Sale = float.Parse(dr["Sale"].ToString());

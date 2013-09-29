@@ -120,7 +120,7 @@ namespace DAL
                 obj.Product = new objProduct();
                 obj.Product.ProductID = dr["ProductID"].ToString();
                 obj.Product.ProductName = dr["ProductName"].ToString();
-                //obj.Product.ImportPrice = float.Parse(dr["ImportPrice"].ToString());
+                obj.Product.ImportPrice = float.Parse(dr["ImportPrice"].ToString());
                 obj.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
                 obj.BarCode = dr["BarCode"].ToString();
                 obj.ColorName = dr["ColorName"].ToString();
