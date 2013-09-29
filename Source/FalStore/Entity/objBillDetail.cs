@@ -7,7 +7,7 @@ namespace Entity
 {
     public class objBillDetail
     {
-         public int Bill_DetailID { get; set; }
+         public int BillDetailID { get; set; }
 
          public string  BillID { get; set; }
 
