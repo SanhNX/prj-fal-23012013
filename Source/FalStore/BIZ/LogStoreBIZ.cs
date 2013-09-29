@@ -87,13 +87,13 @@ namespace BIZ
         /// <param name="pageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<objLogDetail> ShowLogDetailByID(string logStoreID,int status_flg, out float total)
+        public List<objLogDetail> ShowLogDetailByID(string logStoreID,int logType,int status_flg, out float total)
         {
             try
             {
                 float i;
                 List<objLogDetail> lst = new List<objLogDetail>();
-                lst = logDal.GetLogDetailByLogStoreID(logStoreID, status_flg, out i);
+                lst = logDal.GetLogDetailByLogStoreID(logStoreID,logType, status_flg, out i);
 
                 total = i;
                 return lst;
@@ -111,7 +111,7 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="type"> 0: nhap phieu   1: xuat phieu</param>
-        public void InsertlogStore(objLogStore objLogStore, int type)
+        public void InsertlogStore(objLogStore objLogStore,int logType, int type)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace BIZ
                 float total;
                 List<objLogDetail> lstLogDetail = new List<objLogDetail>();
                 //get info log detail with new status 
-                lstLogDetail = logDal.GetLogDetailByLogStoreID(objLogStore.LogStoreID, 0,out total);
+                lstLogDetail = logDal.GetLogDetailByLogStoreID(objLogStore.LogStoreID,logType, 0,out total);
                 //loop
                 foreach (var item in lstLogDetail)
                 {
@@ -175,11 +175,11 @@ namespace BIZ
         /// </summary>
         /// <param name="objLogDetail"></param>
         /// <returns></returns>
-        public int InsertLogDetail(objLogDetail objLogDetail)
+        public int InsertLogDetail(objLogDetail objLogDetail, int logType)
         {
             try
             {
-                return logDal.InsertLogDetail(objLogDetail);
+                return logDal.InsertLogDetail(objLogDetail, logType);
             }
             catch (Exception)
             {
