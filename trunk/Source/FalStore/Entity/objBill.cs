@@ -5,16 +5,22 @@ using System.Text;
 
 namespace Entity
 {
-    class objBill
+    public class objBill
     {
         //ID
         public string BillID { get; set; }
         //
         public int EmployeeID { get; set; }
         //
+        public string EmployeeName { get; set; }
+        //
         public int CustomerID { get; set; }
         //
+        public string CustomerName { get; set; }
+        //
         public int BranchID { get; set; }
+        //
+        public string BranchName { get; set; }
         //
         public float TotalPrice { get; set; }
         //
