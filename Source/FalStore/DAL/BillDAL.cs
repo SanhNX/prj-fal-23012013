@@ -123,12 +123,12 @@ namespace DAL
             parameterList.Add(new SqlParameter("@BillID", billID));
 
 
-            SqlDataReader dr = SQLHelper.ExecuteReader("spGetBillByID", parameterList);
+            SqlDataReader dr = SQLHelper.ExecuteReader("spGetBillDetailByID", parameterList);
             while (dr.Read())
             {
                 obj = new objBillDetail();
 
-                obj.Bill_DetailID =int.Parse(dr["Bill_DetailID"].ToString());
+                obj.BillDetailID = int.Parse(dr["Bill_DetailID"].ToString());
 
                 obj.BarCode = dr["BarCode"].ToString();
 
