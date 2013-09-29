@@ -9,6 +9,7 @@ using CrystalDecisions.Shared;
 using Entity;
 using BIZ;
 using System.Data;
+using System.IO;
 namespace FalStore
 {
     public partial class PageReport : System.Web.UI.Page
@@ -67,7 +68,8 @@ namespace FalStore
             }
             
             ReportDocument cryRpt = new ReportDocument();
-            cryRpt.Load(Server.MapPath(@"~\Report\ReportExport.rpt"));
+            string file = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~"), "Report\\ReportExport.rpt");
+            cryRpt.Load(file);
             cryRpt.SetDataSource(tblLogDetail);
             CrystalReportViewer1.ReportSource = cryRpt;
             // crytalReportViewer.Refresh();
