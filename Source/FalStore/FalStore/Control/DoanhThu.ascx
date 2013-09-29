@@ -21,6 +21,28 @@
     <script src="Scripts/js/core/themer.js"></script>
     <!-- Demo Scripts (remove if not needed) -->
     <script src="Scripts/js/demo/demo.widget.js"></script>
+
+    <!-- fancybox --->
+    <link rel="stylesheet" type="text/css" href="../Styles/jquery.fancybox-1.3.4.css"
+        media="screen" />
+    <script src="../Scripts/jquery.fancybox-1.3.4.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(".fancyboxDemo").fancybox({
+                'type': 'iframe'
+			, 'width': $(window).width() * 0.90
+			, 'height': $(window).height() * 0.90
+			, 'autoScale': false
+			, 'hideOnOverlayClick': false
+			, 'onClosed': function () { }
+            });
+        });
+ 
+</script>
+
 <div id="mws-container" class="clearfix">
     <div class="container">
         <!-- From category --->
@@ -78,13 +100,16 @@
                                     <thead>
                                         <tr>
                                             <th>
+                                                STT
+                                            </th>
+                                            <th>
                                                 Mã HĐ
                                             </th>
                                             <th>
                                                 Nhân Viên BH
                                             </th>
                                             <th>
-                                                Kháck Hàng
+                                                Khách Hàng
                                             </th>
                                             <th>
                                                 Chi Nhánh
@@ -96,7 +121,7 @@
                                                 Thành Tiền
                                             </th>
                                             <th>
-                                                Giảm Giá
+                                                GG
                                             </th>
                                             <th>
                                                 Tổng Tiền
@@ -109,7 +134,10 @@
                                         <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand"
                                             runat="server">
                                             <ItemTemplate>
-                                                <tr>
+                                                <tr <asp:Literal runat="server" ID="ltrCss"></asp:Literal>>
+                                                    <td>
+                                                        <asp:Literal runat="server" ID="ltrStt"></asp:Literal>
+                                                    </td>
                                                     <td>
                                                         <asp:Literal runat="server" ID="ltrBillId"></asp:Literal>
                                                     </td>
@@ -135,6 +163,8 @@
                                                         <asp:Literal runat="server" ID="ltrPrice2"></asp:Literal>
                                                     </td>
                                                     <td>
+                                                        </i><a id="lnkFindProduct" class="fancyboxDemo" style="cursor: pointer" href="<asp:Literal runat="server" ID="ltrLink"></asp:Literal>"> Xem</a>
+                                                        <i class="icon-pencil"><a id="lnkFindProduct"  style="cursor: pointer" href="<asp:Literal runat="server" ID="ltrLinkEdit"></asp:Literal>"> Edit</a>
                                                         <%-- <%-- <i class="icon-pencil"></i>
                                                         <asp:LinkButton ID="lnkView" runat="server" CausesValidation="false" CommandName="View"
                                                             CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xem</asp:LinkButton>--%>

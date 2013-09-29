@@ -81,6 +81,7 @@ namespace FalStore.Control
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        int stt = 1;
         protected void rptResult_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
@@ -90,10 +91,22 @@ namespace FalStore.Control
 
                     objDoanhThu data = e.Item.DataItem as objDoanhThu;
 
-                    //Literal ltrStt = e.Item.FindControl("ltrStt") as Literal;
-                    //ltrStt.Text = stt.ToString();
-                    //stt++;
+                    if ("1".Equals(data.Update_Flg.ToString()))
+                    {
+                        Literal ltrCss = e.Item.FindControl("ltrCss") as Literal;
+                        ltrCss.Text = "style=\"background-color: rgba(19, 202, 218, 0.31);\"";
+                    }
+                    else {
+                        Literal ltrCss = e.Item.FindControl("ltrCss") as Literal;
+                        ltrCss.Text = "";
+                    }
 
+
+
+                    Literal ltrStt = e.Item.FindControl("ltrStt") as Literal;
+                    ltrStt.Text = stt.ToString();
+                    stt++;
+                    
                     Literal ltrBillId = e.Item.FindControl("ltrBillId") as Literal;
                     ltrBillId.Text = data.BillID.ToString();
 
@@ -113,11 +126,18 @@ namespace FalStore.Control
                     ltrPrice1.Text = data.TotalPrice.ToString();
 
                     Literal ltrSale = e.Item.FindControl("ltrSale") as Literal;
-                    ltrSale.Text = data.Sale.ToString();
+                    ltrSale.Text = data.Sale.ToString() + "%";
 
                     Literal ltrPrice2 = e.Item.FindControl("ltrPrice2") as Literal;
                     ltrPrice2.Text = data.ActualTotalPrice.ToString();
 
+
+                    Literal ltrLink = e.Item.FindControl("ltrLink") as Literal;
+                    ltrLink.Text = "ChiTietBill.aspx?billID=" + data.BillID.ToString();
+
+
+                    Literal ltrLinkEdit = e.Item.FindControl("ltrLinkEdit") as Literal;
+                    ltrLinkEdit.Text = "sales.aspx?billID=" + data.BillID.ToString();
                     //LinkButton lnkDelete = e.Item.FindControl("lnkDelete") as LinkButton;
                     //lnkDelete.CommandArgument = data.CategoryID.ToString();
 
