@@ -232,7 +232,7 @@
                                                 Size
                                             </th>
                                             <th>
-                                                Giá tiền
+                                                Giá tiền Nhập
                                             </th>
                                             <th>
                                                 Số lượng

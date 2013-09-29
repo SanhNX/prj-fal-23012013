@@ -199,7 +199,7 @@ namespace FalStore.Control
                     ltrSize.Text = data.BarCode.SizeName;
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.BarCode.Product.ExportPrice.ToString();
+                    ltrExportPrice.Text = data.BarCode.Product.ImportPrice.ToString();
 
                     Literal ltrQuantity = e.Item.FindControl("ltrQuantity") as Literal;
                     ltrQuantity.Text = data.Quantity.ToString();
