@@ -105,7 +105,7 @@ namespace FalStore.Control
                             obj.Amount = exportPrice * obj.Quantity;
                         }
 
-                        logBiz.InsertLogDetail(obj);
+                        logBiz.InsertLogDetail(obj,1);
 
                         BindRepeater();
                         ClearProductInfo();
@@ -162,7 +162,7 @@ namespace FalStore.Control
                 objLgStore.TotalAmount = float.Parse( txtTotal.Text);
                 objLgStore.Description = txtDescription.Text;
                 SetUpdateInfo(objLgStore, 0);
-                logBiz.InsertlogStore(objLgStore, 1);
+                logBiz.InsertlogStore(objLgStore,1, 1);
                 InitPage();
                 ClearLogStoreInfo();
                 ClearProductInfo();
@@ -350,7 +350,7 @@ namespace FalStore.Control
         {
             float total;
             List<objLogDetail> lstLogDetail = new List<objLogDetail>();
-            lstLogDetail = logBiz.ShowLogDetailByID(txtLogStoreID.Text,1,out total);
+            lstLogDetail = logBiz.ShowLogDetailByID(txtLogStoreID.Text,1,1,out total);
             if (lstLogDetail != null)
             {
                 rptResult.DataSource = lstLogDetail;
