@@ -12,13 +12,6 @@
                 <div class="mws-form-inline">
                     <div class="mws-form-row">
                         <label class="mws-form-label">
-                            Mã nhân viên</label>
-                        <div class="mws-form-item">
-                            <input type="text" class="small">
-                        </div>
-                    </div>
-                    <div class="mws-form-row">
-                        <label class="mws-form-label">
                             Tên nhân viên</label>
                         <div class="mws-form-item">
                             <input type="text" class="large">
@@ -44,7 +37,7 @@
                         <label class="mws-form-label">
                             Địa chỉ</label>
                         <div class="mws-form-item">
-                            <textarea rows="" cols="" class="large"></textarea>
+                            <input type="text" class="large">
                         </div>
                     </div>
                     <div class="mws-form-row">
@@ -58,7 +51,35 @@
                         <label class="mws-form-label">
                             Ghi chú</label>
                         <div class="mws-form-item">
-                            <textarea rows="" cols="" class="large"></textarea>
+                            <input type="text" class="large">
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">
+                            Chi Nhánh</label>
+                        <div class="mws-form-item">
+                            <select class="large">
+                                <option>Chi Nhánh 1</option>
+                                <option>Chi Nhánh 2</option>
+                                <option>Chi Nhánh 3</option>
+                                <option>Chi Nhánh 4</option>
+                                <option>Chi Nhánh 5</option>
+                                <option>Chi Nhánh 6</option>
+                                <option>Chi Nhánh 7</option>
+                                <option>Chi Nhánh 8</option>
+                                <option>Chi Nhánh 9</option>
+                                <option>LChi Nhánh 10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">
+                            Chức vụ</label>
+                        <div class="mws-form-item">
+                            <select class="large">
+                                <option>Quản lý</option>
+                                <option>Nhân viên</option>
+                            </select>
                         </div>
                     </div>
                 </div>
