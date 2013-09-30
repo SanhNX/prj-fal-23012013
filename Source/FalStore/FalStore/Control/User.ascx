@@ -7,7 +7,7 @@
                 <span>Quản lý người dùng</span>
             </div>
             <div class="mws-panel-body no-padding">
-                <form class="mws-form" action="form_layouts.html">
+                <div class="mws-form" action="form_layouts.html">
                 <div class="mws-form-inline">
                     <div class="mws-form-row">
                         <label class="mws-form-label">
@@ -43,6 +43,24 @@
                     </div>
                     <div class="mws-form-row">
                         <label class="mws-form-label">
+                            Chi Nhánh</label>
+                        <div class="mws-form-item">
+                            <select class="large">
+                                <option>Chi Nhánh 1</option>
+                                <option>Chi Nhánh 2</option>
+                                <option>Chi Nhánh 3</option>
+                                <option>Chi Nhánh 4</option>
+                                <option>Chi Nhánh 5</option>
+                                <option>Chi Nhánh 6</option>
+                                <option>Chi Nhánh 7</option>
+                                <option>Chi Nhánh 8</option>
+                                <option>Chi Nhánh 9</option>
+                                <option>LChi Nhánh 10</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">
                             Chức vụ</label>
                         <div class="mws-form-item">
                             <select class="large">
@@ -56,7 +74,7 @@
                     <input type="submit" value="Submit" class="btn btn-danger">
                     <input type="reset" value="Reset" class="btn ">
                 </div>
-                </form>
+                </div>
             </div>
         </div>
         <!-- table -->
