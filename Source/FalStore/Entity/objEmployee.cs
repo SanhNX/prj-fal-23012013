@@ -11,6 +11,10 @@ namespace Entity
         public int EmployeeID { get; set; }
         //Name
         public string EmployeeName { get; set; }
+        //
+        public string UserName { get; set; }
+        //
+        public string PassWord { get; set; }
         //Gender
         public int Gender { get; set; }
         //Address
@@ -27,6 +31,14 @@ namespace Entity
         public DateTime UpdateDate { get; set; }
         //Update user
         public string UpdateUser { get; set; }
+
+        public int First_Flg { get; set; }
+
+        public int Role { get; set; }
+
+        public int BranchID { get; set; }
+
+        public string BranchName { get; set; }
 
     }
 }
