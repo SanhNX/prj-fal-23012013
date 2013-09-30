@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Employee.ascx.cs" Inherits="FalStore.Control.Employee" %>
+
 <div id="mws-container" class="clearfix">
     <div class="container">
         <!-- From category --->
@@ -7,7 +8,7 @@
                 <span>Thông tin nhân viên</span>
             </div>
             <div class="mws-panel-body no-padding">
-                <form class="mws-form" action="form_layouts.html">
+                <div class="mws-form" action="form_layouts.html">
                 <div class="mws-form-inline">
                     <div class="mws-form-row">
                         <label class="mws-form-label">
@@ -65,7 +66,7 @@
                     <input type="submit" value="Submit" class="btn btn-danger">
                     <input type="reset" value="Reset" class="btn ">
                 </div>
-                </form>
+                </div>
             </div>
         </div>
         <!-- table -->
