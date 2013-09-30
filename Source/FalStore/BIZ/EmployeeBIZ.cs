@@ -73,7 +73,7 @@ namespace BIZ
                 }
                 else
                 {
-                    result = 1;
+                    result = -1;
                 }
 
                 return result;
