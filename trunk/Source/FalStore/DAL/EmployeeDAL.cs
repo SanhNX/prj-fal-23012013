@@ -71,13 +71,15 @@ namespace DAL
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@EmployeeName", obj.EmployeeName));
+            parameterList.Add(new SqlParameter("@UserName", obj.UserName));
+            parameterList.Add(new SqlParameter("@PassWord", obj.PassWord));
+            parameterList.Add(new SqlParameter("@BranchID", obj.BranchID));
             parameterList.Add(new SqlParameter("@Gender", obj.Gender));
             parameterList.Add(new SqlParameter("@Address", obj.Address));
             parameterList.Add(new SqlParameter("@Phone", obj.Phone));
             parameterList.Add(new SqlParameter("@CreateDate", obj.CreateDate));
             parameterList.Add(new SqlParameter("@CreateUser", obj.CreateUser));
-            parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
-            parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
+            parameterList.Add(new SqlParameter("@Role", obj.Role));
 
             return SQLHelper.ExecuteNonQuery("spEmployeeInsert", parameterList);
 
