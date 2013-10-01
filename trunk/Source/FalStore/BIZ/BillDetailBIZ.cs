@@ -7,9 +7,9 @@ using DAL;
 using System.Data;
 namespace BIZ
 {
-    public class EventBIZ
+    public class BillDetailBIZ
     {
-        EventDAL DAL = new EventDAL();
+        BillDetailDAL DAL = new BillDetailDAL();
         BranchDAL DALBranch = new BranchDAL();
 
         /// <summary>
@@ -19,12 +19,12 @@ namespace BIZ
         /// <param name="pageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<objEvent> ShowByPaging(int pageIndex, int pageSize, out int total)
+        public List<objBillDetail> ShowByPaging(int pageIndex, int pageSize, out int total)
         {
             try
             {
-                List<objEvent> lst = new List<objEvent>();
-                lst = DAL.GetEventByPaging(pageIndex, pageSize);
+                List<objBillDetail> lst = new List<objBillDetail>();
+                lst = DAL.GetBillDetailByPaging(pageIndex, pageSize);
                 total = DAL.GetTotal();
 
                 return lst;
@@ -44,12 +44,12 @@ namespace BIZ
         /// <param name="pageSize"></param>
         /// <param name="total"></param>
         /// <returns></returns>
-        public List<objEvent> ShowAll()
+        public List<objBillDetail> ShowAll()
         {
             try
             {
-                List<objEvent> lst = new List<objEvent>();
-                lst = DAL.GetEventAll();
+                List<objBillDetail> lst = new List<objBillDetail>();
+                lst = DAL.GetBillDetailAll();
 
                 return lst;
             }
@@ -61,28 +61,14 @@ namespace BIZ
 
         }
 
-        public objEvent ShowByEventID(int EventID)
+        public objBillDetail ShowByBillDetailID(int BillDetailID)
         {
             try
             {
-                objEvent obj = new objEvent();
-                obj = DAL.GetEventByID(EventID);
+                objBillDetail obj = new objBillDetail();
+                objBranch objBranch = new objBranch();
+                obj = DAL.GetBillDetailByID(BillDetailID);
                 
-                return obj;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public objEvent ShowCurrentEventByBranch(int BranchID)
-        {
-            try
-            {
-                objEvent obj = new objEvent();
-                obj = DAL.GetCurrentEventByBranch(BranchID);
-
                 return obj;
             }
             catch (Exception)
@@ -95,7 +81,7 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Insert(objEvent obj)
+        public int Insert(objBillDetail obj)
         {
             try
             {
@@ -103,7 +89,7 @@ namespace BIZ
 
                 if (obj != null)
                 {
-                    result = DAL.InsertEvent(obj);
+                    result = DAL.InsertBillDetail(obj);
                 }
                 else
                 {
@@ -124,14 +110,14 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Update(objEvent obj)
+        public int Update(objBillDetail obj)
         {
             try
             {
                 int result = 0;
                 if (obj != null)
                 {
-                    result = DAL.UpdateEvent(obj);
+                    result = DAL.UpdateBillDetail(obj);
                 }
                 else
                 {
@@ -153,12 +139,12 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Delete(int EventID, DateTime updateDate, string updateUser)
+        public int Delete(int BillDetailID, DateTime updateDate, string updateUser)
         {
             try
             {
                 
-                 return DAL.DeleteEvent(EventID,updateDate,updateUser);
+                 return DAL.DeleteBillDetail(BillDetailID,updateDate,updateUser);
                 
             }
             catch (Exception)
