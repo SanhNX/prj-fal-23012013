@@ -6,25 +6,29 @@ $(document).ready(function () {
         var maVach = $("#mavach")[0].value;
         var sL = $("#sl")[0].value;
 
-        if (maVach.length > 7 || maVach.length < 7) {
-            alert("Ma Vach phai 7 ky tu !!!!!");
+        if (maVach.length > 10 || maVach.length < 9) {
+            alert("Mã vạch có độ dài 9-10 ký tự");
 
         } else if (isNaN(sL) == true) {
-            alert("So Luong phai la so !!!!!");
+            alert("Số lượng phải là số !");
         } else {
-            var productId = $("#mavach").val();
+            var barCode = $("#mavach").val();
             var sl = $("#sl").val();
             $.ajax({
                 type: "POST",
-                url: "Service/test.asmx/getData",
+                url: "Service/SaleService.asmx/getData",
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ productId: productId, sl : sl }),
+                data: JSON.stringify({ barCode: barCode, sl: sl }),
                 dataType: "json",
                 success: function (result) {
                     var item = result.d;
-                    saveLocalStorage(item);
-                    createTableOrder();
-                    $("#mavach").val("");
+                    if (item.barCode) {
+                        saveLocalStorage(item);
+                        createTableOrder();
+                        $("#mavach").val("");
+                    } else {
+                        alert(item.error);
+                    }
                 },
                 error: function (mes) {
                     var responseText = JSON.parse(mes.responseText)
@@ -41,7 +45,7 @@ $(document).ready(function () {
         var codeCustomer = $("#codeCustomer").val();
         $.ajax({
             type: "POST",
-            url: "Service/test.asmx/getInfoCustomer",
+            url: "Service/SaleService.asmx/getInfoCustomer",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ codeCustomer: codeCustomer }),
             dataType: "json",
@@ -97,8 +101,9 @@ $(document).ready(function () {
         var cusPhone = $("#cusPhone").val();
         var cusEmail = $("#cusEmail").val();
         var gg = $("#gg").val();
-        var tc = parseInt($("#tc")[0].value);
-        var tt = parseInt($("#tt")[0].value);
+        var tc = parseInt(formatMoneyToString($("#tc")[0].value));
+        var tt = parseInt(formatMoneyToString($("#tt")[0].value));
+        var currOrder = getStorageItem(ORDER);
         if (tc <= 0) {
             alert("Vui lòng chọn sản phẩm cho đơn hàng");
             return;
@@ -108,26 +113,49 @@ $(document).ready(function () {
             return;
         }
         var isExist = $("#cusName")[0].disabled;
-        if (isExist) { // is exist
+        //if (isExist) { // is exist
 
-        } else { // isn't exist
-            //$.ajax({
-            //    type: "POST",
-            //    url: "Service/test.asmx/saveInfoCustomer",
-            //    contentType: "application/json; charset=utf-8",
-            //    data: JSON.stringify({ codeCustomer: codeCustomer, cusName: cusName, cusPhone: cusPhone, cusEmail: cusEmail, discount: gg, tc: tc, tt: tt}),
-            //    dataType: "json",
-            //    success: function (result) {
-            //        var customer = result.d;
-
-            //    }
-            //});
-        }
-        alert("Thực thi thành công");
-        
+        //} else { // isn't exist
+            $.ajax({
+                type: "POST",
+                url: "Service/SaleService.asmx/saveInfoCustomer",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ codeCustomer: codeCustomer, cusName: cusName, cusPhone: cusPhone, cusEmail: cusEmail, discount: gg, tc: tc, tt: tt, currOrder: currOrder }),
+                dataType: "json",
+                success: function (result) {
+                    var isSuccess = result.d;
+                    if (isSuccess) {
+                        alert("Thực thi thành công");
+                    } else {
+                        alert("Thực thi thất bại");
+                    }
+                    setStorageItem(ORDER, null);
+                    createTableOrder();
+                }
+            });
+        //}
     });
 
 });
+
+window.onload = getCurrentEventByBranch;
+
+function getCurrentEventByBranch() {
+    setStorageItem(ORDER, null);
+    $.ajax({
+        type: "POST",
+        url: "Service/SaleService.asmx/getCurrentEventByBranch",
+        contentType: "application/json; charset=utf-8",
+        data: {},
+        dataType: "json",
+        success: function (result) {
+            var gg = result.d;
+            if (gg != "") {
+                $("#gg").val(gg);
+            }
+        }
+    });
+}
 
 window.onbeforeunload = closingCode;
 function closingCode() {
@@ -147,7 +175,7 @@ function createTableOrder() {
             var sL = item.sl;
             var rowHtml = '<tr id="' + (i + 1) + '">' +
                         '<td>' + (i + 1) + '</td>' +
-                        '<td>' + item.id + '</td>' +
+                        '<td>' + item.barCode + '</td>' +
                         '<td>' + item.name + '</td>' +
                         '<td>' + moneyOfProduct + '</td>' +
                         '<td>' + sL + '</td>' +
@@ -223,7 +251,7 @@ function checkExistProductInCurrentOrder(item, currOrder) {
     var index = null;
     if(item){
         for(var i = 0; i < currOrder.length; i++){
-            if(currOrder[i].id == item.id){
+            if(currOrder[i].barCode == item.barCode){
                 index = i;
                 return index;
             }
