@@ -115,6 +115,30 @@ namespace DAL
 
         }
 
+        public objEvent GetCurrentEventByBranch(int BranchID)
+        {
+
+            objEvent obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@BranchID", BranchID));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spGetCurrentEventByBranch", parameterList);
+            while (dr.Read())
+            {
+                obj = new objEvent();
+                obj.EventID = int.Parse(dr["EventID"].ToString());
+                obj.EventName = dr["Name"].ToString();
+                obj.Branch = DALBranch.GetBranchByID(int.Parse(dr["BranchID"].ToString()));
+                obj.StartDate = dr["StartDate"].ToString();
+                obj.EndDate = dr["EndDate"].ToString();
+                obj.Discount = dr["DisCount"].ToString();
+            }
+
+            return obj;
+
+        }
+
         //call store procedure insert Event
         public int InsertEvent(objEvent obj)
         {
