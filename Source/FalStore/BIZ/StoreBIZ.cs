@@ -61,6 +61,21 @@ namespace BIZ
             }
 
         }
+
+        public objStore ShowStoreByBarCodeAndBranch(string barCode, int branchID)
+        {
+            try
+            {
+                objStore obj = new objStore();
+                obj = DAL.GetStoreByBarCodeAndBranch(barCode, branchID);
+
+                return obj;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         /// <summary>
         /// add new record
         /// </summary>
@@ -92,6 +107,31 @@ namespace BIZ
                 if (obj != null)
                 {
                     result = DAL.UpdateStore(obj);
+                }
+                else
+                {
+                    result = 1;
+                }
+
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public int UpdateQuantity(objStore obj)
+        {
+            try
+            {
+                int result = 0;
+
+                if (obj != null)
+                {
+                    result = DAL.UpdateQuantity(obj);
                 }
                 else
                 {
