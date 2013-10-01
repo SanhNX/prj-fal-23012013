@@ -95,21 +95,28 @@ namespace DAL
         /// <param name="productID"></param>
         /// <param name="branchID"></param>
         /// <returns></returns>
-        public objProduct GetProductInStore(string productID, int branchID)
+        public objStore GetStoreByBarCodeAndBranch(string barCode, int branchID)
         {
 
-            objProduct obj = null;
+            objStore obj = null;
 
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
-            parameterList.Add(new SqlParameter("@ProductID", productID));
+            parameterList.Add(new SqlParameter("@BarCode", barCode));
             parameterList.Add(new SqlParameter("@BranchID", branchID));
 
-            SqlDataReader dr = SQLHelper.ExecuteReader("spStoreGetProductID", parameterList);
+            SqlDataReader dr = SQLHelper.ExecuteReader("spGetStoreByBarCodeAndBranch", parameterList);
             while (dr.Read())
             {
-                obj = new objProduct();
+                obj = new objStore();
 
-                obj.ProductID = dr["ProductID"].ToString();
+                obj.StoreID = int.Parse(dr["StoreID"].ToString());
+                obj.BarCode = new objBarCode();
+                obj.BarCode.BarCode = dr["BarCode"].ToString();
+                obj.ProductName = dr["ProductName"].ToString();
+                obj.Branch = new objBranch();
+                obj.Branch.BranchID = int.Parse(dr["BranchID"].ToString());
+                obj.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+                obj.Quantity = int.Parse(dr["Quantity"].ToString());
             }
 
             return obj;
@@ -138,6 +145,17 @@ namespace DAL
             }
 
             return quantity;
+        }
+
+        public int UpdateQuantity(objStore obj)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@BarCode", obj.BarCode.BarCode));
+            parameterList.Add(new SqlParameter("@BranchID", obj.Branch.BranchID));
+            parameterList.Add(new SqlParameter("@NewQuantity", obj.Quantity));
+
+            return SQLHelper.ExecuteNonQuery("spStoreUpdateQuantity", parameterList);
         }
         /// <summary>
         /// insert store
