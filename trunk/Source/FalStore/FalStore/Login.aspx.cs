@@ -30,6 +30,7 @@ namespace FalStore
                 Session["EmployeeName"] = objemployee.EmployeeName;
                 Session["BranchID"] = objemployee.BranchID;
                 Session["BranchName"] = branchBIZ.ShowByBranchID(objemployee.BranchID).BranchName;
+                Session["Role"] = objemployee.Role;
                 if (objemployee.First_Flg == 0)
                 { // change pass
                     Response.Redirect("~/ChangePass.aspx");
@@ -41,10 +42,11 @@ namespace FalStore
             }
             else 
             {
-                Response.Redirect("~/ErrorPage.aspx");
+                txtUser.Text = string.Empty;
+                txtPass.Text = string.Empty;
+                Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"UserName Hoặc PassWord Sai\"); <" + "/script>"));
             }
-            txtUser.Text = string.Empty;
-            txtPass.Text = string.Empty;
+           
 
         }   
 
