@@ -179,5 +179,22 @@ namespace BIZ
             }
 
         }
+
+        public List<objEmployee> EmployeeSearch(string employeeName, int branchID, int role) {
+            List<objEmployee> lstEmp = new List<objEmployee>();
+
+            try
+            {
+
+                lstEmp = DAL.EmployeeSearch(employeeName, branchID, role);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return lstEmp;
+        }
     }
 }
