@@ -54,6 +54,21 @@ namespace BIZ
 
         }
 
+        public objEmployee ShowByEmployeeByNameAndPass(string username, string password)
+        {
+            try
+            {
+                objEmployee obj = new objEmployee();
+                obj = DAL.GetEmployeeByNameAndPass(username, password);
+
+                return obj;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         /// <summary>
         /// add new record
         /// </summary>
