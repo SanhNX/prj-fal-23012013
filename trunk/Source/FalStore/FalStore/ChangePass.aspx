@@ -53,25 +53,31 @@
                                 <div class="mws-form-row bordered">
                                     <label class="mws-form-label">User Name</label>
                                     <div class="mws-form-item">
-                                        <input type="text" class="small" disabled="true">
+                                        <asp:TextBox ID="txtUserName" runat="server" CssClass="large"  Visible="true" ReadOnly="true"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="mws-form-row bordered">
                                     <label class="mws-form-label">Mật Khẩu Cũ</label>
                                     <div class="mws-form-item">
-                                        <input type="password" class="small">
+                                        <%--<asp:TextBox ID="TextBox1" runat="server" class="large"  Visible="false"></asp:TextBox>
+                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Nhập tên chương trình"
+                                        ControlToValidate="txtEventName" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                                     </div>
                                 </div>
                                 <div class="mws-form-row bordered">
                                     <label class="mws-form-label">Mật Khẩu Mới</label>
                                     <div class="mws-form-item">
-                                        <input type="password" class="small">
+                                        <%--<asp:TextBox ID="TextBox2" runat="server" class="large"  Visible="false"></asp:TextBox>
+                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Nhập tên chương trình"
+                                        ControlToValidate="txtEventName" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                                     </div>
                                 </div>
                                 <div class="mws-form-row bordered">
                                     <label class="mws-form-label">Xác Nhận Mật Khẩu</label>
                                     <div class="mws-form-item">
-                                        <input type="password" class="small">
+                                        <%--<asp:TextBox ID="TextBox3" runat="server" class="large"  Visible="false"></asp:TextBox>
+                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Nhập tên chương trình"
+                                        ControlToValidate="txtEventName" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                                     </div>
                                 </div>
                           
