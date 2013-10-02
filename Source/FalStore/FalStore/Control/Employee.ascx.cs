@@ -48,7 +48,7 @@ namespace FalStore.Control
                     InitPage(role());
                     search("", -1, -1);
                     break;
-                case 4:
+                case 3:
                     InitPage(role());
                     search("", branchID(), role());
                     break;
@@ -334,26 +334,41 @@ namespace FalStore.Control
         /// <param name="e"></param>
         protected void rptResult_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
-            //try
-            //{
-            //    switch (e.CommandName)
-            //    {
-            //        case "Edit":
-            //            LoadDataUpdate(e.CommandArgument.ToString());
-            //            break;
-            //        case "Delete":
-            //            DeleteProduct(e.CommandArgument.ToString());
-            //            break;
-            //        case "Barcode":
-            //            Response.Redirect("~/Default.aspx?pageName=PrintBarCode&id=" + e.CommandArgument.ToString());
-            //            break;
-            //    }
-            //}
-            //catch (Exception)
-            //{
+            try
+            {
+                switch (e.CommandName)
+                {
+                    case "Edit":
+                        
+                        //LoadDataUpdate(e.CommandArgument.ToString());
+                        break;
+                    case "Delete":
+                        if (int.Parse(e.CommandArgument.ToString()) != role()) {
+                            objEmployee objE = new objEmployee();
+                            objE.EmployeeID = int.Parse(e.CommandArgument.ToString());
+                            objE.UpdateDate = DateTime.Today;
+                            objE.UpdateUser = (string)Session["EmployeeName"];
+                            employeeBIZ.Delete(objE);
+                            if (role() == 1)
+                            {
+                                search("", -1, -1);
+                            }
+                            else
+                            {
+                                search("", branchID(), role());
+                            }
+                            Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Đã Xóa Nhân Viên Thành Công\"); <" + "/script>"));
+                        }
+                        
+                        //DeleteProduct(e.CommandArgument.ToString());
+                        break;
+                }
+            }
+            catch (Exception)
+            {
 
-            //    throw;
-            //}
+                throw;
+            }
 
         }
 

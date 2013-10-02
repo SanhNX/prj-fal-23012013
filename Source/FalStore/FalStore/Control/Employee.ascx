@@ -150,15 +150,12 @@
                                             <asp:Literal runat="server" ID="ltrCapBat"></asp:Literal>
                                         </td>
                                         <td>
-                                            <%--<i class="icon-pencil"></i>
+                                            <i class="icon-pencil"></i>
                                             <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="false" CommandName="Edit"
-                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Chỉnh sửa</asp:LinkButton>
+                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "EmployeeID") %>'>Chỉnh sửa</asp:LinkButton>
                                             <i class="icon-trash"></i>
                                             <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" CommandName="Delete"
-                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xóa</asp:LinkButton>
-                                            <i class="icon-barcode"></i>
-                                            <asp:LinkButton ID="lnkBarcode" runat="server" CausesValidation="false" CommandName="Barcode"
-                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>In mã vạch</asp:LinkButton>--%>
+                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "EmployeeID") %>'>Xóa</asp:LinkButton>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
