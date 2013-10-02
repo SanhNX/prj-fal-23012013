@@ -65,6 +65,32 @@ namespace DAL
             return lst;
         }
 
+        public objEmployee GetEmployeeByNameAndPass(string username, string password)
+        {
+
+            objEmployee obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@UserName", username));
+            parameterList.Add(new SqlParameter("@PassWord", password));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spGetEmployeeByNameAndPass", parameterList);
+            while (dr.Read())
+            {
+                obj = new objEmployee();
+                obj.EmployeeID = int.Parse(dr["EmployeeID"].ToString());
+                obj.BranchID = int.Parse(dr["BranchID"].ToString());
+                obj.EmployeeName = dr["EmployeeName"].ToString();
+                obj.Gender = int.Parse(dr["Gender"].ToString());
+                obj.Address = dr["Address"].ToString();
+                obj.Phone = dr["Phone"].ToString();
+                obj.First_Flg = int.Parse(dr["First_Flg"].ToString());
+            }
+
+            return obj;
+
+        }
+
         //call store procedure insert employee
         public int InsertEmployee(objEmployee obj)
         {
