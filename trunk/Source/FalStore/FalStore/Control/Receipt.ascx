@@ -1,11 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Receipt.ascx.cs" Inherits="FalStore.Control.Receipt" %>
 <!-- fancybox --->
-<script src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
+<%--<script src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
 <script src="../Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>
 <!-- fancybox --->
 <link rel="stylesheet" type="text/css" href="../Styles/jquery.fancybox-1.3.4.css"
     media="screen" />
-<script src="../Scripts/jquery.fancybox-1.3.4.js"></script>
+<script src="../Scripts/jquery.fancybox-1.3.4.js"></script>--%>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -24,20 +24,21 @@
        var stt = 0;
        var temp = "";
        var arr = new Array();
-       for (var i = 0; i < popupRetVal.length; i++) {
-           if (popupRetVal.charAt(i) == "=") {
+       if (popupRetVal.length > 0) {
+           for (var i = 0; i < popupRetVal.length; i++) {
+               if (popupRetVal.charAt(i) == "=") {
 
-               arr[stt] = temp;
+                   arr[stt] = temp;
 
-               stt++;
+                   stt++;
 
-               temp = "";
+                   temp = "";
 
-           } else {
-               temp = temp + popupRetVal.charAt(i);
+               } else {
+                   temp = temp + popupRetVal.charAt(i);
+               }
            }
        }
-
        if (arr.length > 0) {
            $("#ContentPlaceHolder1_ctl00_txtSize")[0].value = temp;
            for (var j = 0; j < arr.length; j++) {

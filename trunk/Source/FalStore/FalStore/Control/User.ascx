@@ -42,16 +42,7 @@
                         </div>
                     </div>
                     
-                    <div class="mws-form-row">
-                        <label class="mws-form-label">
-                            Chức vụ</label>
-                        <div class="mws-form-item">
-                            <select class="large">
-                                <option>Quản lý</option>
-                                <option>Nhân viên</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="mws-button-row">
                     <input type="submit" value="Submit" class="btn btn-danger">
