@@ -164,5 +164,38 @@ namespace DAL
             return abc;
         }
 
+        public List<objEmployee> EmployeeSearch(string employeeName, int branchID, int role)
+        {
+            List<objEmployee> lstEm = new List<objEmployee>();
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@EmployeeName", employeeName));
+            parameterList.Add(new SqlParameter("@BranchID", branchID));
+            parameterList.Add(new SqlParameter("@Role", role));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spEmployeeSearch", parameterList);
+
+            objEmployee obj = null;
+            while (dr.Read())
+            {
+                obj = new objEmployee();
+                obj.EmployeeID = int.Parse(dr["EmployeeID"].ToString());
+                obj.UserName = dr["UserName"].ToString();
+                obj.BranchID = int.Parse(dr["BranchID"].ToString());
+                obj.EmployeeName = dr["EmployeeName"].ToString();
+                obj.Gender = int.Parse(dr["Gender"].ToString());
+                obj.Address = dr["Address"].ToString();
+                obj.Phone = dr["Phone"].ToString();
+                obj.Role = int.Parse(dr["Role"].ToString());
+
+                lstEm.Add(obj);
+
+            }
+
+            return lstEm;
+        }
+
+
+
     }
 }
