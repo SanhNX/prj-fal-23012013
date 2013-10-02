@@ -48,7 +48,7 @@
                         <span>Thay Đổi Mật Khẩu</span>
                     </div>
                     <div class="mws-panel-body no-padding">
-                        <form class="mws-form" action="form_layouts.html">
+                        <form class="mws-form" runat="server" >
                             <div class="mws-form-inline">
                                 <div class="mws-form-row bordered">
                                     <label class="mws-form-label">User Name</label>
