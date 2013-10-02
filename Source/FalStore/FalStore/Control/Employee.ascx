@@ -12,9 +12,29 @@
                 <div class="mws-form-inline">
                     <div class="mws-form-row">
                         <label class="mws-form-label">
+                            User name</label>
+                        <div class="mws-form-item">
+                            <asp:TextBox ID="TextUsername" runat="server" class="small" MaxLength="30" AutoPostBack="true" OnTextChanged="txtTextChanged"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Nhập User Name"
+                                        ControlToValidate="TextUsername" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">
+                            PassWord</label>
+                        <div class="mws-form-item">
+                            <asp:TextBox ID="TextPassWord" runat="server" TextMode="Password" class="small" MaxLength="10"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Nhập PassWord"
+                                        ControlToValidate="TextPassWord" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">
                             Tên nhân viên</label>
                         <div class="mws-form-item">
-                            <input type="text" class="large">
+                            <asp:TextBox ID="textEmpName" runat="server" class="small" MaxLength="30"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredEmpName" runat="server" ErrorMessage="Nhập Tên Nhân Viên"
+                                        ControlToValidate="textEmpName" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="mws-form-row">
@@ -22,14 +42,8 @@
                             Giới tính</label>
                         <div class="mws-form-item clearfix">
                             <ul class="mws-form-list inline">
-                                <li>
-                                    <input type="radio">
-                                    <label>
-                                        Nam</label></li>
-                                <li>
-                                    <input type="radio">
-                                    <label>
-                                        Nữ</label></li>
+                                 <asp:DropDownList ID="drpGender" runat="server" class="small">
+                            </asp:DropDownList>
                             </ul>
                         </div>
                     </div>
@@ -37,55 +51,40 @@
                         <label class="mws-form-label">
                             Địa chỉ</label>
                         <div class="mws-form-item">
-                            <input type="text" class="large">
+                           <asp:TextBox ID="TextAdress" runat="server" class="small" MaxLength="50"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldAdress" runat="server" ErrorMessage="Nhập Địa chỉ"
+                                        ControlToValidate="TextAdress" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="mws-form-row">
                         <label class="mws-form-label">
                             Số điện thoại</label>
                         <div class="mws-form-item">
-                            <input type="text" class="large">
-                        </div>
-                    </div>
-                    <div class="mws-form-row">
-                        <label class="mws-form-label">
-                            Ghi chú</label>
-                        <div class="mws-form-item">
-                            <input type="text" class="large">
+                              <asp:TextBox ID="TextPhone" runat="server" class="small" MaxLength="11"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldPhone" runat="server" ErrorMessage="Nhập số ĐT"
+                                        ControlToValidate="TextPhone" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="mws-form-row">
                         <label class="mws-form-label">
                             Chi Nhánh</label>
                         <div class="mws-form-item">
-                            <select class="large">
-                                <option>Chi Nhánh 1</option>
-                                <option>Chi Nhánh 2</option>
-                                <option>Chi Nhánh 3</option>
-                                <option>Chi Nhánh 4</option>
-                                <option>Chi Nhánh 5</option>
-                                <option>Chi Nhánh 6</option>
-                                <option>Chi Nhánh 7</option>
-                                <option>Chi Nhánh 8</option>
-                                <option>Chi Nhánh 9</option>
-                                <option>LChi Nhánh 10</option>
-                            </select>
+                            <asp:DropDownList ID="drpBranchTo" runat="server" class="small">
+                            </asp:DropDownList>
                         </div>
                     </div>
                     <div class="mws-form-row">
                         <label class="mws-form-label">
                             Chức vụ</label>
                         <div class="mws-form-item">
-                            <select class="large">
-                                <option>Quản lý</option>
-                                <option>Nhân viên</option>
-                            </select>
+                                <asp:DropDownList ID="drpPermission" runat="server" class="small">
+                            </asp:DropDownList>
                         </div>
                     </div>
                 </div>
                 <div class="mws-button-row">
-                    <input type="submit" value="Submit" class="btn btn-danger">
-                    <input type="reset" value="Reset" class="btn ">
+                    <asp:Button ID="btnAdd" runat="server" Text="Tạo Nhân Viên" class="btn btn-success" OnClick="btnAdd_Click" />
+                    <%--<input type="reset" value="Reset" class="btn ">--%>
                 </div>
                 </div>
             </div>
