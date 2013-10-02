@@ -25,7 +25,7 @@
     <!-- fancybox --->
     <link rel="stylesheet" type="text/css" href="../Styles/jquery.fancybox-1.3.4.css"
         media="screen" />
-    <script src="../Scripts/jquery.fancybox-1.3.4.js"></script>
+   <%-- <script src="../Scripts/jquery.fancybox-1.3.4.js"></script>--%>
 
     <script type="text/javascript">
 
