@@ -99,13 +99,13 @@
                     <thead>
                         <tr>
                             <th>
-                                Số thứ tự
+                                Tên NV
                             </th>
                             <th>
-                                Mã nhân viên
+                                UserName
                             </th>
                             <th>
-                                Tên nhân viên
+                                Chi Nhánh
                             </th>
                             <th>
                                 Giới tính
@@ -117,261 +117,53 @@
                                 Điện thoại
                             </th>
                             <th>
+                                Cấp bật
+                            </th>
+                            <th>
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                NV001
-                            </td>
-                            <td>
-                                NGUYỄN VĂN A
-                            </td>
-                            <td>
-                                Nam
-                            </td>
-                            <td>
-                                HCM
-                            </td>
-                            <td>
-                                090.000.000.000
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                2
-                            </td>
-                            <td>
-                                NV002
-                            </td>
-                            <td>
-                                TRẦN VĂN B
-                            </td>
-                            <td>
-                                Nam
-                            </td>
-                            <td>
-                                Đồng Nai
-                            </td>
-                            <td>
-                                090.111.000.000
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                3
-                            </td>
-                            <td>
-                                NV003
-                            </td>
-                            <td>
-                                NGUYỄN THỊ C
-                            </td>
-                            <td>
-                                Nữ
-                            </td>
-                            <td>
-                                Tiền Giang
-                            </td>
-                            <td>
-                                090.000.222.000
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                4
-                            </td>
-                            <td>
-                                NV004
-                            </td>
-                            <td>
-                                TRẦN THỊ D
-                            </td>
-                            <td>
-                                Nữ
-                            </td>
-                            <td>
-                                Bình Thuận
-                            </td>
-                            <td>
-                                090.000.333.000
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                5
-                            </td>
-                            <td>
-                                NV005
-                            </td>
-                            <td>
-                                NGUYỄN VĂN E
-                            </td>
-                            <td>
-                                Nam
-                            </td>
-                            <td>
-                                Bến Tre
-                            </td>
-                            <td>
-                                090.000.000.444
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                6
-                            </td>
-                            <td>
-                                NV006
-                            </td>
-                            <td>
-                                LÝ VĂN F
-                            </td>
-                            <td>
-                                Nam
-                            </td>
-                            <td>
-                                Bình Dương
-                            </td>
-                            <td>
-                                090.000.555.000
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                7
-                            </td>
-                            <td>
-                                NV007
-                            </td>
-                            <td>
-                                NGUYỄN VĂN G
-                            </td>
-                            <td>
-                                Nam
-                            </td>
-                            <td>
-                                Tây Ninh
-                            </td>
-                            <td>
-                                090.000.000.666
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                8
-                            </td>
-                            <td>
-                                NV008
-                            </td>
-                            <td>
-                                NGUYỄN THỊ H
-                            </td>
-                            <td>
-                                Nữ
-                            </td>
-                            <td>
-                                Hà Nội
-                            </td>
-                            <td>
-                                090.777.000.000
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                9
-                            </td>
-                            <td>
-                                NV009
-                            </td>
-                            <td>
-                                NGUYỄN VĂN I
-                            </td>
-                            <td>
-                                Nam
-                            </td>
-                            <td>
-                                Long An
-                            </td>
-                            <td>
-                                090.888.000.000
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                10
-                            </td>
-                            <td>
-                                NV010
-                            </td>
-                            <td>
-                                LÝ VĂN J
-                            </td>
-                            <td>
-                                Nam
-                            </td>
-                            <td>
-                                Bình Phước
-                            </td>
-                            <td>
-                                090.000.999.000
-                            </td>
-                            <td>
-                                <span class="btn-group"><a href="#" class="btn btn-small"><i class="icon-search"></i>
-                                </a><a href="#" class="btn btn-small"><i class="icon-pencil"></i></a><a href="#"
-                                    class="btn btn-small"><i class="icon-trash"></i></a></span>
-                            </td>
-                        </tr>
-                    </tbody>
+                   <tbody role="alert" aria-live="polite" aria-relevant="all">
+                            <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" OnItemCommand="rptResult_ItemCommand"
+                                runat="server">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrName"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrUserName"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrChiNhanh"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrGioiTinh"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrDiaChi"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrDienThoai"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrCapBat"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <%--<i class="icon-pencil"></i>
+                                            <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="false" CommandName="Edit"
+                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Chỉnh sửa</asp:LinkButton>
+                                            <i class="icon-trash"></i>
+                                            <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" CommandName="Delete"
+                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xóa</asp:LinkButton>
+                                            <i class="icon-barcode"></i>
+                                            <asp:LinkButton ID="lnkBarcode" runat="server" CausesValidation="false" CommandName="Barcode"
+                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>In mã vạch</asp:LinkButton>--%>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </tbody>
                 </table>
             </div>
         </div>
