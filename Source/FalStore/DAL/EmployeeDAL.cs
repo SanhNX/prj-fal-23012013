@@ -84,6 +84,7 @@ namespace DAL
                 obj.Gender = int.Parse(dr["Gender"].ToString());
                 obj.Address = dr["Address"].ToString();
                 obj.Phone = dr["Phone"].ToString();
+                obj.Role = int.Parse(dr["Role"].ToString());
                 obj.First_Flg = int.Parse(dr["First_Flg"].ToString());
             }
 
@@ -182,6 +183,7 @@ namespace DAL
                 obj.EmployeeID = int.Parse(dr["EmployeeID"].ToString());
                 obj.UserName = dr["UserName"].ToString();
                 obj.BranchID = int.Parse(dr["BranchID"].ToString());
+                obj.BranchName = dr["BranchName"].ToString();
                 obj.EmployeeName = dr["EmployeeName"].ToString();
                 obj.Gender = int.Parse(dr["Gender"].ToString());
                 obj.Address = dr["Address"].ToString();
