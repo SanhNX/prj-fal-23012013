@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text;
 using Entity;
 using DAL;
 using System.Data;
@@ -143,6 +142,27 @@ namespace BIZ
 
                 throw;
             }
+        }
+
+        public Boolean EmployeeGetByUserName(string username)
+        {
+            try
+            {
+                Boolean abc = false;
+
+                if (username != null)
+                {
+                    abc = DAL.EmployeeGetByUserName(username);
+                }
+
+                return abc;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
 }
