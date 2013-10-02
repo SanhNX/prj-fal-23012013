@@ -115,5 +115,28 @@ namespace DAL
 
         }
 
+        //call store procedure delete employee
+        public Boolean EmployeeGetByUserName(string username)
+        {
+            Boolean abc = false;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@UserName", username));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spEmployeeGetByUserName", parameterList);
+
+            int count = 0;
+
+            while (dr.Read()) {
+                count++;
+            }
+            if (count > 0)
+            {
+                abc = true;
+            }
+
+            return abc;
+        }
+
     }
 }
