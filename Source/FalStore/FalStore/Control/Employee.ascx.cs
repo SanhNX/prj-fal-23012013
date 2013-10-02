@@ -16,18 +16,67 @@ namespace FalStore.Control
         BranchBIZ branBiz = new BranchBIZ();
         EmployeeBIZ employeeBIZ = new EmployeeBIZ();
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            InitPage();
+        private int role() {
+            int role = -1;
+            if (Session["Role"] != null)
+            {
+                role = (int)Session["Role"];
+            }
+            return role;
         }
 
-        protected void InitPage()
+        private int branchID()
+        {
+            int branchId = -1;
+            if (Session["BranchID"] != null)
+            {
+                branchId = (int)Session["BranchID"];
+            }
+            return branchId;
+        }
+
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+
+
+
+            switch (role())
+            {
+                case 1:
+                    InitPage(role());
+                    search("", -1, -1);
+                    break;
+                case 4:
+                    InitPage(role());
+                    search("", branchID(), role());
+                    break;
+                default:
+                    Response.Redirect("~/Default.aspx?pageName=Home");  
+                    break;
+            }
+
+        }
+
+        protected void InitPage(int role)
         {
             try
             {
 
                 List<objBranch> lstBranch = new List<objBranch>();
-                lstBranch = branBiz.ShowAll();
+                objBranch objBra = null;
+                if (role == 1)
+                {
+                    lstBranch = branBiz.ShowAll();
+                }
+                else {
+                    objBra = new objBranch();
+                    objBra = branBiz.ShowByBranchID((int)Session["BranchID"]);
+                    lstBranch.Add(objBra);
+                }
+
+                
                 drpBranchTo.DataSource = lstBranch;
                 drpBranchTo.DataTextField = "BranchName";
                 drpBranchTo.DataValueField = "BranchID";
@@ -36,23 +85,36 @@ namespace FalStore.Control
                 // Add quyen
 
                 List<objPermission> lstPer = new List<objPermission>();
-                objPermission per = new objPermission();
-                per.Name = "Admin";
-                per.Id = "1";
-                objPermission per1 = new objPermission();
-                per1.Name = "Quan Ly Kho";
-                per1.Id = "2";
-                objPermission per2 = new objPermission();
-                per2.Name = "Quan Ly Chi Nhanh";
-                per2.Id = "3";
-                objPermission per3 = new objPermission();
-                per3.Name = "Nhan Vien";
-                per3.Id = "4";
 
-                lstPer.Add(per);
-                lstPer.Add(per1);
-                lstPer.Add(per2);
-                lstPer.Add(per3);
+                if (role == 1)
+                {
+                    objPermission per = new objPermission();
+                    per.Name = "Admin";
+                    per.Id = "1";
+                    objPermission per1 = new objPermission();
+                    per1.Name = "Quan Ly Kho";
+                    per1.Id = "2";
+                    objPermission per2 = new objPermission();
+                    per2.Name = "Quan Ly Chi Nhanh";
+                    per2.Id = "3";
+                    objPermission per3 = new objPermission();
+                    per3.Name = "Nhan Vien";
+                    per3.Id = "4";
+
+                    lstPer.Add(per);
+                    lstPer.Add(per1);
+                    lstPer.Add(per2);
+                    lstPer.Add(per3);
+                }
+                else
+                {
+                    objPermission per3 = new objPermission();
+                    per3.Name = "Nhan Vien";
+                    per3.Id = "4";
+                    lstPer.Add(per3);
+                }
+
+                
 
                 drpPermission.DataSource = lstPer;
                 drpPermission.DataTextField = "Name";
@@ -125,6 +187,15 @@ namespace FalStore.Control
 
                     if (result > 0)
                     {
+                        if (role() == 1)
+                        {
+                            search("", -1, -1);
+                        }
+                        else {
+                            search("", branchID(), role());
+                        }
+                        
+
                         Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Đã tạo nhân viên thành công\"); <" + "/script>"));
                         return;
 
@@ -167,6 +238,122 @@ namespace FalStore.Control
 
                 throw;
             }
+
+        }
+
+        private void search(string empName , int brachID , int role)
+        {
+            try
+            {
+                List<objEmployee> lstEmp = new List<objEmployee>();
+                lstEmp = employeeBIZ.EmployeeSearch(empName, brachID, role);
+                rptResult.DataSource = lstEmp;
+                rptResult.DataBind();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Literal map data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void rptResult_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            try
+            {
+                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+                {
+
+                    objEmployee data = e.Item.DataItem as objEmployee;
+
+                    Literal ltrName = e.Item.FindControl("ltrName") as Literal;
+                    ltrName.Text = data.EmployeeName.ToString();
+
+                    Literal ltrUserName = e.Item.FindControl("ltrUserName") as Literal;
+                    ltrUserName.Text = data.UserName.ToString();
+
+                    Literal ltrChiNhanh = e.Item.FindControl("ltrChiNhanh") as Literal;
+                    ltrChiNhanh.Text = data.BranchName.ToString();
+
+                    if ("1".Equals(data.Gender.ToString()))
+                    {
+                        Literal ltrGioiTinh = e.Item.FindControl("ltrGioiTinh") as Literal;
+                        ltrGioiTinh.Text = "Nam";
+                    }
+                    else {
+                        Literal ltrGioiTinh = e.Item.FindControl("ltrGioiTinh") as Literal;
+                        ltrGioiTinh.Text = "Nữ";
+                    }
+                   
+
+                    Literal ltrDiaChi = e.Item.FindControl("ltrDiaChi") as Literal;
+                    ltrDiaChi.Text = data.Address.ToString();
+
+                    Literal ltrDienThoai = e.Item.FindControl("ltrDienThoai") as Literal;
+                    ltrDienThoai.Text = data.Phone.ToString();
+
+                    if ("1".Equals(data.Role.ToString()))
+                    {
+                        Literal ltrCapBat = e.Item.FindControl("ltrCapBat") as Literal;
+                        ltrCapBat.Text = "Admin";
+                    }
+                    else if ("2".Equals(data.Role.ToString())) 
+                    {
+                        Literal ltrCapBat = e.Item.FindControl("ltrCapBat") as Literal;
+                        ltrCapBat.Text = "Quản Lý Kho";
+                    }
+                    else if ("3".Equals(data.Role.ToString()))
+                    {
+                        Literal ltrCapBat = e.Item.FindControl("ltrCapBat") as Literal;
+                        ltrCapBat.Text = "Quản Lý Chi Nhánh";
+                    }
+                    else if ("4".Equals(data.Role.ToString()))
+                    {
+                        Literal ltrCapBat = e.Item.FindControl("ltrCapBat") as Literal;
+                        ltrCapBat.Text = "Nhân Viên";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// item command
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void rptResult_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            //try
+            //{
+            //    switch (e.CommandName)
+            //    {
+            //        case "Edit":
+            //            LoadDataUpdate(e.CommandArgument.ToString());
+            //            break;
+            //        case "Delete":
+            //            DeleteProduct(e.CommandArgument.ToString());
+            //            break;
+            //        case "Barcode":
+            //            Response.Redirect("~/Default.aspx?pageName=PrintBarCode&id=" + e.CommandArgument.ToString());
+            //            break;
+            //    }
+            //}
+            //catch (Exception)
+            //{
+
+            //    throw;
+            //}
 
         }
 
