@@ -13,9 +13,9 @@ namespace FalStore.Control
         {
             if (!IsPostBack)
             {
-                if (Session["User"] != null)
+                if (Session["EmployeeName"] != null)
                 {
-                    lblUser.Text = Session["User"].ToString();
+                    lblUser.Text = Session["EmployeeName"].ToString();
                 }
             }
         }
