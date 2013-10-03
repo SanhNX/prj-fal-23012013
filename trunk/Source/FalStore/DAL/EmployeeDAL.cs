@@ -92,6 +92,55 @@ namespace DAL
 
         }
 
+        public objEmployee GetEmployeeByID(int id)
+        {
+
+            objEmployee obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@EmployeeID", id));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spGetEmployeeByID", parameterList);
+            while (dr.Read())
+            {
+                obj = new objEmployee();
+                obj.EmployeeID = int.Parse(dr["EmployeeID"].ToString());
+                obj.UserName = dr["UserName"].ToString();
+                obj.PassWord = dr["PassWord"].ToString();
+                obj.BranchID = int.Parse(dr["BranchID"].ToString());
+                obj.EmployeeName = dr["EmployeeName"].ToString();
+                obj.Gender = int.Parse(dr["Gender"].ToString());
+                obj.Address = dr["Address"].ToString();
+                obj.Phone = dr["Phone"].ToString();
+                obj.Role = int.Parse(dr["Role"].ToString());
+                obj.First_Flg = int.Parse(dr["First_Flg"].ToString());
+            }
+
+            return obj;
+
+        }
+
+        public int UpdatePassword(int employeeID, string newPass)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@EmployeeID", employeeID));
+            parameterList.Add(new SqlParameter("@PassWord", newPass));
+
+            return SQLHelper.ExecuteNonQuery("spUpdatePassword", parameterList);
+
+        }
+
+        public int UpdateFirstFlag(int employeeID)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@EmployeeID", employeeID));
+
+            return SQLHelper.ExecuteNonQuery("spUpdateFirstFlag", parameterList);
+
+        }
+
         //call store procedure insert employee
         public int InsertEmployee(objEmployee obj)
         {
