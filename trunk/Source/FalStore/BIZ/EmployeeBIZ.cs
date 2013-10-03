@@ -69,6 +69,58 @@ namespace BIZ
             }
         }
 
+        public objEmployee ShowEmployeeByID(int id)
+        {
+            try
+            {
+                objEmployee obj = new objEmployee();
+                obj = DAL.GetEmployeeByID(id);
+
+                return obj;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public int UpdatePassword(int employeeID, string newPass)
+        {
+            try
+            {
+                int result = -1;
+
+                if (employeeID != null && newPass != null)
+                {
+                    result = DAL.UpdatePassword(employeeID, newPass);
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+        public int UpdateFirstFlag(int employeeID)
+        {
+            try
+            {
+                int result = -1;
+
+                if (employeeID != null)
+                {
+                    result = DAL.UpdateFirstFlag(employeeID);
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
         /// <summary>
         /// add new record
         /// </summary>
