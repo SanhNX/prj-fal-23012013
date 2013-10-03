@@ -16,7 +16,8 @@ namespace FalStore
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            lblEmployeeName.Text = "Nhân Viên : " + Session["EmployeeName"].ToString();
+            lblBranchName.Text = "Chi Nhánh " + Session["BranchName"].ToString();
         }
 
         public class Employee

@@ -41,6 +41,7 @@
 <link rel="stylesheet" type="text/css" href="../Styles/jquery.fancybox-1.3.4.css"
     media="screen" />
 <script type="text/javascript" src="../Scripts/jquery.fancybox-1.3.4.js"></script>
+
 </head>
 <body>
     <div class="mws-panel grid_4">
@@ -59,32 +60,33 @@
                                 <div class="mws-form-row bordered">
                                     <label class="mws-form-label">Mật Khẩu Cũ</label>
                                     <div class="mws-form-item">
-                                        <%--<asp:TextBox ID="TextBox1" runat="server" class="large"  Visible="false"></asp:TextBox>
-                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Nhập tên chương trình"
-                                        ControlToValidate="txtEventName" ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                        <asp:TextBox ID="txtOldPass" TextMode="Password" runat="server" class="large"  Visible="true"></asp:TextBox>
+                                        <asp:Label id="lblMessage" ForeColor="Red" runat="server" Visible="false"></asp:Label>
+                                        <asp:RequiredFieldValidator ID="txtOldPassRequiredFieldValidator" runat="server" ErrorMessage="Không được để trống"
+                                        ControlToValidate="txtOldPass" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                                 <div class="mws-form-row bordered">
                                     <label class="mws-form-label">Mật Khẩu Mới</label>
                                     <div class="mws-form-item">
-                                        <%--<asp:TextBox ID="TextBox2" runat="server" class="large"  Visible="false"></asp:TextBox>
-                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Nhập tên chương trình"
-                                        ControlToValidate="txtEventName" ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                        <asp:TextBox ID="txtNewPass" TextMode="Password" runat="server" class="large"  Visible="true"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="txtNewPassRequiredFieldValidator" runat="server" ErrorMessage="Không được để trống"
+                                        ControlToValidate="txtNewPass" ForeColor="Red"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="txtNewPassCustomValidator" runat="server" ControlToValidate="txtNewPass" ValidationExpression="[A-Za-z0-9]{8,16}" ErrorMessage="Mật khẩu phải từ 8-16 ký tự" ForeColor="Red"/>
                                     </div>
                                 </div>
                                 <div class="mws-form-row bordered">
                                     <label class="mws-form-label">Xác Nhận Mật Khẩu</label>
                                     <div class="mws-form-item">
-                                        <%--<asp:TextBox ID="TextBox3" runat="server" class="large"  Visible="false"></asp:TextBox>
-                                      <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Nhập tên chương trình"
-                                        ControlToValidate="txtEventName" ForeColor="Red"></asp:RequiredFieldValidator>--%>
+                                        <asp:TextBox ID="txtNewPassConfirm" TextMode="Password" runat="server" class="large"  Visible="true"></asp:TextBox>
+                                        <asp:CompareValidator ID="txtNewPassConfirmCompareValidator" ControlToValidate="txtNewPass" ControlToCompare="txtNewPassConfirm" ForeColor="Red"  ErrorMessage="Xác nhận mật khẩu chưa đúng" runat="server" class="large" Visible="true" ></asp:CompareValidator>
                                     </div>
                                 </div>
                           
                             </div>
                             <div class="mws-button-row">
-                                <input type="submit" value="Submit" class="btn btn-danger">
-                                <input type="reset" value="Reset" class="btn ">
+                                <asp:Button ID="btnChangePass" runat="server" Text="Submit" class="btn btn-danger" OnClick="btnChangePass_Click" />
+                                <asp:Button ID="btnReset" runat="server" Text="Reset" class="btn" OnClick="btnReset_Click" />
                             </div>
                         </form>
                     </div>      
