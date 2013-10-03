@@ -50,9 +50,9 @@
             <div class="container-sale">
                 <div class="mws-panel grid_8">
                     <div class="mws-panel-header">
-                        <span style="font-size: 22px;width: 40%;float: left;">Nhân Viên : Nguyên Văn A </span>
+                        <asp:Label ID="lblEmployeeName" runat="server" style="font-size: 22px;width: 40%;float: left;"></asp:Label>
                         <span style="font-size: 22px;width: 20%;float: left;text-align: center;">Bán Hàng</span>
-                        <span style="font-size: 22px;width: 40%;float: left;text-align: right;">Chi Nhánh Phú Nhuận</span>
+                        <asp:Label ID="lblBranchName" runat="server" style="font-size: 22px;width: 40%;float: left;text-align: right;"></asp:Label>
                     </div>
                     <div class="mws-panel-body no-padding">
                         <div style="width: 70%;float: left;min-height: 560px;max-height: 100%;">
