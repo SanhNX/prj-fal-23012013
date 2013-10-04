@@ -36,7 +36,7 @@
                             <label class="mws-form-label">
                                 Chọn chi nhánh</label>
                             <div class="mws-form-item">
-                                <asp:DropDownList ID="drpBranch" runat="server">
+                                <asp:DropDownList ID="drpBranch" runat="server" >
                                 </asp:DropDownList>
                             </div>
                         </div>

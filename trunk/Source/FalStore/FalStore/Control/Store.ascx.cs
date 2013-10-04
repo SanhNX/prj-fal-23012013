@@ -33,6 +33,16 @@ namespace FalStore.Control
         }
         #endregion
 
+        private int role()
+        {
+            int role = -1;
+            if (Session["Role"] != null)
+            {
+                role = (int)Session["Role"];
+            }
+            return role;
+        }
+
         protected void InitPage()
         {
             try
@@ -60,6 +70,14 @@ namespace FalStore.Control
                 drpBranch.DataValueField = "BranchID";
                 drpBranch.DataBind();
 
+                if (role() == 3)
+                {
+                    drpBranch.SelectedValue = Session["BranchID"].ToString();
+                    drpBranch.Enabled = false;
+                }
+                else {
+                    drpBranch.Enabled = true;
+                }
             }
             catch (Exception)
             {

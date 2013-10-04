@@ -212,6 +212,14 @@ namespace FalStore.Control
             InitPage();
         }
 
+        protected void CompareFromAndStartDate(object sender, ServerValidateEventArgs e)
+        {
+            DateTime start = DateTime.Parse(txtStartDate.Text);
+            DateTime end = DateTime.Parse(txtEndDate.Text);
+
+            e.IsValid = start <= end;
+        }
+
         /// <summary>
         /// clear
         /// </summary>
