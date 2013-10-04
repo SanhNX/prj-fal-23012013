@@ -61,6 +61,11 @@
                             <label class="mws-form-label">Đến ngày</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtEndDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
+                                <%--<asp:CustomValidator ID="txtEndDateCustomValidator" OnServerValidate="CompareFromAndStartDate" ForeColor="Red" ControlToValidate="txtEndDate"
+                                    ErrorMessage="Ngày kết thúc phải lớn hơn ngày bắt đầu" runat="server" ></asp:CustomValidator>--%>
+                                <%--<asp:CompareValidator ID="CompareValidator1" Operator="LessThanEqual" Type="Date"
+                                    ControlToValidate="txtStartDate" ControlToCompare="txtEndDate"
+                                    ErrorMessage="Let's get started first!" runat="server" />--%>
                             </div>
                         </div>
 
