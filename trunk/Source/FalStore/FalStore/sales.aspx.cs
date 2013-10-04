@@ -14,10 +14,28 @@ namespace FalStore
 {
     public partial class Sales : System.Web.UI.Page
     {
+        private int role()
+        {
+            int role = -1;
+            if (Session["Role"] != null)
+            {
+                role = (int)Session["Role"];
+            }
+            return role;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblEmployeeName.Text = "Nhân Viên : " + Session["EmployeeName"].ToString();
-            lblBranchName.Text = "Chi Nhánh " + Session["BranchName"].ToString();
+            if (role() == 1 || role() == 3 || role() == 4)
+            {
+                lblEmployeeName.Text = "Nhân Viên : " + Session["EmployeeName"].ToString();
+                lblBranchName.Text = "Chi Nhánh " + Session["BranchName"].ToString();
+            }
+            else
+            {
+                Response.Redirect("~/Default.aspx?pageName=Home");
+            }
+            
         }
 
         public class Employee

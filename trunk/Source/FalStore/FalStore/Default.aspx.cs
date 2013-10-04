@@ -9,6 +9,17 @@ namespace FalStore
 {
     public partial class Default : System.Web.UI.Page
     {
+
+        private int role()
+        {
+            int role = -1;
+            if (Session["Role"] != null)
+            {
+                role = (int)Session["Role"];
+            }
+            return role;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -21,47 +32,165 @@ namespace FalStore
                     uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
                     break;
                 case "Category":
-                    uc = this.LoadControl("~/Control/Category.ascx") as UserControl;
+                    if (role() == 1 || role() == 2)
+                    {
+                        uc = this.LoadControl("~/Control/Category.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
                     break;
                 case "Product":
-                    uc = this.LoadControl("~/Control/Product.ascx") as UserControl;
-                    break;
-                case "Employee":
-                    uc = this.LoadControl("~/Control/Employee.ascx") as UserControl;
-                    break;
-                case "User":
-                    uc = this.LoadControl("~/Control/User.ascx") as UserControl;
-                    break;
-                case "Branch":
-                    uc = this.LoadControl("~/Control/Branch.ascx") as UserControl;
+                    if (role() == 1 || role() == 2)
+                    {
+                        uc = this.LoadControl("~/Control/Product.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
                     break;
                 case "Receipt":
-                    uc = this.LoadControl("~/Control/Receipt.ascx") as UserControl;
-                    break;
-                case "Store":
-                    uc = this.LoadControl("~/Control/Store.ascx") as UserControl;
+                    if (role() == 1 || role() == 2)
+                    {
+                        uc = this.LoadControl("~/Control/Receipt.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
                     break;
                 case "ExportProduct":
-                    uc = this.LoadControl("~/Control/ExportProduct.ascx") as UserControl;
+                    if (role() == 1 || role() == 2)
+                    {
+                        uc = this.LoadControl("~/Control/ExportProduct.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
                     break;
+                case "Store":
+                    if (role() == 1 || role() == 2 || role() == 3)
+                    {
+                        uc = this.LoadControl("~/Control/Store.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
+                    break;
+                case "NhapXuat":
+                    if (role() == 1 || role() == 2)
+                    {
+                        uc = this.LoadControl("~/Control/QuanLyNhapXuat.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
+                    break;
+
+                case "Branch":
+                    if (role() == 1 || role() == 3)
+                    {
+                        uc = this.LoadControl("~/Control/Branch.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
+                    
+                    break;
+                case "Event":
+                    if (role() == 1 || role() == 3)
+                    {
+                        uc = this.LoadControl("~/Control/Event.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
+                    
+                    break;
+                case "DoanhThu":
+                    if (role() == 1 || role() == 3 || role() == 4)
+                    {
+                        uc = this.LoadControl("~/Control/DoanhThu.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
+                    
+                    break;
+                case "ThongKe":
+                    if (role() == 1 || role() == 3)
+                    {
+                        uc = this.LoadControl("~/Control/ThongKe.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
+                    
+                    break;
+                case "ChiPhi":
+                    if (role() == 1 || role() == 3)
+                    {
+                        uc = this.LoadControl("~/Control/ChiPhi.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
+                    
+                    break;
+                case "LoiNhuan":
+                    if (role() == 1 || role() == 3)
+                    {
+                        //uc = this.LoadControl("~/Control/LoiNhuan.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
+                    break;
+
+
+                case "Employee":
+                    if (role() == 1 || role() == 3)
+                    {
+                        uc = this.LoadControl("~/Control/Employee.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
+                    
+                    break;
+                case "User":
+                    if (role() == 1)
+                    {
+                        uc = this.LoadControl("~/Control/User.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
+                    
+                    break;
+                
+                
                 case "PrintBarCode":
                     uc = this.LoadControl("~/Control/PrintBarCode.ascx") as UserControl;
                     break;
-                case "DoanhThu":
-                    uc = this.LoadControl("~/Control/DoanhThu.ascx") as UserControl;
-                    break;
-                case "Event":
-                    uc = this.LoadControl("~/Control/Event.ascx") as UserControl;
-                    break;
-                case "ThongKe":
-                    uc = this.LoadControl("~/Control/ThongKe.ascx") as UserControl;
-                    break;
-                case "ChiPhi":
-                    uc = this.LoadControl("~/Control/ChiPhi.ascx") as UserControl;
-                    break;
-                case "NhapXuat":
-                    uc = this.LoadControl("~/Control/QuanLyNhapXuat.ascx") as UserControl;
-                    break;
+                
+                
+                
+                
+                
 
             }
 
