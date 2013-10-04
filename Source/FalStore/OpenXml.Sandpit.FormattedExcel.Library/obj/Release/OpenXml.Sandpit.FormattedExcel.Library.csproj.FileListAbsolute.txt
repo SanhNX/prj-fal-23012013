@@ -1,0 +1,11 @@
+C:\Users\DEV\Downloads\OpenXmlFormattedExcel\Source\OpenXml.Sandpit.FormattedExcel\OpenXml.Sandpit.FormattedExcel.Library\bin\Release\OpenXml.Sandpit.FormattedExcel.Library.dll
+C:\Users\DEV\Downloads\OpenXmlFormattedExcel\Source\OpenXml.Sandpit.FormattedExcel\OpenXml.Sandpit.FormattedExcel.Library\bin\Release\OpenXml.Sandpit.FormattedExcel.Library.pdb
+C:\Users\DEV\Downloads\OpenXmlFormattedExcel\Source\OpenXml.Sandpit.FormattedExcel\OpenXml.Sandpit.FormattedExcel.Library\bin\Release\DocumentFormat.OpenXml.dll
+C:\Users\DEV\Downloads\OpenXmlFormattedExcel\Source\OpenXml.Sandpit.FormattedExcel\OpenXml.Sandpit.FormattedExcel.Library\obj\Release\ResolveAssemblyReference.cache
+C:\Users\DEV\Downloads\OpenXmlFormattedExcel\Source\OpenXml.Sandpit.FormattedExcel\OpenXml.Sandpit.FormattedExcel.Library\obj\Release\OpenXml.Sandpit.FormattedExcel.Library.dll
+C:\Users\DEV\Downloads\OpenXmlFormattedExcel\Source\OpenXml.Sandpit.FormattedExcel\OpenXml.Sandpit.FormattedExcel.Library\obj\Release\OpenXml.Sandpit.FormattedExcel.Library.pdb
+D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\OpenXml.Sandpit.FormattedExcel.Library\bin\Release\OpenXml.Sandpit.FormattedExcel.Library.dll
+D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\OpenXml.Sandpit.FormattedExcel.Library\bin\Release\OpenXml.Sandpit.FormattedExcel.Library.pdb
+D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\OpenXml.Sandpit.FormattedExcel.Library\obj\Release\ResolveAssemblyReference.cache
+D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\OpenXml.Sandpit.FormattedExcel.Library\obj\Release\OpenXml.Sandpit.FormattedExcel.Library.dll
+D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\OpenXml.Sandpit.FormattedExcel.Library\obj\Release\OpenXml.Sandpit.FormattedExcel.Library.pdb
