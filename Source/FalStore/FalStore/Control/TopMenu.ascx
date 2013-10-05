@@ -31,6 +31,30 @@
 
         $(document).ready(function () {
 
+            $('#btnLogout').on('click', function (e) {
+                var r=confirm("Bạn muốn đăng xuất ?")
+                if (r==true)
+                {
+                    $.ajax({
+                        type: "POST",
+                        url: "Service/SaleService.asmx/logout",
+                        contentType: "application/json; charset=utf-8",
+                        data: {},
+                        dataType: "json",
+                        success: function (result) {
+                            var resp = result.d;
+                            if (resp) {
+                                window.location.href = 'login.aspx';
+                            }
+                        },
+                        error: function (mes) {
+                            var responseText = JSON.parse(mes.responseText)
+                            alert(responseText.Message);
+                        }
+                    });
+                }
+            });
+
             $(".fancyboxDemo").fancybox({
                 'type': 'iframe'
 			, 'width': $(window).width() * 0.40
@@ -66,7 +90,7 @@
                 </div>
                 <ul>
                     <li><a href="ChangePass.aspx" class="fancyboxDemo" >Change Password</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a id="btnLogout" href="#">Logout</a></li>
                 </ul>
             </div>
         </div>
