@@ -90,9 +90,9 @@ namespace DAL
                 obj.UpdateUser = dr["UpdateUser"].ToString();
                 obj.CodeCustomer = dr["CodeCustomer"].ToString();
                 obj.DisCount = int.Parse(dr["DisCount"].ToString());
-                obj.StartDiscount = dr["StartDisCount"].ToString();
-                obj.EndDiscount = dr["EndDisCount"].ToString();
-                obj.Point = int.Parse(dr["Point"].ToString());
+                obj.StartDiscount = dr["StartDiscout"].ToString();
+                obj.EndDiscount = dr["EndDiscount"].ToString();
+                obj.Point = int.Parse(dr["Point"].ToString() == "" ? "0" : dr["Point"].ToString());
             }
 
             return obj;
