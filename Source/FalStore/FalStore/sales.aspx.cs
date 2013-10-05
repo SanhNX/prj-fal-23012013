@@ -26,7 +26,7 @@ namespace FalStore
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (role() == 1 || role() == 3 || role() == 4)
+            if (role() == 3 || role() == 4 || (role() == 1 && Request.QueryString["billID"] != null))
             {
                 lblEmployeeName.Text = "Nhân Viên : " + Session["EmployeeName"].ToString();
                 lblBranchName.Text = "Chi Nhánh " + Session["BranchName"].ToString();
