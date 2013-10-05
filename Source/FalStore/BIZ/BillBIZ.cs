@@ -51,12 +51,12 @@ namespace BIZ
 
         }
 
-        public List<objBillDetail> GetBillDetailByID(string billID)
+        public List<objBillDetail> GetBillDetailByID(string billID, int branchID)
         {
             try
             {
                 List<objBillDetail> lst = new List<objBillDetail>();
-                lst = DAL.GetBillDetailByID(billID);
+                lst = DAL.GetBillDetailByID(billID, branchID);
 
                 return lst;
             }
@@ -105,6 +105,25 @@ namespace BIZ
 
                 throw;
             }
+        }
+
+        public int Update(objBill obj)
+        {
+            try
+            {
+                int result = 0;
+                if (obj != null)
+                {
+                    result = DAL.UpdateBill(obj);
+                }
+
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
     }
 }

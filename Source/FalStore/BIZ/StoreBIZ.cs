@@ -148,6 +148,31 @@ namespace BIZ
 
         }
 
+        public int UpdateSumQuantity(objStore obj)
+        {
+            try
+            {
+                int result = 0;
+
+                if (obj != null)
+                {
+                    result = DAL.UpdateSumQuantity(obj);
+                }
+                else
+                {
+                    result = 1;
+                }
+
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
         /// <summary>
         /// edit record
         /// </summary>
