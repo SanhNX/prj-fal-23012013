@@ -25,28 +25,49 @@ namespace FalStore.Service
         ProductDAL productDAL = new ProductDAL();
         BillDAL billDAL = new BillDAL();
         BillDetailDAL billDetailDAL = new BillDetailDAL();
+        BillDetailBIZ billDetailBIZ = new BillDetailBIZ();
         CustomerDAL customerDAL = new CustomerDAL();
-        
+        CustomerBIZ customerBIZ = new CustomerBIZ();
+        BillBIZ billBIZ = new BillBIZ();
+        objBill objbill = new objBill();
+        objBillDetail objBillDetail = new objBillDetail();
+        List<objBillDetail> listBillDetail = new List<objBillDetail>();
 
         objProduct objproduct = new objProduct();
         objEvent objevent = new objEvent();
         objCustomer objcustomer = new objCustomer();
         objStore objstore = new objStore();
-        [WebMethod]
-        public string getCurrentEventByBranch()
+
+        [WebMethod(EnableSession = true)]
+        public object logout()
         {
-            //TODO get current branch from session
-            int currBranchID = 3;
-            objevent = eventBIZ.ShowCurrentEventByBranch(currBranchID);
-            int discountEventOfCurrentBranch = int.Parse(objevent != null ? objevent.Discount : "0");
-            return discountEventOfCurrentBranch.ToString();
+            Session.Clear();
+            Session.Abandon();
+            return true;
+        }
+        
+
+        [WebMethod(EnableSession = true)]
+        public object getBillToUpdate(string billID)
+        {
+            objbill = billBIZ.GetBillByID(billID)[0];
+            objcustomer = customerDAL.GetCustomerByID(objbill.CustomerID);
+            listBillDetail = billBIZ.GetBillDetailByID(billID, objbill.BranchID);
+            JavaScriptSerializer oSerializer = new JavaScriptSerializer();
+            object json = oSerializer.DeserializeObject(oSerializer.Serialize(listBillDetail));
+
+
+
+
+
+            return new { branchIDOfBill = objbill.BranchID, roleID = Session["Role"] != null ? (int)Session["Role"] : 0, codeCustomer = objcustomer.CodeCustomer, cusName = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, tc = objbill.TotalPrice, gg = objbill.Sale, tt = objbill.ActualTotalPrice, listBillDetail = json };
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public object getData(string barCode, string sl)
         {
             //TODO get current branch from session
-            int currBranchID = 3;
+            int currBranchID = int.Parse(Session["BranchID"].ToString());
             objstore = storeBIZ.ShowStoreByBarCodeAndBranch(barCode, currBranchID);
 
             if(objstore != null){ // ton tai
@@ -67,7 +88,7 @@ namespace FalStore.Service
             }
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public object getInfoCustomer(string codeCustomer)
         {
             object customer = null;
@@ -80,7 +101,7 @@ namespace FalStore.Service
             }
             return customer;
         }
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public object saveInfoCustomer(string codeCustomer, string cusName, string cusPhone,
             string cusEmail, string discount, string tc, string tt, string currOrder)
         {
@@ -120,9 +141,9 @@ namespace FalStore.Service
                 }
                 nextId = zeroString + nextId;
                 //TODO
-                int employeeId = 1;
-                int branchId = 3;
-                string createUser = "Nhân Viên " + isInsertCus;
+                int employeeId = int.Parse(Session["EmployeeID"].ToString());
+                int branchId = int.Parse(Session["BranchID"].ToString());
+                string createUser = Session["EmployeeName"].ToString();
 
                 objbill.BillID = nextId;
                 objbill.EmployeeID = employeeId;
@@ -169,6 +190,120 @@ namespace FalStore.Service
                         }
                     }
                 }
+            }
+            return flag;
+        }
+        [WebMethod(EnableSession = true)]
+        public object updateRowInBillDetail(string barCode, string billID, string quantity, string amount, string oldQuantity, string branchID)
+        {
+            Boolean flag = false;
+            BillDetailBIZ billDetailBIZ = new BillDetailBIZ();
+            objBillDetail = new objBillDetail();
+            objBillDetail.BillID = billID;
+            objBillDetail.BarCode = barCode;
+            objBillDetail.Quantity = int.Parse(quantity);
+            objBillDetail.Amount = float.Parse(amount);
+            objBillDetail.UpdateUser = Session["EmployeeName"].ToString();
+            int isUpDate = billDetailBIZ.Update(objBillDetail);
+            if (isUpDate == 1)
+            {
+                if (quantity != oldQuantity)
+                {
+                    objStore objstoreTemp = new objStore();
+                    objstoreTemp.BarCode = new objBarCode();
+                    objstoreTemp.BarCode.BarCode = barCode;
+                    objstoreTemp.Branch = new objBranch();
+                    objstoreTemp.Branch.BranchID = int.Parse(branchID);
+                    objstoreTemp.Quantity = int.Parse(quantity);
+
+                    if (int.Parse(quantity) < int.Parse(oldQuantity))
+                    { // cong them
+                        
+                        int isUpdateStore = storeBIZ.UpdateSumQuantity(objstoreTemp);
+                        if (isUpdateStore == 1)
+                        {
+                            flag = true;
+                        }
+                    }
+                    else
+                    { // tru di
+                        int isUpdateStore = storeBIZ.UpdateQuantity(objstoreTemp);
+                        if (isUpdateStore == 1)
+                        {
+                            flag = true;
+                        }
+                    }
+                }
+                flag = true;
+            }
+            return flag;
+        }
+        [WebMethod(EnableSession = true)]
+        public object insertMoreRowInBillDetail(string billID, string branchID, string barCode, string quantity, string amount)
+        {
+            Boolean flag = false;
+            objBillDetail objbillDetail = new objBillDetail();
+
+            objbillDetail.BillID = billID;
+            objbillDetail.BranchID = int.Parse(branchID);
+            objbillDetail.BarCode = barCode;
+            objbillDetail.Quantity = int.Parse(quantity);
+            objbillDetail.Amount = float.Parse(amount);
+            objbillDetail.CreateDate = DateTime.Now;
+            objbillDetail.CreateUser = Session["EmployeeName"].ToString();
+
+            int isInsertBillDetail = billDetailDAL.InsertBillDetail(objbillDetail);
+            if (isInsertBillDetail == 1)
+            {
+                objStore objstoreTemp = new objStore();
+                objstoreTemp.BarCode = new objBarCode();
+                objstoreTemp.BarCode.BarCode = objbillDetail.BarCode;
+                objstoreTemp.Branch = new objBranch();
+                objstoreTemp.Branch.BranchID = objbillDetail.BranchID;
+                objstoreTemp.Quantity = objbillDetail.Quantity;
+                int isUpdateStore = storeBIZ.UpdateQuantity(objstoreTemp);
+                if (isUpdateStore == 1)
+                {
+                    flag = true;
+                }
+            }
+            return flag;
+        }
+
+        [WebMethod(EnableSession = true)]
+        public object deleteRowInBillDetail(string billID, string barCode)
+        {
+            Boolean flag = false;
+            objBillDetail objbillDetail = new objBillDetail();
+
+            objbillDetail.BillID = billID;
+            objbillDetail.BarCode = barCode;
+            objbillDetail.UpdateUser = Session["EmployeeName"].ToString();
+
+            int isDeleteBillDetail = billDetailBIZ.Delete(objbillDetail);
+            if (isDeleteBillDetail != 0)
+            {
+                flag = true;
+            }
+            return flag;
+        }
+
+        [WebMethod(EnableSession = true)]
+        public object updateBill(string billID, string tc, string gg, string tt)
+        {
+            Boolean flag = false;
+            objBill objbill = new objBill();
+
+            objbill.BillID = billID;
+            objbill.TotalPrice = float.Parse(tc);
+            objbill.Sale = float.Parse(gg);
+            objbill.ActualTotalPrice = float.Parse(tt);
+            objbill.UpdateUser = Session["EmployeeName"].ToString();
+
+            int isUpdateBill = billBIZ.Update(objbill);
+            if (isUpdateBill != 0)
+            {
+                flag = true;
             }
             return flag;
         }
