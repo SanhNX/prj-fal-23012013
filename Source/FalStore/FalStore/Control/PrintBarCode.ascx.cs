@@ -122,12 +122,12 @@ namespace FalStore.Control
             
             string barCode = Bar128(productcode);
             //System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
-            using (Bitmap bitMap = new Bitmap(barCode.Length * 40, 80))
+            using (Bitmap bitMap = new Bitmap(barCode.Length * 20, 55))
             {
                 using (Graphics graphics = Graphics.FromImage(bitMap))
                 {
-                    Font oFont = new Font(ff, 36);
-                    PointF point = new PointF(2f, 2f);
+                    Font oFont = new Font(ff, 34);
+                    PointF point = new PointF(1f, 2f);
                   //  SolidBrush blackBrush = new SolidBrush(Color.Black);
                     SolidBrush whiteBrush = new SolidBrush(Color.White);
                     //graphics.FillRectangle(whiteBrush, 0, 0, bitMap.Width, bitMap.Height);
@@ -157,8 +157,8 @@ namespace FalStore.Control
             // Current cell counter
             int cellCnt;
 
-            rowCnt = int.Parse("16");
-            cellCnt = int.Parse("3");
+            rowCnt = int.Parse("32");
+            cellCnt = int.Parse("5");
             Font font = new Font("Tahoma", 3);
             for (rowCtr = 1; rowCtr <= rowCnt; rowCtr++)
             {
