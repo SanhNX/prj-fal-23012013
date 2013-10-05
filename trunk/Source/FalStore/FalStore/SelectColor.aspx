@@ -33,8 +33,8 @@
     <link rel="stylesheet" type="text/css" href="Styles/css/mws-theme.css" media="screen">
     <link rel="stylesheet" type="text/css" href="Styles/css/themer.css" media="screen">
 
-    <script type="text/javascript" src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="../Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>
+<%--    <script type="text/javascript" src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>--%>
     <script type="text/javascript">
         $(document).ready(function () {
 
