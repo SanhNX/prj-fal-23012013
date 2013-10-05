@@ -32,6 +32,7 @@ namespace FalStore.Control
                 //lstObjLogDetail = new List<objLogDetail>();
                 ShowControl(false);
                 txtLogDate.Text = DateTime.Now.Date.ToShortDateString();
+                txtEmployee.Text = (string)Session["EmployeeName"];
             }
 
         }
@@ -68,45 +69,52 @@ namespace FalStore.Control
         /// <param name="e"></param>
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
-            try
+            if (int.Parse(txtQuantity.Text) > 0)
             {
-                if (txtBarCode.Text != string.Empty)
+                try
                 {
-                    objLogDetail obj = new objLogDetail();
-                    obj.BarCode = new objBarCode();
-                    obj.BarCode.BarCode = txtBarCode.Text;
-                    obj.LogStore = new objLogStore();
-                    obj.LogStore.LogStoreID = txtLogStoreID.Text;
-                    // obj.Size = drpSize.SelectedItem.ToString();
-                    float exportPrice = float.Parse(txtExportPrice.Text);
-                    obj.Sale = float.Parse(txtSale.Text);
-                    obj.Quantity = int.Parse(txtQuantity.Text);
-                    if (obj.Sale != 0)
+                    if (txtBarCode.Text != string.Empty)
                     {
-                        obj.Amount = (exportPrice - (exportPrice / obj.Sale)) * obj.Quantity;
+                        objLogDetail obj = new objLogDetail();
+                        obj.BarCode = new objBarCode();
+                        obj.BarCode.BarCode = txtBarCode.Text;
+                        obj.LogStore = new objLogStore();
+                        obj.LogStore.LogStoreID = txtLogStoreID.Text;
+                        // obj.Size = drpSize.SelectedItem.ToString();
+                        float exportPrice = float.Parse(txtExportPrice.Text);
+                        obj.Sale = float.Parse(txtSale.Text);
+                        obj.Quantity = int.Parse(txtQuantity.Text);
+                        if (obj.Sale != 0)
+                        {
+                            obj.Amount = (exportPrice - (exportPrice / obj.Sale)) * obj.Quantity;
+                        }
+                        else
+                        {
+                            obj.Amount = exportPrice * obj.Quantity;
+                        }
+
+                        logBiz.InsertLogDetail(obj, 0);
+
+                        BindRepeater();
+                        ClearProductInfo();
                     }
                     else
                     {
-                        obj.Amount = exportPrice * obj.Quantity;
+                        Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Vui lòng nhập thông tin sản phẩm\"); <" + "/script>"));
+                        return;
+
                     }
 
-                    logBiz.InsertLogDetail(obj, 0);
-
-                    BindRepeater();
-                    ClearProductInfo();
                 }
-                else
+                catch (Exception)
                 {
-                    Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Vui lòng nhập thông tin sản phẩm\"); <" + "/script>"));
-                    return;
 
+                    throw;
                 }
-
             }
-            catch (Exception)
-            {
-
-                throw;
+            else {
+                Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Số lượng sản phẩm nhập vào phải > 0 \"); <" + "/script>"));
+                return;
             }
 
         }
@@ -124,7 +132,7 @@ namespace FalStore.Control
                 objLgStore.LogStoreID = txtLogStoreID.Text;
                 objLgStore.LogType = 0;
                 objLgStore.Employee = new objEmployee();
-                objLgStore.Employee.EmployeeID = 1;
+                objLgStore.Employee.EmployeeID = (int)Session["EmployeeID"];
                 objLgStore.LogDate = txtLogDate.Text;
                 objLgStore.BranchFrom = new objBranch();
                 objLgStore.BranchFrom.BranchID = 0;
@@ -199,7 +207,7 @@ namespace FalStore.Control
                     ltrSize.Text = data.BarCode.SizeName;
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.BarCode.Product.ImportPrice.ToString();
+                    ltrExportPrice.Text = data.BarCode.Product.ImportPrice.ToString("0.0");
 
                     Literal ltrQuantity = e.Item.FindControl("ltrQuantity") as Literal;
                     ltrQuantity.Text = data.Quantity.ToString();
@@ -208,7 +216,7 @@ namespace FalStore.Control
                     ltrSale.Text = data.Sale.ToString();
 
                     Literal ltrAmount = e.Item.FindControl("ltrAmount") as Literal;
-                    ltrAmount.Text = data.Amount.ToString();
+                    ltrAmount.Text = data.Amount.ToString("0.0");
                 }
             }
             catch (Exception)
@@ -280,7 +288,7 @@ namespace FalStore.Control
             {
                 rptResult.DataSource = lstLogDetail;
                 rptResult.DataBind();
-                txtTotal.Text = total.ToString();
+                txtTotal.Text = total.ToString("0.0");
             }
         }
 
@@ -296,7 +304,7 @@ namespace FalStore.Control
             if (objBar != null)
             {
                 txtProductName.Text = objBar.Product.ProductName;
-                txtExportPrice.Text = objBar.Product.ImportPrice.ToString();
+                txtExportPrice.Text = objBar.Product.ImportPrice.ToString("0");
                 txtColor.Text = objBar.ColorName;
                 txtSize.Text = objBar.SizeName;
                 //lstObjCol = proBiz.ShowColorByProductID(productID);
@@ -334,19 +342,19 @@ namespace FalStore.Control
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="type">Type 0: Create    Type 1: Update</param>
-        private static void SetUpdateInfo(objLogStore obj, int type)
+        private void SetUpdateInfo(objLogStore obj, int type)
         {
             if (type == 0)
             {
                 obj.CreateDate = System.DateTime.Now;
-                obj.CreateUser = "";
+                obj.CreateUser = (string)Session["EmployeeName"];
                 obj.UpdateDate = System.DateTime.Now;
                 obj.UpdateUser = "";
             }
             else
             {
                 obj.UpdateDate = System.DateTime.Now;
-                obj.UpdateUser = "";
+                obj.UpdateUser = (string)Session["EmployeeName"];
             }
         }
 

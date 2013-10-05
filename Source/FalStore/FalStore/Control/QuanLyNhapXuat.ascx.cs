@@ -11,6 +11,8 @@ using System.Data;
 using System.Drawing.Printing;
 using System.Drawing.Text;
 using System.IO;
+using DocumentFormat.OpenXml.Packaging;
+using OpenXml.Sandpit.FormattedExcel.Library;
 
 namespace FalStore.Control
 {
@@ -80,7 +82,7 @@ namespace FalStore.Control
                         tc = tc + lst.TotalAmount;
                     }
 
-                    ltrDoanhThu.Text = "  Tổng Cộng " + drpPhieu.SelectedItem.ToString() + " Là " + tc.ToString() + "  VNĐ";
+                    ltrDoanhThu.Text = "  Tổng Cộng " + drpPhieu.SelectedItem.ToString() + " Là " + tc.ToString("0.0") + "  VNĐ";
 
                     rptResult.DataSource = lstObj;
                     rptResult.DataBind();
@@ -133,7 +135,7 @@ namespace FalStore.Control
                     ltrDate.Text = data.CreateDate.ToString();
 
                     Literal ltrPrice = e.Item.FindControl("ltrPrice") as Literal;
-                    ltrPrice.Text = data.TotalAmount.ToString();
+                    ltrPrice.Text = data.TotalAmount.ToString("0.0");
 
                     LinkButton lnkView = e.Item.FindControl("lnkView") as LinkButton;
                     lnkView.CommandArgument = data.Log_StoreID.ToString();
@@ -210,118 +212,43 @@ namespace FalStore.Control
                 dr["XuatKho"] = item.BranchNameXuat.ToString();
                 dr["NhapKho"] = item.BranchNameNhap.ToString();
                 dr["NgayLapPhieu"] = item.CreateDate.ToString();
-                dr["TongTienPhieu"] = item.TotalAmount.ToString();
+                dr["TongTienPhieu"] = item.TotalAmount.ToString("0");
 
                 tbl.Rows.Add(dr);
             }
-            string file = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~"), "FileExport\\ThongKeNX" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx");
-            // string abc = @"D:\DoanhThu" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
-            GenerateExcelFile(tbl, file);
 
-            Response.Redirect(file);
+            string fileName = drpPhieu.SelectedItem.ToString() + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
+
+            string filePath = Server.MapPath("~/TemplateDocs/TemplateNhapXuat.xlsx");
+
+            GenerateExcelFile(tbl, filePath, fileName);
         }
 
-        public void GenerateExcelFile(DataTable dataTable, string directory)
+        public void GenerateExcelFile(DataTable dataTable, string directoryTemplate, string fileName)
         {
-            Excel.Application application = new Excel.Application();
-            Excel.Workbook workbook = application.Workbooks.Add();
-            Excel.Worksheet worksheet = workbook.Sheets[1];
-
-            //DataTable dataTable = new DataTable();
-            //DataColumn column = new DataColumn("My Datacolumn");
-
-            //dataTable.Columns.Add(column);
-            //dataTable.Rows.Add(new object[] {"Foobar"});
-
-            var columns = dataTable.Columns.Count + 1;
-            var rows = dataTable.Rows.Count + 1;
-
-            Excel.Range range = worksheet.Range["A1", String.Format("{0}{1}", GetExcelColumnName(columns), rows)];
-
-            object[,] data = new object[rows, columns];
-
-
-            data[0, 0] = "STT";
-            data[0, 1] = "Mã Phiếu";
-            data[0, 2] = "Loại Phiếu";
-            data[0, 3] = "Nhân Viên Lập Phiếu";
-            data[0, 4] = "Xuất Kho";
-            data[0, 5] = " Nhập Kho";
-            data[0, 6] = "Ngày Lập Phiếu";
-            data[0, 7] = "Tổng Tiền Phiếu";
-
-            for (int rowNumber = 1; rowNumber < rows; rowNumber++)
+            using (SpreadsheetWorker worker = new SpreadsheetWorker())
             {
-                for (int columnNumber = 1; columnNumber < columns; columnNumber++)
-                {
-                    data[rowNumber, columnNumber - 1] = dataTable.Rows[rowNumber - 1][columnNumber - 1].ToString();
-                }
+
+                //string filePath = Server.MapPath("~/TemplateDocs/TemplateDocument.xlsx");
+                worker.Open(directoryTemplate);
+
+                // string outputFileName = "GeneratedDocument.xlsx";
+
+                //DataTable dataTable = GetTransactionDataTable();
+
+                worker.FillData("thanh", dataTable);
+
+                byte[] outputFileBytes = worker.SaveAs();
+                worker.Close();
+
+                Response.ClearHeaders();
+                Response.ClearContent();
+                Response.ContentType = "application/vnd.ms-excel";
+                Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", fileName));
+                Response.BinaryWrite(outputFileBytes);
+                Response.Flush();
+                Response.End();
             }
-
-            range.Value = data;
-
-
-
-
-            range = worksheet.get_Range("A1", "A1");
-            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
-            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
-            range.Font.Bold = true;
-
-            range = worksheet.get_Range("B1", "B1");
-            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
-            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
-            range.Font.Bold = true;
-
-            range = worksheet.get_Range("C1", "C1");
-            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
-            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
-            range.Font.Bold = true;
-
-            range = worksheet.get_Range("D1", "D1");
-            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
-            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
-            range.Font.Bold = true;
-
-            range = worksheet.get_Range("E1", "E1");
-            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
-            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
-            range.Font.Bold = true;
-
-            range = worksheet.get_Range("F1", "F1");
-            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
-            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
-            range.Font.Bold = true;
-
-            range = worksheet.get_Range("G1", "G1");
-            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
-            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
-            range.Font.Bold = true;
-
-            range = worksheet.get_Range("H1", "H1");
-            range.Interior.Color = System.Drawing.Color.Gray.ToArgb();
-            range.Borders.Color = System.Drawing.Color.Black.ToArgb();
-            range.Font.Bold = true;
-
-
-            workbook.SaveAs(directory);
-            workbook.Close();
-        }
-
-        private static string GetExcelColumnName(int columnNumber)
-        {
-            int dividend = columnNumber;
-            string columnName = String.Empty;
-            int modulo;
-
-            while (dividend > 0)
-            {
-                modulo = (dividend - 1) % 26;
-                columnName = Convert.ToChar(65 + modulo).ToString() + columnName;
-                dividend = (int)((dividend - modulo) / 26);
-            }
-
-            return columnName;
         }
 
     }

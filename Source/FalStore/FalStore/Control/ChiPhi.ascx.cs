@@ -183,7 +183,7 @@ namespace FalStore.Control
                     ltr3.Text = data.Description.ToString();
 
                     Literal ltr4 = e.Item.FindControl("ltr4") as Literal;
-                    ltr4.Text = data.Amount.ToString();
+                    ltr4.Text = data.Amount.ToString("0.0");
 
                     Literal ltr5 = e.Item.FindControl("ltr5") as Literal;
                     ltr5.Text = data.CreateDate.ToString();

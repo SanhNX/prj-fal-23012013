@@ -166,7 +166,7 @@ namespace FalStore.Control
                 {
                     objCategory obj = new objCategory();
                     obj.CategoryName = txtCategoryName.Text;
-
+                    
                     if (string.Empty.Equals(categoryID))
                     {
                         SetUpdateInfo(obj, 0);
@@ -244,7 +244,7 @@ namespace FalStore.Control
         private void DeleteCategory(int CategoryID)
         {
             DateTime updateDate = DateTime.Now;
-            string updateUser = "";
+            string updateUser = Session["EmployeeName"].ToString();
             categoryBIZ.Delete(CategoryID, updateDate, updateUser);
             InitPage();
         }
@@ -267,19 +267,20 @@ namespace FalStore.Control
         #region .Method
         //Set info for Create and Update
         //Type 0: Create    Type 1: Update
-        private static void SetUpdateInfo(objCategory obj, int type)
+        private void SetUpdateInfo(objCategory obj, int type)
         {
+            string userSession = Session["EmployeeName"].ToString();
             if (type == 0)
             {
                 obj.CreateDate = System.DateTime.Now;
-                obj.CreateUser = "";
+                obj.CreateUser = userSession;
                 obj.UpdateDate = System.DateTime.Now;
                 obj.UpdateUser = "";
             }
             else
             {
                 obj.UpdateDate = System.DateTime.Now;
-                obj.UpdateUser = "";
+                obj.UpdateUser = userSession;
             }
         }
 
