@@ -119,16 +119,11 @@ namespace BIZ
                 {
                     result = DAL.UpdateBillDetail(obj);
                 }
-                else
-                {
-                    result = 1;
-                }
 
                 return result;
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -139,17 +134,16 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Delete(int BillDetailID, DateTime updateDate, string updateUser)
+        public int Delete(objBillDetail obj)
         {
             try
             {
-                
-                 return DAL.DeleteBillDetail(BillDetailID,updateDate,updateUser);
+
+                return DAL.DeleteBillDetail(obj);
                 
             }
             catch (Exception)
             {
-
                 throw;
             }
 
