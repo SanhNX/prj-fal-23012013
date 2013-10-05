@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="DoanhThu.ascx.cs" Inherits="FalStore.Control.DoanhThu" %>
      <!-- JavaScript Plugins -->
-    <script src="Scripts/js/libs/jquery-1.8.3.min.js"></script>
+   <%-- <script  src="Scripts/js/libs/jquery-1.8.3.min.js"></script>
     <script src="Scripts/js/libs/jquery.mousewheel.min.js"></script>
     <script src="Scripts/js/libs/jquery.placeholder.min.js"></script>
     <script src="Scripts/custom-plugins/fileinput.js"></script>
@@ -24,7 +24,7 @@
 
     <!-- fancybox --->
     <link rel="stylesheet" type="text/css" href="../Styles/jquery.fancybox-1.3.4.css"
-        media="screen" />
+        media="screen" />--%>
    <%-- <script src="../Scripts/jquery.fancybox-1.3.4.js"></script>--%>
 
     <script type="text/javascript">

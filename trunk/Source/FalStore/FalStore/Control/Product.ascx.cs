@@ -152,10 +152,10 @@ namespace FalStore.Control
                     ltrCategoryName.Text = data.Category.CategoryName.ToString();
 
                     Literal ltrImportPrice = e.Item.FindControl("ltrImportPrice") as Literal;
-                    ltrImportPrice.Text = data.ImportPrice.ToString();
+                    ltrImportPrice.Text = data.ImportPrice.ToString("0.0");
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.ExportPrice.ToString();
+                    ltrExportPrice.Text = data.ExportPrice.ToString("0.0");
                 }
             }
             catch (Exception)
@@ -342,19 +342,20 @@ namespace FalStore.Control
         #region .Method
         //Set info for Create and Update
         //Type 0: Create    Type 1: Update
-        private static void SetUpdateInfo(objProduct obj, int type)
+        private void SetUpdateInfo(objProduct obj, int type)
         {
+
             if (type == 0)
             {
                 obj.CreateDate = System.DateTime.Now;
-                obj.CreateUser = "";
+                obj.CreateUser = (string)Session["EmployeeName"];
                 obj.UpdateDate = System.DateTime.Now;
                 obj.UpdateUser = "";
             }
             else
             {
                 obj.UpdateDate = System.DateTime.Now;
-                obj.UpdateUser = "";
+                obj.UpdateUser = (string)Session["EmployeeName"];
             }
         }
 
@@ -393,7 +394,7 @@ namespace FalStore.Control
         private void DeleteProduct(string productID)
         {
             DateTime updateDate = DateTime.Now;
-            string updateUser = "";
+            string updateUser = (string)Session["EmployeeName"];
             productBIZ.Delete(productID, updateDate, updateUser);
             InitPage();
         }

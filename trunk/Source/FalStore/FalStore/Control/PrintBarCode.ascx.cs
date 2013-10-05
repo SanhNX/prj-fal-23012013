@@ -173,7 +173,7 @@ namespace FalStore.Control
                         // Create a new cell and add it to the row.
                         TableCell tCell = new TableCell();
                         tCell.VerticalAlign = VerticalAlign.Bottom;
-                        tCell.Text = txtProductName.Text + "<Br/>" + txtPrice.Text + "VND";
+                        tCell.Text = txtProductName.Text + "<Br/>" + txtPrice.Text + " Đ";
                         tRow.Cells.Add(tCell);
                     }
                 }
@@ -390,7 +390,7 @@ namespace FalStore.Control
                             if (lstObj[i].BarCode.Equals(e.CommandArgument.ToString()))
                             {
                                 txtPrice.Text = lstObj[i].ExportPrice.ToString();
-                                txtProductName.Text = lstObj[i].ProductName + " " + lstObj[i].ColorName + " Size" + lstObj[i].SizeName;
+                                txtProductName.Text = lstObj[i].ProductName + " " + lstObj[i].ColorName + " " + lstObj[i].SizeName;
                             }
                         }
                             break;

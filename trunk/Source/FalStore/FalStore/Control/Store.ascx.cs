@@ -132,7 +132,7 @@ namespace FalStore.Control
                     //ltrImportPrice.Text = data.ImportPrice.ToString();
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.ExportPrice.ToString();
+                    ltrExportPrice.Text = data.ExportPrice.ToString("0.0");
 
                     Literal ltrQuantity = e.Item.FindControl("ltrQuantity") as Literal;
                     ltrQuantity.Text = data.Quantity.ToString();

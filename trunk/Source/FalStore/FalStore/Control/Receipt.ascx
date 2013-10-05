@@ -24,21 +24,25 @@
        var stt = 0;
        var temp = "";
        var arr = new Array();
-       if (popupRetVal.length > 0) {
-           for (var i = 0; i < popupRetVal.length; i++) {
-               if (popupRetVal.charAt(i) == "=") {
+       if (typeof popupRetVal != 'undefined' && popupRetVal != null) {
+           if (popupRetVal.length > 0) {
+               for (var i = 0; i < popupRetVal.length; i++) {
+                   if (popupRetVal.charAt(i) == "=") {
 
-                   arr[stt] = temp;
+                       arr[stt] = temp;
 
-                   stt++;
+                       stt++;
 
-                   temp = "";
+                       temp = "";
 
-               } else {
-                   temp = temp + popupRetVal.charAt(i);
+                   } else {
+                       temp = temp + popupRetVal.charAt(i);
+                   }
                }
            }
        }
+       
+
        if (arr.length > 0) {
            $("#ContentPlaceHolder1_ctl00_txtSize")[0].value = temp;
            for (var j = 0; j < arr.length; j++) {
@@ -112,7 +116,7 @@
                                     <label class="mws-form-label">
                                         Người lập phiếu</label>
                                     <div class="mws-form-item">
-                                        <asp:TextBox ID="txtEmployee" runat="server" class="small" Enabled="false" Text="Anh Vỹ"></asp:TextBox>
+                                        <asp:TextBox ID="txtEmployee" runat="server" class="small" Enabled="false" ></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +135,7 @@
                                     <label class="mws-form-label">
                                         Nhà cung cấp</label>
                                     <div class="mws-form-item">
-                                        <asp:TextBox ID="txtNcc" runat="server" class="small"></asp:TextBox>
+                                        <asp:TextBox ID="txtNcc" runat="server" class="small" Text="San Xuat"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldNCC" runat="server" ErrorMessage="Nhập nhà cung cấp"
                                             ControlToValidate="txtNcc" ForeColor="Red"></asp:RequiredFieldValidator>
                                     </div>
@@ -198,18 +202,20 @@
                             <label class="mws-form-label">
                                 Chiết khấu</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtSale" runat="server" class="small" Text="0" Enabled="false"></asp:TextBox>
+                                <asp:TextBox ID="txtSale" runat="server" class="small"  Enabled="false" Text="0"></asp:TextBox>
                             </div>
                         </div>
                         <div class="mws-form-row">
                             <label class="mws-form-label">
                                 Số lượng</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtQuantity" runat="server" class="small" Text="1"></asp:TextBox>
+                                <asp:TextBox ID="txtQuantity" runat="server" class="small" ></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldQuantity" ControlToValidate="txtQuantity" runat="server" ForeColor="Red" ErrorMessage="Nhập Số lượng , Và phải là số"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionQuantity" ControlToValidate="txtQuantity" ForeColor="Red" runat="server" ErrorMessage="Nhập Số lượng , Và phải là số" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                             </div>
                         </div>
                         <div class="mws-button-row">
-                            <asp:Button ID="btnAddProduct" runat="server" Text="Thêm sản phẩm" CausesValidation="false"
+                            <asp:Button ID="btnAddProduct" runat="server" Text="Thêm sản phẩm" 
                                 class="btn btn-success" OnClick="btnAddProduct_Click" />
                         </div>
                         <div class="mws-panel grid_8">

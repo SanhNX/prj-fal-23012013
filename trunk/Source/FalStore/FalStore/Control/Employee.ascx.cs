@@ -343,7 +343,8 @@ namespace FalStore.Control
                         //LoadDataUpdate(e.CommandArgument.ToString());
                         break;
                     case "Delete":
-                        if (int.Parse(e.CommandArgument.ToString()) != role()) {
+                        if (int.Parse(e.CommandArgument.ToString()) != (int)Session["EmployeeID"])
+                        {
                             objEmployee objE = new objEmployee();
                             objE.EmployeeID = int.Parse(e.CommandArgument.ToString());
                             objE.UpdateDate = DateTime.Today;
