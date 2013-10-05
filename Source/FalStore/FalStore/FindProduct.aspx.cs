@@ -112,10 +112,10 @@ namespace FalStore
                     ltrCategoryName.Text = data.Product.Category.CategoryName.ToString();
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.Product.ExportPrice.ToString();
+                    ltrExportPrice.Text = data.Product.ExportPrice.ToString("0");
 
                     Literal ltrImportPrice = e.Item.FindControl("ltrImportPrice") as Literal;
-                    ltrImportPrice.Text = data.Product.ImportPrice.ToString();
+                    ltrImportPrice.Text = data.Product.ImportPrice.ToString("0");
 
                     Literal ltrColorName = e.Item.FindControl("ltrColorName") as Literal;
                     ltrColorName.Text = data.ColorName.ToString();

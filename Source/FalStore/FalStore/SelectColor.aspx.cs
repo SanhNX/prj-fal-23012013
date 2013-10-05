@@ -13,9 +13,15 @@ namespace FalStore
         protected void Page_Load(object sender, EventArgs e)
         {
              string id = HttpContext.Current.Request.QueryString["id"];
-             Session["id"] = id;
+             if (!string.Empty.Equals(id)) {
+                 Session["id"] = id;
+             }
+                
              string name = HttpContext.Current.Request.QueryString["name"];
-             Session["name"] = name;
+             if (!string.Empty.Equals(id)) {
+                 Session["name"] = name;
+             }
+             
               
         }
         protected void btnSave_Click(object sender, EventArgs e)
