@@ -138,25 +138,26 @@ namespace DAL
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
-            parameterList.Add(new SqlParameter("@BillDetailID", obj.BillDetailID));
-            //parameterList.Add(new SqlParameter("@BranchID", obj.Branch.BranchID));
-            //parameterList.Add(new SqlParameter("@Name", obj.BillDetailName));
-            //parameterList.Add(new SqlParameter("@StartDate", obj.StartDate));
-            //parameterList.Add(new SqlParameter("@EndDate", obj.EndDate));
-            //parameterList.Add(new SqlParameter("@DisCount", obj.Discount));
+            parameterList.Add(new SqlParameter("@BillID", obj.BillID));
+            parameterList.Add(new SqlParameter("@BarCode", obj.BarCode));
+            parameterList.Add(new SqlParameter("@Quantity", obj.Quantity));
+            parameterList.Add(new SqlParameter("@Amount", obj.Amount));
+            parameterList.Add(new SqlParameter("@UpdateDate", DateTime.Now));
+            parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
 
             return SQLHelper.ExecuteNonQuery("spBillDetailUpdate", parameterList);
       
         }
 
         //call store procedure delete BillDetail
-        public int DeleteBillDetail(int BillDetailID, DateTime updateDate, string updateUser)
+        public int DeleteBillDetail(objBillDetail obj)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
-            parameterList.Add(new SqlParameter("@BillDetailID", BillDetailID));
-            parameterList.Add(new SqlParameter("@UpdateDate", updateDate));
-            parameterList.Add(new SqlParameter("@UpdateUser", updateUser));
+            parameterList.Add(new SqlParameter("@BillID", obj.BillID));
+            parameterList.Add(new SqlParameter("@BarCode", obj.BarCode));
+            parameterList.Add(new SqlParameter("@UpdateDate", DateTime.Now));
+            parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
 
             return SQLHelper.ExecuteNonQuery("spBillDetailDelete", parameterList);
       

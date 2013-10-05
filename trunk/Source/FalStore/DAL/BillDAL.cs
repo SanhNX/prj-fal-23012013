@@ -86,6 +86,10 @@ namespace DAL
 
                 obj.CustomerName = dr["CustomerName"].ToString();
 
+                obj.CustomerID = int.Parse(dr["CustomerID"].ToString());
+
+                obj.BranchID = int.Parse(dr["BranchID"].ToString());
+
                 obj.BranchName = dr["BranchName"].ToString();
 
                 obj.TotalPrice = float.Parse(dr["TotalPrice"].ToString());
@@ -111,7 +115,7 @@ namespace DAL
 
         }
 
-        public List<objBillDetail> GetBillDetailByID(string billID)
+        public List<objBillDetail> GetBillDetailByID(string billID, int branchID)
         {
 
             List<objBillDetail> lst = new List<objBillDetail>();
@@ -121,6 +125,7 @@ namespace DAL
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@BillID", billID));
+            parameterList.Add(new SqlParameter("@BranchID", branchID));
 
 
             SqlDataReader dr = SQLHelper.ExecuteReader("spGetBillDetailByID", parameterList);
@@ -160,7 +165,7 @@ namespace DAL
             SqlDataReader dr = SQLHelper.ExecuteReader("[spBillGetMaxId]");
             if(dr.Read())
             {
-                id = int.Parse(dr["MaxID"].ToString()) + 1;
+                id = int.Parse(dr["MaxID"].ToString() == "" ? "000000000" : dr["MaxID"].ToString()) + 1;
             }
 
             return id;
@@ -184,6 +189,21 @@ namespace DAL
             parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
             int result = SQLHelper.ExecuteNonQuery("spBillInsert", parameterList);
             return result;
+
+        }
+
+        public int UpdateBill(objBill obj)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@BillID", obj.BillID));
+            parameterList.Add(new SqlParameter("@TotalPrice", obj.TotalPrice));
+            parameterList.Add(new SqlParameter("@Sale", obj.Sale));
+            parameterList.Add(new SqlParameter("@ActualTotalPrice", obj.ActualTotalPrice));
+            parameterList.Add(new SqlParameter("@UpdateDate", DateTime.Now));
+            parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
+
+            return SQLHelper.ExecuteNonQuery("spBillUpdate", parameterList);
 
         }
 

@@ -157,6 +157,17 @@ namespace DAL
 
             return SQLHelper.ExecuteNonQuery("spStoreUpdateQuantity", parameterList);
         }
+
+        public int UpdateSumQuantity(objStore obj)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@BarCode", obj.BarCode.BarCode));
+            parameterList.Add(new SqlParameter("@BranchID", obj.Branch.BranchID));
+            parameterList.Add(new SqlParameter("@NewQuantity", obj.Quantity));
+
+            return SQLHelper.ExecuteNonQuery("spStoreUpdateSumQuantity", parameterList);
+        }
         /// <summary>
         /// insert store
         /// </summary>
