@@ -122,12 +122,12 @@ namespace FalStore.Control
             
             string barCode = Bar128(productcode);
             //System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
-            using (Bitmap bitMap = new Bitmap(barCode.Length * 20, 55))
+            using (Bitmap bitMap = new Bitmap(barCode.Length * 20, 50))
             {
                 using (Graphics graphics = Graphics.FromImage(bitMap))
                 {
-                    Font oFont = new Font(ff, 34);
-                    PointF point = new PointF(1f, 2f);
+                    Font oFont = new Font(ff, 32);
+                    PointF point = new PointF(2f, 2f);
                   //  SolidBrush blackBrush = new SolidBrush(Color.Black);
                     SolidBrush whiteBrush = new SolidBrush(Color.White);
                     //graphics.FillRectangle(whiteBrush, 0, 0, bitMap.Width, bitMap.Height);
