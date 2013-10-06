@@ -1,4 +1,4 @@
-using BIZ;
+﻿using BIZ;
 using DAL;
 using Entity;
 using System;
@@ -45,8 +45,8 @@ namespace FalStore.Service
             Session.Abandon();
             return true;
         }
-        
-		[WebMethod(EnableSession = true)]
+
+        [WebMethod(EnableSession = true)]
         public string getCurrentEventByBranch()
         {
             //TODO get current branch from session
@@ -56,7 +56,6 @@ namespace FalStore.Service
             return discountEventOfCurrentBranch.ToString();
         }
 
-
         [WebMethod(EnableSession = true)]
         public object getBillToUpdate(string billID)
         {
@@ -65,10 +64,6 @@ namespace FalStore.Service
             listBillDetail = billBIZ.GetBillDetailByID(billID, objbill.BranchID);
             JavaScriptSerializer oSerializer = new JavaScriptSerializer();
             object json = oSerializer.DeserializeObject(oSerializer.Serialize(listBillDetail));
-
-
-
-
 
             return new { branchIDOfBill = objbill.BranchID, roleID = Session["Role"] != null ? (int)Session["Role"] : 0, codeCustomer = objcustomer.CodeCustomer, cusName = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, tc = objbill.TotalPrice, gg = objbill.Sale, tt = objbill.ActualTotalPrice, listBillDetail = json };
         }
@@ -87,14 +82,14 @@ namespace FalStore.Service
                         return new { barCode = barCode, name = objstore.ProductName, price = objstore.ExportPrice, sl = sl, amount = (objstore.ExportPrice * int.Parse(sl)) };
                     }
                     else { // san pham chi con lai ... it hon so luong can mua
-                        return new { error = "Sa?n ph�?m chi? co?n la?i " + objstore.Quantity };
+                        return new { error = "Sản phẩm chỉ còn lại " + objstore.Quantity };
                     }
                 } else { // het hang
-                    return new { error = "Sa?n ph�?m na?y ?ang h�?t ha?ng !" };
+                    return new { error = "Sản phẩm này đang hết hàng !" };
                 }
             }
             else{ // khong ton tai trong he thong hoac chi nhanh
-                return new { error = "Sa?n ph�?m kh�ng t�?n ta?i trong h�? th�?ng ho??c chi nha?nh"};
+                return new { error = "Sản phẩm không tồn tại trong hệ thống hoặc chi nhánh"};
             }
         }
 
