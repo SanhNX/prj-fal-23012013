@@ -1,4 +1,4 @@
-﻿using BIZ;
+using BIZ;
 using DAL;
 using Entity;
 using System;
@@ -46,6 +46,16 @@ namespace FalStore.Service
             return true;
         }
         
+		[WebMethod(EnableSession = true)]
+        public string getCurrentEventByBranch()
+        {
+            //TODO get current branch from session
+            int currBranchID = int.Parse(Session["BranchID"].ToString());
+            objevent = eventBIZ.ShowCurrentEventByBranch(currBranchID);
+            int discountEventOfCurrentBranch = int.Parse(objevent != null ? objevent.Discount : "0");
+            return discountEventOfCurrentBranch.ToString();
+        }
+
 
         [WebMethod(EnableSession = true)]
         public object getBillToUpdate(string billID)
@@ -77,14 +87,14 @@ namespace FalStore.Service
                         return new { barCode = barCode, name = objstore.ProductName, price = objstore.ExportPrice, sl = sl, amount = (objstore.ExportPrice * int.Parse(sl)) };
                     }
                     else { // san pham chi con lai ... it hon so luong can mua
-                        return new { error = "Sản phẩm chỉ còn lại " + objstore.Quantity };
+                        return new { error = "Sa?n ph�?m chi? co?n la?i " + objstore.Quantity };
                     }
                 } else { // het hang
-                    return new { error = "Sản phẩm này đang hết hàng !" };
+                    return new { error = "Sa?n ph�?m na?y ?ang h�?t ha?ng !" };
                 }
             }
             else{ // khong ton tai trong he thong hoac chi nhanh
-                return new { error = "Sản phẩm không tồn tại trong hệ thống hoặc chi nhánh"};
+                return new { error = "Sa?n ph�?m kh�ng t�?n ta?i trong h�? th�?ng ho??c chi nha?nh"};
             }
         }
 
