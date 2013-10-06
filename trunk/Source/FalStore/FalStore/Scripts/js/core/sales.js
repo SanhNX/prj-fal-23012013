@@ -348,8 +348,8 @@ function getCurrentEventByBranch() {
             dataType: "json",
             success: function (result) {
                 var resp = result.d;
-                if (resp.gg != "") {
-                    $("#gg").val(resp.gg);
+                if (resp != "") {
+                    $("#gg").val(resp);
                 }
                 if (resp.roleID == "1" || resp.roleID == "3") {
                     $("#gg")[0].readOnly = false;
