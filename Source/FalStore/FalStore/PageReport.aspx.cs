@@ -68,7 +68,8 @@ namespace FalStore
             }
             
             ReportDocument cryRpt = new ReportDocument();
-            string file = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~"), "Report\\ReportExport.rpt");
+            //string file = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~"), "Report\\ReportExport.rpt");
+            string file = Server.MapPath("~/Report/ReportExport.rpt");
             cryRpt.Load(file);
             cryRpt.SetDataSource(tblLogDetail);
             CrystalReportViewer1.ReportSource = cryRpt;

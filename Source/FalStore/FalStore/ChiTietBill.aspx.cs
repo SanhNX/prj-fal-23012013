@@ -28,7 +28,7 @@ namespace FalStore
                 Literal6.Text = tem.ActualTotalPrice.ToString() + " VNĐ";
             }
 
-            List<objBillDetail> lstBillDetail = billBIZ.GetBillDetailByID(billID);
+            List<objBillDetail> lstBillDetail = billBIZ.GetBillDetailByID(billID, (int)Session["BranchID"]);
 
             if (lstBillDetail != null)
             {

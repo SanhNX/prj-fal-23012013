@@ -35,11 +35,11 @@
     <link rel="stylesheet" type="text/css" href="Styles/css/mws-theme.css" media="screen">
     <link rel="stylesheet" type="text/css" href="Styles/css/themer.css" media="screen">
     <!-- java script -->
-    <script type="text/javascript" src="Scripts/js/libs/jquery-1.8.3.js"></script>
-    <script type="text/javascript" src="Scripts/js/libs/jquery-1.8.3.min.js"></script>
-     <script type="text/javascript" src="Scripts/js/core/sales.js"></script>
-      <script type="text/javascript" src="Scripts/jquery.formatCurrency-1.4.0.js"></script>
-      <script type="text/javascript" src="Scripts/jquery.formatCurrency.vi-VN.js"></script>
+    <script type="text/javascript" src="../Scripts/js/libs/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
+     <script type="text/javascript" src="../Scripts/js/core/sales.js"></script>
+      <script type="text/javascript" src="../Scripts/jquery.formatCurrency-1.4.0.js"></script>
+      <script type="text/javascript" src="../Scripts/jquery.formatCurrency.vi-VN.js"></script>
 
 </head>
 <body>
