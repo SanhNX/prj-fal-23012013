@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="Styles/css/themer.css" media="screen">
 
 <%--    <script type="text/javascript" src="../Scripts/js/libs/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="../Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>--%>
+<script type="text/javascript" src="../Scripts/jui/js/jquery-ui-1.9.2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -49,7 +49,7 @@
                 // indexSTT = indexSTT - 1;
             });
         });
-    </script>
+    </script>--%>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -157,7 +157,7 @@
                             </div>
                             <div class="mws-button-row">
                                 <asp:Button ID="btnSave" runat="server" Text="Lưu màu" class="btn btn-danger"  OnClick="btnSave_Click"/>
-                                <input type="button" id="saveColor" class="btn btn-danger" value="Show Dialog">
+                              <%--  <input type="button" id="saveColor" class="btn btn-danger" value="Show Dialog">--%>
                             </div>
                         </div>
                     </div>

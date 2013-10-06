@@ -34,7 +34,7 @@
     function TranferData() {
         var id = document.getElementById('<%= txtProductID.ClientID %>').value;
         var name = document.getElementById('<%= txtProductName.ClientID %>').value;
-        document.getElementById('fColor').href = "SelectColor.aspx?id=" + id + "&&name=" + name;
+        document.getElementById('fColor').href = "SelectColor.aspx?id=" + id + "&name=" + name;
     }
 
 </script>
