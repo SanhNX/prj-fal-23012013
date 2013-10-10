@@ -187,7 +187,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
             parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
 
-            return SQLHelper.ExecuteNonQuery("spEmployeeInsert", parameterList);
+            return SQLHelper.ExecuteNonQuery("spEmployeeDelete", parameterList);
 
         }
 
