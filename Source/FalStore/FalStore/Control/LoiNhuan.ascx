@@ -63,6 +63,9 @@
                             <asp:Button ID="Button1" runat="server" Text="Export Phiếu Nhập" OnClick="btnPn_Click" class="btn btn-danger" />
                             <asp:Button ID="Button2" runat="server" Text="Export CT Phiếu Nhập" OnClick="btnCtPn_Click" class="btn btn-danger" />
                             <asp:Button ID="Button3" runat="server" Text="Export Doanh Thu" OnClick="btnDt_Click" class="btn btn-danger" />
+                             <asp:Button ID="Button4" runat="server" Text="Export Chi Phí kD" OnClick="btnCpKd_Click" class="btn btn-danger" />
+                              <asp:Button ID="Button5" runat="server" Text="Export Phiếu Xuất" OnClick="btnPx_Click" class="btn btn-danger" />
+                            <asp:Button ID="Button6" runat="server" Text="Export CT Phiếu Xuất" OnClick="btnCtPx_Click" class="btn btn-danger" />
                      <%--       <asp:Button ID="btnExport" runat="server" Text="Export" OnClick="btnExport_Click" class="btn btn-danger"/>--%>
                <%--             <div class="">
                                 <label class="mws-form-label" style="font-size: medium;width: 200px;">
@@ -98,7 +101,7 @@
                         
                                     <!-- Statistic Content -->
                                     <span class="mws-stat-content">
-                        	            <span class="mws-stat-title">Tổng Cộng Doanh Thu Từ <asp:Literal runat="server" ID="sDate1" ></asp:Literal> Đến <asp:Literal runat="server" ID="eDate1" ></asp:Literal></span>
+                        	            <span class="mws-stat-title"> <asp:Literal runat="server" ID="nameTc" ></asp:Literal> <asp:Literal runat="server" ID="sDate1" ></asp:Literal> Đến <asp:Literal runat="server" ID="eDate1" ></asp:Literal></span>
                                         <span class="mws-stat-value"><asp:Literal runat="server" ID="doanhthu" ></asp:Literal></span>
                                     </span>
                                 </a>
