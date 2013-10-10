@@ -9,6 +9,7 @@ using BIZ;
 using Entity;
 using System.Data;
 using System.Web.Services;
+using Common;
 namespace FalStore.Control
 {
     public partial class Product : System.Web.UI.UserControl
@@ -21,6 +22,7 @@ namespace FalStore.Control
         string name = string.Empty;
         private int pageSize;
         int stt = 1;
+        ConvertMoneyString conV = new ConvertMoneyString();
 
         #endregion
 
@@ -152,10 +154,10 @@ namespace FalStore.Control
                     ltrCategoryName.Text = data.Category.CategoryName.ToString();
 
                     Literal ltrImportPrice = e.Item.FindControl("ltrImportPrice") as Literal;
-                    ltrImportPrice.Text = data.ImportPrice.ToString("0.0");
+                    ltrImportPrice.Text = conV.FloatToMoneyString(data.ImportPrice.ToString("0"));
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.ExportPrice.ToString("0.0");
+                    ltrExportPrice.Text = conV.FloatToMoneyString(data.ExportPrice.ToString("0"));
                 }
             }
             catch (Exception)
@@ -395,7 +397,7 @@ namespace FalStore.Control
         {
             DateTime updateDate = DateTime.Now;
             string updateUser = (string)Session["EmployeeName"];
-            productBIZ.Delete(productID, updateDate, updateUser);
+            productBIZ.Delete(productID, updateDate, updateUser, 1);
             InitPage();
         }
 

@@ -150,7 +150,7 @@ namespace FalStore
                 case "LoiNhuan":
                     if (role() == 1 || role() == 3)
                     {
-                        //uc = this.LoadControl("~/Control/LoiNhuan.ascx") as UserControl;
+                        uc = this.LoadControl("~/Control/LoiNhuan.ascx") as UserControl;
                     }
                     else
                     {
@@ -181,16 +181,20 @@ namespace FalStore
                     }
                     
                     break;
-                
-                
+
                 case "PrintBarCode":
                     uc = this.LoadControl("~/Control/PrintBarCode.ascx") as UserControl;
                     break;
+
+                case "SearchProduct":
+                    uc = this.LoadControl("~/Control/SearchProduct.ascx") as UserControl;
+                    break;
+                case "NhapXuatDetail":
+                    uc = this.LoadControl("~/Control/NhapXuatDetail.ascx") as UserControl;
+                    break;
                 
                 
-                
-                
-                
+               
 
             }
 

@@ -130,7 +130,7 @@
             <div class="mws-panel-body no-padding">
                 <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
                     <!-- serach -->
-                    <div id="DataTables_Table_1_length" class="dataTables_length">
+                    <%--<div id="DataTables_Table_1_length" class="dataTables_length">
                         <label>
                             Show
                         </label>
@@ -139,11 +139,11 @@
                         </asp:DropDownList>
                     </div>
                     <div class="dataTables_filter" id="DataTables_Table_1_filter">
-                        <label>
+                       <label>
                             Search:
                             <input type="text" aria-controls="DataTables_Table_1">
                         </label>
-                    </div>
+                    </div>--%>
                     <!-- table -->
                     <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
                         <thead>
@@ -199,7 +199,7 @@
                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Chỉnh sửa</asp:LinkButton>
                                             <i class="icon-trash"></i>
                                             <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" CommandName="Delete"
-                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xóa</asp:LinkButton>
+                                                OnClientClick="return confirm('Are you sure?')"  CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>Xóa</asp:LinkButton>
                                             <i class="icon-barcode"></i>
                                             <asp:LinkButton ID="lnkBarcode" runat="server" CausesValidation="false" CommandName="Barcode"
                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ProductID") %>'>In mã vạch</asp:LinkButton>

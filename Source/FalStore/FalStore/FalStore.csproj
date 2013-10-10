@@ -33,10 +33,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DocumentFormat\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DocumentFormat\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DocumentFormat\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DocumentFormat\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.0.3302.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DocumentFormat\DocumentFormat.OpenXml.dll</HintPath>
@@ -46,6 +58,10 @@
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>DocumentFormat\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenXml.Sandpit.FormattedExcel.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DocumentFormat\OpenXml.Sandpit.FormattedExcel.Library.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -76,24 +92,26 @@
     <Content Include="bin\FalStore.dll" />
     <Content Include="bin\FalStore.pdb" />
     <Content Include="bin\Global.asax" />
-    <Content Include="bin\OpenXml.Sandpit.FormattedExcel.Library.dll" />
-    <Content Include="bin\OpenXml.Sandpit.FormattedExcel.Library.pdb" />
+    <Content Include="bin\log4net.dll" />
     <Content Include="ChangePass.aspx" />
     <Content Include="ChiTietBill.aspx" />
     <Content Include="ChiTietNhapXuat.aspx" />
     <Content Include="Control\Branch.ascx" />
     <Content Include="Control\Category.ascx" />
     <Content Include="Control\ChiPhi.ascx" />
+    <Content Include="Control\LoiNhuan.ascx" />
     <Content Include="Control\DoanhThu.ascx" />
     <Content Include="Control\Employee.ascx" />
     <Content Include="Control\Event.ascx" />
     <Content Include="Control\ExportProduct.ascx" />
     <Content Include="Control\Home.ascx" />
     <Content Include="Control\LeftMenu.ascx" />
+    <Content Include="Control\NhapXuatDetail.ascx" />
     <Content Include="Control\PrintBarCode.ascx" />
     <Content Include="Control\Product.ascx" />
     <Content Include="Control\QuanLyNhapXuat.ascx" />
     <Content Include="Control\Receipt.ascx" />
+    <Content Include="Control\SearchProduct.ascx" />
     <Content Include="Control\Store.ascx" />
     <Content Include="Control\ThongKe.ascx" />
     <Content Include="Control\TopMenu.ascx" />
@@ -667,6 +685,10 @@
     <Content Include="crystalreportviewers13\urlreporting\activexviewer.js" />
     <Content Include="crystalreportviewers13\urlreporting\appletviewer.js" />
     <Content Include="Default.aspx" />
+    <Content Include="DocumentFormat\CrystalDecisions.CrystalReports.Engine.dll" />
+    <Content Include="DocumentFormat\CrystalDecisions.ReportSource.dll" />
+    <Content Include="DocumentFormat\CrystalDecisions.Shared.dll" />
+    <Content Include="DocumentFormat\CrystalDecisions.Web.dll" />
     <Content Include="DocumentFormat\DocumentFormat.OpenXml.dll" />
     <Content Include="DocumentFormat\DocumentFormat.OpenXml.Extensions.dll" />
     <Content Include="DocumentFormat\DocumentFormat.OpenXml.Extensions.XML" />
@@ -1496,6 +1518,9 @@
     <Content Include="Styles\css\fonts\ptsans\stylesheet.css" />
     <Content Include="Styles\css\form.css" />
     <Content Include="Styles\css\gallery.css" />
+    <Content Include="Styles\css\icomoon\fonts\icomoon.svg" />
+    <Content Include="Styles\css\icomoon\license.txt" />
+    <Content Include="Styles\css\icomoon\style.css" />
     <Content Include="Styles\css\icons\icol16.css" />
     <Content Include="Styles\css\icons\icol16\sprite.png" />
     <Content Include="Styles\css\icons\icol16\src\1license.txt" />
@@ -5381,7 +5406,6 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
-    <Content Include="Styles\Images\404-error-page-30.jpg" />
     <Content Include="Styles\Images\banner_Falshop.png" />
     <Content Include="Styles\Images\core\alpha.png" />
     <Content Include="Styles\Images\core\arrow-left.png" />
@@ -6295,6 +6319,13 @@
     <Compile Include="Control\ChiPhi.ascx.designer.cs">
       <DependentUpon>ChiPhi.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Control\LoiNhuan.ascx.cs">
+      <DependentUpon>LoiNhuan.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\LoiNhuan.ascx.designer.cs">
+      <DependentUpon>LoiNhuan.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Control\DoanhThu.ascx.cs">
       <DependentUpon>DoanhThu.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6337,6 +6368,13 @@
     <Compile Include="Control\LeftMenu.ascx.designer.cs">
       <DependentUpon>LeftMenu.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Control\NhapXuatDetail.ascx.cs">
+      <DependentUpon>NhapXuatDetail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\NhapXuatDetail.ascx.designer.cs">
+      <DependentUpon>NhapXuatDetail.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Control\PrintBarCode.ascx.cs">
       <DependentUpon>PrintBarCode.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6364,6 +6402,13 @@
     </Compile>
     <Compile Include="Control\Receipt.ascx.designer.cs">
       <DependentUpon>Receipt.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\SearchProduct.ascx.cs">
+      <DependentUpon>SearchProduct.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\SearchProduct.ascx.designer.cs">
+      <DependentUpon>SearchProduct.ascx</DependentUpon>
     </Compile>
     <Compile Include="Control\Store.ascx.cs">
       <DependentUpon>Store.ascx</DependentUpon>
@@ -6505,14 +6550,22 @@
     <None Include="Styles\css\fonts\ptsans\lILlYDvubYemzYzN7GbLkHhCUOGz7vYGh680lGh-uXM.woff" />
     <None Include="Styles\css\fonts\ptsans\LKf8nhXsWg5ybwEGXk8UBQ.woff" />
     <None Include="Styles\css\fonts\ptsans\PIPMHY90P7jtyjpXuZ2cLD8E0i7KZn-EPnyo3HZu7kw.woff" />
+    <None Include="Styles\css\icomoon\fonts\icomoon.eot" />
+    <None Include="Styles\css\icomoon\fonts\icomoon.ttf" />
+    <None Include="Styles\css\icomoon\fonts\icomoon.woff" />
     <None Include="Styles\fonts\icomoon\fonts\icomoon.eot" />
     <None Include="Styles\fonts\icomoon\fonts\icomoon.svg" />
     <None Include="Styles\fonts\icomoon\fonts\icomoon.ttf" />
     <None Include="Styles\fonts\icomoon\fonts\icomoon.woff" />
+    <None Include="Styles\fonts\ptsans\0XxGQsSc1g4rdRdjJKZrNBsxEYwM7FgeyaSgU71cLG0.woff" />
+    <None Include="Styles\fonts\ptsans\lILlYDvubYemzYzN7GbLkHhCUOGz7vYGh680lGh-uXM.woff" />
+    <None Include="Styles\fonts\ptsans\LKf8nhXsWg5ybwEGXk8UBQ.woff" />
+    <None Include="Styles\fonts\ptsans\PIPMHY90P7jtyjpXuZ2cLD8E0i7KZn-EPnyo3HZu7kw.woff" />
     <None Include="Styles\plugins\elfinder\connectors\php\connector.php" />
     <None Include="Styles\plugins\elfinder\connectors\php\elFinder.class.php" />
     <None Include="Styles\plugins\elfinder\connectors\python\connector.py" />
     <None Include="Styles\plugins\elfinder\connectors\python\elFinder.py" />
+    <None Include="TemplateDocs\TemplateNhapXuatDetail.xlsx" />
     <None Include="TemplateDocs\TemplateNhapXuat.xlsx" />
     <None Include="TemplateDocs\TemplateThongKe.xlsx" />
     <None Include="TemplateDocs\TemplateDoanhThu.xlsx" />
@@ -6534,10 +6587,6 @@
     <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{6EDD53F3-DAF7-42FE-BCC2-49A68D2C3E8E}</Project>
       <Name>Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenXml.Sandpit.FormattedExcel.Library\OpenXml.Sandpit.FormattedExcel.Library.csproj">
-      <Project>{FA1D1D07-5318-4C0C-8D38-DA60832BCE0E}</Project>
-      <Name>OpenXml.Sandpit.FormattedExcel.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -14,13 +14,13 @@ using Entity;
 using System.Data;
 using System.Drawing.Printing;
 using System.Drawing.Text;
-
+using Common;
 namespace FalStore.Control
 {
     public partial class PrintBarCode : System.Web.UI.UserControl
     {
         ProductBIZ proBiz = new ProductBIZ();
-
+        ConvertMoneyString conV = new ConvertMoneyString();
         BarCodeBIZ barBiz = new BarCodeBIZ();
         List<objFindBarCode> lstObj = new List<objFindBarCode>();
         protected void Page_Load(object sender, EventArgs e)
@@ -122,7 +122,7 @@ namespace FalStore.Control
             
             string barCode = Bar128(productcode);
             //System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
-            using (Bitmap bitMap = new Bitmap(barCode.Length * 20, 50))
+            using (Bitmap bitMap = new Bitmap(barCode.Length * 20, 45))
             {
                 using (Graphics graphics = Graphics.FromImage(bitMap))
                 {
@@ -157,8 +157,8 @@ namespace FalStore.Control
             // Current cell counter
             int cellCnt;
 
-            rowCnt = int.Parse("32");
-            cellCnt = int.Parse("5");
+            rowCnt = int.Parse("40");
+            cellCnt = int.Parse("7");
             Font font = new Font("Tahoma", 3);
             for (rowCtr = 1; rowCtr <= rowCnt; rowCtr++)
             {
@@ -172,8 +172,8 @@ namespace FalStore.Control
                     {
                         // Create a new cell and add it to the row.
                         TableCell tCell = new TableCell();
-                        tCell.VerticalAlign = VerticalAlign.Bottom;
-                        tCell.Text = txtProductName.Text + "<Br/>" + txtPrice.Text + " Đ";
+                       // tCell.VerticalAlign = VerticalAlign.Bottom;
+                        tCell.Text = txtProductName.Text + "<Br/>" + conV.FloatToMoneyString(txtPrice.Text) + " Đ";
                         tRow.Cells.Add(tCell);
                     }
                 }
@@ -186,7 +186,7 @@ namespace FalStore.Control
                         // Create a new cell and add it to the row.
                         TableCell tCell = new TableCell();
                         imgBarCode.ImageUrl = url;
-                        tCell.VerticalAlign = VerticalAlign.Top;
+                       // tCell.VerticalAlign = VerticalAlign.Top;
                         tCell.Controls.Add(imgBarCode);
                         tRow.Cells.Add(tCell);
                     }

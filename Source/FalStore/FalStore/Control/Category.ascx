@@ -48,7 +48,7 @@
             <div class="mws-panel-body no-padding">
                 <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
                     <!-- serach -->
-                    <div id="DataTables_Table_1_length" class="dataTables_length">
+                    <%--<div id="DataTables_Table_1_length" class="dataTables_length">
                         Show
                         <asp:DropDownList ID="drpSelect" runat="server" OnSelectedIndexChanged="drpSelect_SelectedIndexChanged"
                             AutoPostBack="true">
@@ -60,7 +60,7 @@
                             Search:
                             <input type="text" aria-controls="DataTables_Table_1">
                         </label>
-                    </div>
+                    </div>--%>
                     <!-- table -->
                     <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
                         <thead>
@@ -91,7 +91,7 @@
                                             <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="false" CommandName="Edit"
                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "CategoryID") %>'>Chỉnh sửa</asp:LinkButton>
                                             <i class="icon-trash"></i>
-                                            <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" CommandName="Delete"
+                                            <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" OnClientClick="return confirm('Are you sure?')" CommandName="Delete"
                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "CategoryID") %>'>Xóa</asp:LinkButton>
                                         </td>
                                     </tr>

@@ -11,7 +11,6 @@ D:\NGHIA\Project\FAL\Doc\Source\FalStore\FalStore\obj\Debug\FalStore.pdb
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\obj\Debug\ResolveAssemblyReference.cache
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\obj\Debug\FalStore.dll
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\obj\Debug\FalStore.pdb
-D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\FalStore.dll
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\FalStore.pdb
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\BIZ.dll
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\Common.dll
@@ -21,5 +20,6 @@ D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\BIZ.pd
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\Common.pdb
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\DAL.pdb
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\Entity.pdb
+D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\FalStore.dll
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\OpenXml.Sandpit.FormattedExcel.Library.dll
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\OpenXml.Sandpit.FormattedExcel.Library.pdb

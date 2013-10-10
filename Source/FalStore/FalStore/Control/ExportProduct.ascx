@@ -273,7 +273,7 @@
                                                     </td>
                                                       <td>
                                                      <i class="icon-trash"></i>
-                                            <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" CommandName="Delete"
+                                            <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="false" OnClientClick="return confirm('Are you sure?')" CommandName="Delete"
                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "LogDetailID") %>'>Xóa</asp:LinkButton>
                                                 </td>
 

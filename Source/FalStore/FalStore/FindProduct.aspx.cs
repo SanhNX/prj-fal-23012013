@@ -143,7 +143,7 @@ namespace FalStore
         protected void btnFind_Click(object sender, EventArgs e)
         {
             List<objBarCode> lst = new List<objBarCode>();
-            lst = productBIZ.Search(txtProductID.Text, txtProductName.Text, int.Parse(drpCategory.SelectedValue.ToString()));
+            lst = productBIZ.Search(txtProductID.Text, txtProductName.Text, int.Parse(drpCategory.SelectedValue.ToString()), 0);
 
             if (lst != null)
             {

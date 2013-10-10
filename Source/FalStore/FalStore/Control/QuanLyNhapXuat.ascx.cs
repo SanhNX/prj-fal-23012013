@@ -13,6 +13,7 @@ using System.Drawing.Text;
 using System.IO;
 using DocumentFormat.OpenXml.Packaging;
 using OpenXml.Sandpit.FormattedExcel.Library;
+using Common;
 
 namespace FalStore.Control
 {
@@ -20,6 +21,7 @@ namespace FalStore.Control
     {
         BranchBIZ branBiz = new BranchBIZ();
         SearchNXBIZ searchNXBIZ = new SearchNXBIZ();
+        ConvertMoneyString conV = new ConvertMoneyString();
 
         // luu phiu nhap or xuat
         public string luuLoaiPhieu {get; set;}
@@ -82,7 +84,7 @@ namespace FalStore.Control
                         tc = tc + lst.TotalAmount;
                     }
 
-                    ltrDoanhThu.Text = "  Tổng Cộng " + drpPhieu.SelectedItem.ToString() + " Là " + tc.ToString("0.0") + "  VNĐ";
+                    ltrDoanhThu.Text = "  Tổng Cộng " + drpPhieu.SelectedItem.ToString() + " Là " + conV.FloatToMoneyString(tc.ToString("0")) + "  VNĐ";
 
                     rptResult.DataSource = lstObj;
                     rptResult.DataBind();
@@ -135,7 +137,7 @@ namespace FalStore.Control
                     ltrDate.Text = data.CreateDate.ToString();
 
                     Literal ltrPrice = e.Item.FindControl("ltrPrice") as Literal;
-                    ltrPrice.Text = data.TotalAmount.ToString("0.0");
+                    ltrPrice.Text = conV.FloatToMoneyString(data.TotalAmount.ToString("0"));
 
                     LinkButton lnkView = e.Item.FindControl("lnkView") as LinkButton;
                     lnkView.CommandArgument = data.Log_StoreID.ToString();
@@ -160,12 +162,12 @@ namespace FalStore.Control
                         //LoadDataUpdate(int.Parse(e.CommandArgument.ToString()));
                         if ("1".Equals(Session["FirstName"]))
                         {
-                            Response.Write("<script type='text/javascript'>window.open('PageReport2.aspx?id=" + e.CommandArgument.ToString() + "','_blank');</script>");
+                            Response.Write("<script type='text/javascript'>window.open('PageReport.aspx?id=" + e.CommandArgument.ToString() + "','_blank');</script>");
                         }
 
                         if ("2".Equals(Session["FirstName"]))
                         {
-                            Response.Write("<script type='text/javascript'>window.open('PageReport.aspx?id=" + e.CommandArgument.ToString() + "','_blank');</script>");
+                            Response.Write("<script type='text/javascript'>window.open('PageReport2.aspx?id=" + e.CommandArgument.ToString() + "','_blank');</script>");
                         }
 
                         break;
@@ -212,7 +214,7 @@ namespace FalStore.Control
                 dr["XuatKho"] = item.BranchNameXuat.ToString();
                 dr["NhapKho"] = item.BranchNameNhap.ToString();
                 dr["NgayLapPhieu"] = item.CreateDate.ToString();
-                dr["TongTienPhieu"] = item.TotalAmount.ToString("0");
+                dr["TongTienPhieu"] = conV.FloatToMoneyString(item.TotalAmount.ToString("0"));
 
                 tbl.Rows.Add(dr);
             }

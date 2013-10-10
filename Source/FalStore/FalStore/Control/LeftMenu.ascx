@@ -19,10 +19,12 @@
                 <ul>
                     <li><a href="" runat="server" id="hypCategory">Loại sản phẩm</a></li>
                     <li><a href="" runat="server" id="hypProduct">Sản phẩm</a></li>
+                    <li><a href="" runat="server" id="hypSearchProduct">Tìm Sản phẩm</a></li>
                     <li><a href="" runat="server" id="hypReceipt">Nhập kho</a></li>
                     <li><a href="" runat="server" id="hypExportProduct">Xuất kho</a></li>
                     <li><a href="" runat="server" id="hypStore">Thông tin kho</a></li>
                     <li><a href="" runat="server" id="hypNhapXuat">Quản lý nhập xuất</a></li>
+                    <li><a href="" runat="server" id="hypNhapXuatDetail">Chi Tiết nhập xuất</a></li>
                 </ul>
             </li>
             <li><a href="#"><i class="icon-list"></i>Quản lý chi nhánh</a>
@@ -32,7 +34,7 @@
                     <li><a href="" runat="server" id="hypDoanhThu">Doanh thu</a></li>
                     <li><a href="" runat="server" id="hypThongKe">Thông kê theo Sản Phẩm</a></li>
                     <li><a href="" runat="server" id="hypChiPhi">Chi phí kinh doanh</a></li>
-                    <li><a href="" runat="server" id="A4">Lợi nhuận</a></li>
+                    <li><a href="" runat="server" id="hypLoiNhuan">Lợi nhuận</a></li>
                 </ul>
             </li>
             <li><a href="#"><i class="icon-list"></i>Quản lý nhân viên</a>

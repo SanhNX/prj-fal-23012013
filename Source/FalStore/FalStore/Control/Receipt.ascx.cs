@@ -8,6 +8,7 @@ using System.Web.UI.HtmlControls;
 using BIZ;
 using Entity;
 using System.Data;
+using Common;
 
 namespace FalStore.Control
 {
@@ -17,6 +18,7 @@ namespace FalStore.Control
         EmployeeBIZ empBiz = new EmployeeBIZ();
         BranchBIZ branBiz = new BranchBIZ();
         ProductBIZ proBiz = new ProductBIZ();
+        ConvertMoneyString conV = new ConvertMoneyString();
 
         #region .Event
         /// <summary>
@@ -149,7 +151,7 @@ namespace FalStore.Control
                 ClearLogStoreInfo();
                 ShowControl(false);
 
-                Response.Write("<script type='text/javascript'>window.open('PageReport2.aspx?id=" + txtLogStoreID.Text + "','_blank');</script>");
+                Response.Write("<script type='text/javascript'>window.open('PageReport.aspx?id=" + txtLogStoreID.Text + "','_blank');</script>");
 
             }
             catch (Exception)
@@ -207,7 +209,7 @@ namespace FalStore.Control
                     ltrSize.Text = data.BarCode.SizeName;
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.BarCode.Product.ImportPrice.ToString("0.0");
+                    ltrExportPrice.Text = conV.FloatToMoneyString(data.BarCode.Product.ImportPrice.ToString("0"));
 
                     Literal ltrQuantity = e.Item.FindControl("ltrQuantity") as Literal;
                     ltrQuantity.Text = data.Quantity.ToString();
@@ -216,7 +218,7 @@ namespace FalStore.Control
                     ltrSale.Text = data.Sale.ToString();
 
                     Literal ltrAmount = e.Item.FindControl("ltrAmount") as Literal;
-                    ltrAmount.Text = data.Amount.ToString("0.0");
+                    ltrAmount.Text = conV.FloatToMoneyString(data.Amount.ToString("0"));
                 }
             }
             catch (Exception)
@@ -288,7 +290,7 @@ namespace FalStore.Control
             {
                 rptResult.DataSource = lstLogDetail;
                 rptResult.DataBind();
-                txtTotal.Text = total.ToString("0.0");
+                txtTotal.Text = conV.FloatToMoneyString(total.ToString("0"));
             }
         }
 

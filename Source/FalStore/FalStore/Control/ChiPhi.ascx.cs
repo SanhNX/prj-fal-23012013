@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Entity;
 using BIZ;
+using Common;
 
 namespace FalStore.Control
 {
@@ -13,6 +14,7 @@ namespace FalStore.Control
     {
         BranchBIZ branBiz = new BranchBIZ();
         ExpensesBIZ expensesBIZ = new ExpensesBIZ();
+        ConvertMoneyString conV = new ConvertMoneyString();
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -109,9 +111,9 @@ namespace FalStore.Control
                 objExpense.Description = txtDescription.Text;
                 objExpense.CreateDate = DateTime.Today;
                 // User se lay tu session
-                objExpense.CreateUser = "Thanh";
+                objExpense.CreateUser = (String)Session["EmployeeName"];
                 objExpense.UpdateDate = DateTime.Today;
-                objExpense.UpdateUser = "Thanh";
+                objExpense.UpdateUser = (String)Session["EmployeeName"];
 
                 expensesBIZ.InsertExpenses(objExpense);
 
@@ -183,7 +185,7 @@ namespace FalStore.Control
                     ltr3.Text = data.Description.ToString();
 
                     Literal ltr4 = e.Item.FindControl("ltr4") as Literal;
-                    ltr4.Text = data.Amount.ToString("0.0");
+                    ltr4.Text = conV.FloatToMoneyString(data.Amount.ToString("0"));
 
                     Literal ltr5 = e.Item.FindControl("ltr5") as Literal;
                     ltr5.Text = data.CreateDate.ToString();

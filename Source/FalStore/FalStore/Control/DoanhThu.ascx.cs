@@ -13,6 +13,7 @@ using System.Drawing.Text;
 using System.IO;
 using DocumentFormat.OpenXml.Packaging;
 using OpenXml.Sandpit.FormattedExcel.Library;
+using Common;
 
 
 namespace FalStore.Control
@@ -21,6 +22,7 @@ namespace FalStore.Control
     {
         BranchBIZ branBiz = new BranchBIZ();
         BillBIZ billBiz = new BillBIZ();
+        ConvertMoneyString conV = new ConvertMoneyString();
        
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -65,7 +67,7 @@ namespace FalStore.Control
                         tc = tc + objItem.ActualTotalPrice;
                     }
 
-                    ltrDoanhThu.Text = tc.ToString("0.0") + "  VNĐ";
+                    ltrDoanhThu.Text = conV.FloatToMoneyString(tc.ToString("0")) + "  VNĐ";
                     rptResult.DataSource = lstObj;
                     rptResult.DataBind();
                 }
@@ -126,13 +128,13 @@ namespace FalStore.Control
                     ltrDate.Text = data.CreateDate.ToString();
 
                     Literal ltrPrice1 = e.Item.FindControl("ltrPrice1") as Literal;
-                    ltrPrice1.Text = data.TotalPrice.ToString("0.0");
+                    ltrPrice1.Text = conV.FloatToMoneyString(data.TotalPrice.ToString("0"));
 
                     Literal ltrSale = e.Item.FindControl("ltrSale") as Literal;
                     ltrSale.Text = data.Sale.ToString() + "%";
 
                     Literal ltrPrice2 = e.Item.FindControl("ltrPrice2") as Literal;
-                    ltrPrice2.Text = data.ActualTotalPrice.ToString("0.0");
+                    ltrPrice2.Text = conV.FloatToMoneyString(data.ActualTotalPrice.ToString("0"));
 
 
                     Literal ltrLink = e.Item.FindControl("ltrLink") as Literal;
@@ -207,9 +209,9 @@ namespace FalStore.Control
                 dr["KhachHang"] = item.CustomerName.ToString();
                 dr["ChiNhanh"] = item.BranchName.ToString();
                 dr["NgayLap"] = item.CreateDate.ToLongDateString();
-                dr["ThanhTien"] = item.TotalPrice.ToString("0.0");
+                dr["ThanhTien"] = conV.FloatToMoneyString(item.TotalPrice.ToString("0"));
                 dr["GiamGia"] = item.Sale.ToString();
-                dr["TongTien"] = item.ActualTotalPrice.ToString("0.0");
+                dr["TongTien"] = conV.FloatToMoneyString(item.ActualTotalPrice.ToString("0"));
 
                 tbl.Rows.Add(dr);
             }

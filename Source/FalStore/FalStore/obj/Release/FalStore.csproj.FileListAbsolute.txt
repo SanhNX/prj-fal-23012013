@@ -11,5 +11,4 @@ D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\DAL.pd
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\Entity.pdb
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\obj\Release\FalStore.dll
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\obj\Release\FalStore.pdb
-D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\OpenXml.Sandpit.FormattedExcel.Library.dll
 D:\project web\quan ly shop\prj-fal-23012013\Source\FalStore\FalStore\bin\OpenXml.Sandpit.FormattedExcel.Library.pdb
