@@ -293,5 +293,53 @@ namespace BIZ
                 throw;
             }
         }
+
+        public float SumTotalAmountLogStore(int branchId, DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                float quantity = 0;
+                quantity = logDal.SumTotalAmountLogStore(branchId, startDate, endDate);
+
+                return quantity;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public float SumTotalAmountLogBill(int branchId, DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                float quantity = 0;
+                quantity = logDal.SumTotalAmountLogBill(branchId, startDate, endDate);
+
+                return quantity;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public float SumTotalAmountLogExpenses(int branchId, DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                float quantity = 0;
+                quantity = logDal.SumTotalAmountLogExpenses(branchId, startDate, endDate);
+
+                return quantity;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
