@@ -324,6 +324,39 @@ namespace DAL
 
         }
 
+        public float SumTotalAmountLogStoreXuat(int branchId, DateTime startDate, DateTime endDate)
+        {
+            float abc = 0;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@BranchID", branchId));
+
+
+            parameterList.Add(new SqlParameter("@CreateDate1", startDate));
+
+            parameterList.Add(new SqlParameter("@CreateDate2", endDate));
+
+            SqlDataReader dr = null;
+
+            dr = SQLHelper.ExecuteReader("spSumLogStoreXuatByBranchID", parameterList);
+
+
+
+            while (dr.Read())
+            {
+
+                if (!string.Empty.Equals(dr["TotalAmount"].ToString()))
+                {
+                    abc = float.Parse(dr["TotalAmount"].ToString());
+                }
+
+            }
+
+            return abc;
+
+        }
+
         public float SumTotalAmountLogBill(int branchId, DateTime startDate, DateTime endDate)
         {
             float abc = 0;
