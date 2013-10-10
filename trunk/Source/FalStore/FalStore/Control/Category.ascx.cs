@@ -56,7 +56,7 @@ namespace FalStore.Control
             try
             {
                 int count;
-                pageSize = int.Parse(drpSelect.SelectedItem.ToString());
+                pageSize = 50;//int.Parse(drpSelect.SelectedItem.ToString());
                 //this.pager.ItemCount = 21;
                 List<objCategory> tbl = new List<objCategory>();
                 tbl = categoryBIZ.ShowByPaging(currentPageIndex, pageSize, out count);

@@ -26,6 +26,9 @@ namespace FalStore.Control
                 this.hypThongKe.HRef = "~/Default.aspx?pageName=ThongKe";
                 this.hypChiPhi.HRef = "~/Default.aspx?pageName=ChiPhi";
                 this.hypNhapXuat.HRef = "~/Default.aspx?pageName=NhapXuat";
+                this.hypLoiNhuan.HRef = "~/Default.aspx?pageName=LoiNhuan";
+                this.hypSearchProduct.HRef = "~/Default.aspx?pageName=SearchProduct";
+                this.hypNhapXuatDetail.HRef = "~/Default.aspx?pageName=NhapXuatDetail";
                 
             }
           

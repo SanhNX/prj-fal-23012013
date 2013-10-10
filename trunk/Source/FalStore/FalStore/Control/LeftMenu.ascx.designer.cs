@@ -31,6 +31,15 @@ namespace FalStore.Control {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor hypProduct;
         
         /// <summary>
+        /// hypSearchProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor hypSearchProduct;
+        
+        /// <summary>
         /// hypReceipt control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace FalStore.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor hypNhapXuat;
+        
+        /// <summary>
+        /// hypNhapXuatDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor hypNhapXuatDetail;
         
         /// <summary>
         /// hypBranch control.
@@ -112,13 +130,13 @@ namespace FalStore.Control {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor hypChiPhi;
         
         /// <summary>
-        /// A4 control.
+        /// hypLoiNhuan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A4;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor hypLoiNhuan;
         
         /// <summary>
         /// hypEmployee control.

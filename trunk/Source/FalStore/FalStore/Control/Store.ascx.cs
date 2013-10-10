@@ -8,6 +8,7 @@ using System.Web.UI.HtmlControls;
 using BIZ;
 using Entity;
 using System.Data;
+using Common;
 
 namespace FalStore.Control
 {
@@ -16,6 +17,7 @@ namespace FalStore.Control
         CategoryBIZ catBiz = new CategoryBIZ();
         BranchBIZ branBiz = new BranchBIZ();
         StoreBIZ stoBiz = new StoreBIZ();
+        ConvertMoneyString conV = new ConvertMoneyString();
         #region  Viewstate
         protected int currentPageIndex
         {
@@ -132,7 +134,7 @@ namespace FalStore.Control
                     //ltrImportPrice.Text = data.ImportPrice.ToString();
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.ExportPrice.ToString("0.0");
+                    ltrExportPrice.Text = conV.FloatToMoneyString(data.ExportPrice.ToString("0"));
 
                     Literal ltrQuantity = e.Item.FindControl("ltrQuantity") as Literal;
                     ltrQuantity.Text = data.Quantity.ToString();
