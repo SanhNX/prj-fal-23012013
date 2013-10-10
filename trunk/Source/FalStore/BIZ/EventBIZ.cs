@@ -61,6 +61,23 @@ namespace BIZ
 
         }
 
+        public List<objEvent> ShowAllByBranch(int branchID)
+        {
+            try
+            {
+                List<objEvent> lst = new List<objEvent>();
+                lst = DAL.GetEventAllByBranch(branchID);
+
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
         public objEvent ShowByEventID(int EventID)
         {
             try
