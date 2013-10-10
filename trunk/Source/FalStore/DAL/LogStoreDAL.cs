@@ -141,6 +141,7 @@ namespace DAL
                 obj.BarCode.ColorName = dr["ColorName"].ToString();
                 obj.BarCode.SizeName = dr["SizeName"].ToString();
                 obj.BarCode.Product.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+                obj.BarCode.Product.ImportPrice = float.Parse(dr["ImportPrice"].ToString());
                 obj.Sale = float.Parse(dr["Sale"].ToString());
                 obj.Quantity = int.Parse(dr["Quantity"].ToString());
                 obj.Amount = float.Parse(dr["Amount"].ToString());
@@ -289,6 +290,106 @@ namespace DAL
 
             return SQLHelper.ExecuteNonQuery("spLogDetailDelete", parameterList);
         }
+
+        public float SumTotalAmountLogStore(int branchId, DateTime startDate, DateTime endDate)
+        {
+            float abc = 0;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@BranchID", branchId));
+
+
+            parameterList.Add(new SqlParameter("@CreateDate1", startDate));
+
+            parameterList.Add(new SqlParameter("@CreateDate2", endDate));
+
+            SqlDataReader dr = null;
+
+            dr = SQLHelper.ExecuteReader("spSumLogStoreByBranchID", parameterList);
+
+
+
+            while (dr.Read())
+            {
+
+                if (!string.Empty.Equals(dr["TotalAmount"].ToString()))
+                {
+                    abc = float.Parse(dr["TotalAmount"].ToString());
+                }
+
+            }
+
+            return abc;
+
+        }
+
+        public float SumTotalAmountLogBill(int branchId, DateTime startDate, DateTime endDate)
+        {
+            float abc = 0;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@BranchID", branchId));
+
+
+            parameterList.Add(new SqlParameter("@CreateDate1", startDate));
+
+            parameterList.Add(new SqlParameter("@CreateDate2", endDate));
+
+            SqlDataReader dr = null;
+
+            dr = SQLHelper.ExecuteReader("spSumBillByBranchID", parameterList);
+
+
+            while (dr.Read())
+            {
+
+                if (!string.Empty.Equals(dr["TotalAmount"].ToString()))
+                {
+                    abc = float.Parse(dr["TotalAmount"].ToString());
+                }
+                
+
+            }
+
+            return abc;
+
+        }
+
+        public float SumTotalAmountLogExpenses(int branchId, DateTime startDate, DateTime endDate)
+        {
+            float abc = 0;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@BranchID", branchId));
+
+
+            parameterList.Add(new SqlParameter("@CreateDate1", startDate));
+
+            parameterList.Add(new SqlParameter("@CreateDate2", endDate));
+
+            SqlDataReader dr = null;
+
+            dr = SQLHelper.ExecuteReader("spSumExpensesByBranchID", parameterList);
+
+
+
+            while (dr.Read())
+            {
+
+                if (!string.Empty.Equals(dr["TotalAmount"].ToString()))
+                {
+                    abc = float.Parse(dr["TotalAmount"].ToString());
+                }
+
+            }
+
+            return abc;
+
+        }
+
 
     }
 }
