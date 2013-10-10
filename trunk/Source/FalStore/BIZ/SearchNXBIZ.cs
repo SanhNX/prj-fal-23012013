@@ -65,5 +65,25 @@ namespace BIZ
            
 
         }
+
+        public List<objSearchDetailNX> SearchDetailNX(int loaiPhieu, int branchId, DateTime startDate, DateTime endDate)
+        {
+            List<objSearchDetailNX> lst = new List<objSearchDetailNX>();
+            try
+            {
+
+                lst = DAL.SearchPhieuDetail(loaiPhieu, branchId, startDate, endDate);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
+            return lst;
+
+
+        }
     }
 }

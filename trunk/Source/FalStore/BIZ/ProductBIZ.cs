@@ -105,12 +105,12 @@ namespace BIZ
         /// </summary>
         /// <param name="productID"></param>
         /// <returns></returns>
-        public List<objBarCode> Search(string productID,  string productName, int categoryID)
+        public List<objBarCode> Search(string productID, string productName, int categoryID, int deleteFlg)
         {
             try
             {
                 List<objBarCode> lst = new List<objBarCode>();
-                lst = DAL.GetProductSearch(productID, productName, categoryID);
+                lst = DAL.GetProductSearch(productID, productName, categoryID, deleteFlg);
 
                 return lst;
             }
@@ -170,11 +170,11 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Delete(string productID, DateTime updateDate, string updateUser)
+        public int Delete(string productID, DateTime updateDate, string updateUser, int DeleteFlg)
         {
             try
             {
-                return DAL.DeleteProduct(productID, updateDate, updateUser);
+                return DAL.DeleteProduct(productID, updateDate, updateUser, DeleteFlg);
             }
             catch (Exception)
             {
