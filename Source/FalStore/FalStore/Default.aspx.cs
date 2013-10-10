@@ -82,7 +82,7 @@ namespace FalStore
                     }
                     break;
                 case "NhapXuat":
-                    if (role() == 1 || role() == 2)
+                    if (role() == 1 || role() == 2 || role() == 3)
                     {
                         uc = this.LoadControl("~/Control/QuanLyNhapXuat.ascx") as UserControl;
                     }
@@ -187,15 +187,25 @@ namespace FalStore
                     break;
 
                 case "SearchProduct":
-                    uc = this.LoadControl("~/Control/SearchProduct.ascx") as UserControl;
+                    if (role() == 1 || role() == 2)
+                    {
+                        uc = this.LoadControl("~/Control/SearchProduct.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
                     break;
                 case "NhapXuatDetail":
-                    uc = this.LoadControl("~/Control/NhapXuatDetail.ascx") as UserControl;
+                    if (role() == 1 || role() == 2 || role() == 3)
+                    {
+                        uc = this.LoadControl("~/Control/NhapXuatDetail.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
                     break;
-                
-                
-               
-
             }
 
             if ((cph != null) && (uc != null))
