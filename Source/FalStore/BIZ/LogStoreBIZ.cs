@@ -310,6 +310,22 @@ namespace BIZ
             }
         }
 
+        public float SumTotalAmountLogStoreXuat(int branchId, DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                float quantity = 0;
+                quantity = logDal.SumTotalAmountLogStoreXuat(branchId, startDate, endDate);
+
+                return quantity;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public float SumTotalAmountLogBill(int branchId, DateTime startDate, DateTime endDate)
         {
             try
