@@ -91,6 +91,30 @@ namespace DAL
             return lst;
         }
 
+        public List<objEvent> GetEventAllByBranch(int BranchID)
+        {
+            List<objEvent> lst = new List<objEvent>();
+
+            objEvent obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@BranchID", BranchID));
+            SqlDataReader dr = SQLHelper.ExecuteReader("spEventGetAllByBranch", parameterList);
+            while (dr.Read())
+            {
+                obj = new objEvent();
+                obj.EventID = int.Parse(dr["EventID"].ToString());
+                obj.EventName = dr["Name"].ToString();
+                obj.Branch = DALBranch.GetBranchByID(int.Parse(dr["BranchID"].ToString()));
+                obj.StartDate = dr["StartDate"].ToString();
+                obj.EndDate = dr["EndDate"].ToString();
+                obj.Discount = dr["DisCount"].ToString();
+                lst.Add(obj);
+            }
+
+            return lst;
+        }
+
         public objEvent GetEventByID(int EventID)
         {
 
