@@ -135,7 +135,7 @@ namespace DAL
         /// </summary>
         /// <param name="ProductID"></param>
         /// <returns></returns>
-        public List<objBarCode> GetProductSearch(string ProductID, string ProductName, int categoryID)
+        public List<objBarCode> GetProductSearch(string ProductID, string ProductName, int categoryID , int deleteFlg)
         {
             List<objBarCode> lst = new List<objBarCode>();
             objBarCode obj = null;
@@ -146,12 +146,15 @@ namespace DAL
 
             parameterList.Add(new SqlParameter("@CategoryID", categoryID));
 
+            parameterList.Add(new SqlParameter("@Delete_Flg", deleteFlg));
+
             SqlDataReader dr = SQLHelper.ExecuteReader("spProductSearch", parameterList);
 
             while (dr.Read())
             {
                 obj = new objBarCode();
                 obj.Product= new objProduct();
+                obj.Product.Delete_Flg = dr["Delete_Flg"].ToString();
                 obj.Product.ProductID = dr["ProductID"].ToString();
                 obj.Product.ProductName = dr["ProductName"].ToString();
                 obj.Product.Category = new objCategory();
@@ -234,13 +237,14 @@ namespace DAL
         /// <param name="updateDate"></param>
         /// <param name="updateUser"></param>
         /// <returns></returns>
-        public int DeleteProduct(string productID, DateTime updateDate, string updateUser)
+        public int DeleteProduct(string productID, DateTime updateDate, string updateUser, int DeleteFlg)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@ProductID", productID));
             parameterList.Add(new SqlParameter("@UpdateDate", updateDate));
             parameterList.Add(new SqlParameter("@UpdateUser", updateUser));
+            parameterList.Add(new SqlParameter("@DeleteFlg", DeleteFlg));
 
             return SQLHelper.ExecuteNonQuery("spProductDelete", parameterList);
         }
