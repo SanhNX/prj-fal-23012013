@@ -39,6 +39,7 @@ namespace FalStore.Control
 
 
                 // 
+                stt = 1;
                 Search();
                 
             }
@@ -125,6 +126,7 @@ namespace FalStore.Control
 
                 throw;
             }
+            stt = 1;
 
         }
 
