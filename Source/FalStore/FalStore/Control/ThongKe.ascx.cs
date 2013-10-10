@@ -23,6 +23,16 @@ namespace FalStore.Control
         CategoryBIZ categoryBIZ = new CategoryBIZ();
         ReportBillDetailBIZ reportBillDetailBIZ = new ReportBillDetailBIZ();
 
+        private int role()
+        {
+            int role = -1;
+            if (Session["Role"] != null)
+            {
+                role = (int)Session["Role"];
+            }
+            return role;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             InitPage();
@@ -54,6 +64,16 @@ namespace FalStore.Control
                 drpCategory.DataTextField = "CategoryName";
                 drpCategory.DataValueField = "CategoryID";
                 drpCategory.DataBind();
+
+                if (role() == 3)
+                {
+                    drpBranch.SelectedValue = Session["BranchID"].ToString();
+                    drpBranch.Enabled = false;
+                }
+                else
+                {
+                    drpBranch.Enabled = true;
+                }
 
             }
             catch (Exception)

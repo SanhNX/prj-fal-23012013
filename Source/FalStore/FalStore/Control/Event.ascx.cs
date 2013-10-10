@@ -19,6 +19,16 @@ namespace FalStore.Control
         int stt = 1;
         #endregion
         #region .Event
+        private int role()
+        {
+            int role = -1;
+            if (Session["Role"] != null)
+            {
+                role = (int)Session["Role"];
+            }
+            return role;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             InitPage();
@@ -37,7 +47,18 @@ namespace FalStore.Control
                 drpBranch.DataBind();
 
                 List<objEvent> lstEvent = new List<objEvent>();
-                lstEvent = eventBiz.ShowAll();
+                if (role() == 3)
+                {
+                    drpBranch.SelectedValue = Session["BranchID"].ToString();
+                    drpBranch.Enabled = false;
+                    lstEvent = eventBiz.ShowAllByBranch(int.Parse(Session["BranchID"].ToString()));
+                }
+                else
+                {
+                    drpBranch.Enabled = true;
+                    lstEvent = eventBiz.ShowAll();
+                }
+                
                 rptResult.DataSource = lstEvent;
                 rptResult.DataBind();
                 if (txtTemp.Text != string.Empty)
@@ -48,6 +69,7 @@ namespace FalStore.Control
                 {
                     btnAdd.Text = "Tạo mới";
                 }
+                
 
             }
             catch (Exception)

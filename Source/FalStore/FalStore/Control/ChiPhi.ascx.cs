@@ -15,6 +15,16 @@ namespace FalStore.Control
         BranchBIZ branBiz = new BranchBIZ();
         ExpensesBIZ expensesBIZ = new ExpensesBIZ();
         ConvertMoneyString conV = new ConvertMoneyString();
+
+        private int role()
+        {
+            int role = -1;
+            if (Session["Role"] != null)
+            {
+                role = (int)Session["Role"];
+            }
+            return role;
+        }
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,7 +46,15 @@ namespace FalStore.Control
                 drpBranch.DataTextField = "BranchName";
                 drpBranch.DataValueField = "BranchID";
                 drpBranch.DataBind();
-
+                if (role() == 3)
+                {
+                    drpBranch.SelectedValue = Session["BranchID"].ToString();
+                    drpBranch.Enabled = false;
+                }
+                else
+                {
+                    drpBranch.Enabled = true;
+                }
 
                 // 
                 stt = 1;
