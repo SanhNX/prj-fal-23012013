@@ -27,6 +27,16 @@ namespace FalStore.Control
         BillBIZ billBiz = new BillBIZ();
         // luu phiu nhap or xuat
         public string luuLoaiPhieu {get; set;}
+
+        private int role()
+        {
+            int role = -1;
+            if (Session["Role"] != null)
+            {
+                role = (int)Session["Role"];
+            }
+            return role;
+        }
     
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -57,6 +67,16 @@ namespace FalStore.Control
                 drpBranch.DataTextField = "BranchName";
                 drpBranch.DataValueField = "BranchID";
                 drpBranch.DataBind();
+
+                if (role() == 3)
+                {
+                    drpBranch.SelectedValue = Session["BranchID"].ToString();
+                    drpBranch.Enabled = false;
+                }
+                else
+                {
+                    drpBranch.Enabled = true;
+                }
 
                 if ((int)Session["Role"] == 1)
                 {
