@@ -23,6 +23,7 @@ namespace FalStore.Control
         LogStoreBIZ logStoreBIZ = new LogStoreBIZ();
         ConvertMoneyString conV = new ConvertMoneyString();
         SearchNXBIZ searchNXBIZ = new SearchNXBIZ();
+        ExpensesBIZ expensesBIZ = new ExpensesBIZ();
         BillBIZ billBiz = new BillBIZ();
         // luu phiu nhap or xuat
         public string luuLoaiPhieu {get; set;}
@@ -57,6 +58,16 @@ namespace FalStore.Control
                 drpBranch.DataValueField = "BranchID";
                 drpBranch.DataBind();
 
+                if ((int)Session["Role"] == 1)
+                {
+                    Button5.Enabled = true;
+                    Button6.Enabled = true;
+                }
+                else {
+                    Button5.Enabled = false;
+                    Button6.Enabled = false;
+                }
+
             }
             catch (Exception)
             {
@@ -71,9 +82,22 @@ namespace FalStore.Control
             
             try
             {
+                float totalAmountLogBill = 0;
+
                 float totalAmountLogStore = logStoreBIZ.SumTotalAmountLogStore(int.Parse(drpBranch.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text), DateTime.Parse(TxtEndDate.Text));
 
-                float totalAmountLogBill = logStoreBIZ.SumTotalAmountLogBill(int.Parse(drpBranch.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text), DateTime.Parse(TxtEndDate.Text));
+                if ("12".Equals(drpBranch.SelectedValue.ToString()))
+                {
+                    totalAmountLogBill = logStoreBIZ.SumTotalAmountLogStoreXuat(int.Parse(drpBranch.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text), DateTime.Parse(TxtEndDate.Text));
+                    nameTc.Text = "Tổng Cộng Doanh Thu Xuất Kho Từ";
+                }
+                else {
+                     totalAmountLogBill = logStoreBIZ.SumTotalAmountLogBill(int.Parse(drpBranch.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text), DateTime.Parse(TxtEndDate.Text));
+                     nameTc.Text = "Tổng Cộng Doanh Thu Từ";
+                }
+
+
+                
 
                 float totalAmountLogExpenses = logStoreBIZ.SumTotalAmountLogExpenses(int.Parse(drpBranch.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text), DateTime.Parse(TxtEndDate.Text));
 
@@ -225,6 +249,122 @@ namespace FalStore.Control
 
         }
 
+        // Xuat phieu xuat hang tu kho tong 
+        protected void btnPx_Click(object sender, EventArgs e)
+        {
+            List<objSearchNX> lstObj = new List<objSearchNX>();
+
+            lstObj = searchNXBIZ.SearchNX(2, drpBranch.SelectedItem.ToString(), "Phiếu Xuất", int.Parse(drpBranch.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text), DateTime.Parse(TxtEndDate.Text));
+
+            DataTable tbl = new DataTable();
+            tbl.Columns.Add("STT", typeof(string));
+            tbl.Columns.Add("MaPhieu", typeof(string));
+            tbl.Columns.Add("LoaiPhieu", typeof(string));
+            tbl.Columns.Add("NhanVienLapPhieu", typeof(string));
+            tbl.Columns.Add("XuatKho", typeof(string));
+            tbl.Columns.Add("NhapKho", typeof(string));
+            tbl.Columns.Add("NgayLapPhieu", typeof(string));
+            tbl.Columns.Add("TongTienPhieu", typeof(string));
+
+            DataRow dr;
+            int stt2 = 1;
+            foreach (var item in lstObj)
+            {
+                dr = tbl.NewRow();
+                dr["STT"] = stt2.ToString();
+                stt2++;
+                dr["MaPhieu"] = "P" + item.Log_StoreID.ToString();
+                dr["LoaiPhieu"] = item.LoaiPhieu.ToString();
+                dr["NhanVienLapPhieu"] = item.EmployeeName.ToString();
+                dr["XuatKho"] = item.BranchNameXuat.ToString();
+                dr["NhapKho"] = item.BranchNameNhap.ToString();
+                dr["NgayLapPhieu"] = item.CreateDate.ToString();
+                dr["TongTienPhieu"] = conV.FloatToMoneyString(item.TotalAmount.ToString("0"));
+
+                tbl.Rows.Add(dr);
+            }
+
+            string fileName = "Phiếu Xuất" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
+
+            string filePath = Server.MapPath("~/TemplateDocs/TemplateNhapXuat.xlsx");
+
+            GenerateExcelFile(tbl, filePath, fileName, "thanh");
+        }
+
+        // Xuat chi tiet phieu xuat
+        protected void btnCtPx_Click(object sender, EventArgs e)
+        {
+            List<objSearchDetailNX> lstObj = new List<objSearchDetailNX>();
+
+            lstObj = searchNXBIZ.SearchDetailNX(2, int.Parse(drpBranch.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text), DateTime.Parse(TxtEndDate.Text));
+
+            DataTable tbl = new DataTable();
+            tbl.Columns.Add("STT", typeof(string));
+            tbl.Columns.Add("MaPhieu", typeof(string));
+            tbl.Columns.Add("CreateDate", typeof(string));
+            tbl.Columns.Add("TotalAmount", typeof(string));
+            tbl.Columns.Add("BarCode", typeof(string));
+            tbl.Columns.Add("ProductID", typeof(string));
+            tbl.Columns.Add("ProductName", typeof(string));
+            tbl.Columns.Add("ColorName", typeof(string));
+            tbl.Columns.Add("SizeName", typeof(string));
+            tbl.Columns.Add("Price", typeof(string));
+            tbl.Columns.Add("Sale", typeof(string));
+            tbl.Columns.Add("Quantity", typeof(string));
+            tbl.Columns.Add("Amount", typeof(string));
+
+            DataRow dr;
+            int stt2 = 1;
+            foreach (var item in lstObj)
+            {
+                dr = tbl.NewRow();
+                dr["STT"] = stt2.ToString();
+                stt2++;
+                dr["MaPhieu"] = "P" + item.Log_StoreID.ToString();
+                dr["CreateDate"] = item.CreateDate;
+                dr["TotalAmount"] = conV.FloatToMoneyString(item.TotalAmount);
+                dr["BarCode"] = item.BarCode.ToString();
+                dr["ProductID"] = item.ProductID.ToString();
+                dr["ProductName"] = item.ProductName.ToString();
+                dr["ColorName"] = item.ColorName;
+                dr["SizeName"] = item.SizeName.ToString();
+                //if ("1".Equals(drpPhieu.SelectedValue.ToString()))
+                //{
+                // nhap vào kho tổng thì giá khac , nhap vào kho chi nhanh thì giá khac
+                //  12 là id cua kho tong
+                if ("12".Equals(item.BranchTo.ToString()))
+                {
+                    dr["Price"] = item.ImportPrice.ToString();
+                }
+                else
+                {
+                    dr["Price"] = item.ExportPrice.ToString();
+                }
+
+                //}
+                //else
+                //{
+                //    dr["Price"] = item.ExportPrice.ToString();
+                //}
+
+                dr["Sale"] = item.Sale.ToString();
+                dr["Quantity"] = item.Quantity.ToString();
+                dr["Amount"] = conV.FloatToMoneyString(item.Amount);
+
+                tbl.Rows.Add(dr);
+            }
+
+            string fileName = "ChiTiếtPhiếuXuất" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
+
+            string filePath = Server.MapPath("~/TemplateDocs/TemplateNhapXuatDetail.xlsx");
+
+            GenerateExcelFile(tbl, filePath, fileName, "chitiet");
+
+            // doanh thu
+            //DoanhThu();
+
+        }
+
 
         // Xuất Tong doanh thu 
 
@@ -269,7 +409,42 @@ namespace FalStore.Control
         }
 
 
+        protected void btnCpKd_Click(object sender, EventArgs e)
+        {
+            List<objExpenses> lstExpenses = new List<objExpenses>();
 
+            lstExpenses = expensesBIZ.ExpensesSearch(int.Parse(drpBranch.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text), DateTime.Parse(TxtEndDate.Text));
+
+            DataTable tbl = new DataTable("Transactions");
+            tbl.Columns.Add("STT", typeof(string));
+            tbl.Columns.Add("ChiNhanh", typeof(string));
+            tbl.Columns.Add("MoTa", typeof(string));
+            tbl.Columns.Add("TongTien", typeof(string));
+            tbl.Columns.Add("NgayLap", typeof(string));
+            tbl.Columns.Add("NguoiLap", typeof(string));
+
+            DataRow dr;
+            int stt = 1;
+            foreach (var item in lstExpenses)
+            {
+                dr = tbl.NewRow();
+                dr["STT"] = stt;
+                stt++;
+                dr["ChiNhanh"] = item.BranchName.ToString();
+                dr["MoTa"] = item.Description.ToString();
+                dr["TongTien"] = conV.FloatToMoneyString(item.Amount.ToString("0"));
+                dr["NgayLap"] = item.CreateDate.ToLongDateString();
+                dr["NguoiLap"] = item.CreateUser.ToString();
+
+                tbl.Rows.Add(dr);
+            }
+
+            string fileName = "TemplateChiPhiKinhDoanh" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xlsx";
+
+            string filePath = Server.MapPath("~/TemplateDocs/TemplateChiPhiKinhDoanh.xlsx");
+
+            GenerateExcelFile(tbl, filePath, fileName, "ChiPhiKinhDoanh");
+        }
 
         public void GenerateExcelFile(DataTable dataTable, string directoryTemplate, string fileName, string defindName)
         {
