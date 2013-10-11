@@ -130,7 +130,7 @@ namespace DAL
         }
 
         //call store procedure insert Customer
-        public int InsertCustomer(objCustomer obj)
+        public string InsertCustomer(objCustomer obj)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
@@ -140,6 +140,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@Email", obj.Email));
             parameterList.Add(new SqlParameter("@DisCount", obj.DisCount));
             parameterList.Add(new SqlParameter("@CreateDate", obj.CreateDate));
+            parameterList.Add(new SqlParameter("@Point", obj.Point));
             if (SQLHelper.ExecuteNonQuery("spCustomerInsert", parameterList) == 1)
             {
                 return obj.CodeCustomer;
@@ -147,6 +148,17 @@ namespace DAL
             else {
                 return null;
             }
+
+        }
+
+        public int UpdatePointByCustomerCode_Add(string cusCode, int point)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@CodeCustomer", cusCode));
+            parameterList.Add(new SqlParameter("@NewPoint", point));
+
+            return SQLHelper.ExecuteNonQuery("spUpdatePointByCustomerCode_Add", parameterList);
 
         }
 
