@@ -97,7 +97,7 @@ namespace FalStore.Service
         public object getInfoCustomer(string codeCustomer)
         {
             object customer = null;
-            objcustomer = customerDAL.GetCustomerByCode(int.Parse(codeCustomer == "" ? "0" : codeCustomer));
+            objcustomer = customerDAL.GetCustomerByCode(codeCustomer == null ? "" : codeCustomer);
             //JavaScriptSerializer oSerializer = new JavaScriptSerializer();
             //object json = oSerializer.DeserializeObject(oSerializer.Serialize(objproduct));
             if (objcustomer != null)
