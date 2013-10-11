@@ -142,10 +142,10 @@ namespace DAL
             parameterList.Add(new SqlParameter("@CreateDate", obj.CreateDate));
             if (SQLHelper.ExecuteNonQuery("spCustomerInsert", parameterList) == 1)
             {
-                return int.Parse(obj.CodeCustomer);
+                return obj.CodeCustomer;
             }
             else {
-                return 0;
+                return null;
             }
 
         }
