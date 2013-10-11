@@ -77,12 +77,12 @@ namespace BIZ
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int Insert(objCustomer obj)
+        public string Insert(objCustomer obj)
         {
             try
             {
 
-                int result = 0;
+                string result = null;
 
                 if (obj != null)
                 {
@@ -90,7 +90,7 @@ namespace BIZ
                 }
                 else
                 {
-                    result = 1;
+                    result = null;
                 }
 
                 return result;
@@ -117,6 +117,31 @@ namespace BIZ
                 if (obj != null)
                 {
                     result = DAL.UpdateCustomer(obj);
+                }
+                else
+                {
+                    result = 1;
+                }
+
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public int UpdatePoint_Add(string cusCode, int point)
+        {
+            try
+            {
+                int result = 0;
+
+                if (cusCode != null && point != null)
+                {
+                    result = DAL.UpdatePointByCustomerCode_Add(cusCode, point);
                 }
                 else
                 {
