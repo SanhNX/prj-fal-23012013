@@ -120,6 +120,7 @@ namespace FalStore.Service
             objcustomer.Email = cusEmail;
             objcustomer.DisCount = int.Parse(discount);
             objcustomer.CreateDate = DateTime.Now.ToString();
+            objcustomer.Point = int.Parse(tt)/10000;
             int customerId = 0;
             string isInsertCus = "";
             var isExistCustomer = customerDAL.GetCustomerByCode(codeCustomer);
