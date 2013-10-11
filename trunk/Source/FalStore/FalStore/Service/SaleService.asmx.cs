@@ -121,11 +121,11 @@ namespace FalStore.Service
             objcustomer.DisCount = int.Parse(discount);
             objcustomer.CreateDate = DateTime.Now.ToString();
             int customerId = 0;
-            int isInsertCus = 0;
-            var isExistCustomer = customerDAL.GetCustomerByCode(int.Parse(codeCustomer));
+            string isInsertCus = "";
+            var isExistCustomer = customerDAL.GetCustomerByCode(codeCustomer);
             if (isExistCustomer != null) // exist
             {
-                isInsertCus = int.Parse(codeCustomer);
+                isInsertCus = codeCustomer;
                 customerId = isExistCustomer.CustomerID;
             }
             else // not exist
@@ -134,7 +134,7 @@ namespace FalStore.Service
                 customerId = customerDAL.GetCustomerByCode(isInsertCus).CustomerID;
             }
 
-            if (isInsertCus != 0)
+            if (isInsertCus != null)
             {
                 objBill objbill = new objBill();
                 string nextId = billDAL.GetNextId().ToString();
