@@ -128,6 +128,7 @@ namespace FalStore.Service
             {
                 isInsertCus = codeCustomer;
                 customerId = isExistCustomer.CustomerID;
+                int isUpdatePoint = customerBIZ.UpdatePointWithExistCustomer(codeCustomer, int.Parse(tt) / 10000);
             }
             else // not exist
             {
@@ -295,7 +296,7 @@ namespace FalStore.Service
         }
 
         [WebMethod(EnableSession = true)]
-        public object updateBill(string billID, string tc, string gg, string tt)
+        public object updateBill(string billID, string tc, string gg, string tt, string codeCus)
         {
             Boolean flag = false;
             objBill objbill = new objBill();
@@ -305,6 +306,8 @@ namespace FalStore.Service
             objbill.Sale = float.Parse(gg);
             objbill.ActualTotalPrice = float.Parse(tt);
             objbill.UpdateUser = Session["EmployeeName"].ToString();
+
+            int isUpdatePoint = customerBIZ.UpdatePointByCustomerCode(codeCus, int.Parse(tt) / 10000, billID);
 
             int isUpdateBill = billBIZ.Update(objbill);
             if (isUpdateBill != 0)
