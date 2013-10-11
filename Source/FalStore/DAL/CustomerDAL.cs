@@ -151,14 +151,25 @@ namespace DAL
 
         }
 
-        public int UpdatePointByCustomerCode_Add(string cusCode, int point)
+        public int UpdatePointWithExistCustomer(string cusCode, int point)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@CodeCustomer", cusCode));
             parameterList.Add(new SqlParameter("@NewPoint", point));
 
-            return SQLHelper.ExecuteNonQuery("spUpdatePointByCustomerCode_Add", parameterList);
+            return SQLHelper.ExecuteNonQuery("spUpdatePointWithExistCustomer", parameterList);
+
+        }
+
+        public int UpdatePointByCustomerCode(string cusCode, int point, string billID)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@BillID", billID));
+            parameterList.Add(new SqlParameter("@CodeCustomer", cusCode));
+            parameterList.Add(new SqlParameter("@NewPoint", point));
+
+            return SQLHelper.ExecuteNonQuery("spUpdatePointByCustomerCode", parameterList);
 
         }
 
