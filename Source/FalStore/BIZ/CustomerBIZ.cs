@@ -133,7 +133,8 @@ namespace BIZ
 
         }
 
-        public int UpdatePoint_Add(string cusCode, int point)
+
+        public int UpdatePointByCustomerCode(string cusCode, int point, string billID)
         {
             try
             {
@@ -141,7 +142,32 @@ namespace BIZ
 
                 if (cusCode != null && point != null)
                 {
-                    result = DAL.UpdatePointByCustomerCode_Add(cusCode, point);
+                    result = DAL.UpdatePointByCustomerCode(cusCode, point, billID);
+                }
+                else
+                {
+                    result = 1;
+                }
+
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public int UpdatePointWithExistCustomer(string cusCode, int point)
+        {
+            try
+            {
+                int result = 0;
+
+                if (cusCode != null && point != null)
+                {
+                    result = DAL.UpdatePointWithExistCustomer(cusCode, point);
                 }
                 else
                 {
