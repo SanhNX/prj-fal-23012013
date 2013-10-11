@@ -98,7 +98,7 @@ namespace DAL
             return obj;
 
         }
-        public objCustomer GetCustomerByCode(int CodeCustomer)
+        public objCustomer GetCustomerByCode(string CodeCustomer)
         {
 
             objCustomer obj = null;
