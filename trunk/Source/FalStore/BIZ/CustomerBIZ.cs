@@ -57,12 +57,12 @@ namespace BIZ
 
         
 
-        public objCustomer ShowByCustomerByCode(int CustomerID)
+        public objCustomer ShowByCustomerByCode(string CustomerCode)
         {
             try
             {
                 objCustomer obj = new objCustomer();
-                obj = DAL.GetCustomerByCode(CustomerID);
+                obj = DAL.GetCustomerByCode(CustomerCode);
 
                 return obj;
             }
