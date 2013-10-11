@@ -45,7 +45,7 @@ $(document).ready(function () {
 
     });
 
-    $('#codeCustomer').keyup(function (e) {
+    $('#codeCustomer').on('focusout', function (e) {
         var codeCustomer = $("#codeCustomer").val();
         $.ajax({
             type: "POST",
