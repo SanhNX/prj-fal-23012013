@@ -72,11 +72,11 @@ $(document).ready(function () {
                     }
                     $("#gg")[0].disabled = true;
                 } else {
-                    $("#cusName").val("");
+                    //$("#cusName").val("");
                     $("#cusName")[0].disabled = false;
-                    $("#cusPhone").val("");
+                    //$("#cusPhone").val("");
                     $("#cusPhone")[0].disabled = false;
-                    $("#cusEmail").val("");
+                    //$("#cusEmail").val("");
                     $("#cusEmail")[0].disabled = false;
                     $("#gg")[0].disabled = false;
                 }
@@ -100,112 +100,93 @@ $(document).ready(function () {
     });
 
     $('#btn-saveOrderToDB').on('click', function (e) {
-        var billID = getURLParameter("billID");
-        if (billID) { // update bill 
-            var currOrder = JSON.parse(getStorageItem(ORDER));
-            if (currOrder && currOrder.length > 0) { // upadte or insert bill detail for current bill
-                for (var i = 0; i < currOrder.length; i++) {
-                    var flagExist = false;
-                    for (var j = 0; j < oldBillDetail.length; j++) {
-                        if (currOrder[i].barCode == oldBillDetail[j].barCode) {
-                            flagExist = true;
-                            oldSL = oldBillDetail[j].sl;
-                        }
-                    }
-                    if (flagExist) { // update bill detail and update bill
-                        $.ajax({
-                            type: "POST",
-                            url: "Service/SaleService.asmx/updateRowInBillDetail",
-                            contentType: "application/json; charset=utf-8",
-                            data: JSON.stringify({ barCode: currOrder[i].barCode, billID: billID, quantity: currOrder[i].sl, amount: currOrder[i].amount, oldQuantity: oldSL, branchID: branchIDOfBill }),
-                            dataType: "json",
-                            success: function (result) {
-                                var resp = result.d;
-                                
-                            },
-                            error: function (mes) {
-                                var responseText = JSON.parse(mes.responseText)
-                                alert(responseText.Message);
-                            }
-                        });
-                    } else { // insert bill detail and update bill
-                        $.ajax({
-                            type: "POST",
-                            url: "Service/SaleService.asmx/insertMoreRowInBillDetail",
-                            contentType: "application/json; charset=utf-8",
-                            data: JSON.stringify({ billID: billID, branchID: branchIDOfBill, barCode: currOrder[i].barCode, quantity: currOrder[i].sl, amount: currOrder[i].amount }),
-                            dataType: "json",
-                            success: function (result) {
-                                var resp = result.d;
-                                
-                            },
-                            error: function (mes) {
-                                var responseText = JSON.parse(mes.responseText)
-                                alert(responseText.Message);
-                            }
-                        });
-                    }
-                }
-                for (var i = 0; i < oldBillDetail.length; i++) {
-                    var flagExist = false;
-                    for (var j = 0; j < currOrder.length; j++) {
-                        if (currOrder[j].barCode == oldBillDetail[i].barCode) {
-                            flagExist = true;
-                        }
-                    }
-                    if (!flagExist) {
-                        $.ajax({
-                            type: "POST",
-                            url: "Service/SaleService.asmx/deleteRowInBillDetail",
-                            contentType: "application/json; charset=utf-8",
-                            data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode }),
-                            dataType: "json",
-                            success: function (result) {
-                                var resp = result.d;
+        if (validateSalePage() == "") {
 
-                            },
-                            error: function (mes) {
-                                var responseText = JSON.parse(mes.responseText)
-                                alert(responseText.Message);
+            var billID = getURLParameter("billID");
+            if (billID) { // update bill 
+                var currOrder = JSON.parse(getStorageItem(ORDER));
+                if (currOrder && currOrder.length > 0) { // upadte or insert bill detail for current bill
+                    for (var i = 0; i < currOrder.length; i++) {
+                        var flagExist = false;
+                        for (var j = 0; j < oldBillDetail.length; j++) {
+                            if (currOrder[i].barCode == oldBillDetail[j].barCode) {
+                                flagExist = true;
+                                oldSL = oldBillDetail[j].sl;
                             }
-                        });
-                    }
-                }
-                var gg = $("#gg").val();
-                var tc = parseInt(formatMoneyToString($("#tc")[0].value));
-                var tt = parseInt(formatMoneyToString($("#tt")[0].value));
-                $.ajax({
-                    type: "POST",
-                    url: "Service/SaleService.asmx/updateBill",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify({ billID: billID, tc: tc, gg: gg, tt: tt }),
-                    dataType: "json",
-                    success: function (result) {
-                        var resp = result.d;
-                        
-                        if (resp) {
-                            alert("Đã hoàn tất chỉnh sửa");
-                        } else {
-                            alert("Đã xãy ra sự cố. vui lòng reload lại trang hiện tại.")
                         }
-                    },
-                    error: function (mes) {
-                        var responseText = JSON.parse(mes.responseText)
-                        alert(responseText.Message);
+                        if (flagExist) { // update bill detail and update bill
+                            $.ajax({
+                                type: "POST",
+                                url: "Service/SaleService.asmx/updateRowInBillDetail",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify({ barCode: currOrder[i].barCode, billID: billID, quantity: currOrder[i].sl, amount: currOrder[i].amount, oldQuantity: oldSL, branchID: branchIDOfBill }),
+                                dataType: "json",
+                                success: function (result) {
+                                    var resp = result.d;
+
+                                },
+                                error: function (mes) {
+                                    var responseText = JSON.parse(mes.responseText)
+                                    alert(responseText.Message);
+                                }
+                            });
+                        } else { // insert bill detail and update bill
+                            $.ajax({
+                                type: "POST",
+                                url: "Service/SaleService.asmx/insertMoreRowInBillDetail",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify({ billID: billID, branchID: branchIDOfBill, barCode: currOrder[i].barCode, quantity: currOrder[i].sl, amount: currOrder[i].amount }),
+                                dataType: "json",
+                                success: function (result) {
+                                    var resp = result.d;
+
+                                },
+                                error: function (mes) {
+                                    var responseText = JSON.parse(mes.responseText)
+                                    alert(responseText.Message);
+                                }
+                            });
+                        }
                     }
-                });
-            } else { // delete bill detail for current bill
-                for (var i = 0; i < oldBillDetail.length; i++) {
+                    for (var i = 0; i < oldBillDetail.length; i++) {
+                        var flagExist = false;
+                        for (var j = 0; j < currOrder.length; j++) {
+                            if (currOrder[j].barCode == oldBillDetail[i].barCode) {
+                                flagExist = true;
+                            }
+                        }
+                        if (!flagExist) {
+                            $.ajax({
+                                type: "POST",
+                                url: "Service/SaleService.asmx/deleteRowInBillDetail",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode }),
+                                dataType: "json",
+                                success: function (result) {
+                                    var resp = result.d;
+
+                                },
+                                error: function (mes) {
+                                    var responseText = JSON.parse(mes.responseText)
+                                    alert(responseText.Message);
+                                }
+                            });
+                        }
+                    }
+                    var gg = $("#gg").val();
+                    var tc = parseInt(formatMoneyToString($("#tc")[0].value));
+                    var tt = parseInt(formatMoneyToString($("#tt")[0].value));
                     $.ajax({
                         type: "POST",
-                        url: "Service/SaleService.asmx/deleteRowInBillDetail",
+                        url: "Service/SaleService.asmx/updateBill",
                         contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode }),
+                        data: JSON.stringify({ billID: billID, tc: tc, gg: gg, tt: tt, codeCus: $("#codeCustomer").val() }),
                         dataType: "json",
                         success: function (result) {
                             var resp = result.d;
+
                             if (resp) {
-                                alert("Chi tiết hóa đơn đã được xóa trống");
+                                alert("Đã hoàn tất chỉnh sửa");
                             } else {
                                 alert("Đã xãy ra sự cố. vui lòng reload lại trang hiện tại.")
                             }
@@ -215,52 +196,100 @@ $(document).ready(function () {
                             alert(responseText.Message);
                         }
                     });
-                }
-            }
-        }
-        else { // insert bill
-            var codeCustomer = $("#codeCustomer").val();
-            var cusName = $("#cusName").val();
-            var cusPhone = $("#cusPhone").val();
-            var cusEmail = $("#cusEmail").val();
-            var gg = $("#gg").val();
-            var tc = parseInt(formatMoneyToString($("#tc")[0].value));
-            var tt = parseInt(formatMoneyToString($("#tt")[0].value));
-            var currOrder = getStorageItem(ORDER);
-            if (tc <= 0) {
-                alert("Vui lòng chọn sản phẩm cho đơn hàng");
-                return;
-            }
-            if (codeCustomer == "") {
-                alert("Vui lòng nhập mã thành viên");
-                return;
-            }
-            var isExist = $("#cusName")[0].disabled;
-            //if (isExist) { // is exist
-
-            //} else { // isn't exist
-            $.ajax({
-                type: "POST",
-                url: "Service/SaleService.asmx/saveInfoCustomer",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ codeCustomer: codeCustomer, cusName: cusName, cusPhone: cusPhone, cusEmail: cusEmail, discount: gg, tc: tc, tt: tt, currOrder: currOrder }),
-                dataType: "json",
-                success: function (result) {
-                    var isSuccess = result.d;
-                    if (isSuccess) {
-                        alert("Thực thi thành công");
-                    } else {
-                        alert("Thực thi thất bại");
+                } else { // delete bill detail for current bill
+                    for (var i = 0; i < oldBillDetail.length; i++) {
+                        $.ajax({
+                            type: "POST",
+                            url: "Service/SaleService.asmx/deleteRowInBillDetail",
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode }),
+                            dataType: "json",
+                            success: function (result) {
+                                var resp = result.d;
+                                if (resp) {
+                                    alert("Chi tiết hóa đơn đã được xóa trống");
+                                } else {
+                                    alert("Đã xãy ra sự cố. vui lòng reload lại trang hiện tại.")
+                                }
+                            },
+                            error: function (mes) {
+                                var responseText = JSON.parse(mes.responseText)
+                                alert(responseText.Message);
+                            }
+                        });
                     }
-                    setStorageItem(ORDER, null);
-                    createTableOrder();
                 }
-            });
-            //}
+            }
+            else { // insert bill
+                var codeCustomer = $("#codeCustomer").val();
+                var cusName = $("#cusName").val();
+                var cusPhone = $("#cusPhone").val();
+                var cusEmail = $("#cusEmail").val();
+                var gg = $("#gg").val();
+                var tc = parseInt(formatMoneyToString($("#tc")[0].value));
+                var tt = parseInt(formatMoneyToString($("#tt")[0].value));
+                var currOrder = getStorageItem(ORDER);
+                if (tc <= 0) {
+                    alert("Vui lòng chọn sản phẩm cho đơn hàng");
+                    return;
+                }
+                if (codeCustomer == "") {
+                    alert("Vui lòng nhập mã thành viên");
+                    return;
+                }
+                var isExist = $("#cusName")[0].disabled;
+                //if (isExist) { // is exist
+
+                //} else { // isn't exist
+                $.ajax({
+                    type: "POST",
+                    url: "Service/SaleService.asmx/saveInfoCustomer",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ codeCustomer: codeCustomer, cusName: cusName, cusPhone: cusPhone, cusEmail: cusEmail, discount: gg, tc: tc, tt: tt, currOrder: currOrder }),
+                    dataType: "json",
+                    success: function (result) {
+                        var isSuccess = result.d;
+                        if (isSuccess) {
+                            alert("Thực thi thành công");
+                        } else {
+                            alert("Thực thi thất bại");
+                        }
+                        setStorageItem(ORDER, null);
+                        createTableOrder();
+                    }
+                });
+                //}
+            }
+        } else {
+            alert(validateSalePage());
         }
     });
 
 });
+
+function validateSalePage() {
+    var codeCustomer = $("#codeCustomer").val();
+    var cusName = $("#cusName").val();
+    var cusPhone = $("#cusPhone").val();
+    var cusEmail = $("#cusEmail").val();
+    var error = "";
+    var phone_regex = /^([0-9]{10,11})$/;
+    var email_regex = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+
+    if (codeCustomer.length != 10 || codeCustomer === "") {
+        error += '• Mã thành viên không được để trống và phải đúng 10 ký tự \n\n';
+    }
+    if (cusName === "") {
+        error += '• Tên khách hàng không được để trống \n\n';
+    }
+    if (!email_regex.test(cusEmail) || cusEmail === "") {
+        error += '• Email không được để trống và phải hợp lệ \n\tVí dụ : "abc@abc.com" \n\n';
+    }
+    if (cusPhone.length < 10 || cusPhone.length > 11 || !phone_regex.test(cusPhone) || cusPhone === "") {
+        error += '• Số điện thoại không được để trống, từ 10-11 ký tự và phải hợp lệ \n\tVí dụ : "09123456789" \n\n';
+    }
+    return error;
+}
 
 window.onload = getCurrentEventByBranch;
 
