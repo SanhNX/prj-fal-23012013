@@ -39,21 +39,25 @@
                             <label class="mws-form-label">Tên Chương Trình</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtEventName" runat="server" class="large"  Visible="true"></asp:TextBox>
-                                      <asp:RequiredFieldValidator ID="RequiredFieldEventName" runat="server" ErrorMessage="Nhập tên chương trình"
-                                        ControlToValidate="txtEventName" ForeColor="Red"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldEventName" runat="server" ErrorMessage="• Tên chương trình không được để trống"
+                                ControlToValidate="txtEventName" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                          <div class="mws-form-row">
                             <label class="mws-form-label">Giảm Giá</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtDiscount" runat="server" class="" Visible="true"></asp:TextBox>
-                                <asp:RangeValidator ID="RequiredFieldDiscount" runat="server" ControlToValidate="txtDiscount" Type="Integer" MinimumValue="0" MaximumValue="50" ErrorMessage="Nhập số từ 0 -> 50" ForeColor="Red"></asp:RangeValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"  Display="Dynamic" ErrorMessage="• Giảm giá không được để trống "
+                                ControlToValidate="txtDiscount" ForeColor="Red"></asp:RequiredFieldValidator>
+                                <asp:RangeValidator ID="RequiredFieldDiscount" runat="server" ControlToValidate="txtDiscount" Display="Dynamic" Type="Integer" MinimumValue="0" MaximumValue="50" ErrorMessage="Nhập số từ 0 -> 50" ForeColor="Red"></asp:RangeValidator>
                             </div>
                         </div>
                         <div class="mws-form-row">
                             <label class="mws-form-label">Từ ngày</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtStartDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="• Ngày bắt đầu sự kiện không được để trống "
+                                ControlToValidate="txtStartDate" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
                         </div>
 
@@ -61,11 +65,13 @@
                             <label class="mws-form-label">Đến ngày</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="txtEndDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="• Ngày kết thúc sự kiện không được để trống "
+                                ControlToValidate="txtEndDate" ForeColor="Red"></asp:RequiredFieldValidator>
                                 <%--<asp:CustomValidator ID="txtEndDateCustomValidator" OnServerValidate="CompareFromAndStartDate" ForeColor="Red" ControlToValidate="txtEndDate"
                                     ErrorMessage="Ngày kết thúc phải lớn hơn ngày bắt đầu" runat="server" ></asp:CustomValidator>--%>
-                                <%--<asp:CompareValidator ID="CompareValidator1" Operator="LessThanEqual" Type="Date"
-                                    ControlToValidate="txtStartDate" ControlToCompare="txtEndDate"
-                                    ErrorMessage="Let's get started first!" runat="server" />--%>
+                                <%--<asp:CompareValidator ID="CompareValidator1" Operator="GreaterThan" Type="Date" CultureInvariantValues="True" enableclientscript="true"  Display="Dynamic" 
+                                    ControlToValidate="txtEndDate" ControlToCompare="txtStartDate"  ForeColor="Red"
+                                    ErrorMessage="Ngày kết thúc phải lớn hơn ngày bắt đầu" runat="server" />--%>
                             </div>
                         </div>
 
