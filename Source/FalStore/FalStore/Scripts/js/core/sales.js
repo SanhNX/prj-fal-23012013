@@ -3,6 +3,7 @@ var branchIDOfBill = null;
 var oldBillDetail = [];
 var oldListBillDetailID = [];
 var oldSL = null;
+var discountOfCurrBranch = 0;
 $(document).ready(function () {
     $('#btn-newRow').on('click', function (e) {
 
@@ -36,13 +37,10 @@ $(document).ready(function () {
                 },
                 error: function (mes) {
                     var responseText = JSON.parse(mes.responseText)
-                    alert(responseText.Message);
+                    //alert(responseText.Message);
                 }
             });
-
-            
         }
-
     });
 
     $('#codeCustomer').on('focusout', function (e) {
@@ -56,8 +54,6 @@ $(document).ready(function () {
             success: function (result) {
                 var customer = result.d;
 
-                //TODO
-                var discountOfCurrBranch = 20;
                 if (customer) {
                     $("#cusName").val(customer.name);
                     $("#cusName")[0].disabled = true;
@@ -70,15 +66,15 @@ $(document).ready(function () {
                     } else {
                         $("#gg").val(discountOfCurrBranch);
                     }
-                    $("#gg")[0].disabled = true;
                 } else {
-                    //$("#cusName").val("");
                     $("#cusName")[0].disabled = false;
-                    //$("#cusPhone").val("");
                     $("#cusPhone")[0].disabled = false;
-                    //$("#cusEmail").val("");
                     $("#cusEmail")[0].disabled = false;
+                }
+                if (customer.roleID == "3") {
                     $("#gg")[0].disabled = false;
+                } else {
+                    $("#gg")[0].disabled = true;
                 }
             }
         });
@@ -86,17 +82,15 @@ $(document).ready(function () {
     });
 
     $("#gg").on('focusout', function (e) {
-        if (parseInt($("#gg")[0].value) == 0) {
-            $("#tt")[0].value = $("#tc")[0].value;
-        } else {
+        if ($("#gg")[0].value == "" || isNaN($("#gg")[0].value) || parseInt($("#gg")[0].value) > 100) {
+            $("#gg")[0].value = 0;
+        } 
+        var changeMoney = parseInt(formatMoneyToString($("#tc")[0].value));
 
-            var changeMoney = parseInt(formatMoneyToString($("#tc")[0].value));
+        var gg = (changeMoney * parseInt(!isNaN($("#gg")[0].value) ? $("#gg")[0].value : 0)) / 100;
 
-            var gg = (changeMoney * parseInt(isNaN($("#gg")[0].value) ? $("#gg")[0].value : 0)) / 100;
-
-            $("#tt")[0].value = changeMoney - gg;
-            $("#tt").formatCurrency({ region: 'vi-VN' });
-        }
+        $("#tt")[0].value = changeMoney - gg;
+        $("#tt").formatCurrency({ region: 'vi-VN' });
     });
 
     $('#btn-saveOrderToDB').on('click', function (e) {
@@ -127,7 +121,7 @@ $(document).ready(function () {
                                 },
                                 error: function (mes) {
                                     var responseText = JSON.parse(mes.responseText)
-                                    alert(responseText.Message);
+                                    //alert(responseText.Message);
                                 }
                             });
                         } else { // insert bill detail and update bill
@@ -143,7 +137,7 @@ $(document).ready(function () {
                                 },
                                 error: function (mes) {
                                     var responseText = JSON.parse(mes.responseText)
-                                    alert(responseText.Message);
+                                    //alert(responseText.Message);
                                 }
                             });
                         }
@@ -168,7 +162,7 @@ $(document).ready(function () {
                                 },
                                 error: function (mes) {
                                     var responseText = JSON.parse(mes.responseText)
-                                    alert(responseText.Message);
+                                    //alert(responseText.Message);
                                 }
                             });
                         }
@@ -193,7 +187,7 @@ $(document).ready(function () {
                         },
                         error: function (mes) {
                             var responseText = JSON.parse(mes.responseText)
-                            alert(responseText.Message);
+                            //alert(responseText.Message);
                         }
                     });
                 } else { // delete bill detail for current bill
@@ -214,7 +208,7 @@ $(document).ready(function () {
                             },
                             error: function (mes) {
                                 var responseText = JSON.parse(mes.responseText)
-                                alert(responseText.Message);
+                                //alert(responseText.Message);
                             }
                         });
                     }
@@ -315,17 +309,18 @@ function getCurrentEventByBranch() {
                 $("#tc").formatCurrency({ region: 'vi-VN' });
                 $("#tt")[0].value = resp.tt;
                 $("#tt").formatCurrency({ region: 'vi-VN' });
-                $("#gg").val(resp.gg != "" ? resp.gg : "0");
+
+                $("#gg").val(resp.gg ? resp.gg : 0);
 
                 $("#codeCustomer")[0].disabled = true;
                 $("#cusName")[0].disabled = true;
                 $("#cusPhone")[0].disabled = true;
                 $("#cusEmail")[0].disabled = true;
                 $("#btn-saveOrderToDB")[0].value = "Hoàn tất chỉnh sửa";
-                if (resp.roleID == "1" || resp.roleID == "3") {
-                    $("#gg")[0].readOnly = false;
+                if (resp.roleID == "3") {
+                    $("#gg")[0].disabled = false;
                 } else {
-                    $("#gg")[0].readOnly = true;
+                    $("#gg")[0].disabled = true;
                 }
 
                 // save order to local storage
@@ -357,9 +352,9 @@ function getCurrentEventByBranch() {
                                     '<td>' + (i + 1) + '</td>' +
                                     '<td>' + item.barCode + '</td>' +
                                     '<td>' + item.name + '</td>' +
-                                    '<td>' + item.price + '</td>' +
+                                    '<td>' + addCommas(item.price) + '</td>' +
                                     '<td>' + sL + '</td>' +
-                                    '<td>' + (item.price * sL) + '</td>' +
+                                    '<td>' + addCommas(item.price * sL) + '</td>' +
                                     "<td><a id='btn-deleteRow' href='javascript:deleteRow(" + '"' + item.id + '"' + ")' type='button' class='icol-cancel' ></a></td>" +
                                 '</tr>';
                         $('tbody')[0].innerHTML += rowHtml;
@@ -377,13 +372,14 @@ function getCurrentEventByBranch() {
             dataType: "json",
             success: function (result) {
                 var resp = result.d;
-                if (resp != "") {
-                    $("#gg").val(resp);
+                if (resp.discountEventOfCurrentBranch != "") {
+                    discountOfCurrBranch = resp.discountEventOfCurrentBranch;
+                    $("#gg").val(resp.discountEventOfCurrentBranch);
                 }
-                if (resp.roleID == "1" || resp.roleID == "3") {
-                    $("#gg")[0].readOnly = false;
+                if (resp.roleID == "3") {
+                    $("#gg")[0].disabled = false;
                 } else {
-                    $("#gg")[0].readOnly = true;
+                    $("#gg")[0].disabled = true;
                 }
             }
         });
@@ -422,9 +418,9 @@ function createTableOrder() {
                         '<td>' + (i + 1) + '</td>' +
                         '<td>' + item.barCode + '</td>' +
                         '<td>' + item.name + '</td>' +
-                        '<td>' + moneyOfProduct + '</td>' +
+                        '<td>' + addCommas(moneyOfProduct) + '</td>' +
                         '<td>' + sL + '</td>' +
-                        '<td>' + (moneyOfProduct * sL) + '</td>' +
+                        '<td>' + addCommas(moneyOfProduct * sL) + '</td>' +
                         "<td><a id='btn-deleteRow' href='javascript:deleteRow(" + '"' + item.id + '"' + ")' type='button' class='icol-cancel' ></a></td>" +
                     '</tr>';
             $('tbody')[0].innerHTML += rowHtml;
@@ -530,4 +526,16 @@ function formatMoneyToString(pagam) {
         toString = 0;
     }
     return toString;
-} 
+}
+
+function addCommas(str) {
+    var amount = new String(str);
+    amount = amount.split("").reverse();
+
+    var output = "";
+    for (var i = 0; i <= amount.length - 1; i++) {
+        output = amount[i] + output;
+        if ((i + 1) % 3 == 0 && (amount.length - 1) !== i) output = ',' + output;
+    }
+    return output;
+}
