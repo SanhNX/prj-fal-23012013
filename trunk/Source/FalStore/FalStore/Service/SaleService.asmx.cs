@@ -47,13 +47,13 @@ namespace FalStore.Service
         }
 
         [WebMethod(EnableSession = true)]
-        public string getCurrentEventByBranch()
+        public object getCurrentEventByBranch()
         {
             //TODO get current branch from session
             int currBranchID = int.Parse(Session["BranchID"].ToString());
             objevent = eventBIZ.ShowCurrentEventByBranch(currBranchID);
             int discountEventOfCurrentBranch = int.Parse(objevent != null ? objevent.Discount : "0");
-            return discountEventOfCurrentBranch.ToString();
+            return new { discountEventOfCurrentBranch = discountEventOfCurrentBranch.ToString(), roleID = Session["Role"] != null ? (int)Session["Role"] : 0 };
         }
 
         [WebMethod(EnableSession = true)]
@@ -102,7 +102,7 @@ namespace FalStore.Service
             //object json = oSerializer.DeserializeObject(oSerializer.Serialize(objproduct));
             if (objcustomer != null)
             {
-                customer = new { id = objcustomer.CustomerID, code = objcustomer.CodeCustomer, name = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, discount = objcustomer.DisCount };
+                customer = new { id = objcustomer.CustomerID, code = objcustomer.CodeCustomer, name = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, discount = objcustomer.DisCount, roleID = Session["Role"] != null ? (int)Session["Role"] : 0 };
             }
             return customer;
         }
