@@ -203,5 +203,60 @@ namespace DAL
 
         }
 
+        public List<objCustomer> SearchCustomer(int point, int branchId, int discount)
+        {
+            List<objCustomer> lstCus = new List<objCustomer>();
+
+            objCustomer obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@Point", point));
+            parameterList.Add(new SqlParameter("@BranchID", branchId));
+            parameterList.Add(new SqlParameter("@Discount", discount));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spCustomerSearch", parameterList);
+            while (dr.Read())
+            {
+                obj = new objCustomer();
+                obj.CustomerID = int.Parse(dr["CustomerID"].ToString());
+                obj.CustomerName = dr["CustomerName"].ToString();
+                obj.Email = dr["Email"].ToString();
+                obj.Phone = dr["Phone"].ToString();
+                obj.CreateDate = dr["CreateDate"].ToString();
+                obj.CreateUser = dr["CreateUser"].ToString();
+                obj.UpdateDate = dr["UpdateDate"].ToString();
+                obj.UpdateUser = dr["UpdateUser"].ToString();
+                obj.CodeCustomer = dr["CodeCustomer"].ToString();
+                obj.DisCount = int.Parse(dr["DisCount"].ToString() == "" ? "0" : dr["DisCount"].ToString());
+                obj.StartDiscount = dr["StartDiscout"].ToString();
+                obj.EndDiscount = dr["EndDiscount"].ToString();
+                obj.Point = int.Parse(dr["Point"].ToString() == "" ? "0" : dr["Point"].ToString());
+                obj.BranchID = int.Parse(dr["BranchID"].ToString());
+                obj.BranchName = dr["BranchName"].ToString();
+
+                lstCus.Add(obj);
+            }
+
+            return lstCus;
+
+        }
+
+        public int UpdateDiscountByCodeCustomer(objCustomer obj)
+        {
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@CodeCustomer", obj.CodeCustomer));
+            parameterList.Add(new SqlParameter("@DisCount", obj.DisCount));
+            //parameterList.Add(new SqlParameter("@Gender", obj.Gender));
+            //parameterList.Add(new SqlParameter("@Address", obj.Address));
+            parameterList.Add(new SqlParameter("@StartDiscout", obj.StartDiscount));
+            parameterList.Add(new SqlParameter("@EndDiscount", obj.EndDiscount));
+            parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
+            parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
+
+            return SQLHelper.ExecuteNonQuery("spCustomerUpdateDiscount", parameterList);
+
+        }
+
     }
 }
