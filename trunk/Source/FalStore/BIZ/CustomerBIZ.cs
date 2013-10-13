@@ -212,5 +212,41 @@ namespace BIZ
                 throw;
             }
         }
+
+        public List<objCustomer> SearchCustomer(int point, int branchId, int discount) {
+            try
+            {
+                List<objCustomer> lstCus = new List<objCustomer>();
+
+
+                lstCus = DAL.SearchCustomer(point, branchId, discount);
+
+
+                return lstCus;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public int UpdateDiscountByCodeCustomer(objCustomer obj)
+        {
+            try
+            {
+                int result = 0;
+
+                result = DAL.UpdateDiscountByCodeCustomer(obj);
+
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
     }
 }
