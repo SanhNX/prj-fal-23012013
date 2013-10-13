@@ -70,9 +70,9 @@
                                     <label class="mws-form-label">Mật Khẩu Mới</label>
                                     <div class="mws-form-item">
                                         <asp:TextBox ID="txtNewPass" TextMode="Password" runat="server" class="large"  Visible="true"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="txtNewPassRequiredFieldValidator" runat="server" ErrorMessage="Không được để trống"
+                                        <asp:RequiredFieldValidator ID="txtNewPassRequiredFieldValidator" runat="server"  Display="Dynamic" ErrorMessage="Không được để trống"
                                         ControlToValidate="txtNewPass" ForeColor="Red"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="txtNewPassCustomValidator" runat="server" ControlToValidate="txtNewPass" ValidationExpression="[A-Za-z0-9]{8,16}" ErrorMessage="Mật khẩu phải từ 8-16 ký tự" ForeColor="Red"/>
+                                        <asp:RegularExpressionValidator ID="txtNewPassCustomValidator" runat="server"  Display="Dynamic" ControlToValidate="txtNewPass" ValidationExpression="[A-Za-z0-9]{8,16}" ErrorMessage="Mật khẩu phải từ 8-16 ký tự" ForeColor="Red"/>
                                     </div>
                                 </div>
                                 <div class="mws-form-row bordered">
