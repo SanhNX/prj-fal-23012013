@@ -35,6 +35,9 @@ namespace Entity
         public string EndDiscount { get; set; }
         //Point
         public int Point { get; set; }
-
+        // Branch ID
+        public int BranchID { get; set; }
+        // Branch ID
+        public string BranchName { get; set; }
     }
 }
