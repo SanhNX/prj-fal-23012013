@@ -253,6 +253,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@EndDiscount", obj.EndDiscount));
             parameterList.Add(new SqlParameter("@UpdateDate", obj.UpdateDate));
             parameterList.Add(new SqlParameter("@UpdateUser", obj.UpdateUser));
+            parameterList.Add(new SqlParameter("@Point", obj.Point));
 
             return SQLHelper.ExecuteNonQuery("spCustomerUpdateDiscount", parameterList);
 
