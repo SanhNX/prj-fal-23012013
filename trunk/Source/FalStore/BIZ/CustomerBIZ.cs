@@ -248,5 +248,54 @@ namespace BIZ
             }
 
         }
+
+        public int CheckDisCount(int point, int branchId, int discountSearch, DateTime startDisCount, DateTime EndDisCount, int disCount, string userUpdate) {
+
+            int abc = -1;
+
+
+            try
+            {
+                List<objCustomer> lstCus = new List<objCustomer>();
+
+
+                lstCus = SearchCustomer(point, branchId, discountSearch);
+
+                if (lstCus.Count > 0) {
+
+                    objCustomer objCusUpdate = null;
+
+                    foreach (var item in lstCus)
+                    {
+                        objCusUpdate = new objCustomer();
+
+                        objCusUpdate.CodeCustomer = item.CodeCustomer;
+                        objCusUpdate.DisCount = disCount;
+                        objCusUpdate.StartDiscount = startDisCount.ToString();
+                        objCusUpdate.EndDiscount = EndDisCount.ToString();
+                        objCusUpdate.UpdateDate = DateTime.Today.ToString();
+                        objCusUpdate.UpdateUser = userUpdate;
+                        objCusUpdate.Point = point;
+
+                        abc = UpdateDiscountByCodeCustomer(objCusUpdate);
+                    
+                    }
+
+                    abc = 1;
+                
+                } else {
+                    abc = 0;
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return abc;
+        
+        }
     }
 }
