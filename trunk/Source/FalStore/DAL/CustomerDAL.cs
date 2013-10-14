@@ -203,7 +203,7 @@ namespace DAL
 
         }
 
-        public List<objCustomer> SearchCustomer(int point, int branchId, int discount)
+        public List<objCustomer> SearchCustomer(int point, int branchId, int discount, string createDate1, string createDate2)
         {
             List<objCustomer> lstCus = new List<objCustomer>();
 
@@ -213,6 +213,8 @@ namespace DAL
             parameterList.Add(new SqlParameter("@Point", point));
             parameterList.Add(new SqlParameter("@BranchID", branchId));
             parameterList.Add(new SqlParameter("@Discount", discount));
+            parameterList.Add(new SqlParameter("@CreateDate1", createDate1));
+            parameterList.Add(new SqlParameter("@CreateDate2", createDate2));
 
             SqlDataReader dr = SQLHelper.ExecuteReader("spCustomerSearch", parameterList);
             while (dr.Read())
