@@ -213,13 +213,13 @@ namespace BIZ
             }
         }
 
-        public List<objCustomer> SearchCustomer(int point, int branchId, int discount) {
+        public List<objCustomer> SearchCustomer(int point, int branchId, int discount, string createDate1, string createDate2) {
             try
             {
                 List<objCustomer> lstCus = new List<objCustomer>();
 
 
-                lstCus = DAL.SearchCustomer(point, branchId, discount);
+                lstCus = DAL.SearchCustomer(point, branchId, discount, createDate1, createDate2);
 
 
                 return lstCus;
@@ -259,7 +259,7 @@ namespace BIZ
                 List<objCustomer> lstCus = new List<objCustomer>();
 
 
-                lstCus = SearchCustomer(point, branchId, discountSearch);
+                lstCus = SearchCustomer(point, branchId, discountSearch, "", "");
 
                 if (lstCus.Count > 0) {
 
@@ -269,16 +269,18 @@ namespace BIZ
                     {
                         objCusUpdate = new objCustomer();
 
-                        objCusUpdate.CodeCustomer = item.CodeCustomer;
-                        objCusUpdate.DisCount = disCount;
-                        objCusUpdate.StartDiscount = startDisCount.ToString();
-                        objCusUpdate.EndDiscount = EndDisCount.ToString();
-                        objCusUpdate.UpdateDate = DateTime.Today.ToString();
-                        objCusUpdate.UpdateUser = userUpdate;
-                        objCusUpdate.Point = point;
+                        if (int.Parse(item.DisCount.ToString()) == 0 ) {
+                            objCusUpdate.CodeCustomer = item.CodeCustomer;
+                            objCusUpdate.DisCount = disCount;
+                            objCusUpdate.StartDiscount = startDisCount.ToString();
+                            objCusUpdate.EndDiscount = EndDisCount.ToString();
+                            objCusUpdate.UpdateDate = DateTime.Today.ToString();
+                            objCusUpdate.UpdateUser = userUpdate;
+                            objCusUpdate.Point = point;
 
-                        abc = UpdateDiscountByCodeCustomer(objCusUpdate);
-                    
+                            abc = UpdateDiscountByCodeCustomer(objCusUpdate);
+                        }
+
                     }
 
                     abc = 1;
@@ -296,6 +298,71 @@ namespace BIZ
 
             return abc;
         
+        }
+
+        public int UpdateDisCountToZero(int branchId, int discountSearch, string userUpdate)
+        {
+
+            int abc = -1;
+
+
+            try
+            {
+                List<objCustomer> lstCus = new List<objCustomer>();
+
+
+                lstCus = SearchCustomer(0, branchId, discountSearch, "", "");
+
+                if (lstCus.Count > 0)
+                {
+
+                    objCustomer objCusUpdate = null;
+
+                    foreach (var item in lstCus)
+                    {
+
+                        if (!string.Empty.Equals(item.EndDiscount) && !item.EndDiscount.Equals(null)) 
+                        {
+                            objCusUpdate = new objCustomer();
+
+                            DateTime arg1 = DateTime.Parse(item.EndDiscount);
+                            DateTime arg2 = DateTime.Today;
+
+                            if (DateTime.Compare(arg1, arg1) <= 0)
+                            {
+                                objCusUpdate.CodeCustomer = item.CodeCustomer;
+                                objCusUpdate.DisCount = 0;
+                                objCusUpdate.StartDiscount = item.StartDiscount;
+                                objCusUpdate.EndDiscount = item.EndDiscount;
+                                objCusUpdate.UpdateDate = DateTime.Today.ToString();
+                                objCusUpdate.UpdateUser = userUpdate;
+                                objCusUpdate.Point = 0;
+
+                                abc = UpdateDiscountByCodeCustomer(objCusUpdate);
+                            }
+                        }
+
+                        
+
+                    }
+
+                    abc = 1;
+
+                }
+                else
+                {
+                    abc = 0;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return abc;
+
         }
     }
 }
