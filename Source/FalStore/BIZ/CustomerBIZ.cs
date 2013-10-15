@@ -326,9 +326,9 @@ namespace BIZ
                             objCusUpdate = new objCustomer();
 
                             DateTime arg1 = DateTime.Parse(item.EndDiscount);
-                            DateTime arg2 = DateTime.Today;
+                            DateTime arg2 = DateTime.Now;
 
-                            if (DateTime.Compare(arg1, arg1) <= 0)
+                            if (DateTime.Compare(arg1, arg2) < 0 || DateTime.Compare(arg1, arg2) == 0 )
                             {
                                 objCusUpdate.CodeCustomer = item.CodeCustomer;
                                 objCusUpdate.DisCount = 0;
