@@ -76,9 +76,11 @@ $(document).ready(function () {
                 } else {
                     $("#gg")[0].disabled = true;
                 }
+                loadInfomationInBill();
+                loadPriceInBill();
             }
         });
-
+        
     });
 
     $("#gg").on('focusout', function (e) {
@@ -91,6 +93,8 @@ $(document).ready(function () {
 
         $("#tt")[0].value = changeMoney - gg;
         $("#tt").formatCurrency({ region: 'vi-VN' });
+
+        loadPriceInBill();
     });
 
     $('#btn-saveOrderToDB').on('click', function (e) {
@@ -244,12 +248,22 @@ $(document).ready(function () {
                     success: function (result) {
                         var isSuccess = result.d;
                         if (isSuccess) {
-                            alert("Thực thi thành công");
+                            $("#pb-codeBill")[0].innerHTML = isSuccess;
+                            //alert("Thực thi thành công");
+                            var r = confirm("Thực thi thành công. Bạn muốn in hóa đơn không ?")
+                            if (r == true) {
+                                PrintBill('printBill');
+                                setStorageItem(ORDER, null);
+                                createTableOrder();
+                            } else {
+                                setStorageItem(ORDER, null);
+                                createTableOrder();
+                            }
                         } else {
                             alert("Thực thi thất bại");
                         }
-                        setStorageItem(ORDER, null);
-                        createTableOrder();
+                        //setStorageItem(ORDER, null);
+                        //createTableOrder();
                     }
                 });
                 //}
@@ -385,6 +399,8 @@ function getCurrentEventByBranch() {
         });
         $("#btn-saveOrderToDB")[0].value = "Xuất hóa đơn";
     }
+    loadInfomationInBill();
+    loadPriceInBill();
 }
 
 function getURLParameter(name) {
@@ -407,6 +423,7 @@ function closingCode() {
 
 function createTableOrder() {
     $('tbody')[0].innerHTML = "";
+    $("#billDetail")[0].innerHTML = '<tr class="tr"><th class="pb-itemName th">Tên SP</th><th class="pb-itemPrice th">Đơn giá</th><th class="pb-itemAmount th">Số lượng</th><th class="pb-itemTotalPrice th">Thành tiền</th></tr>';
     var tc = 0;
     var currOrder = JSON.parse(getStorageItem(ORDER));
     if (currOrder && currOrder.length > 0) {
@@ -423,13 +440,20 @@ function createTableOrder() {
                         '<td>' + addCommas(moneyOfProduct * sL) + '</td>' +
                         "<td><a id='btn-deleteRow' href='javascript:deleteRow(" + '"' + item.id + '"' + ")' type='button' class='icol-cancel' ></a></td>" +
                     '</tr>';
+            var rowBillHTML = '<tr>' +
+                                '<td class="pb-itemName td">'+ (i + 1) + '. '+  item.name + '</td>' +
+                                '<td class="pb-itemPrice td">' + addCommas(moneyOfProduct) + '</td>' +
+                                '<td class="pb-itemAmount td">' + sL + '</td>' +
+                                '<td class="pb-itemTotalPrice td">' + addCommas(moneyOfProduct * sL) + '</td>' +
+                              '</tr>';
             $('tbody')[0].innerHTML += rowHtml;
-
+            $("#billDetail")[0].innerHTML += rowBillHTML;
             //tổng cộng tiền
             tc = tc + (moneyOfProduct * sL);
             $("#tc")[0].value = tc;
             $("#tc").formatCurrency({ region: 'vi-VN' });
 
+            
             // Tính thành tien
             if (parseInt($("#gg")[0].value) == 0) {
                 $("#tt")[0].value = $("#tc")[0].value;
@@ -448,8 +472,26 @@ function createTableOrder() {
         $("#tt").val(0);
         $("#tt").formatCurrency({ region: 'vi-VN' });
     }
+    loadPriceInBill();
 }
 
+function loadPriceInBill() {
+    $("#pb-tc")[0].innerHTML = $("#tc")[0].value;
+    $("#pb-gg")[0].innerHTML = $("#gg")[0].value;
+    $("#pb-tt")[0].innerHTML = $("#tt")[0].value;
+}
+function loadInfomationInBill() {
+    $("#pb-branchName")[0].innerHTML = $("#lblBranchName")[0].innerHTML.substr(11, $("#lblBranchName")[0].innerHTML.length);
+    $("#pb-branchAddress")[0].innerHTML = $("#lblBranchAddress")[0].innerHTML;
+    $("#pb-codeBill")[0].innerHTML = "";
+    $("#pb-cusName")[0].innerHTML = $("#cusName")[0].value;
+    $("#pb-cusCode")[0].innerHTML = $("#codeCustomer")[0].value;
+    var d = new Date();
+    var curr_date = d.getDate();
+    var curr_month = d.getMonth() + 1; //Months are zero based
+    var curr_year = d.getFullYear();
+    $("#pb-dateCreate")[0].innerHTML = curr_date + "/" + curr_month + "/" + curr_year;
+}
 function deleteRow(id) {
     var currOrder = JSON.parse(getStorageItem(ORDER));
     var index = getProductInStorage(currOrder, id);
@@ -538,4 +580,31 @@ function addCommas(str) {
         if ((i + 1) % 3 == 0 && (amount.length - 1) !== i) output = ',' + output;
     }
     return output;
+}
+
+function PrintBill(strid) {
+    var prtContent = document.getElementById(strid);
+    //var WinPrint = window.open('', '', 'letf=0,top=0,width=1,height=1,toolbar=0,scrollbars=0,status=0');
+    //WinPrint.document.write('<HTML><HEAD><META http-equiv="Content-type" content="text/html; charset=iso-8859-2"><LINK rel="stylesheet" type="text/css" href="Styles/css/print-bill.css"></HEAD></HTML>');
+    //WinPrint.document.write(prtContent.innerHTML);
+
+
+
+
+    var WinPrint = open('', '', 'letf=0,top=0,width=1000,height=800,toolbar=0,scrollbars=0,status=0');
+    WinPrint.document.open();
+    WinPrint.document.write('<HTML><HEAD><META http-equiv="Content-type" content="text/html; charset=iso-8859-2"><LINK rel="stylesheet" type="text/css" href="Styles/css/print-bill.css">');
+    WinPrint.document.write('<scr' + 'ipt language="javascript" type="text/javascript" src="/js/JSFILE.js"></scr' + 'ipt>');
+    WinPrint.document.write('</HEAD><BODY>');
+    WinPrint.document.write(prtContent.innerHTML);
+    WinPrint.document.write('</BODY></HTML>');
+    
+    setTimeout(function () {
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+    }, 300);
+    
+
 }
