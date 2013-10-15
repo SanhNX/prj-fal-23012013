@@ -30,6 +30,7 @@ namespace FalStore
             {
                 lblEmployeeName.Text = "Nhân Viên : " + Session["EmployeeName"].ToString();
                 lblBranchName.Text = "Chi Nhánh " + Session["BranchName"].ToString();
+                lblBranchAddress.Text = Session["BranchAddress"].ToString();
             }
             else
             {
