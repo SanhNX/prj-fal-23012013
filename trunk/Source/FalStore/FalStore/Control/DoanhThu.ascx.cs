@@ -52,7 +52,7 @@ namespace FalStore.Control
                 drpBranch.DataValueField = "BranchID";
                 drpBranch.DataBind();
 
-                if (role() == 3)
+                if (role() == 3 || role() == 4)
                 {
                     drpBranch.SelectedValue = Session["BranchID"].ToString();
                     drpBranch.Enabled = false;
