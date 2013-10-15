@@ -107,12 +107,13 @@ namespace FalStore.Service
             return customer;
         }
         [WebMethod(EnableSession = true)]
-        public object saveInfoCustomer(string codeCustomer, string cusName, string cusPhone,
+        public string saveInfoCustomer(string codeCustomer, string cusName, string cusPhone,
             string cusEmail, string discount, string tc, string tt, string currOrder)
         {
             JavaScriptSerializer oSerializer = new JavaScriptSerializer();
 
-            Boolean flag = false;
+            string flag = null;
+            string nextId;
             objCustomer objcustomer = new objCustomer();
             objcustomer.CodeCustomer = codeCustomer;
             objcustomer.CustomerName = cusName;
@@ -139,7 +140,7 @@ namespace FalStore.Service
             if (isInsertCus != null)
             {
                 objBill objbill = new objBill();
-                string nextId = billDAL.GetNextId().ToString();
+                nextId = billDAL.GetNextId().ToString();
                 int lengthNextBillId = 10 - nextId.Length;
                 string zeroString = "";
                 for (int i = 0; i < lengthNextBillId; i++)
@@ -192,7 +193,7 @@ namespace FalStore.Service
                             int isUpdateStore = storeBIZ.UpdateQuantity(objstoreTemp);
                             if (isUpdateStore == 1)
                             {
-                                flag = true;
+                                flag = nextId;
                             }
                         }
                     }
