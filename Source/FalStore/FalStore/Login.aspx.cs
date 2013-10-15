@@ -30,6 +30,7 @@ namespace FalStore
                 Session["EmployeeName"] = objemployee.EmployeeName;
                 Session["BranchID"] = objemployee.BranchID;
                 Session["BranchName"] = branchBIZ.ShowByBranchID(objemployee.BranchID).BranchName;
+                Session["BranchAddress"] = branchBIZ.ShowByBranchID(objemployee.BranchID).Address;
                 Session["Role"] = objemployee.Role;
                 if (objemployee.First_Flg == 0)
                 { // change pass

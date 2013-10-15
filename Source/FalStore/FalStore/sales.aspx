@@ -24,6 +24,7 @@
     <link rel="stylesheet" type="text/css" href="Styles/css/mws-style.css" media="screen">
     <link rel="stylesheet" type="text/css" href="Styles/css/icons/icol16.css" media="screen">
     <link rel="stylesheet" type="text/css" href="Styles/css/icons/icol32.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="Styles/css/print-bill.css" >
     <!-- Demo Stylesheet -->
     <link rel="stylesheet" type="text/css" href="Styles/css/demo.css" media="screen">
     <!-- jQuery-UI Stylesheet -->
@@ -53,6 +54,7 @@
                         <asp:Label ID="lblEmployeeName" runat="server" style="font-size: 22px;width: 40%;float: left;"></asp:Label>
                         <span style="font-size: 22px;width: 20%;float: left;text-align: center;">Bán Hàng</span>
                         <asp:Label ID="lblBranchName" runat="server" style="font-size: 22px;width: 40%;float: left;text-align: right;"></asp:Label>
+                        <asp:Label ID="lblBranchAddress" runat="server" Visible="true" CssClass="undisplayed"></asp:Label>
                     </div>
                     <div class="mws-panel-body no-padding">
                         <div style="width: 70%;float: left;min-height: 560px;max-height: 100%;">
@@ -116,6 +118,66 @@
                                        <%-- <cc:Pager ID="pager" runat="server" EnableViewState="true" CompactModePageCount="10"
                                             CssClass="dataTables_info" MaxSmartShortCutCount="0" RTL="False" PageSize="10"
                                             OnCommand="pager_Command" />--%>
+
+                                        <div id="printBill" class="printBill undisplayed">
+                                            <div class="pb-header">
+                                                <div class="pb-logo"><img src="../Styles/Images/banner_Falshop.png" alt="mws admin"></div>
+                                                <div class="pb-title">Hóa Đơn</div>
+                                                <div class="pb-branchDesc">
+                                                    <div class="pb-branchName"><div class="pb-rowTitle">Chi Nhánh : </div><div id="pb-branchName" class="pb-rowValue"> Thủ Đức</div></div>
+                                                    <div class="pb-branchAddress"><div class="pb-rowTitle">Địa Chỉ   : </div><div id="pb-branchAddress" class="pb-rowValue"> 61/45C đường 48, P.HBC. Q.TD</div></div>
+                                                </div>
+                                                <div class="pb-billDesc">
+                                                    <div class="pb-billID"><div class="pb-rowTitle">Mã hóa đơn : </div><div id="pb-codeBill" class="pb-rowValue"> 0000000123</div></div>
+                                                    <div class="pb-cutomerName"><div class="pb-rowTitle">Tên khách hàng   : </div><div id="pb-cusName" class="pb-rowValue"> Nguyen Van A</div></div>
+                                                    <div class="pb-codeCustomer"><div class="pb-rowTitle">Mã KH thân thiết : </div><div id="pb-cusCode" class="pb-rowValue"> 1234567891</div></div>
+                                                    <div class="pb-dateCreateBill"><div class="pb-rowTitle">Ngày xuất  : </div><div id="pb-dateCreate" class="pb-rowValue"> 20/12/2013</div></div>
+                                                </div>
+
+                                            </div>
+                                            <div class="pb-content">
+                                                <div class="pb-productDetailDesc">
+                                                    Chi tiết đơn hàng : 
+                                                    <table id="billDetail" class="table">
+                                                        <tr class="tr">
+                                                            <th class="pb-itemName th">Tên SP</th>
+                                                            <th class="pb-itemPrice th">Đơn giá</th>
+                                                            <th class="pb-itemAmount th">Số lượng</th>
+                                                            <th class="pb-itemTotalPrice th">Thành tiền</th>
+                                                        </tr>
+                                                        <%--<tr>
+                                                            <td class="pb-itemName td">1. Quần Jean </td>
+                                                            <td class="pb-itemPrice td">150,000</td>
+                                                            <td class="pb-itemAmount td">2</td>
+                                                            <td class="pb-itemTotalPrice td">300,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pb-itemName td">2. Quần Jean </td>
+                                                            <td class="pb-itemPrice td">150,000</td>
+                                                            <td class="pb-itemAmount td">2</td>
+                                                            <td class="pb-itemTotalPrice td">300,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="pb-itemName td">3. Quần Jean </td>
+                                                            <td class="pb-itemPrice td">150,000</td>
+                                                            <td class="pb-itemAmount td">2</td>
+                                                            <td class="pb-itemTotalPrice td">300,000</td>
+                                                        </tr>--%>
+                                                    </table>
+                                                    
+                                                </div>
+                                                <div class="pb-Price">
+                                                    <div class="pb-priceTitle">Tổng tiền (VND) : </div><div id="pb-tc" class="pb-priceValue"> 1,000,000</div>
+                                                </div>
+                                                <div class="pb-Price">
+                                                    <div class="pb-priceTitle">Giảm giá (%) : </div><div id="pb-gg" class="pb-priceValue"> 10</div>
+                                                </div>
+                                                <div class="pb-Price">
+                                                    <div class="pb-priceTitle">Thành tiền (VND) : </div><div id="pb-tt" class="pb-priceValue"> 900,000</div>
+                                                </div>
+                                            </div>
+                                            <div class="pb-footer">• Cảm ơn quý khách. Hẹn gặp lại ! •</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -176,6 +238,7 @@
                                         </fieldset>
                                         <div class="mws-button-row">
                                             <input id="btn-saveOrderToDB" type="button" value="Xuất Hóa Đơn" class="btn btn-danger">
+                                            <%--<input id="Button1" type="button" value="In hóa đơn" class="btn btn-primary" onclick="PrintBill('printBill')">--%>
                                             <a href="http://fal.vn/Default.aspx" class="btn btn-primary">Trang Chủ</a>
                                         </div>
                                     </div>
@@ -190,4 +253,5 @@
     </div>
     </form>
 </body>
+    
 </html>
