@@ -72,6 +72,9 @@ $(document).ready(function () {
                         $("#gg")[0].disabled = true;
                     }
                 } else {
+                    $("#cusName").val("");
+                    $("#cusPhone").val("");
+                    $("#cusEmail").val("");
                     $("#cusName")[0].disabled = false;
                     $("#cusPhone")[0].disabled = false;
                     $("#cusEmail")[0].disabled = false;
@@ -333,7 +336,7 @@ function getCurrentEventByBranch() {
                 $("#tc").formatCurrency({ region: 'vi-VN' });
                 $("#tt")[0].value = resp.tt;
                 $("#tt").formatCurrency({ region: 'vi-VN' });
-
+                
                 $("#gg").val(resp.gg ? resp.gg : 0);
 
                 $("#codeCustomer")[0].disabled = true;
