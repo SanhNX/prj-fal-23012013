@@ -66,16 +66,17 @@ $(document).ready(function () {
                     } else {
                         $("#gg").val(discountOfCurrBranch);
                     }
+                    if (customer.roleID == "3") {
+                        $("#gg")[0].disabled = false;
+                    } else {
+                        $("#gg")[0].disabled = true;
+                    }
                 } else {
                     $("#cusName")[0].disabled = false;
                     $("#cusPhone")[0].disabled = false;
                     $("#cusEmail")[0].disabled = false;
                 }
-                if (customer.roleID == "3") {
-                    $("#gg")[0].disabled = false;
-                } else {
-                    $("#gg")[0].disabled = true;
-                }
+                
                 loadInfomationInBill();
                 loadPriceInBill();
             }
@@ -99,7 +100,7 @@ $(document).ready(function () {
 
     $('#btn-saveOrderToDB').on('click', function (e) {
         if (validateSalePage() == "") {
-
+            loadInfomationInBill();
             var billID = getURLParameter("billID");
             if (billID) { // update bill 
                 var currOrder = JSON.parse(getStorageItem(ORDER));
@@ -253,17 +254,13 @@ $(document).ready(function () {
                             var r = confirm("Thực thi thành công. Bạn muốn in hóa đơn không ?")
                             if (r == true) {
                                 PrintBill('printBill');
-                                setStorageItem(ORDER, null);
-                                createTableOrder();
+                                clearForm();
                             } else {
-                                setStorageItem(ORDER, null);
-                                createTableOrder();
+                                clearForm();
                             }
                         } else {
                             alert("Thực thi thất bại");
                         }
-                        //setStorageItem(ORDER, null);
-                        //createTableOrder();
                     }
                 });
                 //}
@@ -274,6 +271,19 @@ $(document).ready(function () {
     });
 
 });
+
+function clearForm() {
+    setStorageItem(ORDER, null);
+    createTableOrder();
+    $("#codeCustomer").val("");
+    $("#cusName").val("");
+    $("#cusPhone").val("");
+    $("#cusEmail").val("");
+    $("#gg").val(0);
+    $("#cusName")[0].disabled = false;
+    $("#cusPhone")[0].disabled = false;
+    $("#cusEmail")[0].disabled = false;
+}
 
 function validateSalePage() {
     var codeCustomer = $("#codeCustomer").val();
@@ -441,7 +451,7 @@ function createTableOrder() {
                         "<td><a id='btn-deleteRow' href='javascript:deleteRow(" + '"' + item.id + '"' + ")' type='button' class='icol-cancel' ></a></td>" +
                     '</tr>';
             var rowBillHTML = '<tr>' +
-                                '<td class="pb-itemName td">'+ (i + 1) + '. '+  item.name + '</td>' +
+                                '<td class="pb-itemName td">' + (i + 1) + '. ' + (item.name.length > 20 ? item.name.substr(0, 17) + '...' : item.name) + '</td>' +
                                 '<td class="pb-itemPrice td">' + addCommas(moneyOfProduct) + '</td>' +
                                 '<td class="pb-itemAmount td">' + sL + '</td>' +
                                 '<td class="pb-itemTotalPrice td">' + addCommas(moneyOfProduct * sL) + '</td>' +
