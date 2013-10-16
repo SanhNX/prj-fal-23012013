@@ -279,7 +279,7 @@ function clearForm() {
     $("#cusName").val("");
     $("#cusPhone").val("");
     $("#cusEmail").val("");
-    $("#gg").val(0);
+    $("#gg").val(discountOfCurrBranch);
     $("#cusName")[0].disabled = false;
     $("#cusPhone")[0].disabled = false;
     $("#cusEmail")[0].disabled = false;
