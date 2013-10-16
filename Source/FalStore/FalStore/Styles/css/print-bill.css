@@ -1,0 +1,82 @@
+﻿
+.printBill {
+    width: 50%;
+    background-color: white;
+    font-family: monospace;
+    margin: auto;
+}
+
+.pb-logo {
+    text-align: center;
+}
+
+.pb-title {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.pb-rowTitle {
+    float: left;
+    width: 30%;
+    margin-left: 10px;
+}
+
+.pb-rowValue {
+    margin-left: 170px;
+}
+
+.pb-Price {
+    width: 60%;
+    margin-top: 5px;
+    margin-left: 120px;
+    border: 2px solid #E0DFDF;
+}
+
+.pb-priceTitle {
+    width: 50%;
+    float: left;
+    text-align: right;
+}
+
+.pb-priceValue {
+    margin-left: 150px;
+}
+
+.pb-productDetailDesc {
+    margin-left: 10px;
+}
+
+table {
+    width: 98%;
+    border-collapse: collapse;
+}
+
+.table, .td, .th {
+    border: 1px solid gray;
+}
+
+.pb-itemPrice {
+    text-align: center;
+}
+
+.pb-itemAmount {
+    text-align: center;
+}
+
+.pb-itemTotalPrice {
+    text-align: center;
+}
+
+.pb-footer {
+    margin-top: 15px;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.undisplayed {
+    display: none;
+}
