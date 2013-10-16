@@ -141,6 +141,7 @@ namespace DAL
             parameterList.Add(new SqlParameter("@DisCount", obj.DisCount));
             parameterList.Add(new SqlParameter("@CreateDate", obj.CreateDate));
             parameterList.Add(new SqlParameter("@Point", obj.Point));
+            parameterList.Add(new SqlParameter("@BranchID", obj.BranchID));
             if (SQLHelper.ExecuteNonQuery("spCustomerInsert", parameterList) == 1)
             {
                 return obj.CodeCustomer;
