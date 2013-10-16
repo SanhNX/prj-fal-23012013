@@ -133,6 +133,8 @@ namespace FalStore.Service
             }
             else // not exist
             {
+                objcustomer.BranchID = int.Parse(Session["BranchID"].ToString());
+                objcustomer.DisCount = 0;
                 isInsertCus = customerDAL.InsertCustomer(objcustomer); // return codeCustomer if exist
                 customerId = customerDAL.GetCustomerByCode(isInsertCus).CustomerID;
             }
