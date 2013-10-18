@@ -412,6 +412,9 @@ function getCurrentEventByBranch() {
         });
         $("#btn-saveOrderToDB")[0].value = "Xuất hóa đơn";
     }
+    $("#cusName")[0].disabled = true;
+    $("#cusPhone")[0].disabled = true;
+    $("#cusEmail")[0].disabled = true;
     loadInfomationInBill();
     loadPriceInBill();
 }
@@ -454,7 +457,7 @@ function createTableOrder() {
                         "<td><a id='btn-deleteRow' href='javascript:deleteRow(" + '"' + item.id + '"' + ")' type='button' class='icol-cancel' ></a></td>" +
                     '</tr>';
             var rowBillHTML = '<tr>' +
-                                '<td class="pb-itemName td">' + (i + 1) + '. ' + (item.name.length > 20 ? item.name.substr(0, 17) + '...' : item.name) + '</td>' +
+                                '<td class="pb-itemName td">' + (i + 1) + '. ' + (item.name.length > 15 ? item.name.substr(0, 13) + '...' : item.name) + '</td>' +
                                 '<td class="pb-itemPrice td">' + addCommas(moneyOfProduct) + '</td>' +
                                 '<td class="pb-itemAmount td">' + sL + '</td>' +
                                 '<td class="pb-itemTotalPrice td">' + addCommas(moneyOfProduct * sL) + '</td>' +
