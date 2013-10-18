@@ -129,7 +129,10 @@ namespace FalStore.Service
             {
                 isInsertCus = codeCustomer;
                 customerId = isExistCustomer.CustomerID;
-                int isUpdatePoint = customerBIZ.UpdatePointWithExistCustomer(codeCustomer, int.Parse(tt) / 10000);
+                if (codeCustomer != "FAL1234567")
+                {
+                    int isUpdatePoint = customerBIZ.UpdatePointWithExistCustomer(codeCustomer, int.Parse(tt) / 10000);
+                }
             }
             else // not exist
             {
