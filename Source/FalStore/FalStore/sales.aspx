@@ -124,14 +124,14 @@
                                                 <div class="pb-logo"><img src="../Styles/Images/banner_Falshop.png" alt="mws admin"></div>
                                                 <div class="pb-title">Hóa Đơn</div>
                                                 <div class="pb-branchDesc">
-                                                    <div class="pb-branchName"><div class="pb-rowTitle">Chi Nhánh : </div><div id="pb-branchName" class="pb-rowValue"> Thủ Đức</div></div>
-                                                    <div class="pb-branchAddress"><div class="pb-rowTitle">Địa Chỉ   : </div><div id="pb-branchAddress" class="pb-rowValue"> 61/45C đường 48, P.HBC. Q.TD</div></div>
+                                                    <div class="pb-branchName"><div class="pb-rowTitle">Chi Nhánh : </div><div id="pb-branchName" class="pb-rowValue"> </div></div>
+                                                    <div class="pb-branchAddress"><div class="pb-rowTitle">Địa Chỉ   : </div><div id="pb-branchAddress" class="pb-rowValue"> </div></div>
                                                 </div>
                                                 <div class="pb-billDesc">
-                                                    <div class="pb-billID"><div class="pb-rowTitle">Mã hóa đơn : </div><div id="pb-codeBill" class="pb-rowValue"> 0000000123</div></div>
-                                                    <div class="pb-cutomerName"><div class="pb-rowTitle">Tên khách hàng   : </div><div id="pb-cusName" class="pb-rowValue"> Nguyen Van A</div></div>
-                                                    <div class="pb-codeCustomer"><div class="pb-rowTitle">Mã KH thân thiết : </div><div id="pb-cusCode" class="pb-rowValue"> 1234567891</div></div>
-                                                    <div class="pb-dateCreateBill"><div class="pb-rowTitle">Ngày xuất  : </div><div id="pb-dateCreate" class="pb-rowValue"> 20/12/2013</div></div>
+                                                    <div class="pb-billID"><div class="pb-rowTitle">Mã hóa đơn : </div><div id="pb-codeBill" class="pb-rowValue"> </div></div>
+                                                    <div class="pb-cutomerName"><div class="pb-rowTitle">Tên khách hàng   : </div><div id="pb-cusName" class="pb-rowValue"> </div></div>
+                                                    <div class="pb-codeCustomer"><div class="pb-rowTitle">Mã KH thân thiết : </div><div id="pb-cusCode" class="pb-rowValue"> </div></div>
+                                                    <div class="pb-dateCreateBill"><div class="pb-rowTitle">Ngày xuất  : </div><div id="pb-dateCreate" class="pb-rowValue"> </div></div>
                                                 </div>
 
                                             </div>
@@ -167,13 +167,13 @@
                                                     
                                                 </div>
                                                 <div class="pb-Price">
-                                                    <div class="pb-priceTitle">Tổng tiền (VND) : </div><div id="pb-tc" class="pb-priceValue"> 1,000,000</div>
+                                                    <div class="pb-priceTitle">Tổng tiền (VND) : </div><div id="pb-tc" class="pb-priceValue"> </div>
                                                 </div>
                                                 <div class="pb-Price">
-                                                    <div class="pb-priceTitle">Giảm giá (%) : </div><div id="pb-gg" class="pb-priceValue"> 10</div>
+                                                    <div class="pb-priceTitle">Giảm giá (%) : </div><div id="pb-gg" class="pb-priceValue"> </div>
                                                 </div>
                                                 <div class="pb-Price">
-                                                    <div class="pb-priceTitle">Thành tiền (VND) : </div><div id="pb-tt" class="pb-priceValue"> 900,000</div>
+                                                    <div class="pb-priceTitle">Thành tiền (VND) : </div><div id="pb-tt" class="pb-priceValue"> </div>
                                                 </div>
                                             </div>
                                             <div class="pb-footer">• Cảm ơn quý khách. Hẹn gặp lại ! •</div>
@@ -192,25 +192,25 @@
                                             <div class="mws-form-row bordered">
                                                 <label class="mws-form-label">Mã Thành Viên</label>
                                                 <div class="mws-form-item">
-                                                    <input id="codeCustomer" type="text" value="" maxlength="10" class="large">
+                                                    <input id="codeCustomer" type="text" value="FAL1234567" maxlength="10" class="large">
                                                 </div>
                                             </div>
                                             <div class="mws-form-row bordered">
                                                 <label class="mws-form-label">Tên KH</label>
                                                 <div class="mws-form-item">
-                                                    <input id="cusName" type="text" value="" class="large">
+                                                    <input id="cusName" type="text" value="Khach Hang" class="large">
                                                 </div>
                                             </div>
                                             <div class="mws-form-row bordered">
                                                 <label class="mws-form-label">Số ĐT</label>
                                                 <div class="mws-form-item">
-                                                    <input id="cusPhone" type="text" value="" class="large">
+                                                    <input id="cusPhone" type="text" value="0937757753" class="large">
                                                 </div>
                                             </div>
                                             <div class="mws-form-row bordered">
                                                 <label class="mws-form-label">Email</label>
                                                 <div class="mws-form-item">
-                                                    <input id="cusEmail" type="text" value="" class="large">
+                                                    <input id="cusEmail" type="text" value="fal@gmail.com" class="large">
                                                 </div>
                                             </div>
                                         </fieldset>
