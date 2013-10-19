@@ -142,7 +142,7 @@
                                                         <tr class="tr">
                                                             <th class="pb-itemName th">Tên SP</th>
                                                             <th class="pb-itemPrice th">Đơn giá</th>
-                                                            <th class="pb-itemAmount th">Số lượng</th>
+                                                            <th class="pb-itemAmount th">SL</th>
                                                             <th class="pb-itemTotalPrice th">Thành tiền</th>
                                                         </tr>
                                                         <%--<tr>
