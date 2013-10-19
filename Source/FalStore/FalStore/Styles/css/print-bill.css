@@ -1,6 +1,6 @@
 ﻿
 .printBill {
-    width: 40%;
+    width: 30%;
     background-color: white;
     font-family: monospace;
     margin: auto;
@@ -20,18 +20,18 @@
 
 .pb-rowTitle {
     float: left;
-    width: 35%;
+    width: 50%;
     margin-left: 10px;
 }
 
 .pb-rowValue {
-    margin-left: 170px;
+    margin-left: 130px;
 }
 
 .pb-Price {
-    width: 70%;
+    width: 100%;
     margin-top: 5px;
-    margin-left: 120px;
+    margin-left: 20px;
     /*border: 2px solid #E0DFDF;*/
 }
 
@@ -71,7 +71,7 @@ table {
 }
 
 .pb-footer {
-    margin-top: 15px;
+    margin-top: 30px;
     font-size: 15px;
     text-align: center;
     font-weight: bold;
