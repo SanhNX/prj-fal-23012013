@@ -278,14 +278,14 @@ $(document).ready(function () {
 function clearForm() {
     setStorageItem(ORDER, null);
     createTableOrder();
-    $("#codeCustomer").val("");
-    $("#cusName").val("");
-    $("#cusPhone").val("");
-    $("#cusEmail").val("");
     $("#gg").val(discountOfCurrBranch);
-    $("#cusName")[0].disabled = false;
-    $("#cusPhone")[0].disabled = false;
-    $("#cusEmail")[0].disabled = false;
+    $("#codeCustomer").val("FAL1234567");
+    $("#cusName").val("Khach Hang");
+    $("#cusPhone").val("0937757753");
+    $("#cusEmail").val("fal@gmail.com");
+    $("#cusName")[0].disabled = true;
+    $("#cusPhone")[0].disabled = true;
+    $("#cusEmail")[0].disabled = true;
 }
 
 function validateSalePage() {
@@ -412,6 +412,10 @@ function getCurrentEventByBranch() {
         });
         $("#btn-saveOrderToDB")[0].value = "Xuất hóa đơn";
     }
+    $("#codeCustomer").val("FAL1234567");
+    $("#cusName").val("Khach Hang");
+    $("#cusPhone").val("0937757753");
+    $("#cusEmail").val("fal@gmail.com");
     $("#cusName")[0].disabled = true;
     $("#cusPhone")[0].disabled = true;
     $("#cusEmail")[0].disabled = true;
@@ -439,7 +443,7 @@ function closingCode() {
 
 function createTableOrder() {
     $('tbody')[0].innerHTML = "";
-    $("#billDetail")[0].innerHTML = '<tr class="tr"><th class="pb-itemName th">Tên SP</th><th class="pb-itemPrice th">Đơn giá</th><th class="pb-itemAmount th">Số lượng</th><th class="pb-itemTotalPrice th">Thành tiền</th></tr>';
+    $("#billDetail")[0].innerHTML = '<tr class="tr"><th class="pb-itemName th">Tên SP</th><th class="pb-itemPrice th">Đơn giá</th><th class="pb-itemAmount th">SL</th><th class="pb-itemTotalPrice th">Thành tiền</th></tr>';
     var tc = 0;
     var currOrder = JSON.parse(getStorageItem(ORDER));
     if (currOrder && currOrder.length > 0) {
@@ -457,7 +461,7 @@ function createTableOrder() {
                         "<td><a id='btn-deleteRow' href='javascript:deleteRow(" + '"' + item.id + '"' + ")' type='button' class='icol-cancel' ></a></td>" +
                     '</tr>';
             var rowBillHTML = '<tr>' +
-                                '<td class="pb-itemName td">' + (i + 1) + '. ' + (item.name.length > 15 ? item.name.substr(0, 13) + '...' : item.name) + '</td>' +
+                                '<td class="pb-itemName td">' + (i + 1) + '.' + (item.name.length > 13 ? item.name.substr(0, 10) + '...' : item.name) + '</td>' +
                                 '<td class="pb-itemPrice td">' + addCommas(moneyOfProduct) + '</td>' +
                                 '<td class="pb-itemAmount td">' + sL + '</td>' +
                                 '<td class="pb-itemTotalPrice td">' + addCommas(moneyOfProduct * sL) + '</td>' +
@@ -492,13 +496,13 @@ function createTableOrder() {
 }
 
 function loadPriceInBill() {
-    $("#pb-tc")[0].innerHTML = $("#tc")[0].value;
+    $("#pb-tc")[0].innerHTML = $("#tc")[0].value.substr(0, $("#tc")[0].value.length - 2);
     $("#pb-gg")[0].innerHTML = $("#gg")[0].value;
-    $("#pb-tt")[0].innerHTML = $("#tt")[0].value;
+    $("#pb-tt")[0].innerHTML = $("#tt")[0].value.substr(0, $("#tt")[0].value.length - 2);;
 }
 function loadInfomationInBill() {
     $("#pb-branchName")[0].innerHTML = $("#lblBranchName")[0].innerHTML.substr(11, $("#lblBranchName")[0].innerHTML.length);
-    $("#pb-branchAddress")[0].innerHTML = $("#lblBranchAddress")[0].innerHTML;
+    $("#pb-branchAddress")[0].innerHTML = $("#lblBranchAddress")[0].innerHTML.length > 18 ? ($("#lblBranchAddress")[0].innerHTML.substr(0, 15) + "...") : $("#lblBranchAddress")[0].innerHTML;
     $("#pb-codeBill")[0].innerHTML = "";
     $("#pb-cusName")[0].innerHTML = $("#cusName")[0].value;
     $("#pb-cusCode")[0].innerHTML = $("#codeCustomer")[0].value;
