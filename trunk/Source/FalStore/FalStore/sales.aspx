@@ -55,6 +55,15 @@
                         <span style="font-size: 22px;width: 20%;float: left;text-align: center;">Bán Hàng</span>
                         <asp:Label ID="lblBranchName" runat="server" style="font-size: 22px;width: 40%;float: left;text-align: right;"></asp:Label>
                         <asp:Label ID="lblBranchAddress" runat="server" Visible="true" CssClass="undisplayed"></asp:Label>
+                        <!--start thanh add  -->
+
+                        <asp:Literal runat="server" ID="Literal0"></asp:Literal>
+                        <asp:Literal runat="server" ID="Literal6"></asp:Literal>
+                        <asp:Literal runat="server" ID="Literal7"></asp:Literal>
+                        <asp:Literal runat="server" ID="Literal8"></asp:Literal>
+                        <asp:Literal runat="server" ID="Literal9"></asp:Literal>
+                        <asp:Literal runat="server" ID="Literal10"></asp:Literal>
+                        <!--end thanh add  -->
                     </div>
                     <div class="mws-panel-body no-padding">
                         <div style="width: 70%;float: left;min-height: 560px;max-height: 100%;">
