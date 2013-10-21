@@ -5,6 +5,30 @@ var oldListBillDetailID = [];
 var oldSL = null;
 var discountOfCurrBranch = 0;
 $(document).ready(function () {
+
+    // start add 20-10-2013 -Thanh
+    setInterval(loadSession, 180000);
+    function loadSession() {
+        var var1 = $("#sessionEmpId").val();
+        var var2 = $("#sessionEmployeeName").val();
+        var var3 = $("#sessionBranchID").val();
+        var var4 = $("#sessionBranchName").val();
+        var var5 = $("#sessionBranchAddress").val();
+        var var6 = $("#sessionRole").val();
+        $.ajax({
+            type: "POST",
+            url: "Service/SaleService.asmx/loadSession",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ sessionEmpId: var1, sessionEmployeeName: var2, sessionBranchID: var3, sessionBranchName: var4, sessionBranchAddress: var5, sessionRole: var6}),
+            dataType: "json",
+            success: function (result) {
+                //alert("Load session");
+            }
+        });
+    }
+
+    // End add 20-10-2013 -Thanh
+
     $('#btn-newRow').on('click', function (e) {
 
         // get value request
@@ -79,18 +103,18 @@ $(document).ready(function () {
                     $("#cusPhone")[0].disabled = false;
                     $("#cusEmail")[0].disabled = false;
                 }
-                
+
                 loadInfomationInBill();
                 loadPriceInBill();
             }
         });
-        
+
     });
 
     $("#gg").on('focusout', function (e) {
         if ($("#gg")[0].value == "" || isNaN($("#gg")[0].value) || parseInt($("#gg")[0].value) > 100) {
             $("#gg")[0].value = 0;
-        } 
+        }
         var changeMoney = parseInt(formatMoneyToString($("#tc")[0].value));
 
         var gg = (changeMoney * parseInt(!isNaN($("#gg")[0].value) ? $("#gg")[0].value : 0)) / 100;
