@@ -38,6 +38,22 @@ namespace FalStore.Service
         objCustomer objcustomer = new objCustomer();
         objStore objstore = new objStore();
 
+
+        //// thanh
+        [WebMethod(EnableSession = true)]
+        public object loadSession(
+            string sessionEmpId, string sessionEmployeeName, string sessionBranchID, string sessionBranchName, string sessionBranchAddress, string sessionRole)
+        {
+            Session["BranchID"] = sessionEmpId;
+            Session["EmployeeName"] = sessionEmployeeName;
+            Session["BranchID"] = sessionBranchID;
+            Session["BranchName"] = sessionBranchName;
+            Session["BranchAddress"] = sessionBranchAddress;
+            Session["Role"] = sessionRole;
+            return true;
+        }
+
+
         [WebMethod(EnableSession = true)]
         public object logout()
         {
@@ -49,6 +65,7 @@ namespace FalStore.Service
         [WebMethod(EnableSession = true)]
         public object getCurrentEventByBranch()
         {
+
             //TODO get current branch from session
             int currBranchID = int.Parse(Session["BranchID"].ToString());
             objevent = eventBIZ.ShowCurrentEventByBranch(currBranchID);
