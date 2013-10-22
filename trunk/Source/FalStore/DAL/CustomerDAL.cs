@@ -43,6 +43,8 @@ namespace DAL
                 obj.Phone = dr["Phone"].ToString();
                 lst.Add(obj);
             }
+            dr.Close();
+
             total = int.Parse(prTotal.Value.ToString());
             return lst;
         }
@@ -61,6 +63,7 @@ namespace DAL
               
                 lst.Add(obj);
             }
+            dr.Close();
 
             return lst;
         }
@@ -94,6 +97,7 @@ namespace DAL
                 obj.EndDiscount = dr["EndDiscount"].ToString();
                 obj.Point = int.Parse(dr["Point"].ToString() == "" ? "0" : dr["Point"].ToString());
             }
+            dr.Close();
 
             return obj;
 
@@ -124,6 +128,7 @@ namespace DAL
                 obj.EndDiscount = dr["EndDiscount"].ToString();
                 obj.Point = int.Parse(dr["Point"].ToString() == "" ? "0" : dr["Point"].ToString());
             }
+            dr.Close();
 
             return obj;
 
@@ -239,6 +244,8 @@ namespace DAL
 
                 lstCus.Add(obj);
             }
+
+            dr.Close();
 
             return lstCus;
 

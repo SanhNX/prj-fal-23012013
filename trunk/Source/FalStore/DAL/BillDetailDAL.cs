@@ -46,7 +46,7 @@ namespace DAL
                 //obj.Discount = dr["DisCount"].ToString();
                 lst.Add(obj);
             }
-
+            dr.Close();
             //total = int.Parse(prTotal.Value.ToString());
             return lst;
         }
@@ -87,7 +87,7 @@ namespace DAL
                 //obj.Discount = dr["DisCount"].ToString();
                 lst.Add(obj);
             }
-
+            dr.Close();
             return lst;
         }
 
@@ -110,7 +110,7 @@ namespace DAL
                 //obj.EndDate = dr["EndDate"].ToString();
                 //obj.Discount = dr["DisCount"].ToString();
             }
-
+            dr.Close();
             return obj;
 
         }

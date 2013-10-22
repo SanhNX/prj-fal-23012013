@@ -58,7 +58,7 @@ namespace DAL
 
                 lst.Add(obj);
             }
-
+            dr.Close();
             return lst;
 
         }
@@ -110,7 +110,7 @@ namespace DAL
 
                 lst.Add(obj);
             }
-
+            dr.Close();
             return lst;
 
         }
@@ -154,7 +154,7 @@ namespace DAL
 
                 lst.Add(obj);
             }
-
+            dr.Close();
             return lst;
 
         }
@@ -198,7 +198,7 @@ namespace DAL
 
                 lst.Add(obj);
             }
-
+            dr.Close();
             return lst;
 
         }
@@ -211,7 +211,7 @@ namespace DAL
             {
                 id = int.Parse(dr["MaxID"].ToString() == "" ? "000000000" : dr["MaxID"].ToString()) + 1;
             }
-
+            dr.Close();
             return id;
         }
 

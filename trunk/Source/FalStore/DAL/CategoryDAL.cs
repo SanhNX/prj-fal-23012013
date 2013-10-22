@@ -47,6 +47,8 @@ namespace DAL
                 lst.Add(obj);
             }
 
+            dr.Close();
+
             //total = int.Parse( prTotal.Value.ToString());
             return lst;
            
@@ -88,6 +90,8 @@ namespace DAL
                 lst.Add(obj);
             }
 
+            dr.Close();
+
             return lst;
 
         }
@@ -112,7 +116,7 @@ namespace DAL
                 obj.CategoryID = int.Parse(dr["CategoryID"].ToString());
                 obj.CategoryName = dr["CategoryName"].ToString();
             }
-
+            dr.Close();
             return obj;
 
         }
@@ -137,7 +141,7 @@ namespace DAL
                 obj.CategoryID = int.Parse(dr["CategoryID"].ToString());
                 obj.CategoryName = dr["CategoryName"].ToString();
             }
-
+            dr.Close();
             return obj;
 
         }

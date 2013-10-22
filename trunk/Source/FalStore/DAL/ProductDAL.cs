@@ -51,6 +51,8 @@ namespace DAL
                 lst.Add(obj);
             }
 
+            dr.Close();
+
             return lst;
 
         }
@@ -96,6 +98,9 @@ namespace DAL
                 obj.ImportPrice = float.Parse(dr["ImportPrice"].ToString());
                 obj.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
             }
+
+            dr.Close();
+
             return obj;
 
         }
@@ -126,6 +131,9 @@ namespace DAL
                 obj.ColorName = dr["ColorName"].ToString();
                 obj.SizeName = dr["SizeName"].ToString();
             }
+
+            dr.Close();
+
             return obj;
 
         }
@@ -166,6 +174,9 @@ namespace DAL
                 obj.BarCode = dr["BarCode"].ToString();
                 lst.Add(obj);
             }
+
+            dr.Close();
+
             return lst;
 
         }
@@ -298,6 +309,9 @@ namespace DAL
 
                 lst.Add(obj);
             }
+
+            dr.Close();
+
             return lst;
 
         }

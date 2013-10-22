@@ -43,6 +43,9 @@ namespace DAL
                 obj.Phone = dr["Phone"].ToString();
                 lst.Add(obj);
             }
+
+            dr.Close();
+
             total = int.Parse(prTotal.Value.ToString());
             return lst;
         }
@@ -61,6 +64,8 @@ namespace DAL
               
                 lst.Add(obj);
             }
+
+            dr.Close();
 
             return lst;
         }
@@ -87,6 +92,8 @@ namespace DAL
                 obj.Role = int.Parse(dr["Role"].ToString());
                 obj.First_Flg = int.Parse(dr["First_Flg"].ToString());
             }
+
+            dr.Close();
 
             return obj;
 
@@ -115,6 +122,8 @@ namespace DAL
                 obj.Role = int.Parse(dr["Role"].ToString());
                 obj.First_Flg = int.Parse(dr["First_Flg"].ToString());
             }
+
+            dr.Close();
 
             return obj;
 
@@ -211,6 +220,8 @@ namespace DAL
                 abc = true;
             }
 
+            dr.Close();
+
             return abc;
         }
 
@@ -242,6 +253,8 @@ namespace DAL
                 lstEm.Add(obj);
 
             }
+
+            dr.Close();
 
             return lstEm;
         }

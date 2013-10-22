@@ -54,6 +54,8 @@ namespace DAL
                 lst.Add(obj);
             }
 
+            dr.Close();
+
             total = int.Parse(prTotal.Value.ToString());
             return lst;
 
@@ -105,6 +107,8 @@ namespace DAL
                 lst.Add(obj);
             }
 
+            dr.Close();
+
             return lst;
 
         }
@@ -148,6 +152,8 @@ namespace DAL
 
                 lst.Add(obj);
             }
+
+            dr.Close();
 
             return lst;
 
@@ -196,6 +202,8 @@ namespace DAL
 
                 total = total + obj.Amount;
             }
+
+            dr.Close();
 
             return lst;
 
@@ -268,11 +276,12 @@ namespace DAL
         /// </summary>
         /// <param name="LogStoreID"></param>
         /// <returns></returns>
-        public int UpdateStatusLogDetail(string LogStoreID)
+        public int UpdateStatusLogDetail(string LogStoreID, int logType)
         {
             Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
 
             parameterList.Add(new SqlParameter("@LogStoreID", LogStoreID));
+            parameterList.Add(new SqlParameter("@LogType", logType));
 
             return SQLHelper.ExecuteNonQuery("spLogDetailUpdateStatus", parameterList);
         }
@@ -423,6 +432,38 @@ namespace DAL
 
         }
 
+
+        /// <summary>
+        /// get log detail by logStore
+        /// </summary>
+        /// <param name="logStoreID"></param>
+        /// <param name="statusFlag"></param>
+        /// <returns></returns>
+        public List<objCheckLogDetail> CheckLogDetailByLogStoreID(string logStoreID)
+        {
+            List<objCheckLogDetail> lst = new List<objCheckLogDetail>();
+            objCheckLogDetail obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+            parameterList.Add(new SqlParameter("@LogStoreID", logStoreID));
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spCountLogDetailGetByLogStoreID", parameterList);
+            while (dr.Read())
+            {
+                obj = new objCheckLogDetail();
+
+ 
+                obj.BarCode = dr["BarCode"].ToString();
+                obj.Quantity = int.Parse(dr["Quantity"].ToString());
+
+                lst.Add(obj);
+            }
+
+            dr.Close();
+
+            return lst;
+
+        }
 
     }
 }
