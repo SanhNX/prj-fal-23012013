@@ -15,6 +15,7 @@
     <div id="mws-navigation">
          <ul>
             <li class="active"><a href="../Default.aspx?pageName=Home"><i class="icon-home"></i>Home</a></li>
+            <li><a href="" runat="server" id="hypCustomer"><i class="icon-list"></i> Quản lý Khách Hàng</a></li>
             <li><a href="#"><i class="icon-list"></i>Quản lý kho</a>
                 <ul>
                     <li><a href="" runat="server" id="hypCategory">Loại sản phẩm</a></li>
@@ -40,7 +41,7 @@
             <li><a href="#"><i class="icon-list"></i>Quản lý nhân viên</a>
                 <ul>
                     <li><a href="" runat="server" id="hypEmployee">Thông tin nhân viên</a></li>
-                    <li><a href="" runat="server" id="hypUser">Tài khoản đăng nhập</a></li>
+                   <%-- <li><a href="" runat="server" id="hypUser">Tài khoản đăng nhập</a></li>--%>
                 </ul>
             </li>
              <li><a href="../sales.aspx"><i class="icon-list"></i>Bán hàng</a>

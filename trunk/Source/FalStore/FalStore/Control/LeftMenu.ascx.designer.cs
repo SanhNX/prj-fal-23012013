@@ -13,6 +13,15 @@ namespace FalStore.Control {
     public partial class leftmenu {
         
         /// <summary>
+        /// hypCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor hypCustomer;
+        
+        /// <summary>
         /// hypCategory control.
         /// </summary>
         /// <remarks>
@@ -146,14 +155,5 @@ namespace FalStore.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor hypEmployee;
-        
-        /// <summary>
-        /// hypUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor hypUser;
     }
 }

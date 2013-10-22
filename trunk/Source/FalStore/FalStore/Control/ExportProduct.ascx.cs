@@ -76,7 +76,7 @@ namespace FalStore.Control
        /// <param name="e"></param>
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
-            if (int.Parse(txtQuantity1.Text) > 0 || int.Parse(txtSale1.Text) >= 0)
+            if (int.Parse(txtQuantity1.Text) > 0 && int.Parse(txtSale1.Text) >= 0 && int.Parse(txtSale1.Text) <= 100)
             {
                 try
                 {
@@ -142,7 +142,7 @@ namespace FalStore.Control
             }
             else
             {
-                Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Số lượng sản phẩm xuất vào phải > 0 || Chiết Khấu phải >= 0 \"); <" + "/script>"));
+                Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"Số lượng sản phẩm xuất vào phải > 0 || Chiết Khấu phải >= 0 và <= 100 \"); <" + "/script>"));
                 return;
             }
         }

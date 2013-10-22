@@ -42,7 +42,7 @@
                                 <label class="mws-form-label">
                                     Địa chỉ</label>
                                 <div class="mws-form-item">
-                                    <asp:TextBox ID="txtAddress" runat="server" class="small" MaxLength="100"></asp:TextBox>
+                                    <asp:TextBox ID="txtAddress" runat="server" class="small" MaxLength="50"></asp:TextBox>
                                       <asp:RequiredFieldValidator ID="RequiredFieldAddress" runat="server" ErrorMessage="Nhập địa chỉ"
                                         ControlToValidate="txtAddress" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>

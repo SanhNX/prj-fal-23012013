@@ -16,7 +16,7 @@ namespace FalStore.Control
                 this.hypCategory.HRef = "~/Default.aspx?pageName=Category";
                 this.hypProduct.HRef = "~/Default.aspx?pageName=Product";
                 this.hypEmployee.HRef = "~/Default.aspx?pageName=Employee";
-                this.hypUser.HRef = "~/Default.aspx?pageName=User";
+                //this.hypUser.HRef = "~/Default.aspx?pageName=User";
                 this.hypBranch.HRef = "~/Default.aspx?pageName=Branch";
                 this.hypDoanhThu.HRef = "~/Default.aspx?pageName=DoanhThu";
                 this.hypReceipt.HRef = "~/Default.aspx?pageName=Receipt";
@@ -29,6 +29,7 @@ namespace FalStore.Control
                 this.hypLoiNhuan.HRef = "~/Default.aspx?pageName=LoiNhuan";
                 this.hypSearchProduct.HRef = "~/Default.aspx?pageName=SearchProduct";
                 this.hypNhapXuatDetail.HRef = "~/Default.aspx?pageName=NhapXuatDetail";
+                this.hypCustomer.HRef = "~/Default.aspx?pageName=Customer";
                 
             }
           

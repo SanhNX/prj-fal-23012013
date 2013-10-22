@@ -88,33 +88,57 @@
                         <div class="mws-form-inline">
                             <div class="mws-form-row">
                                 <label class="mws-form-label">
-                                    Mã Vạch</label>
+                                    Mã Vạch 1</label>
                                 <div class="mws-form-item">
-                                    <asp:TextBox ID="txtBarCode" runat="server" class="small"  Enabled="false"
+                                    <asp:TextBox ID="txtBarCode1" runat="server" class="small"  Enabled="false"
                                         AutoPostBack="true"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Nhập tên sản phẩm"
-                                        ControlToValidate="txtBarCode" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:TextBox ID="txtProductName1" runat="server" class="small"  Enabled="false"
+                                    AutoPostBack="true"></asp:TextBox>
+                                        <asp:TextBox ID="txtPrice1" runat="server" class="small"  Enabled="false"
+                                    AutoPostBack="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtSl1" runat="server" style="width: 50px;"></asp:TextBox>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionQuantity" ControlToValidate="txtSl1" ForeColor="Red" runat="server" ErrorMessage="Phải là số" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                                 </div>
                             </div>
                             <div class="mws-form-row">
                                 <label class="mws-form-label">
-                                    Tên sản phẩm</label>
+                                    Mã Vạch 2</label>
                                 <div class="mws-form-item">
-                                    <asp:TextBox ID="txtProductName" runat="server" class="small" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtBarCode2" runat="server" class="small" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtProductName2" runat="server" class="small" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtPrice2" runat="server" class="small" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtSl2" runat="server" style="width: 50px;" ></asp:TextBox>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtSl2" ForeColor="Red" runat="server" ErrorMessage="Phải là số" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                                 </div>
                             </div>
                             <div class="mws-form-row">
                                 <label class="mws-form-label">
-                                    Giá bán</label>
+                                    Mã Vạch 3</label>
                                 <div class="mws-form-item">
-                                    <asp:TextBox ID="txtPrice" runat="server" class="small" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtBarCode3" runat="server" class="small" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtProductName3" runat="server" class="small" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtPrice3" runat="server" class="small" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtSl3" runat="server" style="width: 50px;" ></asp:TextBox>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="txtSl3" ForeColor="Red" runat="server" ErrorMessage="Phải là số" ValidationExpression="\d+"></asp:RegularExpressionValidator>
+                                </div>
+                            </div>
+                            <div class="mws-form-row">
+                                <label class="mws-form-label">
+                                    Mã Vạch 4</label>
+                                <div class="mws-form-item">
+                                    <asp:TextBox ID="txtBarCode4" runat="server" class="small" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtProductName4" runat="server" class="small" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtPrice4" runat="server" class="small" Enabled="false"></asp:TextBox>
+                                    <asp:TextBox ID="txtSl4" runat="server" style="width: 50px;" ></asp:TextBox>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" ControlToValidate="txtSl4" ForeColor="Red" runat="server" ErrorMessage="Phải là số" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                                 </div>
                             </div>
                         </div>
                         <div class="mws-button-row">
-                            <asp:Button ID="Button1" runat="server" Text="Xem mã vạch" class="btn btn-success"
-                                OnClick="ClickShow_Click" />
-                            <input id="Button2" type="button" value="In mã vạch" class="btn btn-success" onclick="PrintBarCode('barcode')" />
+                            
+                            <asp:Button ID="Button1" runat="server" Text="Export BarCode" class="btn btn-success"
+                                OnClick="btnExport_Click" />
+                            <%--<input id="Button2" type="button" value="In mã vạch" class="btn btn-success" onclick="PrintBarCode('barcode')" />--%>
                         </div>
                         <div id="barcode" class="ExampleFont">
                             <asp:Table ID="Table1" runat="server">

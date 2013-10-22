@@ -205,6 +205,7 @@ namespace FalStore.Control
             DataTable tbl = new DataTable();
             tbl.Columns.Add("STT", typeof(string));
             tbl.Columns.Add("MaPhieu", typeof(string));
+            tbl.Columns.Add("ChiNhanh", typeof(string));
             tbl.Columns.Add("CreateDate", typeof(string));
             tbl.Columns.Add("TotalAmount", typeof(string));
             tbl.Columns.Add("BarCode", typeof(string));
@@ -232,6 +233,7 @@ namespace FalStore.Control
                 dr["ProductName"] = item.ProductName.ToString();
                 dr["ColorName"] = item.ColorName;
                 dr["SizeName"] = item.SizeName.ToString();
+                dr["ChiNhanh"] = "Nhập Vào " + item.BranchName.ToString();
                 //if ("1".Equals(drpPhieu.SelectedValue.ToString()))
                 //{
                 // nhap vào kho tổng thì giá khac , nhap vào kho chi nhanh thì giá khac
@@ -262,7 +264,7 @@ namespace FalStore.Control
 
             string filePath = Server.MapPath("~/TemplateDocs/TemplateNhapXuatDetail.xlsx");
 
-            GenerateExcelFile(tbl, filePath, fileName, "chitiet");
+            GenerateExcelFile(tbl, filePath, fileName, "ChiTiet2");
 
             // doanh thu
             //DoanhThu();
@@ -321,6 +323,7 @@ namespace FalStore.Control
             DataTable tbl = new DataTable();
             tbl.Columns.Add("STT", typeof(string));
             tbl.Columns.Add("MaPhieu", typeof(string));
+            tbl.Columns.Add("ChiNhanh", typeof(string));
             tbl.Columns.Add("CreateDate", typeof(string));
             tbl.Columns.Add("TotalAmount", typeof(string));
             tbl.Columns.Add("BarCode", typeof(string));
@@ -348,6 +351,7 @@ namespace FalStore.Control
                 dr["ProductName"] = item.ProductName.ToString();
                 dr["ColorName"] = item.ColorName;
                 dr["SizeName"] = item.SizeName.ToString();
+
                 //if ("1".Equals(drpPhieu.SelectedValue.ToString()))
                 //{
                 // nhap vào kho tổng thì giá khac , nhap vào kho chi nhanh thì giá khac
@@ -361,6 +365,7 @@ namespace FalStore.Control
                     dr["Price"] = item.ExportPrice.ToString();
                 }
 
+                dr["ChiNhanh"] = "Xuất Đến " + item.BranchName.ToString();
                 //}
                 //else
                 //{
@@ -378,7 +383,7 @@ namespace FalStore.Control
 
             string filePath = Server.MapPath("~/TemplateDocs/TemplateNhapXuatDetail.xlsx");
 
-            GenerateExcelFile(tbl, filePath, fileName, "chitiet");
+            GenerateExcelFile(tbl, filePath, fileName, "ChiTiet2");
 
             // doanh thu
             //DoanhThu();
