@@ -159,6 +159,50 @@ namespace DAL
 
         }
 
+        public List<objBillDetail> GetBillDetailCtByID(string billID, int branchID)
+        {
+
+            List<objBillDetail> lst = new List<objBillDetail>();
+
+            objBillDetail obj = null;
+
+            Collection<SqlParameter> parameterList = new Collection<SqlParameter>();
+
+            parameterList.Add(new SqlParameter("@BillID", billID));
+            parameterList.Add(new SqlParameter("@BranchID", branchID));
+
+
+            SqlDataReader dr = SQLHelper.ExecuteReader("spGetBillDetailCtByID", parameterList);
+            while (dr.Read())
+            {
+                obj = new objBillDetail();
+
+                obj.BillDetailID = int.Parse(dr["Bill_DetailID"].ToString());
+
+                obj.BarCode = dr["BarCode"].ToString();
+
+                obj.Quantity = int.Parse(dr["Quantity"].ToString());
+
+                obj.Amount = float.Parse(dr["Amount"].ToString());
+
+                obj.Delete_Flg = int.Parse(dr["Delete_Flg"].ToString());
+
+                obj.CreateDate = DateTime.Parse(dr["CreateDate"].ToString());
+
+                obj.CreateUser = dr["CreateUser"].ToString();
+
+                obj.ProductName = dr["ProductName"].ToString();
+
+                obj.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
+
+
+                lst.Add(obj);
+            }
+
+            return lst;
+
+        }
+
         public int GetNextId()
         {
             int id = 0;
