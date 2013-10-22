@@ -72,11 +72,61 @@
             width: 320px;
         }
     </style>
+    <style type="text/css">
+        table.gridtable 
+        {
+            width:100%; 
+	        font-family: verdana,arial,sans-serif;
+	        font-size:12px;
+	        color:#333333;
+	        border-width: 1px;
+	        border-color: #666666;
+	        border-collapse: collapse;
+        }
+        table.gridtable th {
+	        border-width: 1px;
+	        padding: 8px;
+	        border-style: solid;
+	        border-color: #666666;
+	        background-color: #dedede;
+        }
+        table.gridtable td {
+	        border-width: 1px;
+	        padding: 8px;
+	        border-style: solid;
+	        border-color: #666666;
+	        background-color: #ffffff;
+        }
+        .style9
+        {
+            width: 342px;
+        }
+        .style10
+        {
+            width: 432px;
+        }
+        </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-         <div align="center" style="margin: 20px; padding: inherit; font-size: 25px;">PHIẾU NHẬP</div>
+         <div>
+             <table style="width: 100%; height: 85px; margin-bottom: 0px;">
+                 <tr>
+                     <td class="style9" width="35%">
+                         &nbsp;
+                         <img alt="" src="Styles/Images/banner_Falshop_ex.png" /></td>
+                     <td align="center" class="style10" style="font-size: 25px; font-weight: bold" 
+                         width="30%">
+                         PHIẾU NHẬP
+                     </td>
+                     <td width="35%">
+                         &nbsp;
+                     </td>
+                 </tr>
+             </table>
+             
+         </div>
          <div>
              <table style="width: 600px; margin-bottom: 30px;" align="center">
                  <tr>
@@ -121,10 +171,96 @@
          </div>
          <div>
             <div class="mws-panel-body no-padding">
-                <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
+                <div>
                     <!-- serach -->
                     <!-- table -->
-                    <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" 
+                    <table class="gridtable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    STT
+                                </th>
+                                <th>
+                                    Mã sản phẩm
+                                </th>
+                                <th>
+                                    Tên sản phẩm
+                                </th>
+                                <th>
+                                    Màu
+                                </th>
+                                 <th>
+                                    Size
+                                </th>
+                                <th>
+                                    Giá Nhập
+                                </th>
+                                <th>
+                                    Chiếc Khấu (%)
+                                </th>
+                                <th>
+                                    SL
+                                </th>
+                                <th>
+                                    Thánh Tiền
+                                </th>
+                            </tr>
+                        </thead>
+
+
+                         <tbody>
+                            <asp:Repeater ID="rptResult" OnItemDataBound="rptResult_ItemDataBound" runat="server">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td align="center">
+                                            <asp:Literal runat="server" ID="ltrStt"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrbarcode"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrProductName"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrColor"></asp:Literal>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Literal runat="server" ID="ltrSize"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrExportPrice"></asp:Literal>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Literal runat="server" ID="ltrCk"></asp:Literal>
+                                        </td>
+                                        <td align="center">
+                                            <asp:Literal runat="server" ID="ltrSl"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:Literal runat="server" ID="ltrAmount"></asp:Literal>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </tbody>
+
+                       <%-- <tr>
+	                        <th>Info Header 1</th>
+                            <th>Info Header 2</th>
+                            <th>Info Header 3</th>
+                        </tr>--%>
+                      <%--  <tr>
+	                        <td>Text 1A</td><td>Text 1B</td><td>Text 1C</td>
+                        </tr>
+                        <tr>
+	                        <td>Text 2A</td><td>Text 2B</td><td>Text 2C</td>
+                        </tr>--%>
+                    </table>
+
+
+
+
+                    <%--<table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" 
                         aria-describedby="DataTables_Table_1_info" align="center" border="0.5px" 
                         style="border: 0.5px groove #C0C0C0;">
                         <thead>
@@ -196,7 +332,7 @@
                                 </ItemTemplate>
                             </asp:Repeater>
                         </tbody>
-                    </table>
+                    </table--%>
                 </div>
             </div>
          </div>
