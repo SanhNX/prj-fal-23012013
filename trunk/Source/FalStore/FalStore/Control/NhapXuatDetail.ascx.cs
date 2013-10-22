@@ -245,6 +245,7 @@ namespace FalStore.Control
             DataTable tbl = new DataTable();
             tbl.Columns.Add("STT", typeof(string));
             tbl.Columns.Add("MaPhieu", typeof(string));
+            tbl.Columns.Add("ChiNhanh", typeof(string));
             tbl.Columns.Add("CreateDate", typeof(string));
             tbl.Columns.Add("TotalAmount", typeof(string));
             tbl.Columns.Add("BarCode", typeof(string));
@@ -274,6 +275,9 @@ namespace FalStore.Control
                 dr["SizeName"] = item.SizeName.ToString();
                 if ("1".Equals(drpPhieu.SelectedValue.ToString()))
                 {
+
+                    dr["ChiNhanh"] = "Nhập Vào " + item.BranchName.ToString();
+
                     // nhap vào kho tổng thì giá khac , nhap vào kho chi nhanh thì giá khac
                     //  12 là id cua kho tong
                     if ("12".Equals(item.BranchTo.ToString()))
@@ -288,6 +292,7 @@ namespace FalStore.Control
                 }
                 else
                 {
+                    dr["ChiNhanh"] = "Xuất Đến " + item.BranchName.ToString();
                     dr["Price"] = item.ExportPrice.ToString();
                 }
                 
@@ -317,7 +322,7 @@ namespace FalStore.Control
 
                 //DataTable dataTable = GetTransactionDataTable();
 
-                worker.FillData("chitiet", dataTable);
+                worker.FillData("ChiTiet2", dataTable);
 
                 byte[] outputFileBytes = worker.SaveAs();
                 worker.Close();
