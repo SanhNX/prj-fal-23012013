@@ -120,7 +120,7 @@ namespace BIZ
 
                 objStore objSto;
                 //update status log detail
-                logDal.UpdateStatusLogDetail(objLogStore.LogStoreID);
+                logDal.UpdateStatusLogDetail(objLogStore.LogStoreID, logType);
                 //insert log store
                 logDal.InsertLogStore(objLogStore);
 
@@ -356,6 +356,21 @@ namespace BIZ
 
                 throw;
             }
+        }
+
+        public List<objCheckLogDetail> CheckLogDetailByLogStoreID(string logStoreID)
+        {
+            try
+            {
+                List<objCheckLogDetail> lst = new List<objCheckLogDetail>();
+                lst = logDal.CheckLogDetailByLogStoreID(logStoreID);
+                return lst;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        
         }
     }
 }
