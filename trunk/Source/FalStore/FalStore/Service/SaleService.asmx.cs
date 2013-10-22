@@ -40,18 +40,18 @@ namespace FalStore.Service
 
 
         //// thanh
-        [WebMethod(EnableSession = true)]
-        public object loadSession(
-            string sessionEmpId, string sessionEmployeeName, string sessionBranchID, string sessionBranchName, string sessionBranchAddress, string sessionRole)
-        {
-            Session["BranchID"] = sessionEmpId;
-            Session["EmployeeName"] = sessionEmployeeName;
-            Session["BranchID"] = sessionBranchID;
-            Session["BranchName"] = sessionBranchName;
-            Session["BranchAddress"] = sessionBranchAddress;
-            Session["Role"] = sessionRole;
-            return true;
-        }
+        //[WebMethod(EnableSession = true)]
+        //public object loadSession(
+        //    string sessionEmpId, string sessionEmployeeName, string sessionBranchID, string sessionBranchName, string sessionBranchAddress, string sessionRole)
+        //{
+        //    Session["BranchID"] = sessionEmpId;
+        //    Session["EmployeeName"] = sessionEmployeeName;
+        //    Session["BranchID"] = sessionBranchID;
+        //    Session["BranchName"] = sessionBranchName;
+        //    Session["BranchAddress"] = sessionBranchAddress;
+        //    Session["Role"] = sessionRole;
+        //    return true;
+        //}
 
 
         [WebMethod(EnableSession = true)]
@@ -63,18 +63,18 @@ namespace FalStore.Service
         }
 
         [WebMethod(EnableSession = true)]
-        public object getCurrentEventByBranch()
+        public object getCurrentEventByBranch(string sessionBranchID, string sessionRole)
         {
 
             //TODO get current branch from session
-            int currBranchID = int.Parse(Session["BranchID"].ToString());
+            int currBranchID = int.Parse(sessionBranchID);
             objevent = eventBIZ.ShowCurrentEventByBranch(currBranchID);
             int discountEventOfCurrentBranch = int.Parse(objevent != null ? objevent.Discount : "0");
-            return new { discountEventOfCurrentBranch = discountEventOfCurrentBranch.ToString(), roleID = Session["Role"] != null ? (int)Session["Role"] : 0 };
+            return new { discountEventOfCurrentBranch = discountEventOfCurrentBranch.ToString(), roleID = int.Parse(sessionRole) };
         }
 
         [WebMethod(EnableSession = true)]
-        public object getBillToUpdate(string billID)
+        public object getBillToUpdate(string billID, string sessionRole)
         {
             objbill = billBIZ.GetBillByID(billID)[0];
             objcustomer = customerDAL.GetCustomerByID(objbill.CustomerID);
@@ -82,14 +82,16 @@ namespace FalStore.Service
             JavaScriptSerializer oSerializer = new JavaScriptSerializer();
             object json = oSerializer.DeserializeObject(oSerializer.Serialize(listBillDetail));
 
-            return new { branchIDOfBill = objbill.BranchID, roleID = Session["Role"] != null ? (int)Session["Role"] : 0, codeCustomer = objcustomer.CodeCustomer, cusName = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, tc = objbill.TotalPrice, gg = objbill.Sale, tt = objbill.ActualTotalPrice, listBillDetail = json };
+           // return new { branchIDOfBill = objbill.BranchID, roleID = Session["Role"] != null ? (int)Session["Role"] : 0, codeCustomer = objcustomer.CodeCustomer, cusName = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, tc = objbill.TotalPrice, gg = objbill.Sale, tt = objbill.ActualTotalPrice, listBillDetail = json };
+            return new { branchIDOfBill = objbill.BranchID, roleID = sessionRole, codeCustomer = objcustomer.CodeCustomer, cusName = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, tc = objbill.TotalPrice, gg = objbill.Sale, tt = objbill.ActualTotalPrice, listBillDetail = json };
         }
 
         [WebMethod(EnableSession = true)]
-        public object getData(string barCode, string sl)
+        public object getData(string barCode, string sl, string sessionBranchID)
         {
             //TODO get current branch from session
-            int currBranchID = int.Parse(Session["BranchID"].ToString());
+            //int currBranchID = int.Parse(Session["BranchID"].ToString());
+            int currBranchID = int.Parse(sessionBranchID);
             objstore = storeBIZ.ShowStoreByBarCodeAndBranch(barCode, currBranchID);
 
             if(objstore != null){ // ton tai
@@ -111,7 +113,7 @@ namespace FalStore.Service
         }
 
         [WebMethod(EnableSession = true)]
-        public object getInfoCustomer(string codeCustomer)
+        public object getInfoCustomer(string codeCustomer, string sessionRole)
         {
             object customer = null;
             objcustomer = customerDAL.GetCustomerByCode(codeCustomer == null ? "" : codeCustomer);
@@ -119,13 +121,14 @@ namespace FalStore.Service
             //object json = oSerializer.DeserializeObject(oSerializer.Serialize(objproduct));
             if (objcustomer != null)
             {
-                customer = new { id = objcustomer.CustomerID, code = objcustomer.CodeCustomer, name = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, discount = objcustomer.DisCount, roleID = Session["Role"] != null ? (int)Session["Role"] : 0 };
+                //customer = new { id = objcustomer.CustomerID, code = objcustomer.CodeCustomer, name = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, discount = objcustomer.DisCount, roleID = Session["Role"] != null ? (int)Session["Role"] : 0 };
+                customer = new { id = objcustomer.CustomerID, code = objcustomer.CodeCustomer, name = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, discount = objcustomer.DisCount, roleID = sessionRole };
             }
             return customer;
         }
         [WebMethod(EnableSession = true)]
         public string saveInfoCustomer(string codeCustomer, string cusName, string cusPhone,
-            string cusEmail, string discount, string tc, string tt, string currOrder)
+            string cusEmail, string discount, string tc, string tt, string currOrder, string sessionEmpId, string sessionEmployeeName, string sessionBranchID)
         {
             JavaScriptSerializer oSerializer = new JavaScriptSerializer();
 
@@ -153,7 +156,8 @@ namespace FalStore.Service
             }
             else // not exist
             {
-                objcustomer.BranchID = int.Parse(Session["BranchID"].ToString());
+                //objcustomer.BranchID = int.Parse(Session["BranchID"].ToString());
+                objcustomer.BranchID = int.Parse(sessionBranchID);
                 objcustomer.DisCount = 0;
                 isInsertCus = customerDAL.InsertCustomer(objcustomer); // return codeCustomer if exist
                 customerId = customerDAL.GetCustomerByCode(isInsertCus).CustomerID;
@@ -171,9 +175,13 @@ namespace FalStore.Service
                 }
                 nextId = zeroString + nextId;
                 //TODO
-                int employeeId = int.Parse(Session["EmployeeID"].ToString());
-                int branchId = int.Parse(Session["BranchID"].ToString());
-                string createUser = Session["EmployeeName"].ToString();
+                //int employeeId = int.Parse(Session["EmployeeID"].ToString());
+                //int branchId = int.Parse(Session["BranchID"].ToString());
+                //string createUser = Session["EmployeeName"].ToString();
+
+                int employeeId = int.Parse(sessionEmpId);
+                int branchId = int.Parse(sessionBranchID);
+                string createUser = sessionEmployeeName;
 
                 objbill.BillID = nextId;
                 objbill.EmployeeID = employeeId;
@@ -224,7 +232,7 @@ namespace FalStore.Service
             return flag;
         }
         [WebMethod(EnableSession = true)]
-        public object updateRowInBillDetail(string barCode, string billID, string quantity, string amount, string oldQuantity, string branchID)
+        public object updateRowInBillDetail(string barCode, string billID, string quantity, string amount, string oldQuantity, string branchID, string sessionEmployeeName)
         {
             Boolean flag = false;
             BillDetailBIZ billDetailBIZ = new BillDetailBIZ();
@@ -233,7 +241,8 @@ namespace FalStore.Service
             objBillDetail.BarCode = barCode;
             objBillDetail.Quantity = int.Parse(quantity);
             objBillDetail.Amount = float.Parse(amount);
-            objBillDetail.UpdateUser = Session["EmployeeName"].ToString();
+            //objBillDetail.UpdateUser = Session["EmployeeName"].ToString();
+            objBillDetail.UpdateUser = sessionEmployeeName;
             int isUpDate = billDetailBIZ.Update(objBillDetail);
             if (isUpDate == 1)
             {
@@ -269,7 +278,7 @@ namespace FalStore.Service
             return flag;
         }
         [WebMethod(EnableSession = true)]
-        public object insertMoreRowInBillDetail(string billID, string branchID, string barCode, string quantity, string amount)
+        public object insertMoreRowInBillDetail(string billID, string branchID, string barCode, string quantity, string amount, string sessionEmployeeName)
         {
             Boolean flag = false;
             objBillDetail objbillDetail = new objBillDetail();
@@ -280,7 +289,8 @@ namespace FalStore.Service
             objbillDetail.Quantity = int.Parse(quantity);
             objbillDetail.Amount = float.Parse(amount);
             objbillDetail.CreateDate = DateTime.Now;
-            objbillDetail.CreateUser = Session["EmployeeName"].ToString();
+            //objbillDetail.CreateUser = Session["EmployeeName"].ToString();
+            objbillDetail.CreateUser = sessionEmployeeName;
 
             int isInsertBillDetail = billDetailDAL.InsertBillDetail(objbillDetail);
             if (isInsertBillDetail == 1)
@@ -301,14 +311,15 @@ namespace FalStore.Service
         }
 
         [WebMethod(EnableSession = true)]
-        public object deleteRowInBillDetail(string billID, string barCode)
+        public object deleteRowInBillDetail(string billID, string barCode, string sessionEmployeeName)
         {
             Boolean flag = false;
             objBillDetail objbillDetail = new objBillDetail();
 
             objbillDetail.BillID = billID;
             objbillDetail.BarCode = barCode;
-            objbillDetail.UpdateUser = Session["EmployeeName"].ToString();
+            //objbillDetail.UpdateUser = Session["EmployeeName"].ToString();
+            objbillDetail.UpdateUser = sessionEmployeeName;
 
             int isDeleteBillDetail = billDetailBIZ.Delete(objbillDetail);
             if (isDeleteBillDetail != 0)
@@ -319,7 +330,7 @@ namespace FalStore.Service
         }
 
         [WebMethod(EnableSession = true)]
-        public object updateBill(string billID, string tc, string gg, string tt, string codeCus)
+        public object updateBill(string billID, string tc, string gg, string tt, string codeCus, string sessionEmployeeName)
         {
             Boolean flag = false;
             objBill objbill = new objBill();
@@ -328,7 +339,8 @@ namespace FalStore.Service
             objbill.TotalPrice = float.Parse(tc);
             objbill.Sale = float.Parse(gg);
             objbill.ActualTotalPrice = float.Parse(tt);
-            objbill.UpdateUser = Session["EmployeeName"].ToString();
+            //objbill.UpdateUser = Session["EmployeeName"].ToString();
+            objbill.UpdateUser = sessionEmployeeName;
 
             int isUpdatePoint = customerBIZ.UpdatePointByCustomerCode(codeCus, int.Parse(tt) / 10000, billID);
 
