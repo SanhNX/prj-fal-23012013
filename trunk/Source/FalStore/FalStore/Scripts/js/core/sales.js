@@ -7,25 +7,25 @@ var discountOfCurrBranch = 0;
 $(document).ready(function () {
 
     // start add 20-10-2013 -Thanh
-    setInterval(loadSession, 180000);
-    function loadSession() {
-        var var1 = $("#sessionEmpId").val();
-        var var2 = $("#sessionEmployeeName").val();
-        var var3 = $("#sessionBranchID").val();
-        var var4 = $("#sessionBranchName").val();
-        var var5 = $("#sessionBranchAddress").val();
-        var var6 = $("#sessionRole").val();
-        $.ajax({
-            type: "POST",
-            url: "Service/SaleService.asmx/loadSession",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ sessionEmpId: var1, sessionEmployeeName: var2, sessionBranchID: var3, sessionBranchName: var4, sessionBranchAddress: var5, sessionRole: var6}),
-            dataType: "json",
-            success: function (result) {
-                //alert("Load session");
-            }
-        });
-    }
+    //    setInterval(loadSession, 180000);
+    //    function loadSession() {
+    //        var var1 = $("#sessionEmpId").val();
+    //        var var2 = $("#sessionEmployeeName").val();
+    //        var var3 = $("#sessionBranchID").val();
+    //        var var4 = $("#sessionBranchName").val();
+    //        var var5 = $("#sessionBranchAddress").val();
+    //        var var6 = $("#sessionRole").val();
+    //        $.ajax({
+    //            type: "POST",
+    //            url: "Service/SaleService.asmx/loadSession",
+    //            contentType: "application/json; charset=utf-8",
+    //            data: JSON.stringify({ sessionEmpId: var1, sessionEmployeeName: var2, sessionBranchID: var3, sessionBranchName: var4, sessionBranchAddress: var5, sessionRole: var6}),
+    //            dataType: "json",
+    //            success: function (result) {
+    //                //alert("Load session");
+    //            }
+    //        });
+    //    }
 
     // End add 20-10-2013 -Thanh
 
@@ -47,7 +47,7 @@ $(document).ready(function () {
                 type: "POST",
                 url: "Service/SaleService.asmx/getData",
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ barCode: barCode, sl: sl }),
+                data: JSON.stringify({ barCode: barCode, sl: sl, sessionBranchID: $("#sessionBranchID").val() }),
                 dataType: "json",
                 success: function (result) {
                     var item = result.d;
@@ -73,7 +73,7 @@ $(document).ready(function () {
             type: "POST",
             url: "Service/SaleService.asmx/getInfoCustomer",
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ codeCustomer: codeCustomer }),
+            data: JSON.stringify({ codeCustomer: codeCustomer, sessionRole: $("#sessionRole").val() }),
             dataType: "json",
             success: function (result) {
                 var customer = result.d;
@@ -136,8 +136,11 @@ $(document).ready(function () {
                         var flagExist = false;
                         for (var j = 0; j < oldBillDetail.length; j++) {
                             if (currOrder[i].barCode == oldBillDetail[j].barCode) {
-                                flagExist = true;
-                                oldSL = oldBillDetail[j].sl;
+                                if (currOrder[i].sl != oldBillDetail[j].sl) {
+                                    flagExist = true;
+                                    oldSL = oldBillDetail[j].sl;
+                                }
+                                
                             }
                         }
                         if (flagExist) { // update bill detail and update bill
@@ -145,7 +148,7 @@ $(document).ready(function () {
                                 type: "POST",
                                 url: "Service/SaleService.asmx/updateRowInBillDetail",
                                 contentType: "application/json; charset=utf-8",
-                                data: JSON.stringify({ barCode: currOrder[i].barCode, billID: billID, quantity: currOrder[i].sl, amount: currOrder[i].amount, oldQuantity: oldSL, branchID: branchIDOfBill }),
+                                data: JSON.stringify({ barCode: currOrder[i].barCode, billID: billID, quantity: currOrder[i].sl, amount: currOrder[i].amount, oldQuantity: oldSL, branchID: branchIDOfBill, sessionEmployeeName: $("#sessionEmployeeName").val() }),
                                 dataType: "json",
                                 success: function (result) {
                                     var resp = result.d;
@@ -161,7 +164,7 @@ $(document).ready(function () {
                                 type: "POST",
                                 url: "Service/SaleService.asmx/insertMoreRowInBillDetail",
                                 contentType: "application/json; charset=utf-8",
-                                data: JSON.stringify({ billID: billID, branchID: branchIDOfBill, barCode: currOrder[i].barCode, quantity: currOrder[i].sl, amount: currOrder[i].amount }),
+                                data: JSON.stringify({ billID: billID, branchID: branchIDOfBill, barCode: currOrder[i].barCode, quantity: currOrder[i].sl, amount: currOrder[i].amount, sessionEmployeeName: $("#sessionEmployeeName").val() }),
                                 dataType: "json",
                                 success: function (result) {
                                     var resp = result.d;
@@ -186,7 +189,7 @@ $(document).ready(function () {
                                 type: "POST",
                                 url: "Service/SaleService.asmx/deleteRowInBillDetail",
                                 contentType: "application/json; charset=utf-8",
-                                data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode }),
+                                data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode, sessionEmployeeName: $("#sessionEmployeeName").val() }),
                                 dataType: "json",
                                 success: function (result) {
                                     var resp = result.d;
@@ -206,7 +209,7 @@ $(document).ready(function () {
                         type: "POST",
                         url: "Service/SaleService.asmx/updateBill",
                         contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify({ billID: billID, tc: tc, gg: gg, tt: tt, codeCus: $("#codeCustomer").val() }),
+                        data: JSON.stringify({ billID: billID, tc: tc, gg: gg, tt: tt, codeCus: $("#codeCustomer").val(), sessionEmployeeName: $("#sessionEmployeeName").val() }),
                         dataType: "json",
                         success: function (result) {
                             var resp = result.d;
@@ -228,7 +231,7 @@ $(document).ready(function () {
                             type: "POST",
                             url: "Service/SaleService.asmx/deleteRowInBillDetail",
                             contentType: "application/json; charset=utf-8",
-                            data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode }),
+                            data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode, sessionEmployeeName: $("#sessionEmployeeName").val() }),
                             dataType: "json",
                             success: function (result) {
                                 var resp = result.d;
@@ -271,7 +274,7 @@ $(document).ready(function () {
                     type: "POST",
                     url: "Service/SaleService.asmx/saveInfoCustomer",
                     contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify({ codeCustomer: codeCustomer, cusName: cusName, cusPhone: cusPhone, cusEmail: cusEmail, discount: gg, tc: tc, tt: tt, currOrder: currOrder }),
+                    data: JSON.stringify({ codeCustomer: codeCustomer, cusName: cusName, cusPhone: cusPhone, cusEmail: cusEmail, discount: gg, tc: tc, tt: tt, currOrder: currOrder, sessionEmpId: $("#sessionEmpId").val(), sessionEmployeeName: $("#sessionEmployeeName").val(), sessionBranchID: $("#sessionBranchID").val() }),
                     dataType: "json",
                     success: function (result) {
                         var isSuccess = result.d;
@@ -346,7 +349,7 @@ function getCurrentEventByBranch() {
             type: "POST",
             url: "Service/SaleService.asmx/getBillToUpdate",
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ billID: billID }),
+            data: JSON.stringify({ billID: billID, sessionRole: $("#sessionRole").val()}),
             dataType: "json",
             success: function (result) {
                 var resp = result.d;
@@ -419,7 +422,7 @@ function getCurrentEventByBranch() {
             type: "POST",
             url: "Service/SaleService.asmx/getCurrentEventByBranch",
             contentType: "application/json; charset=utf-8",
-            data: {},
+            data: JSON.stringify({ sessionBranchID: $("#sessionBranchID").val(), sessionRole: $("#sessionRole").val()}),
             dataType: "json",
             success: function (result) {
                 var resp = result.d;
@@ -526,10 +529,21 @@ function loadPriceInBill() {
 }
 function loadInfomationInBill() {
     $("#pb-branchName")[0].innerHTML = $("#lblBranchName")[0].innerHTML.substr(11, $("#lblBranchName")[0].innerHTML.length);
-    $("#pb-branchAddress")[0].innerHTML = $("#lblBranchAddress")[0].innerHTML.length > 18 ? ($("#lblBranchAddress")[0].innerHTML.substr(0, 15) + "...") : $("#lblBranchAddress")[0].innerHTML;
+    //    $("#pb-branchAddress")[0].innerHTML = $("#lblBranchAddress")[0].innerHTML.length > 18 ? ($("#lblBranchAddress")[0].innerHTML.substr(0, 60) + "...") : $("#lblBranchAddress")[0].innerHTML;
+    $("#pb-branchAddress")[0].innerHTML = $("#lblBranchAddress")[0].innerHTML;
     $("#pb-codeBill")[0].innerHTML = "";
-    $("#pb-cusName")[0].innerHTML = $("#cusName")[0].value;
-    $("#pb-cusCode")[0].innerHTML = $("#codeCustomer")[0].value;
+
+    if ($("#codeCustomer")[0].value != "FAL1234567") {
+        $(".pb-cutomerName").removeClass("undisplayed");
+        $(".pb-codeCustomer").removeClass("undisplayed");
+        $("#pb-cusName")[0].innerHTML = $("#cusName")[0].value;
+        $("#pb-cusCode")[0].innerHTML = $("#codeCustomer")[0].value;
+    } else {
+        $(".pb-cutomerName").addClass("undisplayed");
+        $(".pb-codeCustomer").addClass("undisplayed");
+    }
+
+    
     var d = new Date();
     var curr_date = d.getDate();
     var curr_month = d.getMonth() + 1; //Months are zero based
