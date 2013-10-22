@@ -67,6 +67,24 @@ namespace BIZ
             }
 
         }
+
+        public List<objBillDetail> GetBillDetailCtByID(string billID, int branchID)
+        {
+            try
+            {
+                List<objBillDetail> lst = new List<objBillDetail>();
+                lst = DAL.GetBillDetailCtByID(billID, branchID);
+
+                return lst;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
         public int GetNextId()
         {
             try
