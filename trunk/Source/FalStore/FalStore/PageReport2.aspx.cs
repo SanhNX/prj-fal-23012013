@@ -10,11 +10,13 @@ using Entity;
 using BIZ;
 using System.Data;
 using System.IO;
+using Common;
 namespace FalStore
 {
     public partial class PageReport2 : System.Web.UI.Page
     {
         LogStoreBIZ logBiz = new LogStoreBIZ();
+        ConvertMoneyString conV = new ConvertMoneyString();
         protected void Page_Load(object sender, EventArgs e)
         {
            
@@ -109,7 +111,7 @@ namespace FalStore
 
                 }
 
-                Literal5.Text = total.ToString("0.0") + " VNĐ";
+                Literal5.Text = conV.FloatToMoneyString(total.ToString("0")) + " VNĐ";
                
 
                 rptResult.DataSource = lstLogDetail;
@@ -144,16 +146,16 @@ namespace FalStore
                     ltrSize.Text = data.BarCode.SizeName.ToString();
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.BarCode.Product.ExportPrice.ToString("0.0");
+                    ltrExportPrice.Text = conV.FloatToMoneyString(data.BarCode.Product.ExportPrice.ToString("0"));
 
                     Literal ltrCk = e.Item.FindControl("ltrCk") as Literal;
-                    ltrCk.Text = data.Sale.ToString();
+                    ltrCk.Text = data.Sale.ToString() + "%";
 
                     Literal ltrSl = e.Item.FindControl("ltrSl") as Literal;
                     ltrSl.Text = data.Quantity.ToString();
 
                     Literal ltrAmount = e.Item.FindControl("ltrAmount") as Literal;
-                    ltrAmount.Text = data.Amount.ToString("0.0");
+                    ltrAmount.Text = conV.FloatToMoneyString(data.Amount.ToString("0"));
 
                     
 

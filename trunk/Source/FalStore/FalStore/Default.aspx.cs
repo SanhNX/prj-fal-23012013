@@ -93,7 +93,7 @@ namespace FalStore
                     break;
 
                 case "Branch":
-                    if (role() == 1 || role() == 3)
+                    if (role() == 1)
                     {
                         uc = this.LoadControl("~/Control/Branch.ascx") as UserControl;
                     }
@@ -206,6 +206,17 @@ namespace FalStore
                         uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
                     }
                     break;
+                case "Customer":
+                    if (role() == 1 || role() == 3)
+                    {
+                        uc = this.LoadControl("~/Control/Customer.ascx") as UserControl;
+                    }
+                    else
+                    {
+                        uc = this.LoadControl("~/Control/Home.ascx") as UserControl;
+                    }
+                    break;
+                    
             }
 
             if ((cph != null) && (uc != null))

@@ -131,11 +131,13 @@
                                         <div id="printBill" class="printBill undisplayed">
                                             <div class="pb-header">
                                                 <div class="pb-logo"><img src="../Styles/Images/banner_Falshop.png" alt="mws admin"></div>
+                                                <div class=""><div id="pb-branchName" class="" align="center"> </div></div>
+                                                <div class=""><div id="pb-branchAddress" class="" align="center"> </div></div>
                                                 <div class="pb-title">Hóa Đơn</div>
-                                                <div class="pb-branchDesc">
-                                                    <div class="pb-branchName"><div class="pb-rowTitle">Chi Nhánh : </div><div id="pb-branchName" class="pb-rowValue"> </div></div>
-                                                    <div class="pb-branchAddress"><div class="pb-rowTitle">Địa Chỉ   : </div><div id="pb-branchAddress" class="pb-rowValue"> </div></div>
-                                                </div>
+                                              <%--  <div class="pb-branchDesc">
+                                                    <div class="pb-branchName"><div class="pb-rowTitle">Chi Nhánh : </div></div>
+                                                    <div class="pb-branchAddress"><div class="pb-rowTitle">Địa Chỉ   : </div></div>
+                                                </div>--%>
                                                 <div class="pb-billDesc">
                                                     <div class="pb-billID"><div class="pb-rowTitle">Mã hóa đơn : </div><div id="pb-codeBill" class="pb-rowValue"> </div></div>
                                                     <div class="pb-cutomerName"><div class="pb-rowTitle">Tên khách hàng   : </div><div id="pb-cusName" class="pb-rowValue"> </div></div>
