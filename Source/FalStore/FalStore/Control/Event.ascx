@@ -44,9 +44,9 @@
                             </div>
                         </div>
                          <div class="mws-form-row">
-                            <label class="mws-form-label">Giảm Giá</label>
+                            <label class="mws-form-label">Giảm Giá (%)</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtDiscount" runat="server" class="" Visible="true"></asp:TextBox>
+                                <asp:TextBox ID="txtDiscount" runat="server" class="" Visible="true" MaxLength="2"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"  Display="Dynamic" ErrorMessage="• Giảm giá không được để trống "
                                 ControlToValidate="txtDiscount" ForeColor="Red"></asp:RequiredFieldValidator>
                                 <asp:RangeValidator ID="RequiredFieldDiscount" runat="server" ControlToValidate="txtDiscount" Display="Dynamic" Type="Integer" MinimumValue="0" MaximumValue="50" ErrorMessage="Nhập số từ 0 -> 50" ForeColor="Red"></asp:RangeValidator>

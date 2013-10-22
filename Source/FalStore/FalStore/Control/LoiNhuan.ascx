@@ -42,7 +42,7 @@
                         </div>
                         <div class="mws-form-row">
                             <label class="mws-form-label">
-                                Dến ngày</label>
+                                Đến ngày</label>
                             <div class="mws-form-item">
                                 <asp:TextBox ID="TxtEndDate" runat="server" class="mws-dtpicker" Visible="true"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="TxtEndDate" ForeColor="Red" runat="server" ErrorMessage="Chọn Ngày"></asp:RequiredFieldValidator>

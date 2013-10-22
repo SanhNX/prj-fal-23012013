@@ -8,6 +8,7 @@ using System.Web.UI.HtmlControls;
 using BIZ;
 using Entity;
 using System.Data;
+using Common;
 
 namespace FalStore.Control
 {
@@ -16,6 +17,7 @@ namespace FalStore.Control
         #region .Property
         ProductBIZ productBIZ = new ProductBIZ();
         CategoryBIZ categoryBIZ = new CategoryBIZ();
+        ConvertMoneyString conV = new ConvertMoneyString();
         string id = string.Empty;
         string name = string.Empty;
         private int pageSize;
@@ -137,10 +139,10 @@ namespace FalStore.Control
                     ltrCategoryName.Text = data.Product.Category.CategoryName.ToString();
 
                     Literal ltrExportPrice = e.Item.FindControl("ltrExportPrice") as Literal;
-                    ltrExportPrice.Text = data.Product.ExportPrice.ToString("0");
+                    ltrExportPrice.Text = conV.FloatToMoneyString(data.Product.ExportPrice.ToString("0"));
 
                     Literal ltrImportPrice = e.Item.FindControl("ltrImportPrice") as Literal;
-                    ltrImportPrice.Text = data.Product.ImportPrice.ToString("0");
+                    ltrImportPrice.Text = conV.FloatToMoneyString(data.Product.ImportPrice.ToString("0"));
 
                     Literal ltrColorName = e.Item.FindControl("ltrColorName") as Literal;
                     ltrColorName.Text = data.ColorName.ToString();

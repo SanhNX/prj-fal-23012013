@@ -189,7 +189,7 @@
                             <label class="mws-form-label">
                                 Chiết khấu</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtSale1" runat="server" class="small" ></asp:TextBox>
+                                <asp:TextBox ID="txtSale1" runat="server" class="small" MaxLength="2"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Nhập Chiếc khấu , Và phải là số"
                                         ControlToValidate="txtSale1" ForeColor="Red"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtSale1" ForeColor="Red" runat="server" ErrorMessage="Nhập Chiếc khấu , Và phải là số" ValidationExpression="\d+"></asp:RegularExpressionValidator>
@@ -199,7 +199,7 @@
                             <label class="mws-form-label">
                                 Số lượng</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtQuantity1" runat="server" class="small"></asp:TextBox>
+                                <asp:TextBox ID="txtQuantity1" runat="server" class="small" MaxLength="9"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldQuantity" ControlToValidate="txtQuantity1" runat="server" ForeColor="Red" ErrorMessage="Nhập Số lượng , Và phải là số"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionQuantity" ControlToValidate="txtQuantity1" ForeColor="Red" runat="server" ErrorMessage="Nhập Số lượng , Và phải là số" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                             </div>

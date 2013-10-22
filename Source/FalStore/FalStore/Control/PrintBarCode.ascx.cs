@@ -15,6 +15,8 @@ using System.Data;
 using System.Drawing.Printing;
 using System.Drawing.Text;
 using Common;
+using DocumentFormat.OpenXml.Packaging;
+using OpenXml.Sandpit.FormattedExcel.Library;
 namespace FalStore.Control
 {
     public partial class PrintBarCode : System.Web.UI.UserControl
@@ -58,18 +60,18 @@ namespace FalStore.Control
             //txtBarCode.Text = file;
         }
 
-        protected void ClickShow_Click(object sender, EventArgs e)
-        {
+        //protected void ClickShow_Click(object sender, EventArgs e)
+        //{
 
-            // Session["prstr"] = TextBox1.Text;
+        //    // Session["prstr"] = TextBox1.Text;
 
 
-            // Page.ClientScript.RegisterStartupScript(this.GetType(), "onclick", "<script language=javascript>window.open('Common/PrintProduct.aspx','PrintMe','height=300px,width=300px,scrollbars=1');</script>");
-            //System.Web.UI.Control ctrl = (System.Web.UI.Control)Session["ctrl"];
-            //PrintHelper.PrintWebControl(Panel1);
+        //    // Page.ClientScript.RegisterStartupScript(this.GetType(), "onclick", "<script language=javascript>window.open('Common/PrintProduct.aspx','PrintMe','height=300px,width=300px,scrollbars=1');</script>");
+        //    //System.Web.UI.Control ctrl = (System.Web.UI.Control)Session["ctrl"];
+        //    //PrintHelper.PrintWebControl(Panel1);
 
-            DrawBarcode(txtBarCode.Text);
-        }
+        //    DrawBarcode(txtBarCode1.Text);
+        //}
 
         private void DrawBarcode(string productcode)
         {
@@ -173,7 +175,7 @@ namespace FalStore.Control
                         // Create a new cell and add it to the row.
                         TableCell tCell = new TableCell();
                        // tCell.VerticalAlign = VerticalAlign.Bottom;
-                        tCell.Text = txtProductName.Text + "<Br/>" + conV.FloatToMoneyString(txtPrice.Text) + " Đ";
+                        tCell.Text = txtProductName1.Text + "<Br/>" + conV.FloatToMoneyString(txtPrice1.Text) + " Đ";
                         tRow.Cells.Add(tCell);
                     }
                 }
@@ -384,15 +386,72 @@ namespace FalStore.Control
                 switch (e.CommandName)
                 {
                     case "Barcode":
-                        txtBarCode.Text = e.CommandArgument.ToString();
 
-                        for (int i = 0; i < lstObj.Count; i++) {
-                            if (lstObj[i].BarCode.Equals(e.CommandArgument.ToString()))
+                        if (Session["checStt"] == null)
+                        {
+                            txtBarCode1.Text = e.CommandArgument.ToString();
+
+                            for (int i = 0; i < lstObj.Count; i++)
                             {
-                                txtPrice.Text = lstObj[i].ExportPrice.ToString();
-                                txtProductName.Text = lstObj[i].ProductName + " " + lstObj[i].ColorName + " " + lstObj[i].SizeName;
+                                if (lstObj[i].BarCode.Equals(e.CommandArgument.ToString()))
+                                {
+                                    txtPrice1.Text = conV.FloatToMoneyString(lstObj[i].ExportPrice.ToString("0")) + " vnđ";
+                                    txtProductName1.Text = lstObj[i].ProductName + " " + lstObj[i].ColorName + " " + lstObj[i].SizeName;
+                                }
                             }
+
+                            Session["checStt"] = 2;
+
                         }
+                        else if ((int)Session["checStt"] == 2)
+                        {
+                            txtBarCode2.Text = e.CommandArgument.ToString();
+
+                            for (int i = 0; i < lstObj.Count; i++)
+                            {
+                                if (lstObj[i].BarCode.Equals(e.CommandArgument.ToString()))
+                                {
+                                    txtPrice2.Text = conV.FloatToMoneyString(lstObj[i].ExportPrice.ToString("0")) + " vnđ";
+                                    txtProductName2.Text = lstObj[i].ProductName + " " + lstObj[i].ColorName + " " + lstObj[i].SizeName;
+                                }
+                            }
+
+                            Session["checStt"] = 3;
+
+                        }
+                        else if ((int)Session["checStt"] == 3)
+                        {
+                            txtBarCode3.Text = e.CommandArgument.ToString();
+
+                            for (int i = 0; i < lstObj.Count; i++)
+                            {
+                                if (lstObj[i].BarCode.Equals(e.CommandArgument.ToString()))
+                                {
+                                    txtPrice3.Text = conV.FloatToMoneyString(lstObj[i].ExportPrice.ToString("0")) + " vnđ";
+                                    txtProductName3.Text = lstObj[i].ProductName + " " + lstObj[i].ColorName + " " + lstObj[i].SizeName;
+                                }
+                            }
+
+                            Session["checStt"] = 4;
+
+                        }
+                        else if ((int)Session["checStt"] == 4)
+                        {
+                            txtBarCode4.Text = e.CommandArgument.ToString();
+
+                            for (int i = 0; i < lstObj.Count; i++)
+                            {
+                                if (lstObj[i].BarCode.Equals(e.CommandArgument.ToString()))
+                                {
+                                    txtPrice4.Text = conV.FloatToMoneyString(lstObj[i].ExportPrice.ToString("0")) + " vnđ";
+                                    txtProductName4.Text = lstObj[i].ProductName + " " + lstObj[i].ColorName + " " + lstObj[i].SizeName;
+                                }
+                            }
+
+                            Session["checStt"] = null;
+
+                        }
+                        
                             break;
                 }
             }
@@ -402,6 +461,96 @@ namespace FalStore.Control
                 throw;
             }
 
+        }
+
+
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            
+
+            DataTable tbl = new DataTable();
+            tbl.Columns.Add("Barcode", typeof(string));
+            tbl.Columns.Add("Ten", typeof(string));
+            tbl.Columns.Add("Gia", typeof(string));
+            tbl.Columns.Add("Sl", typeof(string));
+
+            if (!string.Empty.Equals(txtSl1.Text)) {
+                 DataRow  dr = tbl.NewRow();
+                dr["Barcode"] = txtBarCode1.Text;
+                dr["Ten"] = txtProductName1.Text;
+                dr["Gia"] = txtPrice1.Text;
+                dr["Sl"] = txtSl1.Text;
+
+                 tbl.Rows.Add(dr);
+            }
+
+            if (!string.Empty.Equals(txtSl2.Text)) {
+                 DataRow  dr2 = tbl.NewRow();
+                dr2["Barcode"] = txtBarCode2.Text;
+                dr2["Ten"] = txtProductName2.Text;
+                dr2["Gia"] = txtPrice2.Text;
+                dr2["Sl"] = txtSl2.Text;
+
+                 tbl.Rows.Add(dr2);
+            }
+
+            if (!string.Empty.Equals(txtSl3.Text))
+            {
+                DataRow dr3 = tbl.NewRow();
+                dr3["Barcode"] = txtBarCode3.Text;
+                dr3["Ten"] = txtProductName3.Text;
+                dr3["Gia"] = txtPrice3.Text;
+                dr3["Sl"] = txtSl3.Text;
+
+                tbl.Rows.Add(dr3);
+            }
+
+            if (!string.Empty.Equals(txtSl4.Text))
+            {
+                DataRow dr4 = tbl.NewRow();
+                dr4["Barcode"] = txtBarCode4.Text;
+                dr4["Ten"] = txtProductName4.Text;
+                dr4["Gia"] = txtPrice4.Text;
+                dr4["Sl"] = txtSl4.Text;
+
+                tbl.Rows.Add(dr4);
+            }
+
+
+           
+
+            string fileName = "BarCode.xlsx";
+
+            string filePath = Server.MapPath("~/TemplateDocs/TemplateBarcode.xlsx");
+
+            GenerateExcelFile(tbl, filePath, fileName);
+        }
+
+        public void GenerateExcelFile(DataTable dataTable, string directoryTemplate, string fileName)
+        {
+            using (SpreadsheetWorker worker = new SpreadsheetWorker())
+            {
+
+                //string filePath = Server.MapPath("~/TemplateDocs/TemplateDocument.xlsx");
+                worker.Open(directoryTemplate);
+
+                // string outputFileName = "GeneratedDocument.xlsx";
+
+                //DataTable dataTable = GetTransactionDataTable();
+
+                worker.FillData("barcode", dataTable);
+
+                byte[] outputFileBytes = worker.SaveAs();
+                worker.Close();
+
+                Response.ClearHeaders();
+                Response.ClearContent();
+                Response.ContentType = "application/vnd.ms-excel";
+                Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", fileName));
+                Response.BinaryWrite(outputFileBytes);
+                Response.Flush();
+                Response.End();
+            }
         }
     }
 

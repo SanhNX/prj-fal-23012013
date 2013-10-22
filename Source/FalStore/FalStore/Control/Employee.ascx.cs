@@ -168,7 +168,7 @@ namespace FalStore.Control
             objE.BranchID = int.Parse(drpBranchTo.SelectedValue.ToString());
             objE.Role = int.Parse(drpPermission.SelectedValue.ToString());
             objE.CreateDate = DateTime.Today;
-            objE.CreateUser = "thanh";
+            objE.CreateUser = (string)Session["EmployeeName"];
 
             try
             {

@@ -209,7 +209,7 @@
                             <label class="mws-form-label">
                                 Số lượng</label>
                             <div class="mws-form-item">
-                                <asp:TextBox ID="txtQuantity" runat="server" class="small" ></asp:TextBox>
+                                <asp:TextBox ID="txtQuantity" runat="server" class="small" MaxLength="9" ></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldQuantity" ControlToValidate="txtQuantity" runat="server" ForeColor="Red" ErrorMessage="Nhập Số lượng , Và phải là số"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionQuantity" ControlToValidate="txtQuantity" ForeColor="Red" runat="server" ErrorMessage="Nhập Số lượng , Và phải là số" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                             </div>
