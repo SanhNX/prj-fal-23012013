@@ -42,7 +42,7 @@ namespace DAL
                     obj.Employee.EmployeeName = dr["EmployeeName"].ToString();
                     lst.Add(obj);
                 }
-
+                dr.Close();
                 total = int.Parse(prTotal.Value.ToString());
                 return lst;
         }

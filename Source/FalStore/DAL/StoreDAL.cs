@@ -55,6 +55,9 @@ namespace DAL
                 lst.Add(obj);
             }
 
+            dr.Close();
+
+
             total = int.Parse(prTotal.Value.ToString());
             return lst;
 
@@ -85,6 +88,8 @@ namespace DAL
                 obj.ExportPrice = float.Parse(dr["ExportPrice"].ToString());
 
             }
+
+            dr.Close();
 
             return obj;
         }
@@ -119,6 +124,8 @@ namespace DAL
                 obj.Quantity = int.Parse(dr["Quantity"].ToString());
             }
 
+            dr.Close();
+
             return obj;
         }
 
@@ -143,6 +150,8 @@ namespace DAL
             {
                 quantity = int.Parse(dr["Quantity"].ToString());
             }
+
+            dr.Close();
 
             return quantity;
         }
@@ -277,6 +286,8 @@ namespace DAL
                 obj.Quantity = int.Parse(dr["Quantity"].ToString());
                 lst.Add(obj);
             }
+
+            dr.Close();
 
             return lst;
 

@@ -58,6 +58,8 @@ namespace DAL
                 lst.Add(obj);
             }
 
+            dr.Close();
+
             return lst;
 
         }
@@ -114,6 +116,8 @@ namespace DAL
 
                 lst.Add(obj);
             }
+
+            dr.Close();
 
             return lst;
 

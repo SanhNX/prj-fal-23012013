@@ -42,7 +42,7 @@ namespace DAL
                 obj.Description = dr["Description"].ToString();
                 lst.Add(obj);
             }
-
+            dr.Close();
             //total = int.Parse(prTotal.Value.ToString());
             return lst;
         }
@@ -78,7 +78,7 @@ namespace DAL
                 obj.BranchName = dr["BranchName"].ToString();
                 lst.Add(obj);
             }
-
+            dr.Close();
             return lst;
         }
 
@@ -99,7 +99,7 @@ namespace DAL
                 obj.Address = dr["Address"].ToString();
                 obj.Description = dr["Description"].ToString();
             }
-
+            dr.Close();
             return obj;
 
         }
