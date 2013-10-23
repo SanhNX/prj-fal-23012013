@@ -83,7 +83,7 @@ namespace FalStore.Service
             object json = oSerializer.DeserializeObject(oSerializer.Serialize(listBillDetail));
 
            // return new { branchIDOfBill = objbill.BranchID, roleID = Session["Role"] != null ? (int)Session["Role"] : 0, codeCustomer = objcustomer.CodeCustomer, cusName = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, tc = objbill.TotalPrice, gg = objbill.Sale, tt = objbill.ActualTotalPrice, listBillDetail = json };
-            return new { branchIDOfBill = objbill.BranchID, roleID = sessionRole, codeCustomer = objcustomer.CodeCustomer, cusName = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, tc = objbill.TotalPrice, gg = objbill.Sale, tt = objbill.ActualTotalPrice, listBillDetail = json };
+            return new { branchIDOfBill = objbill.BranchID, roleID = sessionRole, codeCustomer = objcustomer.CodeCustomer, cusName = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, tc = objbill.TotalPrice, gg = objbill.Sale, tt = objbill.ActualTotalPrice, listBillDetail = json, dateCreate = objbill.CreateDate.ToString("dd/MM/yyyy") };
         }
 
         [WebMethod(EnableSession = true)]
