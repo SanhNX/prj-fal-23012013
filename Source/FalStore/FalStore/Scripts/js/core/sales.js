@@ -136,11 +136,8 @@ $(document).ready(function () {
                         var flagExist = false;
                         for (var j = 0; j < oldBillDetail.length; j++) {
                             if (currOrder[i].barCode == oldBillDetail[j].barCode) {
-                                if (currOrder[i].sl != oldBillDetail[j].sl) {
-                                    flagExist = true;
-                                    oldSL = oldBillDetail[j].sl;
-                                }
-                                
+                                flagExist = true;
+                                oldSL = oldBillDetail[j].sl;
                             }
                         }
                         if (flagExist) { // update bill detail and update bill
@@ -189,7 +186,7 @@ $(document).ready(function () {
                                 type: "POST",
                                 url: "Service/SaleService.asmx/deleteRowInBillDetail",
                                 contentType: "application/json; charset=utf-8",
-                                data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode, sessionEmployeeName: $("#sessionEmployeeName").val() }),
+                                data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode, sessionEmployeeName: $("#sessionEmployeeName").val(), oldQuantity: oldBillDetail[i].sl, branchID: branchIDOfBill }),
                                 dataType: "json",
                                 success: function (result) {
                                     var resp = result.d;
@@ -409,7 +406,7 @@ function getCurrentEventByBranch() {
                                     '<td>' + addCommas(item.price) + '</td>' +
                                     '<td>' + sL + '</td>' +
                                     '<td>' + addCommas(item.price * sL) + '</td>' +
-                                    "<td><a id='btn-deleteRow' href='javascript:deleteRow(" + '"' + item.id + '"' + ")' type='button' class='icol-cancel' ></a></td>" +
+                                    "<td><a id='btn-deleteRow' href='javascript:deleteRow(" + '"' + item.barCode + '"' + ")' type='button' class='icol-cancel' ></a></td>" +
                                 '</tr>';
                         $('tbody')[0].innerHTML += rowHtml;
                     }
@@ -485,7 +482,7 @@ function createTableOrder() {
                         '<td>' + addCommas(moneyOfProduct) + '</td>' +
                         '<td>' + sL + '</td>' +
                         '<td>' + addCommas(moneyOfProduct * sL) + '</td>' +
-                        "<td><a id='btn-deleteRow' href='javascript:deleteRow(" + '"' + item.id + '"' + ")' type='button' class='icol-cancel' ></a></td>" +
+                        "<td><a id='btn-deleteRow' href='javascript:deleteRow(" + '"' + item.barCode + '"' + ")' type='button' class='icol-cancel' ></a></td>" +
                     '</tr>';
             var rowBillHTML = '<tr>' +
                                 '<td class="pb-itemName td">' + (i + 1) + '.' + (item.name.length > 13 ? item.name.substr(0, 10) + '...' : item.name) + '</td>' +
@@ -550,19 +547,19 @@ function loadInfomationInBill() {
     var curr_year = d.getFullYear();
     $("#pb-dateCreate")[0].innerHTML = curr_date + "/" + curr_month + "/" + curr_year;
 }
-function deleteRow(id) {
+function deleteRow(barCode) {
     var currOrder = JSON.parse(getStorageItem(ORDER));
-    var index = getProductInStorage(currOrder, id);
+    var index = getProductInStorage(currOrder, barCode);
     currOrder.splice(index, 1);
     setStorageItem(ORDER, JSON.stringify(currOrder));
     createTableOrder();
 }
 
-function getProductInStorage(currOrder, id) {
+function getProductInStorage(currOrder, barCode) {
     var index = null;
     if (currOrder) {
         for (var i = 0; i < currOrder.length; i++) {
-            if (currOrder[i].id == id) {
+            if (currOrder[i].barCode == barCode) {
                 index = i;
             }
         }
