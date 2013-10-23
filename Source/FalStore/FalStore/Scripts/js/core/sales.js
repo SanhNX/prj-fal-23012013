@@ -368,6 +368,7 @@ function getCurrentEventByBranch() {
                 $("#cusPhone")[0].disabled = true;
                 $("#cusEmail")[0].disabled = true;
                 $("#btn-saveOrderToDB")[0].value = "Hoàn tất chỉnh sửa";
+                $("#btn-printBill").removeClass("undisplayed");
                 if (resp.roleID == "3") {
                     $("#gg")[0].disabled = false;
                 } else {
@@ -408,9 +409,19 @@ function getCurrentEventByBranch() {
                                     '<td>' + addCommas(item.price * sL) + '</td>' +
                                     "<td><a id='btn-deleteRow' href='javascript:deleteRow(" + '"' + item.barCode + '"' + ")' type='button' class='icol-cancel' ></a></td>" +
                                 '</tr>';
+                        var rowBillHTML = '<tr>' +
+                                '<td class="pb-itemName td">' + (i + 1) + '.' + (item.name.length > 13 ? item.name.substr(0, 10) + '...' : item.name) + '</td>' +
+                                '<td class="pb-itemPrice td">' + addCommas(item.price) + '</td>' +
+                                '<td class="pb-itemAmount td">' + sL + '</td>' +
+                                '<td class="pb-itemTotalPrice td">' + addCommas(item.price * sL) + '</td>' +
+                              '</tr>';
                         $('tbody')[0].innerHTML += rowHtml;
+                        $("#billDetail")[0].innerHTML += rowBillHTML;
                     }
                 }
+                loadInfomationInBill();
+                loadPriceInBill();
+                $("#pb-dateCreate")[0].innerHTML = resp.dateCreate;
             }
         });
     }
@@ -434,17 +445,20 @@ function getCurrentEventByBranch() {
                 }
             }
         });
+        $("#codeCustomer").val("FAL1234567");
+        $("#cusName").val("Khach Hang");
+        $("#cusPhone").val("0937757753");
+        $("#cusEmail").val("fal@gmail.com");
+        $("#cusName")[0].disabled = true;
+        $("#cusPhone")[0].disabled = true;
+        $("#cusEmail")[0].disabled = true;
         $("#btn-saveOrderToDB")[0].value = "Xuất hóa đơn";
+        $("#btn-printBill").addClass("undisplayed");
+        loadInfomationInBill();
+        loadPriceInBill();
     }
-    $("#codeCustomer").val("FAL1234567");
-    $("#cusName").val("Khach Hang");
-    $("#cusPhone").val("0937757753");
-    $("#cusEmail").val("fal@gmail.com");
-    $("#cusName")[0].disabled = true;
-    $("#cusPhone")[0].disabled = true;
-    $("#cusEmail")[0].disabled = true;
-    loadInfomationInBill();
-    loadPriceInBill();
+    
+    
 }
 
 function getURLParameter(name) {
@@ -528,7 +542,7 @@ function loadInfomationInBill() {
     $("#pb-branchName")[0].innerHTML = $("#lblBranchName")[0].innerHTML.substr(11, $("#lblBranchName")[0].innerHTML.length);
     //    $("#pb-branchAddress")[0].innerHTML = $("#lblBranchAddress")[0].innerHTML.length > 18 ? ($("#lblBranchAddress")[0].innerHTML.substr(0, 60) + "...") : $("#lblBranchAddress")[0].innerHTML;
     $("#pb-branchAddress")[0].innerHTML = $("#lblBranchAddress")[0].innerHTML;
-    $("#pb-codeBill")[0].innerHTML = "";
+    $("#pb-codeBill")[0].innerHTML = getURLParameter("billID") == "" ? "" : getURLParameter("billID");
 
     if ($("#codeCustomer")[0].value != "FAL1234567") {
         $(".pb-cutomerName").removeClass("undisplayed");
@@ -540,12 +554,13 @@ function loadInfomationInBill() {
         $(".pb-codeCustomer").addClass("undisplayed");
     }
 
-    
-    var d = new Date();
-    var curr_date = d.getDate();
-    var curr_month = d.getMonth() + 1; //Months are zero based
-    var curr_year = d.getFullYear();
-    $("#pb-dateCreate")[0].innerHTML = curr_date + "/" + curr_month + "/" + curr_year;
+    if (!getURLParameter("billID")) {
+        var d = new Date();
+        var curr_date = d.getDate();
+        var curr_month = d.getMonth() + 1; //Months are zero based
+        var curr_year = d.getFullYear();
+        $("#pb-dateCreate")[0].innerHTML = curr_date + "/" + curr_month + "/" + curr_year;
+    }
 }
 function deleteRow(barCode) {
     var currOrder = JSON.parse(getStorageItem(ORDER));
