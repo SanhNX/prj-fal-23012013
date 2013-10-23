@@ -235,18 +235,18 @@ namespace FalStore.Service
         public object updateRowInBillDetail(string barCode, string billID, string quantity, string amount, string oldQuantity, string branchID, string sessionEmployeeName)
         {
             Boolean flag = false;
-            BillDetailBIZ billDetailBIZ = new BillDetailBIZ();
-            objBillDetail = new objBillDetail();
-            objBillDetail.BillID = billID;
-            objBillDetail.BarCode = barCode;
-            objBillDetail.Quantity = int.Parse(quantity);
-            objBillDetail.Amount = float.Parse(amount);
-            //objBillDetail.UpdateUser = Session["EmployeeName"].ToString();
-            objBillDetail.UpdateUser = sessionEmployeeName;
-            int isUpDate = billDetailBIZ.Update(objBillDetail);
-            if (isUpDate == 1)
+            if (quantity != oldQuantity)
             {
-                if (quantity != oldQuantity)
+                BillDetailBIZ billDetailBIZ = new BillDetailBIZ();
+                objBillDetail = new objBillDetail();
+                objBillDetail.BillID = billID;
+                objBillDetail.BarCode = barCode;
+                objBillDetail.Quantity = int.Parse(quantity);
+                objBillDetail.Amount = float.Parse(amount);
+                //objBillDetail.UpdateUser = Session["EmployeeName"].ToString();
+                objBillDetail.UpdateUser = sessionEmployeeName;
+                int isUpDate = billDetailBIZ.Update(objBillDetail);
+                if (isUpDate == 1)
                 {
                     objStore objstoreTemp = new objStore();
                     objstoreTemp.BarCode = new objBarCode();
@@ -257,7 +257,7 @@ namespace FalStore.Service
 
                     if (int.Parse(quantity) < int.Parse(oldQuantity))
                     { // cong them
-                        
+                        objstoreTemp.Quantity = int.Parse(oldQuantity) - int.Parse(quantity);
                         int isUpdateStore = storeBIZ.UpdateSumQuantity(objstoreTemp);
                         if (isUpdateStore == 1)
                         {
@@ -266,14 +266,15 @@ namespace FalStore.Service
                     }
                     else
                     { // tru di
+                        objstoreTemp.Quantity = int.Parse(quantity) - int.Parse(oldQuantity);
                         int isUpdateStore = storeBIZ.UpdateQuantity(objstoreTemp);
                         if (isUpdateStore == 1)
                         {
                             flag = true;
                         }
                     }
+                    flag = true;
                 }
-                flag = true;
             }
             return flag;
         }
@@ -311,7 +312,7 @@ namespace FalStore.Service
         }
 
         [WebMethod(EnableSession = true)]
-        public object deleteRowInBillDetail(string billID, string barCode, string sessionEmployeeName)
+        public object deleteRowInBillDetail(string billID, string barCode, string sessionEmployeeName, string oldQuantity, string branchID)
         {
             Boolean flag = false;
             objBillDetail objbillDetail = new objBillDetail();
@@ -324,7 +325,17 @@ namespace FalStore.Service
             int isDeleteBillDetail = billDetailBIZ.Delete(objbillDetail);
             if (isDeleteBillDetail != 0)
             {
-                flag = true;
+                objStore objstoreTemp = new objStore();
+                objstoreTemp.BarCode = new objBarCode();
+                objstoreTemp.BarCode.BarCode = barCode;
+                objstoreTemp.Branch = new objBranch();
+                objstoreTemp.Branch.BranchID = int.Parse(branchID);
+                objstoreTemp.Quantity = int.Parse(oldQuantity);
+                int isUpdateStore = storeBIZ.UpdateSumQuantity(objstoreTemp);
+                if (isUpdateStore == 1)
+                {
+                    flag = true;
+                }
             }
             return flag;
         }
