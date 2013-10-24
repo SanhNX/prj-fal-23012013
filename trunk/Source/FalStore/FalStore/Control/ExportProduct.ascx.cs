@@ -163,28 +163,62 @@ namespace FalStore.Control
                     return;
                 }
 
-                string id = txtLogStoreID.Text;
-                objLogStore objLgStore = new objLogStore();
-                objLgStore.LogStoreID = txtLogStoreID.Text;
-                objLgStore.LogType = 1;
-                objLgStore.Employee = new objEmployee();
-                objLgStore.Employee.EmployeeID = (int)Session["EmployeeID"];
-                objLgStore.LogDate = txtLogDate.Text;
-                objLgStore.BranchFrom = new objBranch();
-                objLgStore.BranchFrom.BranchID = int.Parse(drpBranchFrom.SelectedValue.ToString());
-                objLgStore.BranchTo = new objBranch();
-                objLgStore.BranchTo.BranchID = int.Parse(drpBranchTo.SelectedValue.ToString());
-                objLgStore.NCC = string.Empty;
-                objLgStore.TotalAmount = float.Parse( txtTotal.Text);
-                objLgStore.Description = txtDescription.Text;
-                SetUpdateInfo(objLgStore, 0);
-                logBiz.InsertlogStore(objLgStore,1, 1);
-                InitPage();
-                ClearLogStoreInfo();
-                ClearProductInfo();
-                ShowControl(false);
 
-                Response.Write("<script type='text/javascript'>window.open('PageReport2.aspx?id=" + txtLogStoreID.Text + "','_blank');</script>");
+
+                List<objCheckLogDetail> lstCheckLog = new List<objCheckLogDetail>();
+                lstCheckLog = logBiz.CheckLogDetailByLogStoreID(txtLogStoreID.Text);
+
+                string messaAlert = "";
+
+                int checkQuality = 0;
+                bool checkFlg = false;
+                foreach (objCheckLogDetail objC in lstCheckLog)
+                {
+                    checkQuality = logBiz.CheckQuantityProductInStore(objC.BarCode, int.Parse(drpBranchFrom.SelectedValue.ToString()));
+
+                    if (objC.Quantity > checkQuality)
+                    {
+                        messaAlert = messaAlert + "---- BarCode : " + objC.BarCode + " SL muốn xuất là : " + objC.Quantity + " Lớn hơn SL trong kho chỉ có " + checkQuality ;
+                        checkFlg = true;
+                        
+                    }
+                
+                }
+
+                if (checkFlg)
+                {
+                    Page.Controls.Add(new LiteralControl("<script language='javascript'> window.alert(\"" + messaAlert + "\"); <" + "/script>"));
+                    return;
+
+                }
+                else {
+
+                    string id = txtLogStoreID.Text;
+                    objLogStore objLgStore = new objLogStore();
+                    objLgStore.LogStoreID = txtLogStoreID.Text;
+                    objLgStore.LogType = 1;
+                    objLgStore.Employee = new objEmployee();
+                    objLgStore.Employee.EmployeeID = (int)Session["EmployeeID"];
+                    objLgStore.LogDate = txtLogDate.Text;
+                    objLgStore.BranchFrom = new objBranch();
+                    objLgStore.BranchFrom.BranchID = int.Parse(drpBranchFrom.SelectedValue.ToString());
+                    objLgStore.BranchTo = new objBranch();
+                    objLgStore.BranchTo.BranchID = int.Parse(drpBranchTo.SelectedValue.ToString());
+                    objLgStore.NCC = string.Empty;
+                    objLgStore.TotalAmount = float.Parse(txtTotal.Text);
+                    objLgStore.Description = txtDescription.Text;
+                    SetUpdateInfo(objLgStore, 0);
+                    logBiz.InsertlogStore(objLgStore, 1, 1);
+                    InitPage();
+                    ClearLogStoreInfo();
+                    ClearProductInfo();
+                    ShowControl(false);
+
+                    Response.Write("<script type='text/javascript'>window.open('PageReport2.aspx?id=" + txtLogStoreID.Text + "','_blank');</script>");
+                }
+
+
+                
               
             }
             catch (Exception)

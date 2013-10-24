@@ -151,6 +151,8 @@ namespace FalStore.Control
                 ClearLogStoreInfo();
                 ShowControl(false);
 
+                txtNcc.Text = "San Xuat";
+
                 Response.Write("<script type='text/javascript'>window.open('PageReport.aspx?id=" + txtLogStoreID.Text + "','_blank');</script>");
 
             }
