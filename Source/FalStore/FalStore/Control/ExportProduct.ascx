@@ -67,7 +67,7 @@
         var ma = document.getElementById('<%= txtLogStoreID.ClientID %>').value;
         var ncc = '';
         var nd = document.getElementById('<%= txtDescription.ClientID %>').value;
-        document.getElementById('lnkFindProduct').href = "FindProduct.aspx?ma=" + ma + "&&ncc=" + ncc + "&&nd=" + nd ;
+        document.getElementById('lnkFindProduct').href = "FindProductXK.aspx?ma=" + ma + "&&ncc=" + ncc + "&&nd=" + nd ;
 
     }
  

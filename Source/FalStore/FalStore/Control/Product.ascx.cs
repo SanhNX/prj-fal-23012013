@@ -181,6 +181,9 @@ namespace FalStore.Control
                 {
                     case "Edit":
                         LoadDataUpdate(e.CommandArgument.ToString());
+                        txtImportPrice.Enabled = false;
+                        txtExportPrice.Enabled = false;
+                        drpCategory.Enabled = false;
                         break;
                     case "Delete":
                         DeleteProduct(e.CommandArgument.ToString());
@@ -321,7 +324,9 @@ namespace FalStore.Control
                 {
                     SetUpdateInfo(objProduct, 1);
                     result = productBIZ.Update(objProduct);
-
+                    txtImportPrice.Enabled = true;
+                    txtExportPrice.Enabled = true;
+                    drpCategory.Enabled = true;
                 }
 
                 clear();
