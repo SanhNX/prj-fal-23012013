@@ -128,7 +128,7 @@
                                             CssClass="dataTables_info" MaxSmartShortCutCount="0" RTL="False" PageSize="10"
                                             OnCommand="pager_Command" />--%>
 
-                                        <div id="printBill" class="printBill ">
+                                        <div id="printBill" class="printBill undisplayed">
                                             <div class="pb-header">
                                                 <div class="" align="center"><img src="../Styles/Images/banner_Falshop_ex.png" alt=""/>
                                                   </div>
