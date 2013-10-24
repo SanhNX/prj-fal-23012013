@@ -128,9 +128,10 @@
                                             CssClass="dataTables_info" MaxSmartShortCutCount="0" RTL="False" PageSize="10"
                                             OnCommand="pager_Command" />--%>
 
-                                        <div id="printBill" class="printBill undisplayed">
+                                        <div id="printBill" class="printBill ">
                                             <div class="pb-header">
-                                                <div class="pb-logo"><img src="../Styles/Images/banner_Falshop.png" alt="mws admin"></div>
+                                                <div class="" align="center"><img src="../Styles/Images/banner_Falshop_ex.png" alt=""/>
+                                                  </div>
                                                 <div class=""><div id="pb-branchName" class="" align="center"> </div></div>
                                                 <div class=""><div id="pb-branchAddress" class="" align="center"> </div></div>
                                                 <div class="pb-title">Hóa Đơn</div>
@@ -178,13 +179,13 @@
                                                     
                                                 </div>
                                                 <div class="pb-Price">
-                                                    <div class="pb-priceTitle">Tổng tiền (VND) : </div><div id="pb-tc" class="pb-priceValue"> </div>
+                                                    <div class="pb-priceTitle">Tổng tiền : </div><div id="pb-tc" class="pb-priceValue"> </div>
                                                 </div>
                                                 <div class="pb-Price">
                                                     <div class="pb-priceTitle">Giảm giá (%) : </div><div id="pb-gg" class="pb-priceValue"> </div>
                                                 </div>
                                                 <div class="pb-Price">
-                                                    <div class="pb-priceTitle">Thành tiền (VND) : </div><div id="pb-tt" class="pb-priceValue"> </div>
+                                                    <div class="pb-priceTitle">Thành tiền: </div><div id="pb-tt" class="pb-priceValue"> </div>
                                                 </div>
                                             </div>
                                             <div class="pb-footer">• Cảm ơn quý khách. Hẹn gặp lại ! •</div>
@@ -249,7 +250,7 @@
                                         </fieldset>
                                         <div class="mws-button-row">
                                             <input id="btn-saveOrderToDB" type="button" value="Xuất Hóa Đơn" class="btn btn-danger">
-                                            <input id="btn-printBill" type="button" value="In hóa đơn" class="btn btn-primary" onclick="PrintBill('printBill')">
+                                            <%--<input id="Button1" type="button" value="In hóa đơn" class="btn btn-primary" onclick="PrintBill('printBill')">--%>
                                             <a href="http://fal.vn/Default.aspx" class="btn btn-primary">Trang Chủ</a>
                                         </div>
                                     </div>
