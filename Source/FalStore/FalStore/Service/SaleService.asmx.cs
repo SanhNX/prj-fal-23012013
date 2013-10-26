@@ -122,7 +122,7 @@ namespace FalStore.Service
             if (objcustomer != null)
             {
                 //customer = new { id = objcustomer.CustomerID, code = objcustomer.CodeCustomer, name = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, discount = objcustomer.DisCount, roleID = Session["Role"] != null ? (int)Session["Role"] : 0 };
-                customer = new { id = objcustomer.CustomerID, code = objcustomer.CodeCustomer, name = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, discount = objcustomer.DisCount, roleID = sessionRole };
+                customer = new { id = objcustomer.CustomerID, code = objcustomer.CodeCustomer, name = objcustomer.CustomerName, phone = objcustomer.Phone, email = objcustomer.Email, discount = objcustomer.DisCount, roleID = sessionRole, branchId = objcustomer.BranchID, startDiscount = objcustomer.StartDiscount, endDiscount = objcustomer.EndDiscount };
             }
             return customer;
         }
