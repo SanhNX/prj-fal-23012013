@@ -4,6 +4,7 @@ var oldBillDetail = [];
 var oldListBillDetailID = [];
 var oldSL = null;
 var discountOfCurrBranch = 0;
+var actualPriceOfBillToUpdate = 0;
 $(document).ready(function () {
 
     // start add 20-10-2013 -Thanh
@@ -85,14 +86,22 @@ $(document).ready(function () {
                     $("#cusPhone")[0].disabled = true;
                     $("#cusEmail").val(customer.email);
                     $("#cusEmail")[0].disabled = true;
-                    if (customer.discount >= discountOfCurrBranch) {
-                        $("#gg").val(customer.discount);
+                    now = new Date();
+                    startDiscountOfCus = new Date(customer.startDiscount);
+                    endDiscountOfCus = new Date(customer.endDiscount);
+                    if (customer.branchId == branchIDOfBill && now >= startDiscountOfCus && now <= endDiscountOfCus) {
+                        if (customer.discount >= discountOfCurrBranch) {
+                            $("#gg").val(customer.discount);
+                        } else {
+                            $("#gg").val(discountOfCurrBranch);
+                        }
+                        if (customer.roleID == "3") {
+                            $("#gg")[0].disabled = false;
+                        } else {
+                            $("#gg")[0].disabled = true;
+                        }
                     } else {
-                        $("#gg").val(discountOfCurrBranch);
-                    }
-                    if (customer.roleID == "3") {
-                        $("#gg")[0].disabled = false;
-                    } else {
+                        $("#gg").val(0);
                         $("#gg")[0].disabled = true;
                     }
                 } else {
@@ -130,110 +139,91 @@ $(document).ready(function () {
             loadInfomationInBill();
             var billID = getURLParameter("billID");
             if (billID) { // update bill 
-                var currOrder = JSON.parse(getStorageItem(ORDER));
-                if (currOrder && currOrder.length > 0) { // upadte or insert bill detail for current bill
-                    for (var i = 0; i < currOrder.length; i++) {
-                        var flagExist = false;
-                        for (var j = 0; j < oldBillDetail.length; j++) {
-                            if (currOrder[i].barCode == oldBillDetail[j].barCode) {
-                                flagExist = true;
-                                oldSL = oldBillDetail[j].sl;
+                if (parseInt(actualPriceOfBillToUpdate) <= parseInt(formatMoneyToString($("#tt")[0].value))) {
+                    var currOrder = JSON.parse(getStorageItem(ORDER));
+                    if (currOrder && currOrder.length > 0) { // upadte or insert bill detail for current bill
+                        for (var i = 0; i < currOrder.length; i++) {
+                            var flagExist = false;
+                            for (var j = 0; j < oldBillDetail.length; j++) {
+                                if (currOrder[i].barCode == oldBillDetail[j].barCode) {
+                                    flagExist = true;
+                                    oldSL = oldBillDetail[j].sl;
+                                }
+                            }
+                            if (flagExist) { // update bill detail and update bill
+                                $.ajax({
+                                    type: "POST",
+                                    url: "Service/SaleService.asmx/updateRowInBillDetail",
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify({ barCode: currOrder[i].barCode, billID: billID, quantity: currOrder[i].sl, amount: currOrder[i].amount, oldQuantity: oldSL, branchID: branchIDOfBill, sessionEmployeeName: $("#sessionEmployeeName").val() }),
+                                    dataType: "json",
+                                    success: function (result) {
+                                        var resp = result.d;
+
+                                    },
+                                    error: function (mes) {
+                                        var responseText = JSON.parse(mes.responseText)
+                                        //alert(responseText.Message);
+                                    }
+                                });
+                            } else { // insert bill detail and update bill
+                                $.ajax({
+                                    type: "POST",
+                                    url: "Service/SaleService.asmx/insertMoreRowInBillDetail",
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify({ billID: billID, branchID: branchIDOfBill, barCode: currOrder[i].barCode, quantity: currOrder[i].sl, amount: currOrder[i].amount, sessionEmployeeName: $("#sessionEmployeeName").val() }),
+                                    dataType: "json",
+                                    success: function (result) {
+                                        var resp = result.d;
+
+                                    },
+                                    error: function (mes) {
+                                        var responseText = JSON.parse(mes.responseText)
+                                        //alert(responseText.Message);
+                                    }
+                                });
                             }
                         }
-                        if (flagExist) { // update bill detail and update bill
-                            $.ajax({
-                                type: "POST",
-                                url: "Service/SaleService.asmx/updateRowInBillDetail",
-                                contentType: "application/json; charset=utf-8",
-                                data: JSON.stringify({ barCode: currOrder[i].barCode, billID: billID, quantity: currOrder[i].sl, amount: currOrder[i].amount, oldQuantity: oldSL, branchID: branchIDOfBill, sessionEmployeeName: $("#sessionEmployeeName").val() }),
-                                dataType: "json",
-                                success: function (result) {
-                                    var resp = result.d;
-
-                                },
-                                error: function (mes) {
-                                    var responseText = JSON.parse(mes.responseText)
-                                    //alert(responseText.Message);
+                        for (var i = 0; i < oldBillDetail.length; i++) {
+                            var flagExist = false;
+                            for (var j = 0; j < currOrder.length; j++) {
+                                if (currOrder[j].barCode == oldBillDetail[i].barCode) {
+                                    flagExist = true;
                                 }
-                            });
-                        } else { // insert bill detail and update bill
-                            $.ajax({
-                                type: "POST",
-                                url: "Service/SaleService.asmx/insertMoreRowInBillDetail",
-                                contentType: "application/json; charset=utf-8",
-                                data: JSON.stringify({ billID: billID, branchID: branchIDOfBill, barCode: currOrder[i].barCode, quantity: currOrder[i].sl, amount: currOrder[i].amount, sessionEmployeeName: $("#sessionEmployeeName").val() }),
-                                dataType: "json",
-                                success: function (result) {
-                                    var resp = result.d;
+                            }
+                            if (!flagExist) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "Service/SaleService.asmx/deleteRowInBillDetail",
+                                    contentType: "application/json; charset=utf-8",
+                                    data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode, sessionEmployeeName: $("#sessionEmployeeName").val(), oldQuantity: oldBillDetail[i].sl, branchID: branchIDOfBill }),
+                                    dataType: "json",
+                                    success: function (result) {
+                                        var resp = result.d;
 
-                                },
-                                error: function (mes) {
-                                    var responseText = JSON.parse(mes.responseText)
-                                    //alert(responseText.Message);
-                                }
-                            });
-                        }
-                    }
-                    for (var i = 0; i < oldBillDetail.length; i++) {
-                        var flagExist = false;
-                        for (var j = 0; j < currOrder.length; j++) {
-                            if (currOrder[j].barCode == oldBillDetail[i].barCode) {
-                                flagExist = true;
+                                    },
+                                    error: function (mes) {
+                                        var responseText = JSON.parse(mes.responseText)
+                                        //alert(responseText.Message);
+                                    }
+                                });
                             }
                         }
-                        if (!flagExist) {
-                            $.ajax({
-                                type: "POST",
-                                url: "Service/SaleService.asmx/deleteRowInBillDetail",
-                                contentType: "application/json; charset=utf-8",
-                                data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode, sessionEmployeeName: $("#sessionEmployeeName").val(), oldQuantity: oldBillDetail[i].sl, branchID: branchIDOfBill }),
-                                dataType: "json",
-                                success: function (result) {
-                                    var resp = result.d;
-
-                                },
-                                error: function (mes) {
-                                    var responseText = JSON.parse(mes.responseText)
-                                    //alert(responseText.Message);
-                                }
-                            });
-                        }
-                    }
-                    var gg = $("#gg").val();
-                    var tc = parseInt(formatMoneyToString($("#tc")[0].value));
-                    var tt = parseInt(formatMoneyToString($("#tt")[0].value));
-                    $.ajax({
-                        type: "POST",
-                        url: "Service/SaleService.asmx/updateBill",
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify({ billID: billID, tc: tc, gg: gg, tt: tt, codeCus: $("#codeCustomer").val(), sessionEmployeeName: $("#sessionEmployeeName").val() }),
-                        dataType: "json",
-                        success: function (result) {
-                            var resp = result.d;
-
-                            if (resp) {
-                                alert("Đã hoàn tất chỉnh sửa");
-                            } else {
-                                alert("Đã xãy ra sự cố. vui lòng reload lại trang hiện tại.")
-                            }
-                        },
-                        error: function (mes) {
-                            var responseText = JSON.parse(mes.responseText)
-                            //alert(responseText.Message);
-                        }
-                    });
-                } else { // delete bill detail for current bill
-                    for (var i = 0; i < oldBillDetail.length; i++) {
+                        var gg = $("#gg").val();
+                        var tc = parseInt(formatMoneyToString($("#tc")[0].value));
+                        var tt = parseInt(formatMoneyToString($("#tt")[0].value));
                         $.ajax({
                             type: "POST",
-                            url: "Service/SaleService.asmx/deleteRowInBillDetail",
+                            url: "Service/SaleService.asmx/updateBill",
                             contentType: "application/json; charset=utf-8",
-                            data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode, sessionEmployeeName: $("#sessionEmployeeName").val() }),
+                            data: JSON.stringify({ billID: billID, tc: tc, gg: gg, tt: tt, codeCus: $("#codeCustomer").val(), sessionEmployeeName: $("#sessionEmployeeName").val() }),
                             dataType: "json",
                             success: function (result) {
                                 var resp = result.d;
+
                                 if (resp) {
-                                    alert("Chi tiết hóa đơn đã được xóa trống");
+                                    alert("Đã hoàn tất chỉnh sửa");
+                                    actualPriceOfBillToUpdate = 0;
                                 } else {
                                     alert("Đã xãy ra sự cố. vui lòng reload lại trang hiện tại.")
                                 }
@@ -243,8 +233,41 @@ $(document).ready(function () {
                                 //alert(responseText.Message);
                             }
                         });
+                    } else { // delete bill detail for current bill
+                        for (var i = 0; i < oldBillDetail.length; i++) {
+                            $.ajax({
+                                type: "POST",
+                                url: "Service/SaleService.asmx/deleteRowInBillDetail",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify({ billID: billID, barCode: oldBillDetail[i].barCode, sessionEmployeeName: $("#sessionEmployeeName").val() }),
+                                dataType: "json",
+                                success: function (result) {
+                                    var resp = result.d;
+                                    if (resp) {
+                                        alert("Chi tiết hóa đơn đã được xóa trống");
+                                    } else {
+                                        alert("Đã xãy ra sự cố. vui lòng reload lại trang hiện tại.")
+                                    }
+                                },
+                                error: function (mes) {
+                                    var responseText = JSON.parse(mes.responseText)
+                                    //alert(responseText.Message);
+                                }
+                            });
+                        }
                     }
+                } else {
+                    alert("Tổng tiền sau khi cập nhật hóa đơn phải lớn hơn hoặc bằng " + addCommas(actualPriceOfBillToUpdate) + " VND");
                 }
+
+
+
+
+
+
+
+
+
             }
             else { // insert bill
                 var codeCustomer = $("#codeCustomer").val();
@@ -360,7 +383,7 @@ function getCurrentEventByBranch() {
                 $("#tc").formatCurrency({ region: 'vi-VN' });
                 $("#tt")[0].value = resp.tt;
                 $("#tt").formatCurrency({ region: 'vi-VN' });
-                
+                actualPriceOfBillToUpdate = resp.tt;
                 $("#gg").val(resp.gg ? resp.gg : 0);
 
                 $("#codeCustomer")[0].disabled = true;
