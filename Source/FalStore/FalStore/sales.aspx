@@ -250,7 +250,7 @@
                                         </fieldset>
                                         <div class="mws-button-row">
                                             <input id="btn-saveOrderToDB" type="button" value="Xuất Hóa Đơn" class="btn btn-danger">
-                                            <%--<input id="Button1" type="button" value="In hóa đơn" class="btn btn-primary" onclick="PrintBill('printBill')">--%>
+                                            <input id="btn-printBill" type="button" value="In hóa đơn" class="btn btn-primary" onclick="PrintBill('printBill')">
                                             <a href="http://fal.vn/Default.aspx" class="btn btn-primary">Trang Chủ</a>
                                         </div>
                                     </div>
