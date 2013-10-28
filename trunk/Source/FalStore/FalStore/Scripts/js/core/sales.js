@@ -89,7 +89,7 @@ $(document).ready(function () {
                     now = new Date();
                     startDiscountOfCus = new Date(customer.startDiscount);
                     endDiscountOfCus = new Date(customer.endDiscount);
-                    if (customer.branchId == branchIDOfBill && now >= startDiscountOfCus && now <= endDiscountOfCus) {
+                    if (customer.branchId == $("#sessionBranchID").val() && now >= startDiscountOfCus && now <= endDiscountOfCus) {
                         if (customer.discount >= discountOfCurrBranch) {
                             $("#gg").val(customer.discount);
                         } else {
