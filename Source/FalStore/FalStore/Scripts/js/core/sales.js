@@ -562,7 +562,7 @@ function loadPriceInBill() {
     $("#pb-tt")[0].innerHTML = $("#tt")[0].value.substr(0, $("#tt")[0].value.length - 2);;
 }
 function loadInfomationInBill() {
-    $("#pb-branchName")[0].innerHTML = $("#lblBranchName")[0].innerHTML.substr(11, $("#lblBranchName")[0].innerHTML.length);
+//    $("#pb-branchName")[0].innerHTML = $("#lblBranchName")[0].innerHTML.substr(11, $("#lblBranchName")[0].innerHTML.length);
     //    $("#pb-branchAddress")[0].innerHTML = $("#lblBranchAddress")[0].innerHTML.length > 18 ? ($("#lblBranchAddress")[0].innerHTML.substr(0, 60) + "...") : $("#lblBranchAddress")[0].innerHTML;
     $("#pb-branchAddress")[0].innerHTML = $("#lblBranchAddress")[0].innerHTML;
     $("#pb-codeBill")[0].innerHTML = getURLParameter("billID") == "" ? "" : getURLParameter("billID");
