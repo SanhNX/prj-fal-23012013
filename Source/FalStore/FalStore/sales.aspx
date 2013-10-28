@@ -132,9 +132,9 @@
                                             <div class="pb-header">
                                                 <div class="" align="center"><img src="../Styles/Images/banner_Falshop_ex.png" alt=""/>
                                                   </div>
-                                                <div class=""><div id="pb-branchName" class="" align="center"> </div></div>
+                                                <%--<div class=""><div id="pb-branchName" class="" align="center"> </div></div>--%>
                                                 <div class=""><div id="pb-branchAddress" class="" align="center"> </div></div>
-                                                <div class="pb-title">Hóa Đơn</div>
+                                                <div class="pb-title">HÓA ĐƠN</div>
                                               <%--  <div class="pb-branchDesc">
                                                     <div class="pb-branchName"><div class="pb-rowTitle">Chi Nhánh : </div></div>
                                                     <div class="pb-branchAddress"><div class="pb-rowTitle">Địa Chỉ   : </div></div>
@@ -149,7 +149,7 @@
                                             </div>
                                             <div class="pb-content">
                                                 <div class="pb-productDetailDesc">
-                                                    Chi tiết đơn hàng : 
+                                                    <%--Chi tiết đơn hàng : --%>
                                                     <table id="billDetail" class="table">
                                                         <tr class="tr">
                                                             <th class="pb-itemName th">Tên SP</th>
