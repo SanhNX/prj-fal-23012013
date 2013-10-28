@@ -127,6 +127,7 @@ namespace DAL
                 obj.StartDiscount = dr["StartDiscout"].ToString();
                 obj.EndDiscount = dr["EndDiscount"].ToString();
                 obj.Point = int.Parse(dr["Point"].ToString() == "" ? "0" : dr["Point"].ToString());
+                obj.BranchID = int.Parse(dr["BranchID"].ToString());
             }
             dr.Close();
 
